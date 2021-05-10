@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { AuthRoute } from '../util/route_util';
 import HeaderContainer from './header/header';
 import LoginFormContainer from '../components/session/login_form_container';
+import SignUpFormContainer from '../components/session/signup/signup_form_container';
 
 const App = () => (
   <>
@@ -10,8 +11,8 @@ const App = () => (
       <h1>InLink</h1>
       <HeaderContainer/>
     </header>
-    <AuthRoute exact={true} path='/login' component={LoginFormContainer}/>
-    {/* <AuthRoute exact path='/signup' component={SignUpForm}/> */}
+    <AuthRoute exact path='/login' component={LoginFormContainer}/>
+    <AuthRoute exact path='/signup' component={SignUpFormContainer}/>
 
   </>
 );
