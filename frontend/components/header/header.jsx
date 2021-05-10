@@ -1,8 +1,20 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import LoginHeader from './login_header';
+import LoggedInHeader from './logged_in_header';
 
-const Header = () => (
-  <h2>Header Stuff</h2>
-);
+const Header = ({ loggedIn }) => {
+  return loggedIn ? (
+    <LoggedInHeader/> 
+  ) : (
+    <LoginHeader/>
+  )
+};
 
-export default Header;
+const mapSTP = ({ session: { currentUser }}) => ({
+  loggedIn: Boolean(currentUser)
+});
+
+const HeaderContainer = connect(mapSTP)(Header);
+
+export default HeaderContainer;

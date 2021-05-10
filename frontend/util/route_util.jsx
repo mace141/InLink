@@ -7,23 +7,15 @@ const mapSTP = ({ session: { currentUser }}) => ({
 });
 
 const Auth = ({ component: Component, loggedIn, path, exact }) => (
-  <Route exact={exact} path={path} render={props => {
-    loggedIn ?  ( 
-      <Redirect to='/feed'/>
-    ) : (
-      <Component { ...props }/>
-    )
-  }}/>
+  <Route exact={exact} path={path} render={props => (
+    loggedIn ? <Redirect to='/feed'/> : <Component { ...props }/>
+  )}/>
 );
 
 const Protected = ({ component: Component, loggedIn, path, exact }) => (
-  <Route exact={exact} path={path} render={props => {
-    !loggedIn ?  ( 
-      <Redirect to='/'/>
-    ) : (
-      <Component { ...props }/>
-    )
-  }}/>
+  <Route exact={exact} path={path} render={props => (
+    !loggedIn ? <Redirect to='/'/> : <Component { ...props }/> 
+  )}/>
 );
 
 export const AuthRoute = connect(mapSTP)(Auth);

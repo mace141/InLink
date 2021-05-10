@@ -25,4 +25,4 @@ export const logoutUser = () => (
     method: 'DELETE',
     url: '/api/session'
   })
-)
+);

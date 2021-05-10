@@ -17,5 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
   } 
   const store = configureStore(preloadedState);
 
+  window.getState = store.getState;
+
   ReactDOM.render(<Root store={store}/>, root);
 });
+
+// $.ajax({method:'POST', url: '/api/session', data: { user: { email: 'guest@user.com', password: 'password'}}})
+// $.ajax({method: 'DELETE', url: '/api/session'})
