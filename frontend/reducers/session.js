@@ -15,6 +15,7 @@ const _nullSession = {
 
 const sessionReducer = (state = _nullSession, action) => {
   Object.freeze(state);
+  let nextSignup;
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
@@ -22,15 +23,20 @@ const sessionReducer = (state = _nullSession, action) => {
     case LOGOUT_CURRENT_USER:
       return _nullSession;
     case RECEIVE_USER_EMAIL:
-      return Object.assign({}, state, { signup: action.email });
+      nextSignup = Object.assign(state.signup, action.email);
+      return Object.assign({}, state, { signup: nextSignup });
     case RECEIVE_USER_NAME:
-      return Object.assign({}, state, { signup: action.name });
+      nextSignup = Object.assign(state.signup, action.name);
+      return Object.assign({}, state, { signup: nextSignup });
     case RECEIVE_USER_LOCATION:
-      return Object.assign({}, state, { signup: action.location });
+      nextSignup = Object.assign(state.signup, action.location);
+      return Object.assign({}, state, { signup: nextSignup });
     case RECEIVE_USER_JOB:
-      return Object.assign({}, state, { signup: action.job });
+      nextSignup = Object.assign(state.signup, action.job);
+      return Object.assign({}, state, { signup: nextSignup });
     case RECEIVE_USER_STUDENT:
-      return Object.assign({}, state, { signup: action.email });
+      nextSignup = Object.assign(state.signup, action.student);
+      return Object.assign({}, state, { signup: nextSignup });
     default:
       return state;
   }

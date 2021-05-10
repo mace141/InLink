@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { receiveUserEmail } from '../../../actions/session';
 
 class EmailForm extends React.Component {
   constructor(props) {
@@ -38,4 +40,10 @@ class EmailForm extends React.Component {
   }
 }
 
-export default EmailForm;
+const mapDTP = dispatch => ({
+  receiveUserEmail: email => dispatch(receiveUserEmail(email))
+});
+
+const EmailFormContainer = connect(null, mapDTP)(EmailForm);
+
+export default EmailFormContainer;
