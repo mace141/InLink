@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+ActiveRecord::Base.transaction do 
+  User.destroy_all 
+  
+  guest = User.create(
+    email: 'guest@user.com', 
+    password: 'password',
+    fname: 'Guest',
+    lname: 'User',
+    location: 'New York, NY, United States',
+    headline: 'Guest at GuestLand',
+    industry: 'GuestLand'
+  )
+end
