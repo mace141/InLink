@@ -36,7 +36,6 @@ class StudentForm extends React.Component {
     }
     return (
       <>
-        <h1>Insert logo here</h1>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>School or College/University *
@@ -51,14 +50,14 @@ class StudentForm extends React.Component {
           <label>Start year *
             <select onChange={this.handleInput('startYr')}>
               {years.map(yr => {
-                if (yr < 2022) return (<option>{yr}</option>)
+                if (yr < 2022) return (<option key={yr}>{yr}</option>)
               })}
             </select>
           </label>
           <label>End year (or expected) *
             <select onChange={this.handleInput('endYr')}>
               {years.map(yr => (
-                <option>{yr}</option>
+                <option key={yr}>{yr}</option>
               ))}
             </select>
           </label>

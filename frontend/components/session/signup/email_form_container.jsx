@@ -24,7 +24,6 @@ class EmailForm extends React.Component {
   render() {
     return (
       <>
-        <h1>Insert logo here</h1>
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Email: 

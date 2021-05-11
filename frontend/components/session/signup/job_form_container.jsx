@@ -29,7 +29,6 @@ class JobForm extends React.Component {
 
   render() {
     const employmentTypes = [
-      'Select one',
       'Full-time',
       'Part-time',
       'Self-employed',
@@ -41,7 +40,6 @@ class JobForm extends React.Component {
     ];
     return (
       <>
-        <h1>Insert logo here</h1>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Most recent job title
@@ -49,8 +47,8 @@ class JobForm extends React.Component {
           </label>
           <label>Employment type
             <select onChange={this.handleInput('type')}>
-              {employmentTypes.map(type => (
-                <option>{type}</option>
+              {employmentTypes.map((type, i) => (
+                <option key={i}>{type}</option>
               ))}
             </select>
           </label>

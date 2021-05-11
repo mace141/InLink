@@ -8,8 +8,7 @@ import SignUpFormContainer from '../components/session/signup/signup_form_contai
 const App = () => (
   <>
     <header>
-      <h1>InLink</h1>
-      <HeaderContainer/>
+      <Route path='/' component={HeaderContainer}/>
     </header>
     <AuthRoute exact path='/login' component={LoginFormContainer}/>
     <AuthRoute path='/signup' component={SignUpFormContainer}/>

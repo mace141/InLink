@@ -27,7 +27,6 @@ class LocationForm extends React.Component {
   render() {
     return (
       <>
-        <h1>Insert logo here</h1>
         <h2>Welcome, {this.props.fname}!</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Country

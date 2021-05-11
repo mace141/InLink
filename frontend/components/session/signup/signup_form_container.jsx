@@ -8,13 +8,16 @@ import JobFormContainer from './job_form_container';
 import StudentFormContainer from './student_form_container';
 
 const SignUpFormContainer = () => (
-  <Switch>
-    <AuthRoute exact path='/signup/student' component={StudentFormContainer}/>
-    <AuthRoute exact path='/signup/job' component={JobFormContainer}/>
-    <AuthRoute exact path='/signup/location' component={LocationFormContainer}/>
-    <AuthRoute exact path='/signup/name' component={NameFormContainer}/>
-    <AuthRoute exact path='/signup' component={EmailFormContainer}/>
-  </Switch>
+  <>
+    <h1>Insert logo here</h1>
+    <Switch>
+      <AuthRoute exact path='/signup/student' component={StudentFormContainer}/>
+      <AuthRoute exact path='/signup/job' component={JobFormContainer}/>
+      <AuthRoute exact path='/signup/location' component={LocationFormContainer}/>
+      <AuthRoute exact path='/signup/name' component={NameFormContainer}/>
+      <AuthRoute exact path='/signup' component={EmailFormContainer}/>
+    </Switch>
+  </>
 );
 
 export default SignUpFormContainer;
