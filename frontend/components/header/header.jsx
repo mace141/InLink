@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import LoginHeader from './login_header';
 import LoggedInHeader from './logged_in_header';
 
 const Header = ({ loggedIn, sessionPath }) => {
   return loggedIn ? (
     <>
-      <h1>Icon Logo</h1>
+      <Link to='/'>Icon Logo</Link>
       <LoggedInHeader/> 
     </>
-  ) : sessionPath ? null : (
+  ) : (
     <>
-      <h1>Full Logo</h1>
+      <Link to='/'>Full Logo</Link>
       <LoginHeader/>
     </>
   )

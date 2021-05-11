@@ -38,29 +38,24 @@ class StudentForm extends React.Component {
       <>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>School or College/University *
-            <input type="text" value={this.state.school} onChange={this.handleInput('school')}/>
-          </label>
-          <label>Degree *
-            <input type="text" value={this.state.degree} onChange={this.handleInput('degree')}/>
-          </label>
-          <label>Specialization *
-            <input type="text" value={this.state.specialization} onChange={this.handleInput('specialization')}/>
-          </label>
-          <label>Start year *
-            <select onChange={this.handleInput('startYr')}>
-              {years.map(yr => {
-                if (yr < 2022) return (<option key={yr}>{yr}</option>)
-              })}
-            </select>
-          </label>
-          <label>End year (or expected) *
-            <select onChange={this.handleInput('endYr')}>
-              {years.map(yr => (
-                <option key={yr}>{yr}</option>
-              ))}
-            </select>
-          </label>
+          <label>School or College/University *</label>
+          <input type="text" value={this.state.school} onChange={this.handleInput('school')}/>
+          <label>Degree *</label>
+          <input type="text" value={this.state.degree} onChange={this.handleInput('degree')}/>
+          <label>Specialization *</label>
+          <input type="text" value={this.state.specialization} onChange={this.handleInput('specialization')}/>
+          <label>Start year *</label>
+          <select onChange={this.handleInput('startYr')}>
+            {years.map(yr => {
+              if (yr < 2022) return (<option key={yr}>{yr}</option>)
+            })}
+          </select>
+          <label>End year (or expected) *</label>
+          <select onChange={this.handleInput('endYr')}>
+            {years.map(yr => (
+              <option key={yr}>{yr}</option>
+            ))}
+          </select>
           <Link to='/signup/job'>I'm not a student</Link>
           <button type='submit'>Continue</button>
         </form>

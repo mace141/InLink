@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../actions/session';
 
 class LoginForm extends React.Component {
@@ -33,7 +34,7 @@ class LoginForm extends React.Component {
 
     return (
       <> 
-        <h1 className='login-logo'>Full Logo</h1>
+        <Link to='/' className='login-logo'>Full Logo</Link>
         <div className='login-form'>
           <h2>Sign In</h2>
           <form onSubmit={this.handleSubmit.bind(this)}>

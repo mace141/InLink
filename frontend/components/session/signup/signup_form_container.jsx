@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch } from "react-router";
+import { Link } from 'react-router-dom';
 import { AuthRoute } from "../../../util/route_util";
 import EmailFormContainer from './email_form_container';
 import LocationFormContainer from './location_form_container';
@@ -9,7 +10,7 @@ import StudentFormContainer from './student_form_container';
 
 const SignUpFormContainer = () => (
   <>
-    <h1>Full Logo</h1>
+    <Link to='/'>Full Logo</Link>
     <Switch>
       <AuthRoute exact path='/signup/student' component={StudentFormContainer}/>
       <AuthRoute exact path='/signup/job' component={JobFormContainer}/>
