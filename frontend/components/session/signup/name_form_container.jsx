@@ -5,10 +5,12 @@ import { receiveUserName } from '../../../actions/session';
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
+    const user = this.props.user;
+
     this.state = {
-      fname: "",
-      lname: ""
-    }
+      fname: user.fname,
+      lname: user.lname
+    };
   }
 
   handleInput(field) {
@@ -37,10 +39,15 @@ class NameForm extends React.Component {
   }
 }
 
+const mapSTP = ({ session: { signup } }) => ({
+  user: signup
+});
+
+
 const mapDTP = dispatch => ({
   receiveUserName: name => dispatch(receiveUserName(name))
 });
 
-const NameFormContainer = connect(null, mapDTP)(NameForm);
+const NameFormContainer = connect(mapSTP, mapDTP)(NameForm);
 
 export default NameFormContainer;

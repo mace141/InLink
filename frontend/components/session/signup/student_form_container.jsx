@@ -6,13 +6,15 @@ import { createUser, receiveUserStudent } from '../../../actions/session';
 class StudentForm extends React.Component {
   constructor(props) {
     super(props);
+    const user = this.props.user;
+
     this.state = {
-      school: "",
-      degree: "",
-      specialization: "",
-      startYr: "",
-      endYr: ""
-    }
+      school: user.school,
+      degree: user.degree,
+      specialization: user.specialization,
+      startYr: user.startYr,
+      endYr: user.endYr
+    };
   }
 
   handleInput(field) {
@@ -23,9 +25,9 @@ class StudentForm extends React.Component {
     e.preventDefault();
     const student = {
       headline: 'Student at ' + this.state.school,
-      industry: this.state.school
+      industry: this.state.school,
     };
-    this.props.receiveUserStudent(student);
+    this.props.receiveUserStudent(Object.assign({}, this.state, student));
     this.props.createUser(this.props.user);
   }
 

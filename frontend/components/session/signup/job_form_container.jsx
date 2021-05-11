@@ -6,11 +6,13 @@ import { createUser, receiveUserJob } from '../../../actions/session';
 class JobForm extends React.Component {
   constructor(props) {
     super(props);
+    const user = this.props.user;
+
     this.state = {
-      jobTitle: "",
-      type: "",
-      company: "",
-    }
+      jobTitle: user.jobTitle,
+      type: user.type,
+      company: user.company,
+    };
   }
 
   handleInput(field) {
@@ -23,7 +25,7 @@ class JobForm extends React.Component {
       headline: this.state.jobTitle + ' at ' + this.state.company,
       industry: this.state.company
     };
-    this.props.receiveUserJob(job);
+    this.props.receiveUserJob(Object.assign({}, this.state, job));
     this.props.createUser(this.props.user);
   }
 

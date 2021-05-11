@@ -5,11 +5,13 @@ import { receiveUserLocation } from '../../../actions/session';
 class LocationForm extends React.Component {
   constructor(props) {
     super(props);
+    const user = this.props.user;
+
     this.state = {
-      country: "",
-      state: "",
-      city: ""
-    }
+      country: user.country,
+      state: user.state,
+      city: user.city
+    };
   }
 
   handleInput(field) {
@@ -20,7 +22,7 @@ class LocationForm extends React.Component {
     e.preventDefault();
     const { country, state, city } = this.state;
     const location = city + ', ' + state + ', ' + country;
-    this.props.receiveUserLocation({ location });
+    this.props.receiveUserLocation(Object.assign({}, this.state, { location }));
     this.props.history.push('/signup/job');
   }
 
@@ -43,7 +45,8 @@ class LocationForm extends React.Component {
 }
 
 const mapSTP = ({ session: { signup }}) => ({
-  fname: signup.fname
+  fname: signup.fname,
+  user: signup
 });
 
 const mapDTP = dispatch => ({
