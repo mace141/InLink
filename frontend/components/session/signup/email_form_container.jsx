@@ -31,7 +31,7 @@ class EmailForm extends React.Component {
 
   render() {
     return (
-      <>
+      <div className='signup-form'>
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Email</label>
@@ -41,7 +41,7 @@ class EmailForm extends React.Component {
           <button onClick={this.handleDemo.bind(this)}>Demo User</button>
           <button type='submit'>Join InLink</button>
         </form>
-      </>
+      </div>
     )
   }
 }

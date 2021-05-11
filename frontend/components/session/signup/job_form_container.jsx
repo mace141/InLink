@@ -39,7 +39,7 @@ class JobForm extends React.Component {
       'Seasonal'
     ];
     return (
-      <>
+      <div className='signup-form'>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Most recent job title *</label>
@@ -55,7 +55,7 @@ class JobForm extends React.Component {
           <Link to='/signup/student'>I'm a student</Link>
           <button type='submit'>Finish</button>
         </form>
-      </>
+      </div>
     )
   }
 }

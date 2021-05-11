@@ -35,7 +35,7 @@ class StudentForm extends React.Component {
       years.unshift(i);
     }
     return (
-      <>
+      <div className='signup-form'>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>School or College/University *</label>
@@ -59,7 +59,7 @@ class StudentForm extends React.Component {
           <Link to='/signup/job'>I'm not a student</Link>
           <button type='submit'>Finish</button>
         </form>
-      </>
+      </div>
     )
   }
 }

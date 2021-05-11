@@ -23,7 +23,7 @@ class NameForm extends React.Component {
 
   render() {
     return (
-      <>
+      <div className='signup-form'>
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>First name</label>
@@ -32,7 +32,7 @@ class NameForm extends React.Component {
           <input type="text" value={this.state.lname} onChange={this.handleInput('lname')}/>
           <button type='submit'>Continue</button>
         </form>
-      </>
+      </div>
     )
   }
 }
