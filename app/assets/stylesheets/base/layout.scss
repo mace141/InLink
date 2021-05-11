@@ -6,8 +6,8 @@ html {
 body {
 	margin: 0 auto;
 	font-family: $sans-serif;
-	font-size: 12px;
-  background: $lightgray;
+	font-size: 16px;
+  background: $cream;
 }
 
 #root {
@@ -27,13 +27,4 @@ header {
     font-size: 16px;
     font-weight: 500;
   }
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.error-msg {
-  color: red;
 }

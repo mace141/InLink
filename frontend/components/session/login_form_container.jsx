@@ -36,11 +36,12 @@ class LoginForm extends React.Component {
       <> 
         <Link to='/' className='login-logo'>Full Logo</Link>
         <div className='login-form'>
-          <h2>Sign In</h2>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <input type="text" placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
+            <h2>Sign In</h2>
+            <p>Stay linked with your professional world</p>
+            <input type="text" className='signin-input' placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
             {errorOne ? <p className='error-msg'>{errorOne}</p> : null}
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
+            <input type="password" className='signin-input' placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
             {errorTwo ? <p className='error-msg'>{errorTwo}</p> : null}
             <button onClick={this.handleDemo.bind(this)}>Demo User</button>
             <button type='submit'>Sign In</button>
