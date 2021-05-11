@@ -29,13 +29,13 @@ class LocationForm extends React.Component {
       <>
         <h2>Welcome, {this.props.fname}!</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>Country
+          <label>Country *
             <input type="text" value={this.state.country} onChange={this.handleInput('country')}/>
           </label>
-          <label>State
+          <label>State *
             <input type="text" value={this.state.state} onChange={this.handleInput('state')}/>
           </label>
-          <label>City
+          <label>City *
             <input type="text" value={this.state.city} onChange={this.handleInput('city')}/>
           </label>
           <button type='submit'>Next</button>

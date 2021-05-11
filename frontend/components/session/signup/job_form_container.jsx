@@ -42,7 +42,7 @@ class JobForm extends React.Component {
       <>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>Most recent job title
+          <label>Most recent job title *
             <input type="text" value={this.state.jobTitle} onChange={this.handleInput('jobTitle')}/>
           </label>
           <label>Employment type
@@ -52,7 +52,7 @@ class JobForm extends React.Component {
               ))}
             </select>
           </label>
-          <label>Most recent company
+          <label>Most recent company *
             <input type="text" value={this.state.company} onChange={this.handleInput('company')}/>
           </label>
           <Link to='/signup/student'>I'm a student</Link>

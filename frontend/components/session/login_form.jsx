@@ -6,7 +6,7 @@ class LoginForm extends React.Component {
     this.state = {
       email: "",
       password: ""
-    }
+    };
   }
 
   handleInput(field) {
@@ -19,9 +19,14 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    debugger
     return (
       <> 
+        <h1>Full Logo</h1>
         <h2>Sign In</h2>
+        <p>
+          {this.props.errors.join(', ')}
+        </p>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Email:
             <input type="text" value={this.state.email} onChange={this.handleInput('email')}/>

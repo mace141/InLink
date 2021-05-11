@@ -9,7 +9,7 @@ import StudentFormContainer from './student_form_container';
 
 const SignUpFormContainer = () => (
   <>
-    <h1>Insert logo here</h1>
+    <h1>Full Logo</h1>
     <Switch>
       <AuthRoute exact path='/signup/student' component={StudentFormContainer}/>
       <AuthRoute exact path='/signup/job' component={JobFormContainer}/>

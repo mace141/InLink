@@ -1,3 +1,4 @@
+import { RECEIVE_SESSION_ERRORS } from '../reducers/session_errors';
 import * as SessionAPI from '../util/session_api';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
@@ -43,15 +44,29 @@ export const receiveUserStudent = student => ({
   student
 });
 
+const receiveSessionErrors = errors => ({
+  type: RECEIVE_SESSION_ERRORS,
+  errors
+});
+
 export const createUser = user => dispatch => (
-  SessionAPI.createUser(user).then(user => dispatch(receiveCurrentUser(user)))
+  SessionAPI.createUser(user).then(
+    user => dispatch(receiveCurrentUser(user)),
+    errors => dispatch(receiveSessionErrors(errors.responseJSON))
+  )
 );
 
 export const loginUser = user => dispatch => (
-  SessionAPI.loginUser(user).then(user => dispatch(receiveCurrentUser(user)))
+  SessionAPI.loginUser(user).then(
+    user => dispatch(receiveCurrentUser(user)),
+    errors => dispatch(receiveSessionErrors(errors.responseJSON))
+  )
 );
 
 export const logoutUser = () => dispatch => (
-  SessionAPI.logoutUser().then(() => dispatch(logoutCurrentUser()))
+  SessionAPI.logoutUser().then(
+    () => dispatch(logoutCurrentUser()),
+    errors => dispatch(receiveSessionErrors(errors.responseJSON))
+  )
 );
 
