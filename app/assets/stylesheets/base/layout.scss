@@ -27,3 +27,12 @@ header {
     font-weight: 500;
   }
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-msg {
+  color: red;
+}

@@ -29,17 +29,18 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    const [errorOne, errorTwo] = this.props.errors;
+
     return (
       <> 
         <h1 className='login-logo'>Full Logo</h1>
         <div className='login-form'>
           <h2>Sign In</h2>
-          <p>
-            {this.props.errors.join(', ')}
-          </p>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <input type="text" placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
+            {errorOne ? <p className='error-msg'>{errorOne}</p> : null}
             <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
+            {errorTwo ? <p className='error-msg'>{errorTwo}</p> : null}
             <button onClick={this.handleDemo.bind(this)}>Demo User</button>
             <button type='submit'>Sign In</button>
           </form>

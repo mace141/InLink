@@ -13,6 +13,40 @@ class User < ApplicationRecord
     nil 
   end
 
+  def self.login_errors(params) 
+    errors = {
+      email: nil,
+      password: nil
+    }
+    email = params[:email]
+    password = params[:password]
+
+    unless email.empty?
+      emailArr = email.split('@')
+      unless emailArr.length == 2 && emailArr[1] && emailArr[1].split('.').length == 2
+          errors[:email] = 'Please enter a valid email' 
+      end
+    else
+      errors[:email] = 'Please enter an email address'
+    end
+
+    unless password.empty?
+      errors[:password] = 'The password you provided must have at least 6 characters' if password.length < 6
+    else
+      errors[:password] = 'Please enter a password'
+    end
+
+    if errors.values.all?(nil)
+      if User.find_by(email: email)
+        errors[:password] = 'Password is incorrect'
+      else 
+        errors[:email] = 'Email not found. Did you sign up?'
+      end
+    end
+    
+    errors.values
+  end
+
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)
     @password = password 
