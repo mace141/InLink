@@ -26,12 +26,10 @@ class NameForm extends React.Component {
       <>
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>First name
-            <input type="text" value={this.state.fname} onChange={this.handleInput('fname')}/>
-          </label>
-          <label>Last name
-            <input type="text" value={this.state.lname} onChange={this.handleInput('lname')}/>
-          </label>
+          <label>First name</label>
+          <input type="text" value={this.state.fname} onChange={this.handleInput('fname')}/>
+          <label>Last name</label>
+          <input type="text" value={this.state.lname} onChange={this.handleInput('lname')}/>
           <button type='submit'>Continue</button>
         </form>
       </>

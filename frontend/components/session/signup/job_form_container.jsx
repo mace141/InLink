@@ -42,21 +42,18 @@ class JobForm extends React.Component {
       <>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>Most recent job title *
-            <input type="text" value={this.state.jobTitle} onChange={this.handleInput('jobTitle')}/>
-          </label>
-          <label>Employment type
-            <select onChange={this.handleInput('type')}>
-              {employmentTypes.map((type, i) => (
-                <option key={i}>{type}</option>
-              ))}
-            </select>
-          </label>
-          <label>Most recent company *
-            <input type="text" value={this.state.company} onChange={this.handleInput('company')}/>
-          </label>
+          <label>Most recent job title *</label>
+          <input type="text" value={this.state.jobTitle} onChange={this.handleInput('jobTitle')}/>
+          <label>Employment type</label>
+          <select onChange={this.handleInput('type')}>
+            {employmentTypes.map((type, i) => (
+              <option key={i}>{type}</option>
+            ))}
+          </select>
+          <label>Most recent company *</label>
+          <input type="text" value={this.state.company} onChange={this.handleInput('company')}/>
           <Link to='/signup/student'>I'm a student</Link>
-          <button type='submit'>Continue</button>
+          <button type='submit'>Finish</button>
         </form>
       </>
     )

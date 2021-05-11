@@ -57,7 +57,7 @@ class StudentForm extends React.Component {
             ))}
           </select>
           <Link to='/signup/job'>I'm not a student</Link>
-          <button type='submit'>Continue</button>
+          <button type='submit'>Finish</button>
         </form>
       </>
     )

@@ -34,12 +34,10 @@ class EmailForm extends React.Component {
       <>
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>Email: 
-            <input type="text" value={this.state.email} onChange={this.handleInput('email')}/>
-          </label>
-          <label>Password (6 or more characters)
-            <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
-          </label>
+          <label>Email</label>
+          <input type="text" value={this.state.email} onChange={this.handleInput('email')}/>
+          <label>Password (6 or more characters)</label>
+          <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
           <button onClick={this.handleDemo.bind(this)}>Demo User</button>
           <button type='submit'>Join InLink</button>
         </form>
