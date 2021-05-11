@@ -26,5 +26,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Personally added
+tmp/
 bundle.js
 bundle.js.map
+/public/assets

@@ -20,6 +20,14 @@ class LoginForm extends React.Component {
     this.props.loginUser(this.state);
   }
 
+  handleDemo(e) {
+    e.preventDefault();
+    this.props.loginUser({
+      email: "guest@user.com",
+      password: 'password'
+    });
+  }
+
   render() {
     return (
       <> 
@@ -32,6 +40,7 @@ class LoginForm extends React.Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
             <input type="text" placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
             <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
+            <button onClick={this.handleDemo.bind(this)}>Demo User</button>
             <button type='submit'>Sign In</button>
           </form>
         </div>

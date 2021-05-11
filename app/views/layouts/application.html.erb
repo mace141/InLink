@@ -13,6 +13,9 @@
         ).html_safe %>
       </script>
     <% end %>
+    <script>
+      window.splashImg = '<%= image_url('splashImg.png')%>'
+    </script>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>

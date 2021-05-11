@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveUserEmail } from '../../../actions/session';
+import { receiveUserEmail, loginUser } from '../../../actions/session';
 
 class EmailForm extends React.Component {
   constructor(props) {
@@ -21,6 +21,14 @@ class EmailForm extends React.Component {
     this.props.history.push('/signup/name')
   }
 
+  handleDemo(e) {
+    e.preventDefault();
+    this.props.loginUser({
+      email: 'guest@user.com',
+      password: 'password'
+    })
+  }
+
   render() {
     return (
       <>
@@ -32,6 +40,7 @@ class EmailForm extends React.Component {
           <label>Password (6 or more characters)
             <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
           </label>
+          <button onClick={this.handleDemo.bind(this)}>Demo User</button>
           <button type='submit'>Join InLink</button>
         </form>
       </>
@@ -40,7 +49,8 @@ class EmailForm extends React.Component {
 }
 
 const mapDTP = dispatch => ({
-  receiveUserEmail: email => dispatch(receiveUserEmail(email))
+  receiveUserEmail: email => dispatch(receiveUserEmail(email)),
+  loginUser: user => dispatch(loginUser(user))
 });
 
 const EmailFormContainer = connect(null, mapDTP)(EmailForm);
