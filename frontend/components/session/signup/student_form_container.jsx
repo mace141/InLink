@@ -12,8 +12,8 @@ class StudentForm extends React.Component {
       school: user.school || "",
       degree: user.degree || "",
       specialization: user.specialization || "",
-      startYr: user.startYr || "",
-      endYr: user.endYr || "",
+      startYr: user.startYr || 2021,
+      endYr: user.endYr || 2031,
       schoolErr: false,
       degreeErr: false,
       specErr: false,
@@ -22,7 +22,6 @@ class StudentForm extends React.Component {
   }
 
   handleInput(field) {
-    // debugger
     return e => this.setState({ [field]: e.target.value });
   }
 
@@ -31,21 +30,19 @@ class StudentForm extends React.Component {
     let errorBool = false;
 
     if (!school.length) {
-      this.setState({ schoolErr: true })
+      this.setState({ schoolErr: true });
       errorBool = true;
     }
     if (!degree.length) {
-      this.setState({ degreeErr: true })
+      this.setState({ degreeErr: true });
       errorBool = true;
     }
     if (!specialization.length) {
-      this.setState({ specErr: true })
+      this.setState({ specErr: true });
       errorBool = true;
     }
-    // debugger
     if (parseInt(startYr) > parseInt(endYr)) {
-      // debugger
-      this.setState({ yearErr: true })
+      this.setState({ yearErr: true });
       errorBool = true;
     }
 
@@ -99,7 +96,7 @@ class StudentForm extends React.Component {
               <label>Start year *</label>
               <select className='yr-selector-signup' onChange={this.handleInput('startYr')}>
                 {years.map(yr => {
-                  if (yr < 2022) return (<option key={yr}>{yr}</option>)
+                  if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
                 })}
               </select>
             </div>
@@ -108,7 +105,7 @@ class StudentForm extends React.Component {
               <label>End year (or expected) *</label>
               <select className='yr-selector-signup' onChange={this.handleInput('endYr')}>
                 {years.map(yr => (
-                  <option key={yr}>{yr}</option>
+                  <option key={yr} value={yr}>{yr}</option>
                 ))}
               </select>
             </div>

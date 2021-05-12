@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { receiveUserEmail, loginUser } from '../../../actions/session';
 import { checkUserEmail } from '../../../util/session_api';
 
@@ -28,6 +29,11 @@ class EmailForm extends React.Component {
   handleErrors() {
     const { email, password } = this.state;
     let errorBool = false;
+
+    if (password.length < 6) {
+      this.setState({ pwErr: true });
+      errorBool = true;
+    }
     
     if (!email.length) {
       this.errors.emailMsg = 'Please enter your email address';
@@ -40,24 +46,21 @@ class EmailForm extends React.Component {
         errorBool = true;
       } else {
         this.props.checkUserEmail(this.state).then(user => {
-          // debugger
-          // debugger
           if (user) {
-            this.setState({ emailErr: true });
-            // debugger
             errorBool = true;
             this.errors.emailMsg = 'Email is already taken';
-            // debugger
+
+            this.setState({ emailErr: true });
+          }
+
+          if (!errorBool) {
+            this.props.receiveUserEmail(this.state);
+            this.props.history.push('/signup/name');
           }
         });
       }
     }
-    // debugger
-    if (password.length < 6) {
-      this.setState({ pwErr: true });
-      errorBool = true;
-    }
-    // debugger
+
     return errorBool;
   }
 
@@ -69,10 +72,7 @@ class EmailForm extends React.Component {
     });
     this.errors.emailMsg = 'Please enter a valid email';
     
-    if (!this.handleErrors()) {
-      this.props.receiveUserEmail(this.state);
-      this.props.history.push('/signup/name');
-    }
+    this.handleErrors();
   }
 
   handleDemo(e) {
@@ -93,11 +93,14 @@ class EmailForm extends React.Component {
           <label>Email</label>
           <input type="text" value={this.state.email} onChange={this.handleInput('email')}/>
           {emailErr ? <p className='error-msg'>{this.errors.emailMsg}</p> : null }
+
           <label>Password (6 or more characters)</label>
           <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
           {pwErr ? <p className='error-msg'>{this.errors.passwordMsg}</p> : null }
+
           <button type='submit'>Join InLink</button>
           <button onClick={this.handleDemo.bind(this)}>Demo User</button>
+          <p className='session-redirect-msg'>Already on InLink? <Link to='/login' className='session-redirect-link'>Sign In</Link></p>
         </form>
       </div>
     )

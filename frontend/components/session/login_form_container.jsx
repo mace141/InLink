@@ -38,13 +38,13 @@ class LoginForm extends React.Component {
         <p>Stay linked with your professional world</p>
       </>
     );
-    const fullLogo = splash ? null : <Link to='/' className='login-logo'>Full Logo</Link>;
+    const fullLogo = splash ? null : <Link to='/' className='login-logo'><img src={window.fullLogo} alt="InLink-full-logo" className='InLink-full-logo'/></Link>;
 
     return (
       <> 
         {fullLogo}
         <div className='login-form'>
-          <form className={ splash ? 'splash-form': '' } onSubmit={this.handleSubmit.bind(this)}>
+          <form id={ splash ? 'splash-form': '' } onSubmit={this.handleSubmit.bind(this)}>
             {splash ? null : signinPageMsg }
             <input type="text" className='signin-input' placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
             {errorOne ? <p className='error-msg'>{errorOne}</p> : null}
@@ -52,6 +52,7 @@ class LoginForm extends React.Component {
             {errorTwo ? <p className='error-msg'>{errorTwo}</p> : null}
             <button type='submit'>Sign In</button>
             <button onClick={this.handleDemo.bind(this)}>Demo User</button>
+            <p className='session-redirect-msg'>New to InLink? <Link to='/signup' className='session-redirect-link'>Sign Up</Link></p>
           </form>
         </div>
       </>

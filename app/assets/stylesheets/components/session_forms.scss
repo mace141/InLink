@@ -1,3 +1,15 @@
+.signup-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  .signup-logo {
+    align-self: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -77,5 +89,16 @@ form {
         border-radius: 3px;
       }
     }
+  }
+}
+
+.session-redirect-msg {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+
+  .session-redirect-link {
+    color: $blue;
+    font-weight: bold;
   }
 }

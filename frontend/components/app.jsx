@@ -8,26 +8,33 @@ import SignUpFormContainer from '../components/session/signup/signup_form_contai
 import MainContainer from './main/main_container';
 import Splash from './splash/splash';
 
-const App = ({ sessionPath }) => {
+const App = ({ sessionPath, rootPath }) => {
   const header = sessionPath ? null : (
     <header>
-      <Route path='/' component={HeaderContainer}/>
+      <nav className='nav-bar'>
+        <Route path='/' component={HeaderContainer}/>
+      </nav>
     </header>
   );
   return (
-  <>
-    {header}
-    <AuthRoute exact path='/login' component={LoginFormContainer}/>
-    <AuthRoute path='/signup' component={SignUpFormContainer}/>
-    <ProtectedRoute exact path='/feed' component={MainContainer}/>
-    <AuthRoute exact path='/' component={Splash}/>
-  </>
+    <>
+      {header}
+      <section className={rootPath ? 'splash-section' : ''}>
+        <section className='main-section'>
+          <AuthRoute exact path='/login' component={LoginFormContainer}/>
+          <AuthRoute path='/signup' component={SignUpFormContainer}/>
+          <ProtectedRoute exact path='/feed' component={MainContainer}/>
+          <AuthRoute exact path='/' component={Splash}/>
+        </section>
+      </section>
+    </>
 )};
 
 const mapSTP = (state, ownProps) => {
   const path = ownProps.location.pathname;
   return ({
   sessionPath: path.includes('/signup') || path == '/login',
+  rootPath: path == '/'
 })};
 
 const AppContainer = withRouter(connect(mapSTP)(App));

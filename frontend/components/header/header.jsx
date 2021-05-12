@@ -7,12 +7,12 @@ import LoggedInHeader from './logged_in_header';
 const Header = ({ loggedIn }) => {
   return loggedIn ? (
     <>
-      <Link to='/'>Icon Logo</Link>
+      <Link to='/'><img src={window.iconLogo} alt="InLink-icon-logo" className='InLink-icon-logo'/></Link>
       <LoggedInHeader/> 
     </>
   ) : (
     <>
-      <Link to='/'>Full Logo</Link>
+      <Link to='/'><img src={window.fullLogo} alt="InLink-full-logo" className='InLink-full-logo'/></Link>
       <LoginHeader/>
     </>
   )

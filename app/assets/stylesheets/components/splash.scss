@@ -9,7 +9,7 @@
   }
 
   .splash-signup:hover {
-    background: lightgray;
+    background: $lightergray;
     color: black;
     border-radius: 3px;
     transition: 0.3s;
@@ -37,8 +37,11 @@
   top: 100px;
 }
 
-.splash-form {
+#splash-form {
   margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .splash-div {
@@ -48,7 +51,12 @@
 }
 
 .splash-text {
-  font-size: 45px;
+  margin-top: 20px;
   color: $blue;
-  margin: 20px 0;
+  font-size: 55px;
+  // font-weight: 500;
+}
+
+.splash-section {
+  background: white;
 }
