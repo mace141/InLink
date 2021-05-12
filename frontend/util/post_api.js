@@ -1,6 +1,6 @@
 export const fetchPosts = () => (
   $.ajax({
-    url: `/api/posts/`
+    url: `/api/posts`
   })
 );
 
@@ -10,7 +10,7 @@ export const fetchPost = postId => (
   })
 );
 
-export const createpost = post => (
+export const createPost = post => (
   $.ajax({
     method: 'POST',
     url: '/api/posts',
