@@ -28,7 +28,7 @@ class EmailForm extends React.Component {
   handleErrors() {
     const { email, password } = this.state;
     let errorBool = false;
-    debugger
+    
     if (!email.length) {
       this.errors.emailMsg = 'Please enter your email address';
       this.setState({ emailErr: true });
@@ -39,30 +39,26 @@ class EmailForm extends React.Component {
         this.setState({ emailErr: true });
         errorBool = true;
       } else {
-        debugger
-        this.checkEmail();
+        this.props.checkUserEmail(this.state).then(user => {
+          // debugger
+          // debugger
+          if (user) {
+            this.setState({ emailErr: true });
+            // debugger
+            errorBool = true;
+            this.errors.emailMsg = 'Email is already taken';
+            // debugger
+          }
+        });
       }
     }
-    debugger
+    // debugger
     if (password.length < 6) {
       this.setState({ pwErr: true });
       errorBool = true;
     }
-
+    // debugger
     return errorBool;
-  }
-
-  checkEmail() {
-    this.props.checkUserEmail(this.state).then(user => {
-      debugger
-      if (user) {
-        this.setState({ emailErr: true });
-        debugger
-        errorBool = true;
-        this.errors.emailMsg = 'Email is already taken';
-        debugger
-      }
-    });
   }
 
   handleSubmit(e) {

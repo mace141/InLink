@@ -22,6 +22,7 @@ class StudentForm extends React.Component {
   }
 
   handleInput(field) {
+    // debugger
     return e => this.setState({ [field]: e.target.value });
   }
 
@@ -41,7 +42,9 @@ class StudentForm extends React.Component {
       this.setState({ specErr: true })
       errorBool = true;
     }
-    if (ParseInt(startYr) > ParseInt(endYr)) {
+    // debugger
+    if (parseInt(startYr) > parseInt(endYr)) {
+      // debugger
       this.setState({ yearErr: true })
       errorBool = true;
     }
@@ -81,32 +84,37 @@ class StudentForm extends React.Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>School or College/University *</label>
           <input type="text" value={this.state.school} onChange={this.handleInput('school')}/>
-          {schoolErr ? <p>Please enter a school or college/university</p> : null }
+          {schoolErr ? <p className='error-msg'>Please enter a school or college/university</p> : null }
+
           <label>Degree *</label>
           <input type="text" value={this.state.degree} onChange={this.handleInput('degree')}/>
-          {degreeErr ? <p>Please enter a degree</p> : null }
+          {degreeErr ? <p className='error-msg'>Please enter a degree</p> : null }
+
           <label>Specialization *</label>
           <input type="text" value={this.state.specialization} onChange={this.handleInput('specialization')}/>
-          {specErr ? <p>Please enter a specialization</p> : null }
-          <div>
-            <div>
+          {specErr ? <p className='error-msg'>Please enter a specialization</p> : null }
+
+          <div className='school-years-signup'>
+            <div className='school-year-signup'>
               <label>Start year *</label>
-              <select className='startyr-signup' onChange={this.handleInput('startYr')}>
+              <select className='yr-selector-signup' onChange={this.handleInput('startYr')}>
                 {years.map(yr => {
                   if (yr < 2022) return (<option key={yr}>{yr}</option>)
                 })}
               </select>
             </div>
-            <div>
+
+            <div className='school-year-signup'>
               <label>End year (or expected) *</label>
-              <select className='endyr-signup' onChange={this.handleInput('endYr')}>
+              <select className='yr-selector-signup' onChange={this.handleInput('endYr')}>
                 {years.map(yr => (
                   <option key={yr}>{yr}</option>
                 ))}
               </select>
             </div>
           </div>
-          {yearErr ? <p>Start year cannot be after end year</p> : null }
+          {yearErr ? <p className='error-msg'>Start year cannot be after end year</p> : null }
+
           <Link to='/signup/job'>I'm not a student</Link>
           <button type='submit'>Finish</button>
         </form>

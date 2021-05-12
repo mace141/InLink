@@ -24,9 +24,9 @@ form {
   }
 
   input {
-    border: 1px solid black;
+    border: 1px solid $lightgray;
     height: 50px;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 
   .signin-input {
@@ -61,5 +61,21 @@ form {
     text-align: center;
     font-size: 32px;
     margin: 25px;
+  }
+
+  .school-years-signup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    .school-year-signup {
+      display: flex;
+      flex-direction: column;
+
+      .yr-selector-signup {
+        border: 1px solid $lightgray;
+        border-radius: 3px;
+      }
+    }
   }
 }
