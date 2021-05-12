@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { loginUser } from '../../actions/session';
 
 class LoginForm extends React.Component {
@@ -31,14 +31,21 @@ class LoginForm extends React.Component {
 
   render() {
     const [errorOne, errorTwo] = this.props.errors;
+    const { splash } = this.props;
+    const signinPageMsg = (
+      <>
+        <h2>Sign In</h2>
+        <p>Stay linked with your professional world</p>
+      </>
+    );
+    const fullLogo = splash ? null : <Link to='/' className='login-logo'>Full Logo</Link>;
 
     return (
       <> 
-        <Link to='/' className='login-logo'>Full Logo</Link>
+        {fullLogo}
         <div className='login-form'>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <h2>Sign In</h2>
-            <p>Stay linked with your professional world</p>
+          <form className={ splash ? 'splash-form': '' } onSubmit={this.handleSubmit.bind(this)}>
+            {splash ? null : signinPageMsg }
             <input type="text" className='signin-input' placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
             {errorOne ? <p className='error-msg'>{errorOne}</p> : null}
             <input type="password" className='signin-input' placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
@@ -52,14 +59,15 @@ class LoginForm extends React.Component {
   }
 }
 
-const mapSTP = ({ errors: { session }}) => ({
-  errors: session
+const mapSTP = ({ errors: { session }}, ownProps) => ({
+  errors: session,
+  splash: ownProps.location.pathname == '/'
 });
 
 const mapDTP = dispatch => ({
   loginUser: user => dispatch(loginUser(user))
 });
 
-const LoginFormContainer = connect(mapSTP, mapDTP)(LoginForm);
+const LoginFormContainer = withRouter(connect(mapSTP, mapDTP)(LoginForm));
 
 export default LoginFormContainer;
