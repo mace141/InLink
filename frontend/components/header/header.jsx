@@ -11,7 +11,6 @@ const Header = ({ loggedIn }) => {
     </>
   ) : (
     <>
-      <Link to='/'><img src={window.fullLogo} alt="InLink-full-logo" className='InLink-full-logo'/></Link>
       <LoginHeader/>
     </>
   )
