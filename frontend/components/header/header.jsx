@@ -7,7 +7,6 @@ import LoggedInHeader from './logged_in_header';
 const Header = ({ loggedIn }) => {
   return loggedIn ? (
     <>
-      <Link to='/'><img src={window.iconLogo} alt="InLink-icon-logo" className='InLink-icon-logo'/></Link>
       <LoggedInHeader/> 
     </>
   ) : (
