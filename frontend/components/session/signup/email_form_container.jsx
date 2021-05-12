@@ -54,7 +54,6 @@ class EmailForm extends React.Component {
     this.setState({ emailErr: false });
     
     if (this.handleErrors() == false) {
-
       this.props.receiveUserEmail(this.state);
       this.props.history.push('/signup/name');
     }
