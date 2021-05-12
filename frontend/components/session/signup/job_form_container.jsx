@@ -11,7 +11,9 @@ class JobForm extends React.Component {
     this.state = {
       jobTitle: user.jobTitle || "",
       type: user.type || "",
-      company: user.company || ""
+      company: user.company || "",
+      titleErr: false,
+      companyErr: false
     };
   }
 
@@ -19,14 +21,37 @@ class JobForm extends React.Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
+  handleErrors() {
+    const { jobTitle, company } = this.state;
+    let errorBool = false;
+
+    if (!jobTitle.length) {
+      this.setState({ titleErr: true })
+      errorBool = true;
+    }
+    if (!company.length) {
+      this.setState({ companyErr: true })
+      errorBool = true;
+    }
+
+    return errorBool;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    const job = {
-      headline: this.state.jobTitle + ' at ' + this.state.company,
-      industry: this.state.company
-    };
-    this.props.receiveUserJob(Object.assign({}, this.state, job));
-    this.props.createUser(this.props.user);
+    this.setState({
+      titleErr: false,
+      companyErr: false
+    });
+
+    if (!this.handleErrors()) {
+      const job = {
+        headline: this.state.jobTitle + ' at ' + this.state.company,
+        industry: this.state.company
+      };
+      this.props.receiveUserJob(Object.assign({}, this.state, job));
+      this.props.createUser(this.props.user);
+    }
   }
 
   render() {
@@ -40,12 +65,15 @@ class JobForm extends React.Component {
       'Apprenticeship',
       'Seasonal'
     ];
+    const { titleErr, companyErr } = this.state;
+    
     return (
       <div className='signup-form'>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Most recent job title *</label>
           <input type="text" value={this.state.jobTitle} onChange={this.handleInput('jobTitle')}/>
+          {titleErr ? <p className='error-msg'>Please enter your most recent job title</p> : null }
           <label>Employment type</label>
           <select onChange={this.handleInput('type')}>
             {employmentTypes.map((type, i) => (
@@ -54,6 +82,7 @@ class JobForm extends React.Component {
           </select>
           <label>Most recent company *</label>
           <input type="text" value={this.state.company} onChange={this.handleInput('company')}/>
+          {companyErr ? <p className='error-msg'>Please enter your most recent company</p> : null }
           <Link to='/signup/student'>I'm a student</Link>
           <button type='submit'>Finish</button>
         </form>

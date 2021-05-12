@@ -13,7 +13,11 @@ class StudentForm extends React.Component {
       degree: user.degree || "",
       specialization: user.specialization || "",
       startYr: user.startYr || "",
-      endYr: user.endYr || ""
+      endYr: user.endYr || "",
+      schoolErr: false,
+      degreeErr: false,
+      specErr: false,
+      yearErr: false
     };
   }
 
@@ -21,14 +25,47 @@ class StudentForm extends React.Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
+  handleErrors() {
+    const { school, degree, specialization, startYr, endYr } = this.state;
+    let errorBool = false;
+
+    if (!school.length) {
+      this.setState({ schoolErr: true })
+      errorBool = true;
+    }
+    if (!degree.length) {
+      this.setState({ degreeErr: true })
+      errorBool = true;
+    }
+    if (!specialization.length) {
+      this.setState({ specErr: true })
+      errorBool = true;
+    }
+    if (ParseInt(startYr) > ParseInt(endYr)) {
+      this.setState({ yearErr: true })
+      errorBool = true;
+    }
+
+    return errorBool;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    const student = {
-      headline: 'Student at ' + this.state.school,
-      industry: this.state.school,
-    };
-    this.props.receiveUserStudent(Object.assign({}, this.state, student));
-    this.props.createUser(this.props.user);
+    this.setState({
+      schoolErr: false,
+      degreeErr: false,
+      specErr: false,
+      yearErr: false
+    })
+
+    if (!this.handleErrors()) {
+      const student = {
+        headline: 'Student at ' + this.state.school,
+        industry: this.state.school,
+      };
+      this.props.receiveUserStudent(Object.assign({}, this.state, student));
+      this.props.createUser(this.props.user);
+    }
   }
 
   render() {
@@ -36,28 +73,40 @@ class StudentForm extends React.Component {
     for (let i = 1962; i <= 2031; i++) {
       years.unshift(i);
     }
+    const { schoolErr, degreeErr, specErr, yearErr } = this.state;
+
     return (
       <div className='signup-form'>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>School or College/University *</label>
           <input type="text" value={this.state.school} onChange={this.handleInput('school')}/>
+          {schoolErr ? <p>Please enter a school or college/university</p> : null }
           <label>Degree *</label>
           <input type="text" value={this.state.degree} onChange={this.handleInput('degree')}/>
+          {degreeErr ? <p>Please enter a degree</p> : null }
           <label>Specialization *</label>
           <input type="text" value={this.state.specialization} onChange={this.handleInput('specialization')}/>
-          <label>Start year *</label>
-          <select onChange={this.handleInput('startYr')}>
-            {years.map(yr => {
-              if (yr < 2022) return (<option key={yr}>{yr}</option>)
-            })}
-          </select>
-          <label>End year (or expected) *</label>
-          <select onChange={this.handleInput('endYr')}>
-            {years.map(yr => (
-              <option key={yr}>{yr}</option>
-            ))}
-          </select>
+          {specErr ? <p>Please enter a specialization</p> : null }
+          <div>
+            <div>
+              <label>Start year *</label>
+              <select className='startyr-signup' onChange={this.handleInput('startYr')}>
+                {years.map(yr => {
+                  if (yr < 2022) return (<option key={yr}>{yr}</option>)
+                })}
+              </select>
+            </div>
+            <div>
+              <label>End year (or expected) *</label>
+              <select className='endyr-signup' onChange={this.handleInput('endYr')}>
+                {years.map(yr => (
+                  <option key={yr}>{yr}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          {yearErr ? <p>Start year cannot be after end year</p> : null }
           <Link to='/signup/job'>I'm not a student</Link>
           <button type='submit'>Finish</button>
         </form>

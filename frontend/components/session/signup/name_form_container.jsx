@@ -19,21 +19,48 @@ class NameForm extends React.Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
+  handleErrors() {
+    const { fname, lname } = this.state;
+    let errorBool = false;
+
+    if (!fname.length) {
+      this.setState({ fnameErr: true });
+      errorBool = true;
+    }
+    if (!lname.length) {
+      this.setState({ lnameErr: true });
+      errorBool = true;
+    }
+
+    return errorBool;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.receiveUserName(this.state);
-    this.props.history.push('/signup/location')
+    this.setState({ 
+      fnameErr: false, 
+      lnameErr: false
+    });
+
+    if (!this.handleErrors()) {
+      this.props.receiveUserName(this.state);
+      this.props.history.push('/signup/location');
+    }
   }
 
   render() {
+    const { fnameErr, lnameErr } = this.state;
+
     return (
       <div className='signup-form'>
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>First name</label>
           <input type="text" value={this.state.fname} onChange={this.handleInput('fname')}/>
+          {fnameErr ? <p className='error-msg'>Please enter your first name</p> : null }
           <label>Last name</label>
           <input type="text" value={this.state.lname} onChange={this.handleInput('lname')}/>
+          {lnameErr ? <p className='error-msg'>Please enter your last name</p> : null }
           <button type='submit'>Continue</button>
         </form>
       </div>

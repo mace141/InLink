@@ -70,3 +70,8 @@ export const logoutUser = () => dispatch => (
   )
 );
 
+export const fetchUser = user => dispatch => (
+  SessionAPI.fetchUser(user).then(
+    user => dispatch(receiveCurrentUser(user))
+  )
+);

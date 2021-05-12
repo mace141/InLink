@@ -14,6 +14,16 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def email 
+    @user = User.find_by(email: params[:user][:email])
+
+    if @user 
+      render :show
+    else
+      render json: 0
+    end
+  end
+
   private 
 
   def user_params 

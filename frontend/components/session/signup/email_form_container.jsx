@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { receiveUserEmail, loginUser } from '../../../actions/session';
+import { checkUserEmail } from '../../../util/session_api';
 
 class EmailForm extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class EmailForm extends React.Component {
   handleErrors() {
     const { email, password } = this.state;
     let errorBool = false;
-    
+    debugger
     if (!email.length) {
       this.errors.emailMsg = 'Please enter your email address';
       this.setState({ emailErr: true });
@@ -37,9 +38,12 @@ class EmailForm extends React.Component {
       if (!(emailArr.length == 2 && emailArr[1] && emailArr[1].split('.').length == 2)) {
         this.setState({ emailErr: true });
         errorBool = true;
+      } else {
+        debugger
+        this.checkEmail();
       }
     }
-
+    debugger
     if (password.length < 6) {
       this.setState({ pwErr: true });
       errorBool = true;
@@ -48,12 +52,28 @@ class EmailForm extends React.Component {
     return errorBool;
   }
 
+  checkEmail() {
+    this.props.checkUserEmail(this.state).then(user => {
+      debugger
+      if (user) {
+        this.setState({ emailErr: true });
+        debugger
+        errorBool = true;
+        this.errors.emailMsg = 'Email is already taken';
+        debugger
+      }
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ pwErr: false });
-    this.setState({ emailErr: false });
+    this.setState({ 
+      pwErr: false,
+      emailErr: false
+    });
+    this.errors.emailMsg = 'Please enter a valid email';
     
-    if (this.handleErrors() == false) {
+    if (!this.handleErrors()) {
       this.props.receiveUserEmail(this.state);
       this.props.history.push('/signup/name');
     }
@@ -94,7 +114,8 @@ const mapSTP = ({ session: { signup } }) => ({
 
 const mapDTP = dispatch => ({
   receiveUserEmail: email => dispatch(receiveUserEmail(email)),
-  loginUser: user => dispatch(loginUser(user))
+  loginUser: user => dispatch(loginUser(user)),
+  checkUserEmail: user => checkUserEmail(user)
 });
 
 const EmailFormContainer = connect(mapSTP, mapDTP)(EmailForm);
