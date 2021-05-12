@@ -8,8 +8,10 @@ class NameForm extends React.Component {
     const user = this.props.user;
 
     this.state = {
-      fname: user.fname,
-      lname: user.lname
+      fname: user.fname || "",
+      lname: user.lname || "",
+      fnameErr: false,
+      lnameErr: false
     };
   }
 

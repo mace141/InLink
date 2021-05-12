@@ -8,9 +8,9 @@ class LocationForm extends React.Component {
     const user = this.props.user;
 
     this.state = {
-      country: user.country,
-      state: user.state,
-      city: user.city
+      country: user.country || "",
+      state: user.state || "",
+      city: user.city || ""
     };
   }
 

@@ -8,8 +8,8 @@ class EmailForm extends React.Component {
     const user = this.props.user;
 
     this.state = {
-      email: user.email,
-      password: user.password,
+      email: user.email || "",
+      password: user.password || "",
       emailErr: false,
       pwErr: false
     };

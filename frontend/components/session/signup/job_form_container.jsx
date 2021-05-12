@@ -9,9 +9,9 @@ class JobForm extends React.Component {
     const user = this.props.user;
 
     this.state = {
-      jobTitle: user.jobTitle,
-      type: user.type,
-      company: user.company,
+      jobTitle: user.jobTitle || "",
+      type: user.type || "",
+      company: user.company || ""
     };
   }
 

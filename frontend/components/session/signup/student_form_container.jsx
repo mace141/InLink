@@ -9,11 +9,11 @@ class StudentForm extends React.Component {
     const user = this.props.user;
 
     this.state = {
-      school: user.school,
-      degree: user.degree,
-      specialization: user.specialization,
-      startYr: user.startYr,
-      endYr: user.endYr
+      school: user.school || "",
+      degree: user.degree || "",
+      specialization: user.specialization || "",
+      startYr: user.startYr || "",
+      endYr: user.endYr || ""
     };
   }
 
