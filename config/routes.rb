@@ -2,8 +2,15 @@
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
 #                      root GET    /                                                                                        static_pages#root
+#           api_users_email GET    /api/users/email(.:format)                                                               api/users#email
 #                 api_users POST   /api/users(.:format)                                                                     api/users#create {:format=>:json}
 #                  api_user GET    /api/users/:id(.:format)                                                                 api/users#show {:format=>:json}
+#                 api_posts GET    /api/posts(.:format)                                                                     api/posts#index {:format=>:json}
+#                           POST   /api/posts(.:format)                                                                     api/posts#create {:format=>:json}
+#                  api_post GET    /api/posts/:id(.:format)                                                                 api/posts#show {:format=>:json}
+#                           PATCH  /api/posts/:id(.:format)                                                                 api/posts#update {:format=>:json}
+#                           PUT    /api/posts/:id(.:format)                                                                 api/posts#update {:format=>:json}
+#                           DELETE /api/posts/:id(.:format)                                                                 api/posts#destroy {:format=>:json}
 #               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>:json}
 #                           POST   /api/session(.:format)                                                                   api/sessions#create {:format=>:json}
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
@@ -19,6 +26,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do 
     resources :users, only: [:create, :show]
+    resources :posts, except: [:edit, :new]
+
     resource :session, only: [:create, :destroy]
   end
 end
