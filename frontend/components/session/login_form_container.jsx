@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
     const fullLogo = splash ? null : <Link to='/' className='login-logo'><img src={window.fullLogo} alt="InLink-full-logo" className='InLink-full-logo'/></Link>;
 
     return (
-      <> 
+      <div className='login-section'> 
         {fullLogo}
         <div className='login-form'>
           <form id={ splash ? 'splash-form': '' } onSubmit={this.handleSubmit.bind(this)}>
@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
             <p className='session-redirect-msg'>New to InLink? <Link to='/signup' className='session-redirect-link'>Sign Up</Link></p>
           </form>
         </div>
-      </>
+      </div>
     )
   }
 }

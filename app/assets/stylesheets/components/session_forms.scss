@@ -1,9 +1,8 @@
-.signup-section {
+.signup-section, .login-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   
-  .signup-logo {
+  .signup-logo, .login-logo {
     align-self: center;
     margin-top: 50px;
     margin-bottom: 10px;
@@ -39,6 +38,7 @@ form {
     border: 1px solid $lightgray;
     height: 50px;
     border-radius: 3px;
+    padding: 0 10px;
   }
 
   .signin-input {
