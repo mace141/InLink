@@ -33,6 +33,10 @@ class PostForm extends React.Component {
     this.setState({ body: e.target.value });
   }
 
+  openFileLoader() {
+    document.getElementById('media-input').click();
+  }
+
   handleFile(e) {
     const file = e.target.files[0];
     const fileReader = new FileReader();
@@ -72,22 +76,39 @@ class PostForm extends React.Component {
     const preview = this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : null;
 
     return (
-      <div className='modal post-form-modal'>
-        <header>
-          <h2>Create a post</h2>
-          <span className='close-modal-button'>✕</span>
-        </header>
-        <form onSubmit={this.handleSubmit} className='post-form'>
-          <h2>[Insert PFP here] {this.props.name}</h2>
-          <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
-          {preview}
+      <>
+        <div className='modal post-form-modal'>
+          <header>
+            <h2>Create a post</h2>
+            <span className='close-modal-button'>✕</span>
+          </header>
+          <form onSubmit={this.handleSubmit} className='post-form'>
+            <div className=''>
+              <h2>[Insert PFP here]</h2><h2>{this.props.name}</h2>
+            </div>
+            <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
+            {preview}
+            <footer>
+              <i className="far fa-image" onClick={this.openFileLoader}></i>
+              <input type="file" id='media-input' onChange={this.handleFile}/>
+              <button className='form-button' disabled={this.ensureContent()}>Post</button>
+            </footer>
+          </form>
+        </div>
+        <div className='modal post-media-modal'>
+          <header>
+            <h2>Edit your photo</h2>
+            <span className='close-modal-button'>✕</span>
+          </header>
+          <p><span onClick={this.openFileLoader} onClick={this.openFileLoader}>Select images to share</span></p>
           <footer>
-            <i className="far fa-image">Image Icon</i>
-            <input type="file" id='media-input' onChange={this.handleFile}/>
-            <button className='form-button' disabled={this.ensureContent()}>Post</button>
+            <div>
+              <button>Go back</button>
+              <button>Done</button>
+            </div>
           </footer>
-        </form>
-      </div>
+        </div>
+      </>
     )
   }
 };

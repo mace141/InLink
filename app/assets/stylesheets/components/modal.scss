@@ -5,7 +5,6 @@
 
   > header {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $lightergray;
@@ -14,13 +13,14 @@
 
     .close-modal-button {
       font-weight: bold;
-      color: gray;
+      color: rgb(83, 83, 83);
       border-radius: 50%;
       padding: 5px 10px;
-      
+
       &:hover {
         background: $lightergray;
         transition: 0.3s;
+        cursor: pointer;
       }
     }
 
@@ -30,9 +30,16 @@
     display: flex;
     flex-direction: column;
     padding: 12px 24px;
+    // overflow-y: scroll;
 
-    h2 {
-      margin-bottom: 10px;
+    div {
+      display: flex;
+
+      h2 {
+        margin-bottom: 10px;
+        color: $darkgray;
+        font-weight: 600;
+      }
     }
 
     textarea {
@@ -47,5 +54,38 @@
     button {
       padding: 5px 15px;
     }
+  }
+}
+
+.post-form { 
+  
+  .far.fa-image {
+    transform: scale(-1.5, 1.5);
+    color: $darkgray;
+    align-self: center;
+    cursor: pointer;
+  }
+
+  #media-input {
+    display: none;
+  }
+}
+
+.post-media-modal {
+
+  p {
+    text-align: center;
+    color: $blue;
+    font-weight: 600;
+    padding: 75px 0;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: flex-end;
   }
 }
