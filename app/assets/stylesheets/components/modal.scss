@@ -17,12 +17,13 @@
       color: gray;
       border-radius: 50%;
       padding: 5px 10px;
+      
+      &:hover {
+        background: $lightergray;
+        transition: 0.3s;
+      }
     }
 
-    .close-modal-button:hover {
-      background: $lightergray;
-      transition: 0.3s;
-    }
   }
 
   > form {
