@@ -19,10 +19,22 @@ class StudentForm extends React.Component {
       specErr: false,
       yearErr: false
     };
+
+    this.ensureForm = this.ensureForm.bind(this);
   }
 
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
+  }
+
+  ensureForm() {
+    const { school, degree, specialization } = this.state;
+
+    if (school.length && degree.length && specialization.length) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   handleErrors() {
@@ -112,8 +124,8 @@ class StudentForm extends React.Component {
           </div>
           {yearErr ? <p className='error-msg'>Start year cannot be after end year</p> : null }
 
-          <Link to='/signup/job'>I'm not a student</Link>
-          <button type='submit' className='form-button'>Finish</button>
+          <Link to='/signup/job' className='job-student'>I'm not a student</Link>
+          <button type='submit' className='form-button js-btn' disabled={this.ensureForm()}>Finish</button>
         </form>
       </div>
     )

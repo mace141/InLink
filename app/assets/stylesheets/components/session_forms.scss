@@ -52,14 +52,34 @@
       height: 50px;
     }
 
+    .js-btn {
+      margin-top: 0;
+    }
+
     .signin-input {
       margin-top: 25px;
     }
 
-    a {
+    .job-student {
       text-align: center;
+      color: gray;
+      font-weight: 600;
+      padding: 12px 0;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+
+    .job-student:hover {
+      background: $lightergray;
+      transition: 0.3s;
     }
   }
+}
+
+form button:disabled {
+  cursor: not-allowed;
+  color: $lightgray;
+  background: $lightergray;
 }
 
 .form-button {

@@ -15,10 +15,22 @@ class JobForm extends React.Component {
       titleErr: false,
       companyErr: false
     };
+
+    this.ensureForm = this.ensureForm.bind(this);
   }
 
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
+  }
+
+  ensureForm() {
+    const { jobTitle, company } = this.state;
+
+    if (jobTitle.length && company.length) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   handleErrors() {
@@ -83,8 +95,8 @@ class JobForm extends React.Component {
           <label>Most recent company *</label>
           <input type="text" value={this.state.company} className={companyErr ? 'input-error' : ''} onChange={this.handleInput('company')}/>
           {companyErr ? <p className='error-msg'>Please enter your most recent company</p> : null }
-          <Link to='/signup/student'>I'm a student</Link>
-          <button type='submit' className='form-button'>Finish</button>
+          <Link to='/signup/student' className='job-student'>I'm a student</Link>
+          <button type='submit' className='form-button js-btn' disabled={this.ensureForm()}>Finish</button>
         </form>
       </div>
     )

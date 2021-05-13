@@ -21,6 +21,16 @@ class LocationForm extends React.Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
+  ensureForm() {
+    const { country, state, city } = this.state;
+
+    if (country.length && state.length && city.length) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   handleErrors() {
     const { country, state, city } = this.state;
     let errorBool = false;
@@ -73,7 +83,7 @@ class LocationForm extends React.Component {
           <label>City *</label>
           <input type="text" value={this.state.city} className={cityErr ? 'input-error' : ''} onChange={this.handleInput('city')}/>
           {cityErr ? <p className='error-msg'>Please enter your state</p> : null }
-          <button type='submit' className='form-button'>Next</button>
+          <button type='submit' className='form-button' disabled={this.ensureForm()}>Next</button>
         </form>
       </div>
     )

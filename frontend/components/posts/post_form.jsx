@@ -21,10 +21,11 @@ class PostForm extends React.Component {
 
   ensureContent() {
     const { body, media } = this.state;
+
     if (body.length || media) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   }
 
@@ -83,7 +84,7 @@ class PostForm extends React.Component {
           <footer>
             <i className="far fa-image">Image Icon</i>
             <input type="file" id='media-input' onChange={this.handleFile}/>
-            <button className='form-button' disabled={true}>Post</button>
+            <button className='form-button' disabled={this.ensureContent()}>Post</button>
           </footer>
         </form>
       </div>
