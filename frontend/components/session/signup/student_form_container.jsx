@@ -115,14 +115,14 @@ class StudentForm extends React.Component {
 
             <div className='school-year-signup'>
               <label>End year (or expected) *</label>
-              <select className='yr-selector-signup' onChange={this.handleInput('endYr')}>
+              <select className={'yr-selector-signup' + (yearErr ? ' input-error' : '')} onChange={this.handleInput('endYr')}>
                 {years.map(yr => (
                   <option key={yr} value={yr}>{yr}</option>
                 ))}
               </select>
             </div>
           </div>
-          {yearErr ? <p className='error-msg'>Start year cannot be after end year</p> : null }
+          {yearErr ? <p className='error-msg'>Your end date can’t be earlier than your start date</p> : null }
 
           <Link to='/signup/job' className='job-student'>I'm not a student</Link>
           <button type='submit' className='form-button js-btn' disabled={this.ensureForm()}>Finish</button>
