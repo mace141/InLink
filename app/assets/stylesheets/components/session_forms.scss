@@ -9,55 +9,61 @@
   }
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  background: white;
-  
-  margin: 0 auto;
-  padding: 30px;
-  width: 350px;
-  border-radius: 8px;
+.login-form, .signup-form {
 
-  h2 {
-    font-size: 32px;
-    font-weight: 600;
-    color:black;
-  }
+  > form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    
+    margin: 0 auto;
+    padding: 30px;
+    width: 350px;
+    border-radius: 8px;
 
-  p {
-    font-size: 14px;
-  }
+    h2 {
+      font-size: 32px;
+      font-weight: 600;
+      color:black;
+    }
 
-  label {
-    margin: 5px 0;
-    color: $lightgray;
-  }
+    p {
+      font-size: 14px;
+    }
 
-  input {
-    border: 1px solid $lightgray;
-    height: 50px;
-    border-radius: 3px;
-    padding: 0 10px;
-  }
+    label {
+      margin: 5px 0;
+      color: $lightgray;
+    }
 
-  .signin-input {
-    margin-top: 25px;
-  }
+    input {
+      border: 1px solid $lightgray;
+      height: 50px;
+      border-radius: 3px;
+      padding: 0 10px;
+    }
 
-  button {
-    text-align: center;
-    height: 50px;
-    background: $LIblue;
-    border-radius: 50px;
-    margin-top: 20px;
-    color: white;
-    font-weight: 600;
-  }
+    button {
+      margin-top: 20px;
+      height: 50px;
+    }
 
-  a {
-    text-align: center;
+    .signin-input {
+      margin-top: 25px;
+    }
+
+    a {
+      text-align: center;
+    }
   }
+}
+
+button {
+  text-align: center;
+  background: $LIblue;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
 }
 
 .error-msg {

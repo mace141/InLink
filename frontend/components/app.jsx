@@ -10,7 +10,7 @@ import Splash from './splash/splash';
 
 const App = ({ sessionPath, rootPath }) => {
   const header = sessionPath ? null : (
-    <header>
+    <header className='header'>
       <nav className='nav-bar'>
         <Route path='/' component={HeaderContainer}/>
       </nav>
@@ -23,7 +23,7 @@ const App = ({ sessionPath, rootPath }) => {
         <section className='main-section'>
           <AuthRoute exact path='/login' component={LoginFormContainer}/>
           <AuthRoute path='/signup' component={SignUpFormContainer}/>
-          <ProtectedRoute exact path='/feed' component={MainContainer}/>
+          <ProtectedRoute path='/' component={MainContainer}/>
           <AuthRoute exact path='/' component={Splash}/>
         </section>
       </section>

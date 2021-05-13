@@ -1,0 +1,13 @@
+.feed-section {
+  display: grid;
+  grid-template-columns: 4fr 9fr 5fr;
+  grid-gap: 25px;
+  margin-top: 25px;
+
+  .user-side-bar, .posts-section, .right-side-bar {
+    background: white;
+    border: 1px solid $lightergray;
+    border-radius: 8px;
+    padding: 12px;
+  }
+}

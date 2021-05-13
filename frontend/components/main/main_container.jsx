@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ProtectedRoute } from '../../util/route_util';
+import FeedContainer from '../feed/feed';
 
 class Main extends React.Component {
   constructor(props) {
@@ -7,7 +9,9 @@ class Main extends React.Component {
   }
 
   render() {
-    return <p>Main</p>
+    return (
+      <ProtectedRoute exact path='/feed' component={FeedContainer}/>
+    )
   }
 }
 

@@ -1,0 +1,41 @@
+.modal {
+  border: 1px solid gray;
+  border-radius: 8px;
+
+  > header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $lightergray;
+    padding: 20px; 
+    font-size: 20px;
+
+    .close-modal-button {
+      font-weight: bold;
+      color: gray;
+      border-radius: 50%;
+      padding: 5px 10px;
+    }
+
+    .close-modal-button:hover {
+      background: $lightergray;
+      transition: 0.3s;
+    }
+  }
+
+  > form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    textarea {
+      resize: none;
+    }
+
+    button {
+      // text-align: right;
+      padding: 5px 15px;
+    }
+  }
+}
