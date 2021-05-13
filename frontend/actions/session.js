@@ -1,4 +1,4 @@
-import { RECEIVE_SESSION_ERRORS } from '../reducers/session_errors';
+import { RECEIVE_SESSION_ERRORS, CLEAR_SESSION_ERRORS } from '../reducers/session_errors';
 import * as SessionAPI from '../util/session_api';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
@@ -48,6 +48,10 @@ const receiveSessionErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
 });
+
+export const clearSessionErrors = () => ({
+  type: CLEAR_SESSION_ERRORS
+})
 
 export const createUser = user => dispatch => (
   SessionAPI.createUser(user).then(

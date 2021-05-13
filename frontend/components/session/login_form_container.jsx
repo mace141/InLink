@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { loginUser } from '../../actions/session';
+import { loginUser, clearSessionErrors } from '../../actions/session';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -10,6 +10,10 @@ class LoginForm extends React.Component {
       email: "",
       password: ""
     };
+  }
+
+  componentDidMount() {
+    this.props.clearSessionErrors();
   }
 
   handleInput(field) {
@@ -66,7 +70,8 @@ const mapSTP = ({ errors: { session }}, ownProps) => ({
 });
 
 const mapDTP = dispatch => ({
-  loginUser: user => dispatch(loginUser(user))
+  loginUser: user => dispatch(loginUser(user)),
+  clearSessionErrors: () => dispatch(clearSessionErrors())
 });
 
 const LoginFormContainer = withRouter(connect(mapSTP, mapDTP)(LoginForm));

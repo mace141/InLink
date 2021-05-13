@@ -4,8 +4,8 @@
   
   .signup-logo, .login-logo {
     align-self: center;
-    margin-top: 50px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    // margin-bottom: 10px;
   }
 }
 
@@ -16,7 +16,8 @@
     flex-direction: column;
     background: white;
     
-    margin: 0 auto;
+    margin: 20px auto;
+    // margin-top: 20px;
     padding: 30px;
     width: 350px;
     border-radius: 8px;
