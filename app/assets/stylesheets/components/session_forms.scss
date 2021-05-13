@@ -119,6 +119,11 @@ form button:disabled {
     margin: 25px;
   }
 
+  select {
+    border: 1px solid $lightgray;
+    border-radius: 3px;
+  }
+
   .school-years-signup {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -127,11 +132,6 @@ form button:disabled {
     .school-year-signup {
       display: flex;
       flex-direction: column;
-
-      .yr-selector-signup {
-        border: 1px solid $lightgray;
-        border-radius: 3px;
-      }
 
       .input-error {
         border: 2px solid red;
