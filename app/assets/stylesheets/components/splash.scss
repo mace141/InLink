@@ -30,12 +30,12 @@
 }
 
 .splashImg {
-  max-width: 400px;
-  height: auto;
-  margin: 0;
-  position: absolute;
-  top: 50px;
-  right: 0;
+  max-height: 500px;
+  width: auto;
+  // margin: 0;
+  // position: absolute;
+  // top: 50px;
+  // right: 0;
 }
 
 #splash-form {
@@ -64,4 +64,9 @@
 
 .splash-section {
   background: white;
+}
+
+.splash-footer {
+  position: absolute;
+  bottom: 0;
 }
