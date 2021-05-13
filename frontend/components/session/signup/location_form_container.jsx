@@ -73,7 +73,7 @@ class LocationForm extends React.Component {
     return (
       <div className='signup-form'>
         <h2>Welcome, {this.props.fname}!</h2>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
           <label>Country *</label>
           <input type="text" value={this.state.country} className={countryErr ? 'input-error' : ''} onChange={this.handleInput('country')}/>
           {countryErr ? <p className='error-msg'>Please enter your country</p> : null }

@@ -90,7 +90,7 @@ class StudentForm extends React.Component {
     return (
       <div className='signup-form'>
         <h2>Your profile helps you discover new people and opportunities</h2>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
           <label>School or College/University *</label>
           <input type="text" value={this.state.school} className={schoolErr ? 'input-error' : ''} onChange={this.handleInput('school')}/>
           {schoolErr ? <p className='error-msg'>Please enter a school or college/university</p> : null }

@@ -78,11 +78,11 @@ class JobForm extends React.Component {
       'Seasonal'
     ];
     const { titleErr, companyErr } = this.state;
-    
+
     return (
       <div className='signup-form'>
         <h2>Your profile helps you discover new people and opportunities</h2>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
           <label>Most recent job title *</label>
           <input type="text" value={this.state.jobTitle} className={titleErr ? 'input-error' : ''} onChange={this.handleInput('jobTitle')}/>
           {titleErr ? <p className='error-msg'>Please enter your most recent job title</p> : null }
