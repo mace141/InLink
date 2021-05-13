@@ -50,8 +50,8 @@ class LoginForm extends React.Component {
             {errorOne ? <p className='error-msg'>{errorOne}</p> : null}
             <input type="password" className='signin-input' placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
             {errorTwo ? <p className='error-msg'>{errorTwo}</p> : null}
-            <button type='submit'>Sign In</button>
-            <button onClick={this.handleDemo.bind(this)}>Demo User</button>
+            <button type='submit' className='form-button'>Sign In</button>
+            <button onClick={this.handleDemo.bind(this)} className='form-button'>Demo User</button>
             <p className='session-redirect-msg'>New to InLink? <Link to='/signup' className='session-redirect-link'>Sign Up</Link></p>
           </form>
         </div>

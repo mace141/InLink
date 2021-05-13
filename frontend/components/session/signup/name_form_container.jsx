@@ -61,7 +61,7 @@ class NameForm extends React.Component {
           <label>Last name</label>
           <input type="text" value={this.state.lname} onChange={this.handleInput('lname')}/>
           {lnameErr ? <p className='error-msg'>Please enter your last name</p> : null }
-          <button type='submit'>Continue</button>
+          <button type='submit' className='form-button'>Continue</button>
         </form>
       </div>
     )

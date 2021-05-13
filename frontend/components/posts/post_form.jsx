@@ -36,7 +36,7 @@ class PostForm extends React.Component {
         <form onSubmit={this.handleSubmit} className='post-form'>
           <h2>[Insert PFP here] {this.props.name}</h2>
           <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
-          <button>Post</button>
+          <button className='form-button'>Post</button>
         </form>
       </div>
     )

@@ -113,7 +113,7 @@ class StudentForm extends React.Component {
           {yearErr ? <p className='error-msg'>Start year cannot be after end year</p> : null }
 
           <Link to='/signup/job'>I'm not a student</Link>
-          <button type='submit'>Finish</button>
+          <button type='submit' className='form-button'>Finish</button>
         </form>
       </div>
     )

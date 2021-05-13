@@ -73,7 +73,7 @@ class LocationForm extends React.Component {
           <label>City *</label>
           <input type="text" value={this.state.city} onChange={this.handleInput('city')}/>
           {stateErr ? <p className='error-msg'>Please enter your state</p> : null }
-          <button type='submit'>Next</button>
+          <button type='submit' className='form-button'>Next</button>
         </form>
       </div>
     )

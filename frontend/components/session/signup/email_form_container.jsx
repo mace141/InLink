@@ -98,8 +98,8 @@ class EmailForm extends React.Component {
           <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
           {pwErr ? <p className='error-msg'>{this.errors.passwordMsg}</p> : null }
 
-          <button type='submit'>Join InLink</button>
-          <button onClick={this.handleDemo.bind(this)}>Demo User</button>
+          <button type='submit' className='form-button'>Join InLink</button>
+          <button  className='form-button' onClick={this.handleDemo.bind(this)}>Demo User</button>
           <p className='session-redirect-msg'>Already on InLink? <Link to='/login' className='session-redirect-link'>Sign In</Link></p>
         </form>
       </div>

@@ -84,7 +84,7 @@ class JobForm extends React.Component {
           <input type="text" value={this.state.company} onChange={this.handleInput('company')}/>
           {companyErr ? <p className='error-msg'>Please enter your most recent company</p> : null }
           <Link to='/signup/student'>I'm a student</Link>
-          <button type='submit'>Finish</button>
+          <button type='submit' className='form-button'>Finish</button>
         </form>
       </div>
     )
