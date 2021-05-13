@@ -14,9 +14,6 @@ class StudentForm extends React.Component {
       specialization: user.specialization || "",
       startYr: user.startYr || 2021,
       endYr: user.endYr || 2031,
-      schoolErr: false,
-      degreeErr: false,
-      specErr: false,
       yearErr: false
     };
 
@@ -38,21 +35,9 @@ class StudentForm extends React.Component {
   }
 
   handleErrors() {
-    const { school, degree, specialization, startYr, endYr } = this.state;
+    const { startYr, endYr } = this.state;
     let errorBool = false;
 
-    if (!school.length) {
-      this.setState({ schoolErr: true });
-      errorBool = true;
-    }
-    if (!degree.length) {
-      this.setState({ degreeErr: true });
-      errorBool = true;
-    }
-    if (!specialization.length) {
-      this.setState({ specErr: true });
-      errorBool = true;
-    }
     if (parseInt(startYr) > parseInt(endYr)) {
       this.setState({ yearErr: true });
       errorBool = true;
@@ -63,12 +48,7 @@ class StudentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({
-      schoolErr: false,
-      degreeErr: false,
-      specErr: false,
-      yearErr: false
-    })
+    this.setState({ yearErr: false });
 
     if (!this.handleErrors()) {
       const student = {
@@ -85,23 +65,20 @@ class StudentForm extends React.Component {
     for (let i = 1962; i <= 2031; i++) {
       years.unshift(i);
     }
-    const { schoolErr, degreeErr, specErr, yearErr } = this.state;
+    const { yearErr } = this.state;
 
     return (
       <div className='signup-form'>
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
           <label>School or College/University *</label>
-          <input type="text" value={this.state.school} className={schoolErr ? 'input-error' : ''} onChange={this.handleInput('school')}/>
-          {schoolErr ? <p className='error-msg'>Please enter a school or college/university</p> : null }
+          <input type="text" value={this.state.school} onChange={this.handleInput('school')}/>
 
           <label>Degree *</label>
-          <input type="text" value={this.state.degree} className={degreeErr ? 'input-error' : ''} onChange={this.handleInput('degree')}/>
-          {degreeErr ? <p className='error-msg'>Please enter a degree</p> : null }
+          <input type="text" value={this.state.degree} onChange={this.handleInput('degree')}/>
 
           <label>Specialization *</label>
-          <input type="text" value={this.state.specialization} className={specErr ? 'input-error' : ''} onChange={this.handleInput('specialization')}/>
-          {specErr ? <p className='error-msg'>Please enter a specialization</p> : null }
+          <input type="text" value={this.state.specialization} onChange={this.handleInput('specialization')}/>
 
           <div className='school-years-signup'>
             <div className='school-year-signup' >

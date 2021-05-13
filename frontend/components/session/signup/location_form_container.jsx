@@ -10,10 +10,7 @@ class LocationForm extends React.Component {
     this.state = {
       country: user.country || "",
       state: user.state || "",
-      city: user.city || "",
-      countryErr: false,
-      cityErr: false,
-      stateErr: false,
+      city: user.city || ""
     };
   }
 
@@ -31,40 +28,13 @@ class LocationForm extends React.Component {
     }
   }
 
-  handleErrors() {
-    const { country, state, city } = this.state;
-    let errorBool = false;
-    
-    if (!country.length) {
-      this.setState({ countryErr: true });
-      errorBool = true;
-    }
-    if (!state.length) {
-      this.setState({ stateErr: true });
-      errorBool = true;
-    }
-    if (!city.length) {
-      this.setState({ cityErr: true });
-      errorBool = true;
-    }
-
-    return errorBool;
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({
-      countryErr: false,
-      stateErr: false,
-      cityErr: false
-    })
 
-    if (!this.handleErrors()) {
-      const { country, state, city } = this.state;
-      const location = city + ', ' + state + ', ' + country;
-      this.props.receiveUserLocation(Object.assign({}, this.state, { location }));
-      this.props.history.push('/signup/job');
-    }
+    const { country, state, city } = this.state;
+    const location = city + ', ' + state + ', ' + country;
+    this.props.receiveUserLocation(Object.assign({}, this.state, { location }));
+    this.props.history.push('/signup/job');
   }
 
   render() {
@@ -75,14 +45,11 @@ class LocationForm extends React.Component {
         <h2>Welcome, {this.props.fname}!</h2>
         <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
           <label>Country *</label>
-          <input type="text" value={this.state.country} className={countryErr ? 'input-error' : ''} onChange={this.handleInput('country')}/>
-          {countryErr ? <p className='error-msg'>Please enter your country</p> : null }
+          <input type="text" value={this.state.country} onChange={this.handleInput('country')}/>
           <label>State *</label>
-          <input type="text" value={this.state.state} className={stateErr ? 'input-error' : ''} onChange={this.handleInput('state')}/>
-          {stateErr ? <p className='error-msg'>Please enter your city</p> : null }
+          <input type="text" value={this.state.state} onChange={this.handleInput('state')}/>
           <label>City *</label>
-          <input type="text" value={this.state.city} className={cityErr ? 'input-error' : ''} onChange={this.handleInput('city')}/>
-          {cityErr ? <p className='error-msg'>Please enter your state</p> : null }
+          <input type="text" value={this.state.city} onChange={this.handleInput('city')}/>
           <button type='submit' className='form-button' disabled={this.ensureForm()}>Next</button>
         </form>
       </div>
