@@ -30,12 +30,12 @@
 }
 
 .splashImg {
-  max-height: 500px;
+  max-height: 550px;
   width: auto;
   // margin: 0;
-  // position: absolute;
-  // top: 50px;
-  // right: 0;
+  position: absolute;
+  top: 50px;
+  left: -150px
 }
 
 #splash-form {
@@ -50,7 +50,7 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 150px;
 
-  :last-child {
+  > div:nth-child(2) {
     position: relative;
   }
 }
