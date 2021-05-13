@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost } from '../../actions/post';
+import { createPost, createPostMedia } from '../../actions/post';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -8,25 +8,58 @@ class PostForm extends React.Component {
 
     this.state = {
       body: "",
-      user_id: this.props.currentUser
+      userId: this.props.currentUser,
+      media: null,
+      mediaUrl: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleFile = this.handleFile.bind(this);
   }
 
   handleInput(e) {
     this.setState({ body: e.target.value });
   }
 
+  handleFile(e) {
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    // will run when file is read
+    fileReader.onloadend = () => {
+      this.setState({ media: file, mediaUrl: fileReader.result });
+    };
+
+    if (file) {
+      // reads the file
+      fileReader.readAsDataURL(file);
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createPost(this.state);
-    this.setState({ body: "" });
+
+    // creates an object to send to controller
+    const formData = new FormData();
+    if (this.state.media) {
+      formData.append('post[media]', this.state.media);
+    }
+    formData.append('post[body]', this.state.body);
+    formData.append('post[user_id]', this.state.userId);
+
+    this.props.createPostMedia(formData);
+    this.setState({ 
+      body: "",
+      media: null,
+      mediaUrl: null
+    });
+    document.getElementById('media-input').value = "";
   }
 
   render() {
-    debugger
+    // image preview
+    const preview = this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : null;
+
     return (
       <div className='modal post-form-modal'>
         <header>
@@ -36,7 +69,11 @@ class PostForm extends React.Component {
         <form onSubmit={this.handleSubmit} className='post-form'>
           <h2>[Insert PFP here] {this.props.name}</h2>
           <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
-          <button className='form-button'>Post</button>
+          {preview}
+          <footer>
+            <input type="file" id='media-input' onChange={this.handleFile}/>
+            <button className='form-button'>Post</button>
+          </footer>
         </form>
       </div>
     )
@@ -53,7 +90,8 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
 };
 
 const mapDTP = dispatch => ({
-  createPost: post => dispatch(createPost(post))
+  createPost: post => dispatch(createPost(post)),
+  createPostMedia: formData => dispatch(createPostMedia(formData))
 });
 
 const PostFormContainer = connect(mapSTP, mapDTP)(PostForm);

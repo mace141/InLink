@@ -17,7 +17,7 @@ class PostIndexItem extends React.Component {
   }
   
   render() {
-    const { editPost, deletePost, users, post: { id, body } } = this.props;
+    const { editPost, deletePost, users, post: { id, body, mediaUrl } } = this.props;
     let postUser; let name;
 
     if (this.state.user) {
@@ -26,7 +26,7 @@ class PostIndexItem extends React.Component {
     } else {
       postUser = { headline: "" }
     }
-    debugger
+    
     return (
       <div className='post-item'>
         <header>
@@ -40,6 +40,7 @@ class PostIndexItem extends React.Component {
           <button>Dropdown</button>
         </header>
         <p>{body}</p>
+        <img src={mediaUrl} alt="" />
         <div>
           <button>Like</button>
           <button>Comment</button>

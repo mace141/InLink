@@ -31,6 +31,10 @@ export const createPost = post => dispatch => (
   PostAPI.createPost(post).then(post => dispatch(receivePost(post)))
 );
 
+export const createPostMedia = formData => dispatch => (
+  PostAPI.createPostMedia(formData).then(post => dispatch(receivePost(post)))
+);
+
 export const updatePost = post => dispatch => (
   PostAPI.updatePost(post).then(post => dispatch(receivePost(post)))
 );

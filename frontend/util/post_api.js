@@ -18,6 +18,16 @@ export const createPost = post => (
   })
 );
 
+export const createPostMedia = formData => (
+  $.ajax({
+    method: 'POST',
+    url: '/api/posts',
+    data: formData,
+    contentType: false,
+    processData: false
+  })
+);
+
 export const updatePost = post => (
   $.ajax({
     method: 'PATCH',
