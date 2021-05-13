@@ -80,21 +80,21 @@ class StudentForm extends React.Component {
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>School or College/University *</label>
-          <input type="text" value={this.state.school} onChange={this.handleInput('school')}/>
+          <input type="text" value={this.state.school} className={schoolErr ? 'input-error' : ''} onChange={this.handleInput('school')}/>
           {schoolErr ? <p className='error-msg'>Please enter a school or college/university</p> : null }
 
           <label>Degree *</label>
-          <input type="text" value={this.state.degree} onChange={this.handleInput('degree')}/>
+          <input type="text" value={this.state.degree} className={degreeErr ? 'input-error' : ''} onChange={this.handleInput('degree')}/>
           {degreeErr ? <p className='error-msg'>Please enter a degree</p> : null }
 
           <label>Specialization *</label>
-          <input type="text" value={this.state.specialization} onChange={this.handleInput('specialization')}/>
+          <input type="text" value={this.state.specialization} className={specErr ? 'input-error' : ''} onChange={this.handleInput('specialization')}/>
           {specErr ? <p className='error-msg'>Please enter a specialization</p> : null }
 
           <div className='school-years-signup'>
-            <div className='school-year-signup'>
+            <div className='school-year-signup' >
               <label>Start year *</label>
-              <select className='yr-selector-signup' onChange={this.handleInput('startYr')}>
+              <select className={'yr-selector-signup' + (yearErr ? ' input-error' : '')} onChange={this.handleInput('startYr')}>
                 {years.map(yr => {
                   if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
                 })}

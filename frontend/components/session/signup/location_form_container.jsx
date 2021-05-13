@@ -65,14 +65,14 @@ class LocationForm extends React.Component {
         <h2>Welcome, {this.props.fname}!</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Country *</label>
-          <input type="text" value={this.state.country} onChange={this.handleInput('country')}/>
+          <input type="text" value={this.state.country} className={countryErr ? 'input-error' : ''} onChange={this.handleInput('country')}/>
           {countryErr ? <p className='error-msg'>Please enter your country</p> : null }
           <label>State *</label>
-          <input type="text" value={this.state.state} onChange={this.handleInput('state')}/>
-          {cityErr ? <p className='error-msg'>Please enter your city</p> : null }
+          <input type="text" value={this.state.state} className={stateErr ? 'input-error' : ''} onChange={this.handleInput('state')}/>
+          {stateErr ? <p className='error-msg'>Please enter your city</p> : null }
           <label>City *</label>
-          <input type="text" value={this.state.city} onChange={this.handleInput('city')}/>
-          {stateErr ? <p className='error-msg'>Please enter your state</p> : null }
+          <input type="text" value={this.state.city} className={cityErr ? 'input-error' : ''} onChange={this.handleInput('city')}/>
+          {cityErr ? <p className='error-msg'>Please enter your state</p> : null }
           <button type='submit' className='form-button'>Next</button>
         </form>
       </div>

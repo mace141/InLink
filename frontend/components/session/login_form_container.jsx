@@ -46,9 +46,9 @@ class LoginForm extends React.Component {
         <div className='login-form'>
           <form id={ splash ? 'splash-form': '' } onSubmit={this.handleSubmit.bind(this)}>
             {splash ? null : signinPageMsg }
-            <input type="text" className='signin-input' placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
+            <input type="text" className={'signin-input' + (errorOne ? ' input-error' : '')} placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
             {errorOne ? <p className='error-msg'>{errorOne}</p> : null}
-            <input type="password" className='signin-input' placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
+            <input type="password" className={'signin-input' + (errorTwo ? ' input-error' : '')} placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
             {errorTwo ? <p className='error-msg'>{errorTwo}</p> : null}
             <button type='submit' className='form-button'>Sign In</button>
             <button onClick={this.handleDemo.bind(this)} className='form-button'>Demo User</button>

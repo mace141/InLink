@@ -91,11 +91,11 @@ class EmailForm extends React.Component {
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Email</label>
-          <input type="text" value={this.state.email} onChange={this.handleInput('email')}/>
+          <input type="text" value={this.state.email} className={emailErr ? 'input-error' : ''} onChange={this.handleInput('email')}/>
           {emailErr ? <p className='error-msg'>{this.errors.emailMsg}</p> : null }
 
           <label>Password (6 or more characters)</label>
-          <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
+          <input type="password" value={this.state.password} className={pwErr ? 'input-error' : ''} onChange={this.handleInput('password')}/>
           {pwErr ? <p className='error-msg'>{this.errors.passwordMsg}</p> : null }
 
           <button type='submit' className='form-button'>Join InLink</button>

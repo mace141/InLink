@@ -39,8 +39,12 @@
     input {
       border: 1px solid $lightgray;
       height: 50px;
-      border-radius: 3px;
+      border-radius: 5px;
       padding: 0 10px;
+    }
+
+    .input-error {
+      border: 2px solid red;
     }
 
     button {
@@ -93,6 +97,10 @@
       .yr-selector-signup {
         border: 1px solid $lightgray;
         border-radius: 3px;
+      }
+
+      .input-error {
+        border: 2px solid red;
       }
     }
   }

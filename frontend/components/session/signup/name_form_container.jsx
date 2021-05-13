@@ -56,10 +56,10 @@ class NameForm extends React.Component {
         <h2>Make the most of your professional life</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>First name</label>
-          <input type="text" value={this.state.fname} onChange={this.handleInput('fname')}/>
+          <input type="text" value={this.state.fname} className={fnameErr ? 'input-error' : ''} onChange={this.handleInput('fname')}/>
           {fnameErr ? <p className='error-msg'>Please enter your first name</p> : null }
           <label>Last name</label>
-          <input type="text" value={this.state.lname} onChange={this.handleInput('lname')}/>
+          <input type="text" value={this.state.lname} className={lnameErr ? 'input-error' : ''} onChange={this.handleInput('lname')}/>
           {lnameErr ? <p className='error-msg'>Please enter your last name</p> : null }
           <button type='submit' className='form-button'>Continue</button>
         </form>
