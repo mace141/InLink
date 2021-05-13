@@ -1,25 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createPost } from '../../actions/post';
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      body: ""
+      body: "",
+      user_id: this.props.currentUser
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
-  handleInput() {
+  handleInput(e) {
     this.setState({ body: e.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
     e.preventDefault();
-    this.createPost(this.state);
+    this.props.createPost(this.state);
+    this.setState({ body: "" });
   }
 
   render() {
+    debugger
     return (
       <div className='modal post-form-modal'>
         <header>
@@ -28,7 +35,7 @@ class PostForm extends React.Component {
         </header>
         <form onSubmit={this.handleSubmit} className='post-form'>
           <h2>[Insert PFP here] {this.props.name}</h2>
-          <textarea cols="30" rows="10" placeholder='What do you want to talk about?'></textarea>
+          <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
           <button>Post</button>
         </form>
       </div>
@@ -41,7 +48,7 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
 
   return {
     name: user.fname + ' ' + user.lname,
-    user
+    currentUser
   }
 };
 
