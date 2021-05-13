@@ -42,6 +42,9 @@ class PostIndexItem extends React.Component {
         <p>{body}</p>
         <img src={mediaUrl} alt="" />
         <div>
+          [numLikes and numComments]
+        </div>
+        <div>
           <button>Like</button>
           <button>Comment</button>
         </div>

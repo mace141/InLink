@@ -4,10 +4,29 @@
   grid-gap: 25px;
   margin-top: 25px;
 
-  .user-side-bar, .posts-section, .right-side-bar {
+  .user-side-bar, .post-item, .right-side-bar {
     background: white;
     border: 1px solid $lightergray;
     border-radius: 8px;
     padding: 12px;
+  }
+
+  .post-item {
+    margin: 8px 0;
+
+    header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      > div {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+  
+  .far {
+    color: black;
   }
 }

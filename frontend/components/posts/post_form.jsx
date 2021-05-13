@@ -16,6 +16,16 @@ class PostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.ensureContent = this.ensureContent.bind(this);
+  }
+
+  ensureContent() {
+    const { body, media } = this.state;
+    if (body.length || media) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   handleInput(e) {
@@ -71,8 +81,9 @@ class PostForm extends React.Component {
           <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
           {preview}
           <footer>
+            <i className="far fa-image">Image Icon</i>
             <input type="file" id='media-input' onChange={this.handleFile}/>
-            <button className='form-button'>Post</button>
+            <button className='form-button' disabled={true}>Post</button>
           </footer>
         </form>
       </div>

@@ -1,6 +1,7 @@
 .modal {
-  border: 1px solid gray;
+  border: 1px solid $lightergray;
   border-radius: 8px;
+  background: white;
 
   > header {
     display: flex;
@@ -8,7 +9,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $lightergray;
-    padding: 20px; 
+    padding: 12px 24px; 
     font-size: 20px;
 
     .close-modal-button {
@@ -27,15 +28,27 @@
   > form {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 12px 24px;
+
+    h2 {
+      margin-bottom: 10px;
+    }
 
     textarea {
       resize: none;
     }
 
+    footer {
+      display: flex;
+      justify-content: space-between;
+    }
+
     button {
-      // text-align: right;
       padding: 5px 15px;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
     }
   }
 }
