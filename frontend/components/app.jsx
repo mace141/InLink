@@ -7,6 +7,7 @@ import LoginFormContainer from '../components/session/login_form_container';
 import SignUpFormsContainer from '../components/session/signup/signup_form_container';
 import MainContainer from './main/main_container';
 import Splash from './splash/splash';
+import ModalContainer from './modal/modal';
 
 const App = ({ sessionPath, rootPath }) => {
   const header = sessionPath ? null : (
@@ -19,6 +20,7 @@ const App = ({ sessionPath, rootPath }) => {
 
   return (
     <>
+      <ModalContainer/>
       {header}
       <section className={rootPath ? 'splash-section' : ''}>
         <section className='main-section'>

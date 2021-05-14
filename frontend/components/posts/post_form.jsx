@@ -1,17 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createPost, createPostMedia } from '../../actions/post';
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      body: "",
-      userId: this.props.currentUser,
-      media: null,
-      mediaUrl: null
-    };
+    this.state = this.props.post;
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -68,7 +61,7 @@ class PostForm extends React.Component {
     formData.append('post[body]', this.state.body);
     formData.append('post[user_id]', this.state.userId);
 
-    this.props.createPostMedia(formData);
+    this.props.processForm(formData);
     this.setState({ 
       body: "",
       media: null,
@@ -85,7 +78,7 @@ class PostForm extends React.Component {
       <>
         <div className='modal post-form-modal'>
           <header>
-            <h2>Create a post</h2>
+            <h2>{this.props.formType}</h2>
             <span className='close-modal-button'>✕</span>
           </header>
           <form onSubmit={this.handleSubmit} className='post-form'>
@@ -119,20 +112,4 @@ class PostForm extends React.Component {
   }
 };
 
-const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
-  const user = users[currentUser];
-
-  return {
-    name: user.fname + ' ' + user.lname,
-    currentUser
-  }
-};
-
-const mapDTP = dispatch => ({
-  createPost: post => dispatch(createPost(post)),
-  createPostMedia: formData => dispatch(createPostMedia(formData))
-});
-
-const PostFormContainer = connect(mapSTP, mapDTP)(PostForm);
-
-export default PostFormContainer;
+export default PostForm;
