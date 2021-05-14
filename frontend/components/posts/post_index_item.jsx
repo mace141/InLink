@@ -48,6 +48,7 @@ class PostIndexItem extends React.Component {
       postUser = { headline: "" }
     }
     debugger
+    
     return (
       <div className='post-item'>
         <header>
