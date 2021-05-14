@@ -78,6 +78,7 @@ class PostForm extends React.Component {
       mediaUrl: null
     });
     document.getElementById('media-input').value = "";
+    this.props.closeModal();
   }
 
   render() {
