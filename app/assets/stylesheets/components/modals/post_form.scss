@@ -34,14 +34,14 @@
   footer {
     display: flex;
     justify-content: flex-end;
-    border-top: 1px solid $lightergray;
+    border-top: 1px solid $lightgray;
     padding: $modal-padding;
 
     .back-btn {
       @include modal-button($darkgray, white);
 
       &:hover {
-        @include btn-hover-border($darkgray, $lightergray);
+        @include btn-hover-border($darkgray, $lightgray);
       }
     }
 
@@ -52,8 +52,8 @@
 
       &:disabled {
         cursor: not-allowed;
-        color: $lightgray;
-        background: $lightergray;
+        color: $gray;
+        background: $lightgray;
       }
 
       &:enabled:hover {

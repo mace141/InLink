@@ -9,8 +9,6 @@ class Post < ApplicationRecord
   def ensure_content
     unless self.body.length > 0 || self.media.attached?
       errors.add(:post, 'must have content')
-    # else 
-    #   return self.media.attached?
     end
   end
 end
