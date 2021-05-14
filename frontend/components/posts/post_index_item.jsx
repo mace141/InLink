@@ -6,15 +6,35 @@ import { fetchUser } from '../../actions/session';
 class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
-    debugger
+    
     this.state = {
-      drop: false
+      drop: false,
+      timeAgo: Date.now() - Date.parse(this.props.post.updatedAt)
     };
+
+    if (this.state.timeAgo < 3600000) {
+      setInterval(() => this.setState({ timeAgo: Date.now() - Date.parse(this.props.post.updatedAt)}), 300000);
+    }
   }
 
   componentDidMount() {
-    debugger
     this.props.fetchUser(this.props.post.userId);
+  }
+
+  timeFromNow() {
+    const { timeAgo } = this.state;
+
+    if (timeAgo < 60000) {
+      return '<1m';
+    } else if (timeAgo < 3600000) {
+      return Math.floor(timeAgo / 60000) + 'm';
+    } else if (timeAgo < 86400000) {
+      return Math.floor(timeAgo / 3600000) + 'h';
+    } else if (timeAgo < 31536000000) {
+      return Math.floor(timeAgo / 86400000) + 'd';
+    } else {
+      return Math.floor(timeAgo / 31536000000) +'y';
+    }
   }
 
   clicked() {
@@ -32,7 +52,7 @@ class PostIndexItem extends React.Component {
   render() {
     const { deletePost, users, post: { id, body, mediaUrl, userId } } = this.props;
     let dropdown; let postUser; let name;
-    debugger
+    
     if (users[userId]) {
       postUser = users[userId];
       name = postUser.fname + ' ' + postUser.lname;
@@ -51,7 +71,6 @@ class PostIndexItem extends React.Component {
     } else {
       postUser = { headline: "" };
     }
-    debugger
     
     return (
       <div className='post-item'>
@@ -61,7 +80,7 @@ class PostIndexItem extends React.Component {
             <div>
               <p className='post-username'>{name}</p>
               <p className='post-user-headline'>{postUser.headline}</p>
-              <p>[Days ago posted]</p>
+              <p>{this.timeFromNow()}</p>
             </div>
           </div>
           {dropdown}
@@ -80,12 +99,10 @@ class PostIndexItem extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users }, session: { currentUser }}) => {
-  debugger
-  return ({
+const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
   users, 
   currentUser
-})};
+});
 
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),
