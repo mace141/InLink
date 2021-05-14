@@ -17,6 +17,7 @@ class PostForm extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.ensureContent = this.ensureContent.bind(this);
+    this.ensureMedia =this.ensureMedia.bind(this);
   }
 
   ensureContent() {
@@ -27,6 +28,11 @@ class PostForm extends React.Component {
     } else {
       return true;
     }
+  }
+
+  ensureMedia() {
+    if (this.state.media) return false;
+    return true;
   }
 
   handleInput(e) {
@@ -103,8 +109,8 @@ class PostForm extends React.Component {
           <p><span onClick={this.openFileLoader} onClick={this.openFileLoader}>Select images to share</span></p>
           <footer>
             <div>
-              <button>Go back</button>
-              <button>Done</button>
+              <button className='back-btn'>Back</button>
+              <button className='done-btn' disabled={this.ensureMedia()}>Done</button>
             </div>
           </footer>
         </div>
