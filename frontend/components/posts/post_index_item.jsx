@@ -6,14 +6,14 @@ import { fetchUser } from '../../actions/session';
 class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
-
+    debugger
     this.state = {
-      user: this.props.users[this.props.post.userId] || null,
       drop: false
     };
   }
 
   componentDidMount() {
+    debugger
     this.props.fetchUser(this.props.post.userId);
   }
 
@@ -24,13 +24,17 @@ class PostIndexItem extends React.Component {
   leave() {
     this.setState({drop: false});
   }
+
+  // INFINITE SCROLLING: 
+  // fetch 10 posts by connections, order by updated time. save the updated time of the last post
+  // fetch 10 more posts starting from saved updated time, order by updated time
   
   render() {
-    const { deletePost, users, post: { id, body, mediaUrl } } = this.props;
+    const { deletePost, users, post: { id, body, mediaUrl, userId } } = this.props;
     let dropdown; let postUser; let name;
-
-    if (this.state.user) {
-      postUser = this.state.user;
+    debugger
+    if (users[userId]) {
+      postUser = users[userId];
       name = postUser.fname + ' ' + postUser.lname;
 
       if (postUser.id == this.props.currentUser) {
@@ -76,15 +80,17 @@ class PostIndexItem extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
+const mapSTP = ({ entities: { users }, session: { currentUser }}) => {
+  debugger
+  return ({
   users, 
   currentUser
-});
+})};
 
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),
   editPost: post => dispatch(editPost(post)),
-  fetchUser: userId => fetchUser(userId)
+  fetchUser: userId => dispatch(fetchUser(userId))
 });
 
 const PostIndexItemContainer = connect(mapSTP, mapDTP)(PostIndexItem)
