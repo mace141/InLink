@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createPostMedia } from '../../actions/post';
+import { createPost } from '../../actions/post';
 import PostForm from './post_form';
 
 const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
@@ -18,7 +18,7 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
 };
 
 const mapDTP = dispatch => ({
-  processForm: post => dispatch(createPostMedia(post)),
+  processForm: post => dispatch(createPost(post)),
 });
 
 const CreatePostForm = connect(mapSTP, mapDTP)(PostForm);

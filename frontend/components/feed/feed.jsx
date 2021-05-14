@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CreatePostForm from '../posts/create_post_form';
+import EditPostFormContainer from '../posts/edit_post_form';
 import PostIndexContainer from '../posts/post_index';
 
 const Feed = ({ currentUser }) => {
@@ -15,6 +16,7 @@ const Feed = ({ currentUser }) => {
       <section className='posts-section'>
         <CreatePostForm/>
         <PostIndexContainer/>
+        {/* <EditPostFormContainer/> */}
       </section>
       <aside className='right-side-bar'>
         Daniel's Fun Facts

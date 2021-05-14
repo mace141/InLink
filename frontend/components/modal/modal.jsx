@@ -1,7 +1,8 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal';
 import { connect } from 'react-redux';
-import PostFormContainer from '../posts/post_form';
+import CreatePostForm from '../posts/create_post_form';
+import EditPostFormContainer from '../posts/edit_post_form';
 
 const Modal = ({modal, closeModal}) => {
   if (!modal) return null;
@@ -9,7 +10,10 @@ const Modal = ({modal, closeModal}) => {
 
   switch (modal) {
     case 'createPost':
-      component = <PostFormContainer/>;
+      component = <CreatePostForm closeModal={closeModal}/>;
+      break;
+    case 'editPost':
+      component = <EditPostFormContainer closeModal={closeModal}/>;
       break;
     default:
       return null;

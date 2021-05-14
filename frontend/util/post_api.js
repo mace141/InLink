@@ -10,15 +10,7 @@ export const fetchPost = postId => (
   })
 );
 
-export const createPost = post => (
-  $.ajax({
-    method: 'POST',
-    url: '/api/posts',
-    data: { post }
-  })
-);
-
-export const createPostMedia = formData => (
+export const createPost = formData => (
   $.ajax({
     method: 'POST',
     url: '/api/posts',
@@ -28,11 +20,13 @@ export const createPostMedia = formData => (
   })
 );
 
-export const updatePost = post => (
+export const updatePost = formData => (
   $.ajax({
     method: 'PATCH',
-    url: `/api/posts/${post.id}`,
-    data: { post }
+    url: `/api/posts/${formData.get('post[id]')}`,
+    data: formData,
+    contentType: false,
+    processData: false
   })
 );
 

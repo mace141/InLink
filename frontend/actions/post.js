@@ -27,12 +27,8 @@ export const fetchPost = postId => dispatch => (
   PostAPI.fetchPost(postId).then(post => dispatch(receivePost(post)))
 );
 
-export const createPost = post => dispatch => (
-  PostAPI.createPost(post).then(post => dispatch(receivePost(post)))
-);
-
-export const createPostMedia = formData => dispatch => (
-  PostAPI.createPostMedia(formData).then(post => dispatch(receivePost(post)))
+export const createPost = formData => dispatch => (
+  PostAPI.createPost(formData).then(post => dispatch(receivePost(post)))
 );
 
 export const updatePost = post => dispatch => (

@@ -50,17 +50,24 @@ class PostForm extends React.Component {
     }
   }
 
+  // formSwitch() {
+
+  // }
+
   handleSubmit(e) {
     e.preventDefault();
-
+    
     // creates an object to send to controller
     const formData = new FormData();
     if (this.state.media) {
       formData.append('post[media]', this.state.media);
     }
+    if (this.state.id) {
+      formData.append('post[id]', this.state.id);
+    }
     formData.append('post[body]', this.state.body);
     formData.append('post[user_id]', this.state.userId);
-
+    
     this.props.processForm(formData);
     this.setState({ 
       body: "",
@@ -79,7 +86,7 @@ class PostForm extends React.Component {
         <div className='modal post-form-modal'>
           <header>
             <h2>{this.props.formType}</h2>
-            <span className='close-modal-button'>✕</span>
+            <span className='close-modal-button' onClick={() => this.props.closeModal()}>✕</span>
           </header>
           <form onSubmit={this.handleSubmit} className='post-form'>
             <div className=''>

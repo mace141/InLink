@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
 
@@ -62,7 +63,7 @@ class PostIndexItem extends React.Component {
           <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
             <ul className={'post-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
-              <li><i className="far fa-edit"></i>Edit Post</li>
+              <li onClick={() => this.props.openModal('editPost', id)}><i className="far fa-edit"></i>Edit Post</li>
               <li onClick={() => this.props.deletePost(id)}><i className="far fa-trash-alt"></i>Delete Post</li>
             </ul>
           </button>
@@ -107,7 +108,8 @@ const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),
   editPost: post => dispatch(editPost(post)),
-  fetchUser: userId => dispatch(fetchUser(userId))
+  fetchUser: userId => dispatch(fetchUser(userId)),
+  openModal: (modal, id) => dispatch(openModal(modal, id))
 });
 
 const PostIndexItemContainer = connect(mapSTP, mapDTP)(PostIndexItem)
