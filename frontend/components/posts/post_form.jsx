@@ -44,6 +44,8 @@ class PostForm extends React.Component {
     // will run when file is read
     fileReader.onloadend = () => {
       this.setState({ media: file, mediaUrl: fileReader.result });
+      document.getElementById('post-body').style.overflowY = 'scroll';
+      document.getElementById('post-body').style.height = '400px';
     };
 
     if (file) {
@@ -96,11 +98,15 @@ class PostForm extends React.Component {
             <span className='close-modal-button' onClick={() => this.props.closeModal()}>✕</span>
           </header>
           <form onSubmit={this.handleSubmit} className='post-form'>
-            <div className=''>
-              <h2>[Insert PFP here]</h2><h2>{this.props.name}</h2>
+            <div id='post-body'>
+              <div className=''>
+                <h2>[Insert PFP here]</h2><h2>{this.props.name}</h2>
+              </div>
+              <div className='textarea'>
+                <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
+              </div>
+              {preview(null)}
             </div>
-            <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
-            {preview(null)}
             <footer>
               <i className="far fa-image" onClick={this.openFileLoader}></i>
               <input type="file" id='media-input' onChange={this.handleFile}/>

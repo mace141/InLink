@@ -1,5 +1,18 @@
 .post-form { 
 
+  #post-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .textarea {
+    height: 250px;
+
+    textarea {
+      width: 100%;
+    }
+  }
+
   .far.fa-image {
     transform: scale(-1.5, 1.5);
     color: $darkgray;
