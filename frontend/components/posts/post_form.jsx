@@ -44,8 +44,12 @@ class PostForm extends React.Component {
     // will run when file is read
     fileReader.onloadend = () => {
       this.setState({ media: file, mediaUrl: fileReader.result });
-      document.getElementById('post-body').style.overflowY = 'scroll';
-      document.getElementById('post-body').style.height = '400px';
+      const postBodies = document.getElementsByClassName('post-body');
+
+      for (let i = 0; i < postBodies.length; i++) {
+        postBodies[i].style.overflowY = 'scroll';
+        postBodies[i].style.height = '400px';
+      }
     };
 
     if (file) {
@@ -98,7 +102,7 @@ class PostForm extends React.Component {
             <span className='close-modal-button' onClick={() => this.props.closeModal()}>✕</span>
           </header>
           <form onSubmit={this.handleSubmit} className='post-form'>
-            <div id='post-body'>
+            <div className='post-body'>
               <div className=''>
                 <h2>[Insert PFP here]</h2><h2>{this.props.name}</h2>
               </div>
@@ -119,9 +123,9 @@ class PostForm extends React.Component {
             <h2>Edit your photo</h2>
             <span className='close-modal-button' onClick={this.formSwitch}>✕</span>
           </header>
-          <p>
+          <div className='post-body'>
             {preview(selectMedia)}
-          </p>
+          </div>
           <footer>
             <div>
               <button className='back-btn' onClick={this.formSwitch}>Back</button>

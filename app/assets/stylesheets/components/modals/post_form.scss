@@ -1,6 +1,6 @@
 .post-form { 
 
-  #post-body {
+  .post-body {
     display: flex;
     flex-direction: column;
   }
@@ -33,7 +33,7 @@
 
 .post-media-modal {
 
-  p {
+  .post-body {
     text-align: center;
     color: $blue;
     font-weight: 600;
