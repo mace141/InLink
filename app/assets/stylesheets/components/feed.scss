@@ -8,11 +8,36 @@
     box-sizing: content-box;
   }
 
-  .user-side-bar, .post-item, .right-side-bar {
-    background: white;
-    border: 1px solid $lightgray;
-    border-radius: 8px;
-    padding: 12px;
+  .user-side-bar, .post-item, .right-side-bar, .start-post {
+    @include box
+  }
+
+  .start-post {
+    display: flex;
+
+    button {
+      flex-grow: 1;
+      padding: 12px;
+      color: $gray;
+      border: 1px solid $lightgray;
+      border-radius: 24px;
+      font-weight: 600;
+
+      &:hover {
+        background: $lightgray;
+        border: 1px solid rgb(201, 201, 201);
+        transition: 0.3s;
+      }
+    }
+  }
+
+  .feed-div {
+    border-top: 1px solid #cccccc;
+    margin-top: 8px;
+
+    &:before {
+      content: '';
+    }
   }
 
   .post-item {

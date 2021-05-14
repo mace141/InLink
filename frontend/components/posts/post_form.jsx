@@ -34,6 +34,8 @@ class PostForm extends React.Component {
 
   openFileLoader() {
     document.getElementById('media-input').click();
+    document.getElementsByClassName('post-form-modal')[0].classList.toggle('hidden');
+    document.getElementsByClassName('post-media-modal')[0].classList.toggle('hidden');
   }
 
   handleFile(e) {
@@ -50,9 +52,10 @@ class PostForm extends React.Component {
     }
   }
 
-  // formSwitch() {
-
-  // }
+  formSwitch() {
+    document.getElementsByClassName('post-form-modal')[0].classList.toggle('hidden');
+    document.getElementsByClassName('post-media-modal')[0].classList.toggle('hidden');
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -79,7 +82,10 @@ class PostForm extends React.Component {
 
   render() {
     // image preview
-    const preview = this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : null;
+    const preview = (noPic) => this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : noPic;
+    const selectMedia = (
+      <span onClick={this.openFileLoader} onClick={() => document.getElementById('media-input').click()}>Select images to share</span>
+    );
 
     return (
       <>
@@ -93,7 +99,7 @@ class PostForm extends React.Component {
               <h2>[Insert PFP here]</h2><h2>{this.props.name}</h2>
             </div>
             <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
-            {preview}
+            {preview(null)}
             <footer>
               <i className="far fa-image" onClick={this.openFileLoader}></i>
               <input type="file" id='media-input' onChange={this.handleFile}/>
@@ -101,16 +107,18 @@ class PostForm extends React.Component {
             </footer>
           </form>
         </div>
-        <div className='modal post-media-modal'>
+        <div className='modal post-media-modal hidden'>
           <header>
             <h2>Edit your photo</h2>
-            <span className='close-modal-button'>✕</span>
+            <span className='close-modal-button' onClick={this.formSwitch}>✕</span>
           </header>
-          <p><span onClick={this.openFileLoader} onClick={this.openFileLoader}>Select images to share</span></p>
+          <p>
+            {preview(selectMedia)}
+          </p>
           <footer>
             <div>
-              <button className='back-btn'>Back</button>
-              <button className='done-btn' disabled={this.ensureMedia()}>Done</button>
+              <button className='back-btn' onClick={this.formSwitch}>Back</button>
+              <button className='done-btn' disabled={this.ensureMedia()} onClick={this.formSwitch}>Done</button>
             </div>
           </footer>
         </div>

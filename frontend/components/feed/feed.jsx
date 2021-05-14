@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CreatePostForm from '../posts/create_post_form';
-import EditPostFormContainer from '../posts/edit_post_form';
+import { openModal } from '../../actions/modal';
 import PostIndexContainer from '../posts/post_index';
 
-const Feed = ({ currentUser }) => {
+const Feed = ({ currentUser, openModal }) => {
   const { fname, lname, headline } = currentUser;
   return (
     <section className='feed-section'>
@@ -14,21 +13,28 @@ const Feed = ({ currentUser }) => {
         <p>{headline}</p>
       </aside>
       <section className='posts-section'>
-        <CreatePostForm/>
+        <div className='start-post'>
+          <h1>[User PFP here]</h1>
+          <button onClick={() => openModal('createPost')}>Start a post</button>
+        </div>
+        <div className='feed-div'></div>
         <PostIndexContainer/>
-        {/* <EditPostFormContainer/> */}
       </section>
       <aside className='right-side-bar'>
         Daniel's Fun Facts
       </aside>
     </section>
   )
-}
+};
 
 const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
   currentUser: users[currentUser]
 });
 
-const FeedContainer = connect(mapSTP)(Feed);
+const mapDTP = dispatch => ({
+  openModal: modal => dispatch(openModal(modal))
+});
+
+const FeedContainer = connect(mapSTP, mapDTP)(Feed);
 
 export default FeedContainer;
