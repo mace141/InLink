@@ -1,6 +1,6 @@
 .feed-section {
-  display: flex;
-  // grid-template-columns: 4fr 9fr 5fr;
+  display: grid;
+  grid-template-columns: 4fr 9fr 5fr;
   grid-gap: 25px;
   margin-top: 25px;
 
@@ -37,7 +37,7 @@
         }
         
         .post-username {
-          color: black;
+          color: $darkgray;
           font-size: 14px;
           font-weight: 600;
         }

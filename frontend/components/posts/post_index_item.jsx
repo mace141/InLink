@@ -43,13 +43,13 @@ class PostIndexItem extends React.Component {
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
             <ul className={'post-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
               <li><i className="far fa-edit"></i>Edit Post</li>
-              <li><i className="far fa-trash-alt"></i>Delete Post</li>
+              <li onClick={() => this.props.deletePost(id)}><i className="far fa-trash-alt"></i>Delete Post</li>
             </ul>
           </button>
         );
       }
     } else {
-      postUser = { headline: "" }
+      postUser = { headline: "" };
     }
     debugger
     

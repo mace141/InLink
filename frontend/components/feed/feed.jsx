@@ -8,7 +8,7 @@ const Feed = ({ currentUser }) => {
   return (
     <section className='feed-section'>
       <aside className='user-side-bar'>
-        <p>Insert Profile Pic here</p>
+        <p>[Insert PFP here]</p>
         <p>{fname + ' ' + lname}</p>
         <p>{headline}</p>
       </aside>
