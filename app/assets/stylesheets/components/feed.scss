@@ -59,9 +59,9 @@
         background: white;
         border: 1px solid $lightgray;
         position: absolute;
-        right: 0;
-        top: 40px;
-        z-index: 10;
+        right: 5px;
+        top: 45px;
+        // z-index: 10;
 
         &.hide {
           display: none;

@@ -48,14 +48,13 @@ class PostIndexItem extends React.Component {
               <p>[Days ago posted]</p>
             </div>
           </div>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"
-            onFocus={this.clicked.bind(this)}
-            onBlur={this.leave.bind(this)}
-          />
-          <ul className={'post-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
-            <li><i className="far fa-edit"></i>Edit Post</li>
-            <li><i className="far fa-trash-alt"></i>Delete Post</li>
-          </ul>
+          <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
+            <ul className={'post-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
+              <li><i className="far fa-edit"></i>Edit Post</li>
+              <li><i className="far fa-trash-alt"></i>Delete Post</li>
+            </ul>
+          </button>
         </header>
         <p>{body}</p>
         <img src={mediaUrl} alt="" />
