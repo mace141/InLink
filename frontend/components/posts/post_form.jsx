@@ -11,6 +11,7 @@ class PostForm extends React.Component {
     this.handleFile = this.handleFile.bind(this);
     this.ensureContent = this.ensureContent.bind(this);
     this.ensureMedia =this.ensureMedia.bind(this);
+    this.removeFile = this.removeFile.bind(this);
   }
 
   ensureContent() {
@@ -58,6 +59,20 @@ class PostForm extends React.Component {
     }
   }
 
+  removeFile() {
+    this.setState({
+      media: null,
+      mediaUrl: null
+    });
+
+    const postBodies = document.getElementsByClassName('post-body');
+
+    for (let i = 0; i < postBodies.length; i++) {
+      postBodies[i].style.overflowY = null;
+      postBodies[i].style.height = null;
+    }
+  }
+
   formSwitch() {
     document.getElementsByClassName('post-form-modal')[0].classList.toggle('hidden');
     document.getElementsByClassName('post-media-modal')[0].classList.toggle('hidden');
@@ -91,9 +106,12 @@ class PostForm extends React.Component {
     // image preview
     const preview = (noPic) => this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : noPic;
     const selectMedia = (
-      <span onClick={this.openFileLoader} onClick={() => document.getElementById('media-input').click()}>Select images to share</span>
+      <span onClick={() => document.getElementById('media-input').click()}>Select images to share</span>
     );
-
+    const closeImageBtn = (
+      this.state.media ? <span className='remove-img-btn' onClick={this.removeFile}>✕</span> : null
+    );
+    debugger
     return (
       <>
         <div className='modal post-form-modal'>
@@ -109,7 +127,10 @@ class PostForm extends React.Component {
               <div className='textarea'>
                 <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
               </div>
-              {preview(null)}
+              <div className='image-body'>
+                {closeImageBtn}
+                {preview(null)}
+              </div>
             </div>
             <footer>
               <i className="far fa-image" onClick={this.openFileLoader}></i>
@@ -123,12 +144,12 @@ class PostForm extends React.Component {
             <h2>Edit your photo</h2>
             <span className='close-modal-button' onClick={this.formSwitch}>✕</span>
           </header>
-          <div className='post-body'>
+          <div className='post-body image-body'>
             {preview(selectMedia)}
           </div>
           <footer>
             <div>
-              <button className='back-btn' onClick={this.formSwitch}>Back</button>
+              <button className='back-btn' onClick={() => {this.removeFile(); this.formSwitch()}}>Back</button>
               <button className='done-btn' disabled={this.ensureMedia()} onClick={this.formSwitch}>Done</button>
             </div>
           </footer>
