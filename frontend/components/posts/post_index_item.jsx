@@ -33,8 +33,9 @@ class PostIndexItem extends React.Component {
           <div>
             <h1>[User Image Here]</h1>
             <div>
-              <p>{name}</p>
-              <p>{postUser.headline}</p>
+              <p className='post-username'>{name}</p>
+              <p className='post-user-headline'>{postUser.headline}</p>
+              <p>[Days ago posted]</p>
             </div>
           </div>
           <button>Dropdown</button>

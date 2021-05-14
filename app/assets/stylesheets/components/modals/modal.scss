@@ -1,0 +1,58 @@
+.modal {
+  border: 1px solid $lightergray;
+  border-radius: 8px;
+  background: white;
+  width: 520px;
+
+  > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $lightergray;
+    padding: $modal-padding; 
+    font-size: 20px;
+
+    .close-modal-button {
+      font-weight: bold;
+      color: $darkgray;
+      border-radius: 50%;
+      padding: 5px 10px;
+
+      &:hover {
+        @include icon-hover;
+      }
+    }
+
+  }
+
+  > form {
+    display: flex;
+    flex-direction: column;
+    padding: $modal-padding;
+    // overflow-y: scroll;
+
+    div {
+      display: flex;
+
+      h2 {
+        margin-bottom: 10px;
+        color: $darkgray;
+        font-weight: 600;
+      }
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 5px 15px;
+    }
+  }
+}
+

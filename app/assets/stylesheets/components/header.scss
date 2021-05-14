@@ -1,3 +1,17 @@
+.header {
+  background: white;
+
+  .InLink-full-logo, .InLink-icon-logo {
+    height: 60px; 
+    width: auto;
+  }
+}
+
+.InLink-full-logo {
+  height: 80px; 
+  width: auto;
+}
+
 .left-nav-bar, .right-nav-bar {
   display: flex;
 }
