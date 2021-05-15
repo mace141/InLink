@@ -10,7 +10,8 @@ class PostForm extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.ensureContent = this.ensureContent.bind(this);
-    this.ensureMedia =this.ensureMedia.bind(this);
+    this.ensureMedia = this.ensureMedia.bind(this);
+    this.openFileLoader = this.openFileLoader.bind(this);
     this.removeFile = this.removeFile.bind(this);
   }
 
@@ -35,8 +36,7 @@ class PostForm extends React.Component {
 
   openFileLoader() {
     document.getElementById('media-input').click();
-    document.getElementsByClassName('post-form-modal')[0].classList.toggle('hidden');
-    document.getElementsByClassName('post-media-modal')[0].classList.toggle('hidden');
+    this.modalSwitch();
   }
 
   handleFile(e) {
@@ -64,6 +64,7 @@ class PostForm extends React.Component {
       media: null,
       mediaUrl: null
     });
+    document.getElementById('media-input').value = null;
 
     const postBodies = document.getElementsByClassName('post-body');
 
