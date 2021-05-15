@@ -9,7 +9,7 @@ class Comment < ApplicationRecord
 
   def ensure_content
     unless self.body.length > 0 || self.media.attached?
-      errors.add(:post, 'must have content')
+      errors.add(:comment, 'must have content')
     end
   end
 end
