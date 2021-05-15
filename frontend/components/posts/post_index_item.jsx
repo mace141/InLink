@@ -14,7 +14,7 @@ class PostIndexItem extends React.Component {
     };
 
     if (this.state.timeAgo < 3600000) {
-      setInterval(() => this.setState({ timeAgo: Date.now() - Date.parse(this.props.post.updatedAt)}), 300000);
+      setInterval(() => this.setState({ timeAgo: Date.now() - Date.parse(this.props.post.updatedAt)}), 60000);
     }
   }
 

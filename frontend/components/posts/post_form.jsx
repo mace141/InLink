@@ -73,7 +73,7 @@ class PostForm extends React.Component {
     }
   }
 
-  formSwitch() {
+  modalSwitch() {
     document.getElementsByClassName('post-form-modal')[0].classList.toggle('hidden');
     document.getElementsByClassName('post-media-modal')[0].classList.toggle('hidden');
   }
@@ -142,15 +142,15 @@ class PostForm extends React.Component {
         <div className='modal post-media-modal hidden'>
           <header>
             <h2>Edit your photo</h2>
-            <span className='close-modal-button' onClick={this.formSwitch}>✕</span>
+            <span className='close-modal-button' onClick={this.modalSwitch}>✕</span>
           </header>
           <div className='post-body image-body'>
             {preview(selectMedia)}
           </div>
           <footer>
             <div>
-              <button className='back-btn' onClick={() => {this.removeFile(); this.formSwitch()}}>Back</button>
-              <button className='done-btn' disabled={this.ensureMedia()} onClick={this.formSwitch}>Done</button>
+              <button className='back-btn' onClick={() => {this.removeFile(); this.modalSwitch()}}>Back</button>
+              <button className='done-btn' disabled={this.ensureMedia()} onClick={this.modalSwitch}>Done</button>
             </div>
           </footer>
         </div>
