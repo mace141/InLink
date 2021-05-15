@@ -1,7 +1,5 @@
-class Post < ApplicationRecord
+class Comment < ApplicationRecord
   validate :ensure_content
-
-  belongs_to :user
 
   has_many :likes, as: :likeable, dependent: :destroy
 
