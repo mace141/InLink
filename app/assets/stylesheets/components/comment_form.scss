@@ -14,7 +14,6 @@
     .comment-form {
       flex-grow: 1;
       position: relative;
-      // padding: 8px 12px;
       border: 1px solid $lightgray;
       border-radius: 24px;
       font-size: 14px;
@@ -29,6 +28,7 @@
         top: 0;
         padding: 11px;
         border-radius: 24px;
+        font-size: 13px;
 
         &:hover {
           @include icon-hover
@@ -61,5 +61,10 @@
       }
     }
   }
-
+  
+  .post-cmt-btn {
+    @include modal-button(white, $LIblue);
+    font-size: 14px;
+    padding: 3px 12px;
+  }
 }
