@@ -1,4 +1,4 @@
-export const fetchTwoComments = (post_id) => (
+export const fetchTwoComments = post_id => (
   $.ajax({
     url: '/api/comments',
     data: { 
@@ -19,7 +19,17 @@ export const fetchMoreComments = (post_id, limit) => (
   })
 );
 
-export const fetchChildComments = (parent_comment_id) => (
+export const fetchLastReply = parent_comment_id => (
+  $.ajax({
+    url: '/api/comments',
+    data: { 
+      type: 'last reply', 
+      parent_comment_id
+    }
+  })
+);
+
+export const fetchChildComments = parent_comment_id => (
   $.ajax({
     url: '/api/comments',
     data: { 

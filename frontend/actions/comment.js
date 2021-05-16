@@ -26,13 +26,13 @@ export const fetchTwoComments = postId => dispatch => (
 );
 
 export const fetchMoreComments = (postId, limit) => dispatch => (
-  CommentAPI.fetchTwoComments(postId, limit).then(
+  CommentAPI.fetchMoreComments(postId, limit).then(
     comments => dispatch(receiveComments(comments))
   )
 );
 
 export const fetchChildComments = parentId => dispatch => (
-  CommentAPI.fetchTwoComments(parentId).then(
+  CommentAPI.fetchChildComments(parentId).then(
     comments => dispatch(receiveComments(comments))
   )
 );
