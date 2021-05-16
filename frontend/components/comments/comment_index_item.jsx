@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateComment } from '../../actions/comment';
+import { deleteComment } from '../../actions/comment';
 import { fetchUser } from '../../actions/session';
+import EditCommentFormContainer from './edit_comment';
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -19,6 +20,9 @@ class CommentIndexItem extends React.Component {
         60000
       );
     }
+
+    this.openEdit = this.openEdit.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
   }
 
   componentDidMount() {
@@ -42,15 +46,23 @@ class CommentIndexItem extends React.Component {
   }
 
   clicked() {
-    this.setState({drop: true});
+    this.setState({ drop: true });
   }
 
   leave() {
-    this.setState({drop: false});
+    this.setState({ drop: false });
+  }
+
+  openEdit() {
+    this.setState({ edit: true });
+  }
+
+  cancelEdit() {
+    this.setState({ edit: false });
   }
 
   render() {
-    const { user, currentUser, updateComment, deleteComment, comment: { id, body, mediaUrl } } = this.props;
+    const { user, currentUser, deleteComment, comment: { id, body, mediaUrl } } = this.props;
     let dropdown; let commentUser; let name; let headline;
 
     if (user) {
@@ -63,13 +75,19 @@ class CommentIndexItem extends React.Component {
           <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
             <ul className={'cmt-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
-              <li onClick={() => null}><i className="far fa-edit"></i>Edit</li>
+              <li onClick={this.openEdit}><i className="far fa-edit"></i>Edit</li>
               <li onClick={() => deleteComment(id)}><i className="far fa-trash-alt"></i>Delete</li>
             </ul>
           </button>
         );
       }
     } 
+
+    const editForm = this.state.edit ? (
+      <EditCommentFormContainer cancelEdit={this.cancelEdit} comment={this.props.comment}/>
+    ) : (
+      <p>{body}</p>
+    );
 
     return (
       <div className='comment-item'>
@@ -86,7 +104,7 @@ class CommentIndexItem extends React.Component {
                 {dropdown}
               </div>
             </header>
-            <p>{body}</p>
+            {editForm}
             {mediaUrl ? <img src={mediaUrl} alt="comment-image"/> : null}
           </div>
         </div>
@@ -107,7 +125,6 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => 
 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
-  updateComment: comment => dispatch(updateComment(comment)),
   deleteComment: commentId => dispatch(deleteComment(commentId))
 })
 
