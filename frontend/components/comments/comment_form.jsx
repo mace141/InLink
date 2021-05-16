@@ -86,7 +86,7 @@ class CommentForm extends React.Component {
           <h2>[PFP here]</h2>
           <div className='comment-form'>
             <div className='cmt-input-div'>
-              <input type="text" placeholder='Add a comment...' onChange={this.handleInput}/>
+              <input type="text" placeholder='Add a comment...' value={this.state.body} onChange={this.handleInput}/>
               {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
               <input type="file" id="cmt-media-input" accept='image/*' onChange={this.handleFile}/>
             </div>
