@@ -28,3 +28,26 @@ export const fetchChildComments = (parent_comment_id) => (
     }
   })
 );
+
+export const createComment = comment => (
+  $.ajax({
+    method: 'POST',
+    url: '/api/comments',
+    data: { comment }
+  })
+);
+
+export const updateComment = comment => (
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/comments/${comment.id}`,
+    data: { comment }
+  })
+);
+
+export const deleteComment = commentId => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/comments/${commentId}`
+  })
+);
