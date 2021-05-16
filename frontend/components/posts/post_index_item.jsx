@@ -99,9 +99,9 @@ class PostIndexItem extends React.Component {
           <div>
             <h1>[PFP here]</h1>
             <div>
-              <p className='post-username'>{name}</p>
-              <p className='post-user-headline'>{postUser.headline}</p>
-              <p>{this.timeFromNow()}</p>
+              <p className='post-username gray-shade'>{name}</p>
+              <p className='post-user-headline gray-shade'>{postUser.headline}</p>
+              <p className='gray-shade'>{this.timeFromNow()}</p>
             </div>
           </div>
           {dropdown}

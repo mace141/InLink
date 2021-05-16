@@ -17,6 +17,15 @@
       margin: 5px 0;
       font-size: 14px;
     }
+
+    .gray-shade.edit {
+      margin-top: 5px;
+      font-size: 14px;
+
+      input {
+        font-size: 16px;
+      }
+    }
   }
 
   header {
@@ -124,6 +133,7 @@
     
     &:disabled {
       @include btn-disabled;
+      border: none;
     }
   }
 

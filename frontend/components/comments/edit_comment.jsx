@@ -32,13 +32,13 @@ class EditCommentForm extends React.Component {
 
   render() {
     return (
-      <p>
+      <div className='gray-shade edit'>
         <input type="text" value={this.state.body} onChange={this.handleInput}/>
         <p className='edit-cmt-btns'>
           <button className='save-cmt-edit' onClick={this.handleSubmit} disabled={this.ensureChange()}>Save Changes</button>
           <button className='cancel-cmt-edit' onClick={this.props.cancelEdit}>Cancel</button>
         </p>
-      </p>
+      </div>
     )
   }
 }

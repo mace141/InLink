@@ -96,8 +96,8 @@ class CommentIndexItem extends React.Component {
           <div className='comment-body'>
             <header>
               <div className='cmt-user-info'>
-                <p className='cmt-user-name'>{name}</p>
-                <p className='cmt-user-headline'>{headline}</p>
+                <p className='cmt-user-name gray-shade'>{name}</p>
+                <p className='cmt-user-headline gray-shade'>{headline}</p>
               </div>
               <div>
                 <span>{this.timeFromNow()}</span>
