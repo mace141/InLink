@@ -20,7 +20,7 @@ class PostIndex extends React.Component {
 }
 
 const mapSTP = ({ entities: { posts }}) => ({
-  posts: Object.values(posts).sort((a, b) => Date.parse(a.createdAt) > Date.parse(b.createdAt) ? 1 : -1 )
+  posts: Object.values(posts).sort((a, b) => Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1 )
 });
 
 const mapDTP = dispatch => ({
