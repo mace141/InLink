@@ -22,4 +22,39 @@ class Comment < ApplicationRecord
       errors.add(:comment, 'must have content')
     end
   end
+
+  def self.two_comments(post_id)
+    comments = Comment.find_by(post_id: post_id, parent_comment_id: nil)
+
+    if comments 
+      comments = comments.order(created_at: :desc)
+                       .limit(2)
+      return comments 
+    else
+      return []
+    end
+  end
+
+  def self.more_comments(post_id, limit)
+    comments = Comment.find_by(post_id: post_id, parent_comment_id: nil)
+
+    if comments 
+      comments = comments.order(created_at: :desc)
+                       .limit(limit * 10)
+      return comments
+    else
+      return []
+    end
+  end
+
+  def self.last_reply(parent_comment_id)
+    comments = Comment.find_by(parent_comment_id: parent_comment_id)
+
+    if comments 
+      comment = comments.order(created_at: :asc).limit(1)
+      return comment 
+    else
+      return []
+    end
+  end
 end

@@ -1,19 +1,14 @@
 class Api::CommentsController < ApplicationController
   def index 
+    debugger
     case params[:type]
     when 'comment button'
-      @comments = Comment.find_by(post_id: params[:post_id], parent_comment_id: nil)
-                         .order(created_at: :desc)
-                         .limit(2)
+      @comments = Comment.two_comments(params[:post_id])
     when 'more comments'
-      @comments = Comment.find_by(post_id: params[:post_id], parent_comment_id: nil)
-                         .order(created_at: :desc)
-                         .limit(params[:limit] * 10)
+      @comments = Comment.more_comments(params[:post_id], params[:limit])
     # keep track of how many times more comments has been clicked in component
     when 'last reply'
-      @comments = Comment.find_by(parent_comment_id: params[:parent_comment_id])
-                         .order(created_at: :asc)
-                         .limit(1)
+      @comments = Comment.last_reply(params[:parent_comment_id])
     when 'load replies'
       @comments = Comment.find_by(parent_comment_id: params[:parent_comment_id])
     end
