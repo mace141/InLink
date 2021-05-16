@@ -24,21 +24,21 @@ class EditCommentForm extends React.Component {
 
   ensureChange() {
     if (this.state == this.originalComment) {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 
   render() {
     return (
-      <>
+      <p>
         <input type="text" value={this.state.body} onChange={this.handleInput}/>
-        <div className='edit-cmt-btns'>
+        <p className='edit-cmt-btns'>
           <button className='save-cmt-edit' onClick={this.handleSubmit} disabled={this.ensureChange()}>Save Changes</button>
           <button className='cancel-cmt-edit' onClick={this.props.cancelEdit}>Cancel</button>
-        </div>
-      </>
+        </p>
+      </p>
     )
   }
 }

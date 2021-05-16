@@ -31,7 +31,7 @@
         font-size: 13px;
 
         &:hover {
-          @include icon-hover
+          @include hover($lightgray);
         }
       }
 

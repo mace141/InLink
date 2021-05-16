@@ -108,11 +108,13 @@ class CommentIndexItem extends React.Component {
             {mediaUrl ? <img src={mediaUrl} alt="comment-image"/> : null}
           </div>
         </div>
-        <div className='like-reply'>
-          <button>Like</button>
-          <div></div>
-          <button>Reply</button>
-        </div>
+        {this.state.edit ? null : ( 
+          <div className='like-reply'>
+            <button>Like</button>
+            <div></div>
+            <button>Reply</button>
+          </div>
+        )}
       </div>
     )
   }

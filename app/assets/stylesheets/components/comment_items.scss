@@ -110,3 +110,29 @@
     }
   }
 }
+
+.edit-cmt-btns {
+  margin-top: 10px;
+
+  .save-cmt-edit {
+    @include modal-button(white, $LIblue);
+    padding: 3px 12px;
+
+    &:enabled:hover {
+      @include hover($darkblue);
+    }
+    
+    &:disabled {
+      @include btn-disabled;
+    }
+  }
+
+  .cancel-cmt-edit {
+    @include modal-button($darkgray, $lightergray);
+    padding: 3px 12px;
+
+    &:hover {
+      @include btn-hover-border($darkgray, $lightergray)
+    }
+  }
+}

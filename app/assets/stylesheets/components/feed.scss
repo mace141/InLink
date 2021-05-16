@@ -78,7 +78,7 @@
         right: 5px;
 
         &:hover {
-          @include icon-hover;
+          @include hover($lightgray);
         }
       }
 

@@ -90,9 +90,7 @@
 }
 
 form button:disabled {
-  cursor: not-allowed;
-  color: $gray;
-  background: $lightgray;
+  @include btn-disabled;
 }
 
 .form-button {
