@@ -3,8 +3,8 @@ class Api::PostsController < ApplicationController
     @posts = Post.all
 
     # INFINITE SCROLLING: 
-    # fetch 10 posts by connections, order by updated time. save the updated time of the last post
-    # fetch 10 more posts starting from saved updated time, order by updated time
+    # fetch 10 posts by connections, order by created time. save the created time of the last post
+    # fetch 10 more posts starting from saved created time, order by created time
   end
 
   def create 

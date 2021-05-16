@@ -1,8 +1,8 @@
 class Api::CommentsController < ApplicationController
   def index 
     @comments = params[:parent_comment_id] ? 
-      Comment.find_by(parent_comment_id: params[:parent_comment_id]).comments :
-      Comment.find_by(post_id: params[:post_id]).comments
+      Comment.find_by(parent_comment_id: params[:parent_comment_id]) :
+      Comment.find_by(post_id: params[:post_id])
   end
 
   def create
