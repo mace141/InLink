@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchCommentCount } from '../../util/comment_api';
 import { fetchTwoComments, fetchMoreComments } from '../../actions/comment';
 import CommentIndexItemContainer from './comment_index_item';
 
@@ -8,7 +9,8 @@ class CommentIndex extends React.Component {
     super(props);
 
     this.state = {
-      limit: 1
+      limit: 1,
+      allRootComments: false
     };
 
     this.loadMoreComments = this.loadMoreComments.bind(this);
@@ -19,11 +21,23 @@ class CommentIndex extends React.Component {
   }
 
   loadMoreComments() {
-    this.props.fetchMoreComments(this.props.postId, this.state.limit);
+    const { fetchMoreComments, fetchCommentCount, postId, comments } = this.props;
+
+    fetchMoreComments(postId, this.state.limit);
     this.setState({ limit: this.state.limit + 1 });
+
+    fetchCommentCount(postId).then(count => {
+      if (count <= comments.length + 10) {
+        this.setState({ allRootComments: true });
+      }
+    });
   }
 
   render() {
+    const moreComments = this.state.allRootComments ? null : (
+      <button className='more-cmts' onClick={this.loadMoreComments}>Load more comments</button>
+    );
+    
     return (
       <>
         <ul className='comments-index'>
@@ -31,7 +45,7 @@ class CommentIndex extends React.Component {
             <CommentIndexItemContainer key={comment.id} comment={comment}/>
           ))}
         </ul>
-        <button className='more-cmts' onClick={this.loadMoreComments}>Load more comments</button>
+        {moreComments}
       </>
     )
   }
@@ -51,7 +65,8 @@ const mapSTP = ({ entities: { comments } }, ownProps) => {
 
 const mapDTP = dispatch => ({
   fetchTwoComments: postId => dispatch(fetchTwoComments(postId)),
-  fetchMoreComments: (postId, limit) => dispatch(fetchMoreComments(postId, limit))
+  fetchMoreComments: (postId, limit) => dispatch(fetchMoreComments(postId, limit)),
+  fetchCommentCount: postId => fetchCommentCount(postId)
 });
 
 const CommentIndexContainer = connect(mapSTP, mapDTP)(CommentIndex)
