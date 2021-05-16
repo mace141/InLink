@@ -35,7 +35,7 @@ class PostForm extends React.Component {
   }
 
   openFileLoader() {
-    document.getElementById('media-input').click();
+    document.getElementById('post-media-input').click();
     this.modalSwitch();
   }
 
@@ -64,7 +64,7 @@ class PostForm extends React.Component {
       media: null,
       mediaUrl: null
     });
-    document.getElementById('media-input').value = null;
+    document.getElementById('post-media-input').value = null;
 
     const postBodies = document.getElementsByClassName('post-body');
 
@@ -99,7 +99,7 @@ class PostForm extends React.Component {
       media: null,
       mediaUrl: null
     });
-    document.getElementById('media-input').value = "";
+    document.getElementById('post-media-input').value = "";
     this.props.closeModal();
   }
 
@@ -107,7 +107,7 @@ class PostForm extends React.Component {
     // image preview
     const preview = (noPic) => this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : noPic;
     const selectMedia = (
-      <span onClick={() => document.getElementById('media-input').click()}>Select images to share</span>
+      <span onClick={() => document.getElementById('post-media-input').click()}>Select images to share</span>
     );
     const closeImageBtn = (
       this.state.media ? <span className='remove-img-btn' onClick={this.removeFile}>✕</span> : null
