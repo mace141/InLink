@@ -100,7 +100,9 @@ class PostIndexItem extends React.Component {
           <div>
             <CommentForm postId={id}/>
           </div>
-          [Comments Index here]
+          <div>
+            [Comments Index here]
+          </div>
         </div>
       </div>
     )

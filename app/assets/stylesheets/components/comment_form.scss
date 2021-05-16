@@ -1,3 +1,65 @@
 #cmt-media-input {
   display: none;
 }
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+
+  .cmt-form-ctnr {
+    display: flex;
+    flex-direction: row;
+
+    .comment-form {
+      flex-grow: 1;
+      position: relative;
+      // padding: 8px 12px;
+      border: 1px solid $lightgray;
+      border-radius: 24px;
+      font-size: 14px;
+
+      input {
+        padding: 8px 12px;
+      }
+      
+      .far.fa-image {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 11px;
+        border-radius: 24px;
+
+        &:hover {
+          @include icon-hover
+        }
+      }
+
+      .cmt-img-preview {
+        background: #f9fafb;
+        
+        div:first-child {
+          position: relative;
+          border-radius: 0 0 24px 24px;
+        }
+
+        .rm-cmt-img {
+          background: $LIblue;
+          border-radius: 16px;
+          padding: 5px 9px;
+          cursor: pointer;
+          color: white;
+          font-weight: 900;
+          position: absolute;
+          right: 0;
+        }
+
+        img {
+          height: 200px;
+          width: auto;
+        }
+      }
+    }
+  }
+
+}

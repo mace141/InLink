@@ -28,6 +28,7 @@ class CommentForm extends React.Component {
 
     fileReader.onloadend = () => {
       this.setState({ media: file, mediaUrl: fileReader.result });
+      document.getElementById('cmt-img').style.display = 'inline-block';
     }
 
     if (file) fileReader.readAsDataURL(file); 
@@ -81,14 +82,20 @@ class CommentForm extends React.Component {
 
     return (
       <>
-        <h2>[PFP here]</h2>
-        <div className='comment-form'>
-          <input type="text" placeholder='Add a comment...' onChange={this.handleInput}/>
-          {this.state.media ? null : <i className="far fa-image" onClick={this.openFileLoader}></i>}
-          <input type="file" id="cmt-media-input" accept='image/*' onChange={this.handleFile}/>
-          <div className='cmt-img-preview'>
-            {closeImageBtn}
-            {preview}
+        <div className='cmt-form-ctnr'>
+          <h2>[PFP here]</h2>
+          <div className='comment-form'>
+            <div className='cmt-input-div'>
+              <input type="text" placeholder='Add a comment...' onChange={this.handleInput}/>
+              {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
+              <input type="file" id="cmt-media-input" accept='image/*' onChange={this.handleFile}/>
+            </div>
+            <div className='cmt-img-preview'>
+              <div id='cmt-img'>
+                {closeImageBtn}
+                {preview}
+              </div>
+            </div>
           </div>
         </div>
         {this.ensureContent() ? <button className='post-cmt-btn' onClick={this.postComment}>Post</button> : null}
