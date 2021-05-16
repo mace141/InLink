@@ -39,6 +39,13 @@ export const fetchChildComments = parent_comment_id => (
   })
 );
 
+export const fetchCommentCount = post_id => (
+  $.ajax({
+    url: '/api/comments/count',
+    data: { post_id }
+  })
+);
+
 export const createComment = formData => (
   $.ajax({
     method: 'POST',

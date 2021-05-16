@@ -12,12 +12,15 @@ class PostIndexItem extends React.Component {
     
     this.state = {
       drop: false,
+      comment: false,
       timeAgo: Date.now() - Date.parse(this.props.post.createdAt)
     };
 
     if (this.state.timeAgo < 3600000) {
       setInterval(() => this.setState({ timeAgo: Date.now() - Date.parse(this.props.post.createdAt)}), 60000);
     }
+
+    this.openComments = this.openComments.bind(this);
   }
 
   componentDidMount() {
@@ -47,6 +50,10 @@ class PostIndexItem extends React.Component {
   leave() {
     this.setState({drop: false});
   }
+  
+  openComments() {
+    this.setState({ comment: true });
+  }
 
   // INFINITE SCROLLING: 
   // fetch 10 posts by connections, order by updated time. save the updated time of the last post
@@ -74,12 +81,23 @@ class PostIndexItem extends React.Component {
     } else {
       postUser = { headline: "" };
     }
+
+    const commentSection = this.state.comment ? (
+      <div className='comment-section'>
+        <div>
+          <CommentForm postId={id}/>
+        </div>
+        <div>
+          <CommentIndexContainer postId={id}/>
+        </div>
+      </div>
+    ) : null;
     
     return (
       <div className='post-item'>
         <header>
           <div>
-            <h1>[User Image Here]</h1>
+            <h1>[PFP here]</h1>
             <div>
               <p className='post-username'>{name}</p>
               <p className='post-user-headline'>{postUser.headline}</p>
@@ -95,16 +113,9 @@ class PostIndexItem extends React.Component {
         </div>
         <div className='like-comment'>
           <button><i className="far fa-thumbs-up"></i>Like</button>
-          <button><i className="far fa-comment-dots"></i>Comment</button>
+          <button onClick={this.openComments}><i className="far fa-comment-dots"></i>Comment</button>
         </div>
-        <div className='comment-section'>
-          <div>
-            <CommentForm postId={id}/>
-          </div>
-          <div>
-            <CommentIndexContainer postId={id}/>
-          </div>
-        </div>
+        {commentSection}
       </div>
     )
   }

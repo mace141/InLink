@@ -13,6 +13,12 @@ class Api::CommentsController < ApplicationController
     end
   end
 
+  def count 
+    @comments = Comment.where(post_id: params[:post_id], parent_comment_id: nil)
+
+    render json: @comments.count
+  end
+
   def create
     @comment = Comment.new(comment_params)
 
