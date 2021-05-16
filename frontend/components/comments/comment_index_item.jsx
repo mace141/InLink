@@ -91,30 +91,28 @@ class CommentIndexItem extends React.Component {
 
     return (
       <div className='comment-item'>
-        <div>
-          <h2>[PFP here]</h2>
-          <div className='comment-body'>
-            <header>
-              <div className='cmt-user-info'>
-                <p className='cmt-user-name gray-shade'>{name}</p>
-                <p className='cmt-user-headline gray-shade'>{headline}</p>
-              </div>
-              <div>
-                <span>{this.timeFromNow()}</span>
-                {dropdown}
-              </div>
-            </header>
-            {editForm}
-            {mediaUrl ? <img src={mediaUrl} alt="comment-image"/> : null}
-          </div>
+        <h2>[PFP here]</h2>
+        <div className='comment-body'>
+          <header>
+            <div className='cmt-user-info'>
+              <p className='cmt-user-name gray-shade'>{name}</p>
+              <p className='cmt-user-headline gray-shade'>{headline}</p>
+            </div>
+            <div>
+              <span>{this.timeFromNow()}</span>
+              {dropdown}
+            </div>
+          </header>
+          {editForm}
+          {mediaUrl ? <img src={mediaUrl} alt="comment-image"/> : null}
+          {this.state.edit ? null : ( 
+            <div className='like-reply'>
+              <button>Like</button>
+              <div></div>
+              <button>Reply</button>
+            </div>
+          )}
         </div>
-        {this.state.edit ? null : ( 
-          <div className='like-reply'>
-            <button>Like</button>
-            <div></div>
-            <button>Reply</button>
-          </div>
-        )}
       </div>
     )
   }

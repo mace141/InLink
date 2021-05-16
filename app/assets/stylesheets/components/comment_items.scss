@@ -1,9 +1,6 @@
 .comment-item {
   margin-top: 10px;
-
-  > div:first-child {
-    display: flex;
-  }
+  display: flex;
 
   .comment-body {
     width: 100%;
@@ -12,6 +9,8 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    position: relative;
+    margin-bottom: 24px;
 
     > p {
       margin: 5px 0;
@@ -101,6 +100,9 @@
 
   .like-reply {
     font-size: 12px;
+    position: absolute;
+    left: 8px;
+    bottom: -22px;
 
     div {
       display: inline-block;
@@ -109,7 +111,7 @@
     }
 
     button {
-      padding: 3px;
+      padding: 1px 5px;
       border-radius: 5px;
 
       &:hover {
