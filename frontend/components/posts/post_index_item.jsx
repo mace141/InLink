@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
-import CommentForm from '../comments/comment_form';
+import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexContainer from '../comments/comment_index';
 
 class PostIndexItem extends React.Component {
@@ -85,7 +85,7 @@ class PostIndexItem extends React.Component {
     const commentSection = this.state.comment ? (
       <div className='comment-section'>
         <div>
-          <CommentForm postId={id}/>
+          <CommentFormContainer postId={id}/>
         </div>
         <div>
           <CommentIndexContainer postId={id}/>

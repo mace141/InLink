@@ -42,7 +42,7 @@ class CommentIndex extends React.Component {
       <>
         <ul className='comments-index'>
           {this.props.comments.map(comment => (
-            <CommentIndexItemContainer key={comment.id} comment={comment}/>
+            <CommentIndexItemContainer key={comment.id} comment={comment} postId={this.props.postId}/>
           ))}
         </ul>
         {moreComments}

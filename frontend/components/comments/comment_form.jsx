@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createComment } from '../../actions/comment';
 
 class CommentForm extends React.Component {
   constructor(props) {
@@ -64,6 +62,9 @@ class CommentForm extends React.Component {
     formData.append('comment[body]', this.state.body);
     formData.append('comment[user_id]', this.props.currentUser);
     formData.append('comment[post_id]', this.props.postId);
+    if (this.props.parentCommentId) {
+      formData.append('comment[parent_comment_id]', this.props.parentCommentId);
+    }
     
     this.props.createComment(formData);
     this.setState({
@@ -86,7 +87,7 @@ class CommentForm extends React.Component {
           <h2>[PFP here]</h2>
           <div className='comment-form'>
             <div className='cmt-input-div'>
-              <input type="text" placeholder='Add a comment...' value={this.state.body} onChange={this.handleInput}/>
+              <input type="text" placeholder={this.props.formType} value={this.state.body} onChange={this.handleInput}/>
               {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
               <input type="file" id="cmt-media-input" accept='image/*' onChange={this.handleFile}/>
             </div>
@@ -104,14 +105,4 @@ class CommentForm extends React.Component {
   }
 };
 
-const mapSTP = ({ session: { currentUser }}) => ({
-  currentUser
-});
-
-const mapDTP = dispatch => ({
-  createComment: comment => dispatch(createComment(comment))
-});
-
-const CommentFormContainer = connect(mapSTP, mapDTP)(CommentForm);
-
-export default CommentFormContainer;
+export default CommentForm;

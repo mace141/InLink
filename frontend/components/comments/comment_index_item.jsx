@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deleteComment } from '../../actions/comment';
 import { fetchUser } from '../../actions/session';
 import EditCommentFormContainer from './edit_comment';
+import ReplyFormContainer from './reply_form_container';
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class CommentIndexItem extends React.Component {
     this.state = {
       drop: false,
       edit: false,
+      reply: false,
       timeAgo: Date.now() - Date.parse(this.props.comment.createdAt)
     }
 
@@ -21,8 +23,11 @@ class CommentIndexItem extends React.Component {
       );
     }
 
+    this.clicked = this.clicked.bind(this);
+    this.leave = this.leave.bind(this);
     this.openEdit = this.openEdit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
+    this.openReply = this.openReply.bind(this);
   }
 
   componentDidMount() {
@@ -61,6 +66,10 @@ class CommentIndexItem extends React.Component {
     this.setState({ edit: false });
   }
 
+  openReply() {
+    this.setState({ reply: true });
+  }
+
   render() {
     const { user, currentUser, deleteComment, comment: { id, body, mediaUrl } } = this.props;
     let dropdown; let commentUser; let name; let headline;
@@ -72,7 +81,7 @@ class CommentIndexItem extends React.Component {
 
       if (commentUser.id = currentUser) {
         dropdown = (
-          <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
+          <button onFocus={this.clicked} onBlur={this.leave}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
             <ul className={'cmt-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
               <li onClick={this.openEdit}><i className="far fa-edit"></i>Edit</li>
@@ -89,29 +98,36 @@ class CommentIndexItem extends React.Component {
       <p>{body}</p>
     );
 
+    const replyForm = this.state.reply ? (
+      <ReplyFormContainer parentCommentId={id} postId={this.props.postId}/>
+    ) : null;
+
     return (
       <div className='comment-item'>
         <h2>[PFP here]</h2>
-        <div className='comment-body'>
-          <header>
-            <div className='cmt-user-info'>
-              <p className='cmt-user-name gray-shade'>{name}</p>
-              <p className='cmt-user-headline gray-shade'>{headline}</p>
-            </div>
-            <div>
-              <span>{this.timeFromNow()}</span>
-              {dropdown}
-            </div>
-          </header>
-          {editForm}
-          {mediaUrl ? <img src={mediaUrl} alt="comment-image"/> : null}
-          {this.state.edit ? null : ( 
-            <div className='like-reply'>
-              <button>Like</button>
-              <div></div>
-              <button>Reply</button>
-            </div>
-          )}
+        <div>
+          <div className='comment-body'>
+            <header>
+              <div className='cmt-user-info'>
+                <p className='cmt-user-name gray-shade'>{name}</p>
+                <p className='cmt-user-headline gray-shade'>{headline}</p>
+              </div>
+              <div>
+                <span>{this.timeFromNow()}</span>
+                {dropdown}
+              </div>
+            </header>
+            {editForm}
+            {mediaUrl ? <img src={mediaUrl} alt="comment-image"/> : null}
+            {this.state.edit ? null : ( 
+              <div className='like-reply'>
+                <button>Like</button>
+                <div></div>
+                <button onClick={this.openReply}>Reply</button>
+              </div>
+            )}
+          </div>
+          {replyForm}
         </div>
       </div>
     )
