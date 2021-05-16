@@ -1,0 +1,112 @@
+.comment-item {
+  margin-top: 10px;
+
+  > div:first-child {
+    display: flex;
+  }
+
+  .comment-body {
+    width: 100%;
+    background: $lightergray;
+    padding: 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    > p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    color: $gray;
+
+    span {
+      position: absolute;
+      right: 20px;
+      font-size: 12px;
+    }
+
+    img {
+      border-radius: 20px;
+      height: 16px;
+      width: auto;
+      filter: opacity(75%);
+      padding: 5px;
+      padding-bottom: 10px;
+      position: absolute;
+      top: -6px;
+      right: -5px;
+    }
+
+    .cmt-dropdown {
+      background: white;
+      border: 1px solid $lightgray;
+      position: absolute;
+      right: 5px;
+      top: 15px;
+      z-index: 10;
+
+      &.hide {
+        display: none;
+      }
+
+      &.reveal {
+        display: block;
+      }
+
+      li {
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 600;
+
+        i {
+          margin-right: 5px;
+        }
+
+        &:hover {
+          background: $lightgray;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .cmt-user-info {
+    display: flex;
+    flex-direction: column;
+
+    > p {
+      font-size: 12px;
+    }
+
+    .cmt-user-name {
+      color: $darkgray;
+      font-weight: 600;
+    }
+  }
+
+  .like-reply {
+    font-size: 12px;
+
+    div {
+      display: inline-block;
+      border-right: 1px solid $gray;
+      margin: 0 5px;
+    }
+
+    button {
+      padding: 3px;
+      border-radius: 5px;
+
+      &:hover {
+        background: $lightergray;
+        transition: 0.3s;
+      }
+    }
+  }
+}

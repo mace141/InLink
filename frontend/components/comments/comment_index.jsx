@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTwoComments, fetchMoreComments } from '../../actions/comment';
+import CommentIndexItemContainer from './comment_index_item';
 
 class CommentIndex extends React.Component {
   constructor(props) {
@@ -27,10 +28,10 @@ class CommentIndex extends React.Component {
       <>
         <ul className='comments-index'>
           {this.props.comments.map(comment => (
-            <li>{comment.body}</li>
+            <CommentIndexItemContainer key={comment.id} comment={comment}/>
           ))}
         </ul>
-        <button onClick={this.loadMoreComments}>Load more comments</button>
+        <button className='more-cmts' onClick={this.loadMoreComments}>Load more comments</button>
       </>
     )
   }

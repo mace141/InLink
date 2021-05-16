@@ -38,7 +38,7 @@
       .cmt-img-preview {
         background: #f9fafb;
         
-        div:first-child {
+        > div:first-child {
           position: relative;
           border-radius: 0 0 24px 24px;
         }
@@ -59,6 +59,19 @@
           width: auto;
         }
       }
+    }
+  }
+
+  .more-cmts {
+    font-weight: 600;
+    font-size: 14px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    color: $gray;
+
+    &:hover {
+      background: $lightergray;
+      transition: 0.3s;
     }
   }
   
