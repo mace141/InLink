@@ -4,6 +4,7 @@ import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
 import CommentForm from '../comments/comment_form';
+import CommentIndexContainer from '../comments/comment_index';
 
 class PostIndexItem extends React.Component {
   constructor(props) {
@@ -101,7 +102,7 @@ class PostIndexItem extends React.Component {
             <CommentForm postId={id}/>
           </div>
           <div>
-            [Comments Index here]
+            <CommentIndexContainer postId={id}/>
           </div>
         </div>
       </div>
