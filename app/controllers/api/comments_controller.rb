@@ -1,6 +1,5 @@
 class Api::CommentsController < ApplicationController
   def index 
-    debugger
     case params[:type]
     when 'comment button'
       @comments = Comment.two_comments(params[:post_id])

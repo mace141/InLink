@@ -24,11 +24,11 @@ class Comment < ApplicationRecord
   end
 
   def self.two_comments(post_id)
-    comments = Comment.find_by(post_id: post_id, parent_comment_id: nil)
+    comments = Comment.where(post_id: post_id, parent_comment_id: nil)
 
     if comments 
       comments = comments.order(created_at: :desc)
-                       .limit(2)
+                         .limit(2)
       return comments 
     else
       return []
@@ -36,11 +36,11 @@ class Comment < ApplicationRecord
   end
 
   def self.more_comments(post_id, limit)
-    comments = Comment.find_by(post_id: post_id, parent_comment_id: nil)
+    comments = Comment.where(post_id: post_id, parent_comment_id: nil)
 
     if comments 
       comments = comments.order(created_at: :desc)
-                       .limit(limit * 10)
+                         .limit(limit * 10)
       return comments
     else
       return []
@@ -48,7 +48,7 @@ class Comment < ApplicationRecord
   end
 
   def self.last_reply(parent_comment_id)
-    comments = Comment.find_by(parent_comment_id: parent_comment_id)
+    comments = Comment.where(parent_comment_id: parent_comment_id)
 
     if comments 
       comment = comments.order(created_at: :asc).limit(1)

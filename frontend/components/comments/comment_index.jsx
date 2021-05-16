@@ -27,7 +27,7 @@ class CommentIndex extends React.Component {
       <>
         <ul className='comments-index'>
           {this.props.comments.map(comment => (
-            comment.body
+            <li>{comment.body}</li>
           ))}
         </ul>
         <button onClick={this.loadMoreComments}>Load more comments</button>
