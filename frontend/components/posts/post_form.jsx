@@ -135,7 +135,7 @@ class PostForm extends React.Component {
             </div>
             <footer>
               <i className="far fa-image" onClick={this.openFileLoader}></i>
-              <input type="file" id='media-input' accept='image/*'onChange={this.handleFile}/>
+              <input type="file" id='post-media-input' accept='image/*' onChange={this.handleFile}/>
               <button className='form-button' disabled={this.ensureContent()}>Post</button>
             </footer>
           </form>

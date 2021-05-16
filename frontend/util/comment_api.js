@@ -39,19 +39,23 @@ export const fetchChildComments = parent_comment_id => (
   })
 );
 
-export const createComment = comment => (
+export const createComment = formData => (
   $.ajax({
     method: 'POST',
     url: '/api/comments',
-    data: { comment }
+    data: formData,
+    contentType: false,
+    processData: false
   })
 );
 
-export const updateComment = comment => (
+export const updateComment = formData => (
   $.ajax({
     method: 'PATCH',
-    url: `/api/comments/${comment.id}`,
-    data: { comment }
+    url: `/api/comments/${formData.get('comment[id]')}`,
+    data: formData,
+    contentType: false,
+    processData: false
   })
 );
 

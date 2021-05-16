@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
+import CommentForm from '../comments/comment_form';
 
 class PostIndexItem extends React.Component {
   constructor(props) {
@@ -94,6 +95,12 @@ class PostIndexItem extends React.Component {
         <div className='like-comment'>
           <button><i className="far fa-thumbs-up"></i>Like</button>
           <button><i className="far fa-comment-dots"></i>Comment</button>
+        </div>
+        <div className='comment-section'>
+          <div>
+            <CommentForm postId={id}/>
+          </div>
+          [Comments Index here]
         </div>
       </div>
     )
