@@ -7,6 +7,12 @@ class Api::PostsController < ApplicationController
     # fetch 10 more posts starting from saved created time, order by created time
   end
 
+  def comment_count 
+    @post = Post.find(params[:id])
+
+    render json: @post.comments.count
+  end
+
   def create 
     @post = Post.new(post_params)
     

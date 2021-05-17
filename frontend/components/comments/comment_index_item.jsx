@@ -131,8 +131,8 @@ class CommentIndexItem extends React.Component {
               </div>
             )}
           </div>
-          {this.props.isReply ? null : <ReplyIndexContainer parentCommentId={id} openReply={this.openReply}/>}
-          {this.props.isReply ? null : replyForm}
+          {isReply ? null : <ReplyIndexContainer parentCommentId={id} openReply={this.openReply}/>}
+          {isReply ? null : replyForm}
         </div>
       </div>
     )

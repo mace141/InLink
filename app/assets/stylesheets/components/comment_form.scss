@@ -74,6 +74,10 @@
       transition: 0.3s;
     }
   }
+
+  .more-cmts.replies {
+    font-size: 12px;
+  }
   
   .post-cmt-btn {
     @include modal-button(white, $LIblue);
