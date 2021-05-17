@@ -1,4 +1,4 @@
-import { RECEIVE_EXPERIENCES, RECEIVE_EXPERIENCE, REMOVE_EXPERIENCE } from '../actions/education';
+import { RECEIVE_EXPERIENCES, RECEIVE_EXPERIENCE, REMOVE_EXPERIENCE } from '../actions/experience';
 
 const experiencesReducer = (state = {}, action) => {
   Object.freeze(state);

@@ -4,6 +4,12 @@ export const fetchEducations = () => (
   })
 );
 
+export const fetchEducation = educationId => (
+  $.ajax({
+    url: `/api/educations/${educationId}`
+  })
+);
+
 export const createEducation = education => (
   $.ajax({
     method: 'POST',
