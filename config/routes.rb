@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     resources :posts, except: [:edit, :new]
     resources :comments, only: [:index, :create, :update, :destroy]
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:index, :create, :destroy]
 
     resource :session, only: [:create, :destroy]
   end

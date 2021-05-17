@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
+import { fetchCommentCount } from '../../util/post_api';
 import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexContainer from '../comments/comment_index';
 
@@ -13,7 +14,8 @@ class PostIndexItem extends React.Component {
     this.state = {
       drop: false,
       comment: false,
-      timeAgo: Date.now() - Date.parse(this.props.post.createdAt)
+      timeAgo: Date.now() - Date.parse(this.props.post.createdAt),
+      commentCount: null
     };
 
     if (this.state.timeAgo < 3600000) {
@@ -24,7 +26,9 @@ class PostIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.post.userId);
+    const { fetchUser, fetchCommentCount, post } = this.props
+    fetchUser(post.userId);
+    fetchCommentCount(post.id).then(count => this.setState({ commentCount: count }))
   }
 
   timeFromNow() {
@@ -60,20 +64,20 @@ class PostIndexItem extends React.Component {
   // fetch 10 more posts starting from saved updated time, order by updated time
   
   render() {
-    const { deletePost, users, post: { id, body, mediaUrl, userId } } = this.props;
+    const { currentUser, openModal, deletePost, users, post: { id, body, mediaUrl, userId } } = this.props;
     let dropdown; let postUser; let name;
     
     if (users[userId]) {
       postUser = users[userId];
       name = postUser.fname + ' ' + postUser.lname;
 
-      if (postUser.id == this.props.currentUser) {
+      if (postUser.id == currentUser) {
         dropdown = (
           <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
             <ul className={'post-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
-              <li onClick={() => this.props.openModal('editPost', id)}><i className="far fa-edit"></i>Edit Post</li>
-              <li onClick={() => this.props.deletePost(id)}><i className="far fa-trash-alt"></i>Delete Post</li>
+              <li onClick={() => openModal('editPost', id)}><i className="far fa-edit"></i>Edit Post</li>
+              <li onClick={() => deletePost(id)}><i className="far fa-trash-alt"></i>Delete Post</li>
             </ul>
           </button>
         );
@@ -92,6 +96,8 @@ class PostIndexItem extends React.Component {
         </div>
       </div>
     ) : null;
+
+    const commentCount = this.state.commentCount ? `| ${this.state.commentCount} comments` : null;
     
     return (
       <div className='post-item'>
@@ -109,7 +115,7 @@ class PostIndexItem extends React.Component {
         <p>{body}</p>
         <img src={mediaUrl} alt=""/>
         <div className='num-lc'>
-          [numLikes and numComments]
+          [numLikes] {commentCount}
         </div>
         <div className='like-comment'>
           <button><i className="far fa-thumbs-up"></i>Like</button>
@@ -130,7 +136,8 @@ const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),
   editPost: post => dispatch(editPost(post)),
   fetchUser: userId => dispatch(fetchUser(userId)),
-  openModal: (modal, id) => dispatch(openModal(modal, id))
+  openModal: (modal, id) => dispatch(openModal(modal, id)),
+  fetchCommentCount: postId => fetchCommentCount(postId)
 });
 
 const PostIndexItemContainer = connect(mapSTP, mapDTP)(PostIndexItem)
