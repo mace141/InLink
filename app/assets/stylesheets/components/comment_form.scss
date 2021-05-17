@@ -79,5 +79,9 @@
     @include modal-button(white, $LIblue);
     font-size: 14px;
     padding: 3px 12px;
+
+    &:hover {
+      @include hover($darkblue);
+    }
   }
 }

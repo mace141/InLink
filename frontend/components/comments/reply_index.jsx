@@ -42,13 +42,15 @@ class ReplyIndex extends React.Component {
   render() {
     const moreRepliesBtn = this.state.allRootReplies ? null : (
       <button className='more-cmts replies' onClick={this.loadMoreReplies}>Load previous replies</button>
-    )
+    );
+    const { openReply } = this.props;
+
     return (
       <>
         {moreRepliesBtn}
         <ul className='replies-index'>
           {this.props.replies.map(reply => (
-            <CommentIndexItemContainer key={reply.id} comment={reply} isReply={true}/>
+            <CommentIndexItemContainer key={reply.id} comment={reply} isReply={true} openReply={openReply}/>
           ))}
         </ul>
       </>

@@ -131,6 +131,7 @@
   .save-cmt-edit {
     @include modal-button(white, $LIblue);
     padding: 3px 12px;
+    margin-right: 8px;
 
     &:enabled:hover {
       @include hover($darkblue);

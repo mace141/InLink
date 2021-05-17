@@ -72,7 +72,10 @@ class CommentIndexItem extends React.Component {
   }
 
   render() {
-    const { user, currentUser, deleteComment, comment: { id, body, mediaUrl } } = this.props;
+    const { 
+      openReply, isReply, user, currentUser, deleteComment, 
+      comment: { id, body, mediaUrl } 
+    } = this.props;
     let dropdown; let commentUser; let name; let headline;
 
     if (user) {
@@ -124,11 +127,11 @@ class CommentIndexItem extends React.Component {
               <div className='like-reply'>
                 <button>Like</button>
                 <div></div>
-                <button onClick={this.openReply}>Reply</button>
+                <button onClick={isReply ? openReply : this.openReply}>Reply</button>
               </div>
             )}
           </div>
-          {this.props.isReply ? null : <ReplyIndexContainer parentCommentId={id}/>}
+          {this.props.isReply ? null : <ReplyIndexContainer parentCommentId={id} openReply={this.openReply}/>}
           {this.props.isReply ? null : replyForm}
         </div>
       </div>
