@@ -55,24 +55,27 @@ class CommentForm extends React.Component {
   }
 
   postComment() {
+    const { currentUser, postId, parentCommentId, createComment, incrComCount } = this.props;
+
     const formData = new FormData();
     if (this.state.media) {
       formData.append('comment[media]', this.state.media);
     }
     formData.append('comment[body]', this.state.body);
-    formData.append('comment[user_id]', this.props.currentUser);
-    formData.append('comment[post_id]', this.props.postId);
-    if (this.props.parentCommentId) {
-      formData.append('comment[parent_comment_id]', this.props.parentCommentId);
+    formData.append('comment[user_id]', currentUser);
+    formData.append('comment[post_id]', postId);
+    if (parentCommentId) {
+      formData.append('comment[parent_comment_id]', parentCommentId);
     }
     
-    this.props.createComment(formData);
+    createComment(formData);
     this.setState({
       body: "",
       media: null,
       mediaUrl: null
     });
     document.getElementById('cmt-media-input').value = "";
+    incrComCount();
   }
   
   render() {

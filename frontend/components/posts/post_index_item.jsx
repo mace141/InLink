@@ -140,10 +140,10 @@ class PostIndexItem extends React.Component {
     const commentSection = this.state.comment ? (
       <div className='comment-section'>
         <div>
-          <CommentFormContainer postId={id}/>
+          <CommentFormContainer postId={id} incrComCount={this.incrementCommentCount}/>
         </div>
         <div>
-          <CommentIndexContainer postId={id}/>
+          <CommentIndexContainer postId={id} incrComCount={this.incrementCommentCount}/>
         </div>
       </div>
     ) : null;

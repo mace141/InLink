@@ -103,7 +103,7 @@ class CommentIndexItem extends React.Component {
     );
 
     const replyForm = this.state.reply ? (
-      <ReplyFormContainer parentCommentId={id} postId={this.props.postId}/>
+      <ReplyFormContainer parentCommentId={id} postId={this.props.postId} incrComCount={this.props.incrComCount}/>
     ) : null;
     
     return (
