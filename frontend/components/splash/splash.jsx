@@ -19,5 +19,3 @@ const Splash = () => (
 );
 
 export default Splash;
-
-// <p className='splash-creds'>Illustration by <a href="https://icons8.com/illustrations/author/5d99891e7dca3d0016cd4e34">Julia</a> from <a href="https://icons8.com/illustrations">Ouch!</a></p>

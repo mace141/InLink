@@ -4,8 +4,7 @@ import { deleteLike, receiveLike } from '../../actions/like';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
-import { createLike, fetchPostNumLikes, fetchUserLiked } from '../../util/like_api';
-import { fetchCommentCount } from '../../util/post_api';
+import { createLike, fetchUserLiked } from '../../util/like_api';
 import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexContainer from '../comments/comment_index';
 
@@ -17,8 +16,8 @@ class PostIndexItem extends React.Component {
       drop: false,
       comment: false,
       timeAgo: Date.now() - Date.parse(this.props.post.createdAt),
-      commentCount: null,
-      likeCount: null,
+      commentCount: this.props.post.comments,
+      likeCount: this.props.post.likes,
       liked: false,
       like: null
     };
@@ -36,12 +35,10 @@ class PostIndexItem extends React.Component {
 
   componentDidMount() {
     const { 
-      fetchUser, fetchCommentCount, fetchPostNumLikes, fetchUserLiked, post, currentUser
+      fetchUser, fetchUserLiked, post, currentUser
     } = this.props;
     
     fetchUser(post.userId);
-    fetchCommentCount(post.id).then(count => this.setState({ commentCount: count }));
-    // fetchPostNumLikes(post.id).then(count => this.setState({ likeCount: count }));
 
     fetchUserLiked({ 
       user_id: currentUser, 
@@ -150,7 +147,7 @@ class PostIndexItem extends React.Component {
         </div>
       </div>
     ) : null;
-    
+    debugger
     const commentCount = this.state.commentCount ? `${this.state.commentCount} comments` : null;
     const likeCount = this.state.likeCount ? (
       <>
@@ -200,8 +197,6 @@ const mapDTP = dispatch => ({
   editPost: post => dispatch(editPost(post)),
   fetchUser: userId => dispatch(fetchUser(userId)),
   openModal: (modal, id) => dispatch(openModal(modal, id)),
-  fetchCommentCount: postId => fetchCommentCount(postId),
-  fetchPostNumLikes: postId => fetchPostNumLikes(postId),
   fetchUserLiked: like => fetchUserLiked(like),
   createLikeAPI: like => createLike(like),
   receiveLike: like => receiveLike(like),

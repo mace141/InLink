@@ -19,18 +19,6 @@ const removeLike = likeId => ({
   likeId
 });
 
-export const fetchPostLikes = postId => dispatch => (
-  LikeAPI.fetchPostLikes(postId).then(
-    likes => dispatch(receiveLikes(likes))
-  )
-);
-
-export const fetchCommentLikes = commentId => dispatch => (
-  LikeAPI.fetchCommentLikes(commentId).then(
-    likes => dispatch(receiveLikes(likes))
-  )
-);
-
 export const createLike = like => dispatch => (
   LikeAPI.createLike(like).then(
     like => dispatch(receiveLike(like))
