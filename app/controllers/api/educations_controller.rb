@@ -13,6 +13,16 @@ class Api::EducationsController < ApplicationController
     end
   end
 
+  def update 
+    @education = Education.find(params[:id])
+
+    if @education.update(education_params)
+      render :show 
+    else
+      render json: @education.errors.full_messages, status: 400
+    end
+  end
+
   def destroy 
     @education = Education.find(params[:id])
 

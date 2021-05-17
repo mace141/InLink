@@ -13,6 +13,16 @@ class Api::ExperiencesController < ApplicationController
     end
   end
 
+  def update 
+    @experience = Experience.find(params[:id])
+
+    if @experience.update(experience_params)
+      render :show 
+    else
+      render json: @experience.errors.full_messages, status: 400
+    end
+  end
+
   def destroy 
     @experience = Experience.find(params[:id])
 
