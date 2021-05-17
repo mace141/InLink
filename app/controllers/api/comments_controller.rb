@@ -4,12 +4,12 @@ class Api::CommentsController < ApplicationController
     when 'comment button'
       @comments = Comment.two_comments(params[:post_id])
     when 'more comments'
-      @comments = Comment.more_comments(params[:post_id], params[:limit])
+      @comments = Comment.more_comments(params[:post_id], params[:offset])
     # keep track of how many times more comments has been clicked in component
     when 'last reply'
       @comments = Comment.last_reply(params[:parent_comment_id])
     when 'load replies'
-      @comments = Comment.more_replies(params[:parent_comment_id], params[:limit])
+      @comments = Comment.more_replies(params[:parent_comment_id], params[:offset])
     end
   end
 

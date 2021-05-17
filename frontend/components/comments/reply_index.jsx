@@ -9,7 +9,7 @@ class ReplyIndex extends React.Component {
     super(props);
 
     this.state = {
-      limit: 1,
+      offset: 0,
       allRootReplies: true,
       replyCommentNum: null
     };
@@ -31,8 +31,8 @@ class ReplyIndex extends React.Component {
   loadMoreReplies() {
     const { fetchChildComments, parentCommentId, replies } = this.props;
 
-    fetchChildComments(parentCommentId, this.state.limit);
-    this.setState({ limit: this.state.limit + 1 });
+    fetchChildComments(parentCommentId, this.state.offset);
+    this.setState({ offset: this.state.offset + 1 });
 
     if (this.state.replyCommentNum <= replies.length + 10) {
       this.setState({ allRootReplies: true });
@@ -69,7 +69,7 @@ const mapSTP = ({ entities: { comments } }, ownProps) => {
 
 const mapDTP = dispatch => ({
   fetchLastReply: parentId => dispatch(fetchLastReply(parentId)),
-  fetchChildComments: (parentId, limit) => dispatch(fetchChildComments(parentId, limit)),
+  fetchChildComments: (parentId, offset) => dispatch(fetchChildComments(parentId, offset)),
   fetchChildCommentCount: parentId => fetchChildCommentCount(parentId)
 });
 

@@ -8,13 +8,13 @@ export const fetchTwoComments = post_id => (
   })
 );
 
-export const fetchMoreComments = (post_id, limit) => (
+export const fetchMoreComments = (post_id, offset) => (
   $.ajax({
     url: '/api/comments',
     data: { 
       type: 'more comments',
       post_id,
-      limit
+      offset
     }
   })
 );
@@ -29,13 +29,13 @@ export const fetchLastReply = parent_comment_id => (
   })
 );
 
-export const fetchChildComments = (parent_comment_id, limit) => (
+export const fetchChildComments = (parent_comment_id, offset) => (
   $.ajax({
     url: '/api/comments',
     data: { 
       type: 'load replies', 
       parent_comment_id,
-      limit
+      offset
     }
   })
 );

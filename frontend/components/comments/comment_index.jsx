@@ -9,7 +9,7 @@ class CommentIndex extends React.Component {
     super(props);
 
     this.state = {
-      limit: 1,
+      offset: 0,
       allRootComments: true,
       rootCommentNum: null
     };
@@ -31,8 +31,8 @@ class CommentIndex extends React.Component {
   loadMoreComments() {
     const { fetchMoreComments, postId, comments } = this.props;
 
-    fetchMoreComments(postId, this.state.limit);
-    this.setState({ limit: this.state.limit + 1 });
+    fetchMoreComments(postId, this.state.offset);
+    this.setState({ offset: this.state.offset + 1 });
 
     if (this.state.rootCommentNum <= comments.length + 10) {
       this.setState({ allRootComments: true });
@@ -71,7 +71,7 @@ const mapSTP = ({ entities: { comments } }, ownProps) => {
 
 const mapDTP = dispatch => ({
   fetchTwoComments: postId => dispatch(fetchTwoComments(postId)),
-  fetchMoreComments: (postId, limit) => dispatch(fetchMoreComments(postId, limit)),
+  fetchMoreComments: (postId, offset) => dispatch(fetchMoreComments(postId, offset)),
   fetchRootCommentCount: postId => fetchRootCommentCount(postId)
 });
 

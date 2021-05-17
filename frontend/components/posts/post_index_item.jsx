@@ -29,6 +29,7 @@ class PostIndexItem extends React.Component {
 
     this.openComments = this.openComments.bind(this);
     this.toggleLike = this.toggleLike.bind(this);
+    this.incrementCommentCount = this.incrementCommentCount.bind(this);
   }
 
   componentDidMount() {
@@ -104,6 +105,10 @@ class PostIndexItem extends React.Component {
       this.setState({ likeCount: this.state.likeCount + 1 });
       document.getElementsByClassName(`like-btn ${id}`)[0].classList.add('liked');
     }
+  }
+
+  incrementCommentCount() {
+    this.setState({ commentCount: this.state.commentCount + 1 });
   }
 
   // INFINITE SCROLLING: 
@@ -183,18 +188,10 @@ class PostIndexItem extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
-  // const postLikes = Object.values(likes).filter(like => like.likeableId == ownProps.post.id);
-  // const like = postLikes.filter(like => like.userId == currentUser);
-  // debugger
-  // numLikes: postLikes.length,
-  // liked: like.length == 1,
-  // like: like[0],
-  return {
-    users, 
-    currentUser
-  }
-};
+const mapSTP = ({ entities: { users }, session: { currentUser } }) => ({
+  users, 
+  currentUser
+});
 
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),

@@ -29,18 +29,21 @@ class Comment < ApplicationRecord
     if comments 
       comments = comments.order(created_at: :desc)
                          .limit(2)
+                         .includes(:user)
       return comments 
     else
       return []
     end
   end
 
-  def self.more_comments(post_id, limit)
+  def self.more_comments(post_id, offset)
     comments = Comment.where(post_id: post_id, parent_comment_id: nil)
 
     if comments 
       comments = comments.order(created_at: :desc)
-                         .limit(limit * 10)
+                         .offset(offset * 10)
+                         .limit(10)
+                         .includes(:user)
       return comments
     else
       return []
@@ -51,19 +54,21 @@ class Comment < ApplicationRecord
     comments = Comment.where(parent_comment_id: parent_comment_id)
     
     if comments 
-      comment = comments.order(created_at: :desc).limit(1)
+      comment = comments.order(created_at: :desc).limit(1).includes(:user)
       return comment 
     else
       return []
     end
   end
 
-  def self.more_replies(parent_comment_id, limit)
+  def self.more_replies(parent_comment_id, offset)
     comments = Comment.where(parent_comment_id: parent_comment_id)
 
     if comments 
       comments = comments.order(created_at: :desc)
-                         .limit(limit * 10)
+                         .offset(offset * 10)
+                         .limit(10)
+                         .includes(:user)
       return comments 
     else
       return []
