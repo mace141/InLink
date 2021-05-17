@@ -68,18 +68,18 @@ class PostIndexItem extends React.Component {
 
   toggleLike() {
     const { post: { id }, currentUser, like, createLike, deleteLike } = this.props;
-
+    debugger
     if (this.state.liked) {
       deleteLike(like.id);
       this.setState({ liked: false });
     } else {
-      const like = {
+      const newLike = {
         user_id: currentUser,
         likeable_id: id,
         likeable_type: 'Post'
       };
 
-      createLike(like);
+      createLike(newLike);
       this.setState({ liked: true })
     }
   }
@@ -160,11 +160,11 @@ class PostIndexItem extends React.Component {
 const mapSTP = ({ entities: { users, likes }, session: { currentUser }}, ownProps) => {
   const postLikes = Object.values(likes).filter(like => like.likeableId == ownProps.post.id);
   const like = postLikes.filter(like => like.userId == currentUser);
-
+  debugger
   return ({
   numLikes: postLikes.length,
   liked: like.length == 1,
-  like: like,
+  like: like[0],
   users, 
   currentUser
 })};
