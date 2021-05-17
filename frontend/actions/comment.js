@@ -33,12 +33,12 @@ export const fetchMoreComments = (postId, limit) => dispatch => (
 
 export const fetchLastReply = parentId => dispatch => (
   CommentAPI.fetchLastReply(parentId).then(
-    comment => dispatch(receiveComment(comment))
+    comment => dispatch(receiveComments(comment))
   )
 );
 
-export const fetchChildComments = parentId => dispatch => (
-  CommentAPI.fetchChildComments(parentId).then(
+export const fetchChildComments = (parentId, limit) => dispatch => (
+  CommentAPI.fetchChildComments(parentId, limit).then(
     comments => dispatch(receiveComments(comments))
   )
 );

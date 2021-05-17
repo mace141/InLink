@@ -29,20 +29,28 @@ export const fetchLastReply = parent_comment_id => (
   })
 );
 
-export const fetchChildComments = parent_comment_id => (
+export const fetchChildComments = (parent_comment_id, limit) => (
   $.ajax({
     url: '/api/comments',
     data: { 
       type: 'load replies', 
-      parent_comment_id
+      parent_comment_id,
+      limit
     }
   })
 );
 
-export const fetchCommentCount = post_id => (
+export const fetchRootCommentCount = post_id => (
   $.ajax({
-    url: '/api/comments/count',
+    url: '/api/comments/root_count',
     data: { post_id }
+  })
+);
+
+export const fetchChildCommentCount = parent_comment_id => (
+  $.ajax({
+    url: '/api/comments/reply_count',
+    data: { parent_comment_id }
   })
 );
 

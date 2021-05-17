@@ -49,10 +49,22 @@ class Comment < ApplicationRecord
 
   def self.last_reply(parent_comment_id)
     comments = Comment.where(parent_comment_id: parent_comment_id)
+    
+    if comments 
+      comment = comments.order(created_at: :desc).limit(1)
+      return comment 
+    else
+      return []
+    end
+  end
+
+  def self.more_replies(parent_comment_id, limit)
+    comments = Comment.where(parent_comment_id: parent_comment_id)
 
     if comments 
-      comment = comments.order(created_at: :asc).limit(1)
-      return comment 
+      comments = comments.order(created_at: :desc)
+                         .limit(limit * 10)
+      return comments 
     else
       return []
     end

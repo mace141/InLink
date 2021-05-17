@@ -4,6 +4,7 @@ import { deleteComment } from '../../actions/comment';
 import { fetchUser } from '../../actions/session';
 import EditCommentFormContainer from './edit_comment';
 import ReplyFormContainer from './reply_form_container';
+import ReplyIndexContainer from './reply_index';
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -101,7 +102,7 @@ class CommentIndexItem extends React.Component {
     const replyForm = this.state.reply ? (
       <ReplyFormContainer parentCommentId={id} postId={this.props.postId}/>
     ) : null;
-
+    
     return (
       <div className='comment-item'>
         <h2>[PFP here]</h2>
@@ -127,7 +128,8 @@ class CommentIndexItem extends React.Component {
               </div>
             )}
           </div>
-          {replyForm}
+          {this.props.isReply ? null : <ReplyIndexContainer parentCommentId={id}/>}
+          {this.props.isReply ? null : replyForm}
         </div>
       </div>
     )
@@ -142,7 +144,7 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   deleteComment: commentId => dispatch(deleteComment(commentId))
-})
+});
 
 const CommentIndexItemContainer = connect(mapSTP, mapDTP)(CommentIndexItem);
 

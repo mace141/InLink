@@ -9,12 +9,18 @@ class Api::CommentsController < ApplicationController
     when 'last reply'
       @comments = Comment.last_reply(params[:parent_comment_id])
     when 'load replies'
-      @comments = Comment.find_by(parent_comment_id: params[:parent_comment_id])
+      @comments = Comment.more_replies(params[:parent_comment_id], params[:limit])
     end
   end
 
-  def count 
+  def root_comment_count 
     @comments = Comment.where(post_id: params[:post_id], parent_comment_id: nil)
+
+    render json: @comments.count
+  end
+
+  def reply_comment_count 
+    @comments = Comment.where(parent_comment_id: params[:parent_comment_id])
 
     render json: @comments.count
   end

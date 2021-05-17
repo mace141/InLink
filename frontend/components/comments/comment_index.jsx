@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCommentCount } from '../../util/comment_api';
+import { fetchRootCommentCount } from '../../util/comment_api';
 import { fetchTwoComments, fetchMoreComments } from '../../actions/comment';
 import CommentIndexItemContainer from './comment_index_item';
 
@@ -10,31 +10,37 @@ class CommentIndex extends React.Component {
 
     this.state = {
       limit: 1,
-      allRootComments: false
+      allRootComments: false,
+      rootCommentNum: null
     };
 
     this.loadMoreComments = this.loadMoreComments.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchTwoComments(this.props.postId);
+    const { fetchTwoComments, fetchRootCommentCount, postId } = this.props;
+
+    fetchTwoComments(postId);
+
+    fetchRootCommentCount(postId).then(count => { 
+      this.setState({ rootCommentNum: count });
+      if (count <= 2) this.setState({ allRootComments: true })
+    });
   }
 
   loadMoreComments() {
-    const { fetchMoreComments, fetchCommentCount, postId, comments } = this.props;
+    const { fetchMoreComments, postId, comments } = this.props;
 
     fetchMoreComments(postId, this.state.limit);
     this.setState({ limit: this.state.limit + 1 });
 
-    fetchCommentCount(postId).then(count => {
-      if (count <= comments.length + 10) {
-        this.setState({ allRootComments: true });
-      }
-    });
+    if (this.state.rootCommentNum <= comments.length + 10) {
+      this.setState({ allRootComments: true });
+    }
   }
 
   render() {
-    const moreComments = this.state.allRootComments ? null : (
+    const moreCommentsBtn = this.state.allRootComments ? null : (
       <button className='more-cmts' onClick={this.loadMoreComments}>Load more comments</button>
     );
     
@@ -42,10 +48,10 @@ class CommentIndex extends React.Component {
       <>
         <ul className='comments-index'>
           {this.props.comments.map(comment => (
-            <CommentIndexItemContainer key={comment.id} comment={comment} postId={this.props.postId}/>
+            <CommentIndexItemContainer key={comment.id} comment={comment} postId={this.props.postId} isReply={false}/>
           ))}
         </ul>
-        {moreComments}
+        {moreCommentsBtn}
       </>
     )
   }
@@ -66,7 +72,7 @@ const mapSTP = ({ entities: { comments } }, ownProps) => {
 const mapDTP = dispatch => ({
   fetchTwoComments: postId => dispatch(fetchTwoComments(postId)),
   fetchMoreComments: (postId, limit) => dispatch(fetchMoreComments(postId, limit)),
-  fetchCommentCount: postId => fetchCommentCount(postId)
+  fetchRootCommentCount: postId => fetchRootCommentCount(postId)
 });
 
 const CommentIndexContainer = connect(mapSTP, mapDTP)(CommentIndex)
