@@ -22,8 +22,6 @@ class PostIndexItem extends React.Component {
       like: null
     };
 
-    debugger
-
     if (this.state.timeAgo < 3600000) {
       setInterval(() => this.setState({ timeAgo: Date.now() - Date.parse(this.props.post.createdAt)}), 60000);
     }
@@ -116,6 +114,7 @@ class PostIndexItem extends React.Component {
     const { 
       currentUser, openModal, deletePost, users, post: { id, body, mediaUrl, userId } 
     } = this.props;
+    const { drop, comment, commentCount, likeCount } = this.state;
     let dropdown; let postUser; let name;
     
     if (users[userId]) {
@@ -126,7 +125,7 @@ class PostIndexItem extends React.Component {
         dropdown = (
           <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
-            <ul className={'post-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
+            <ul className={'post-dropdown ' + (drop ? 'reveal' : 'hide')}>
               <li onClick={() => openModal('editPost', id)}><i className="far fa-edit"></i>Edit Post</li>
               <li onClick={() => deletePost(id)}><i className="far fa-trash-alt"></i>Delete Post</li>
             </ul>
@@ -137,7 +136,7 @@ class PostIndexItem extends React.Component {
       postUser = { headline: "" };
     }
 
-    const commentSection = this.state.comment ? (
+    const commentSection = comment ? (
       <div className='comment-section'>
         <div>
           <CommentFormContainer postId={id} incrComCount={this.incrementCommentCount}/>
@@ -147,11 +146,11 @@ class PostIndexItem extends React.Component {
         </div>
       </div>
     ) : null;
-    debugger
-    const commentCount = this.state.commentCount ? `${this.state.commentCount} comments` : null;
-    const likeCount = this.state.likeCount ? (
+    
+    const numComments = commentCount ? `${commentCount} comment${commentCount > 1 ? 's' : ''}` : null;
+    const numLikes = likeCount ? (
       <>
-        <i className="far fa-thumbs-up small"></i>{this.state.likeCount}{commentCount ? ' | ' : null}
+        <i className="far fa-thumbs-up small"></i>{likeCount}{numComments ? ' | ' : null}
       </>
     ) : null;
     
@@ -171,7 +170,7 @@ class PostIndexItem extends React.Component {
         <p>{body}</p>
         <img src={mediaUrl} alt=""/>
         <div className='num-lc'>
-          {likeCount} {commentCount}
+          {numLikes} {numComments}
         </div>
         <div className='like-comment'>
           <button onClick={this.toggleLike} className={'post like-btn ' + id}>

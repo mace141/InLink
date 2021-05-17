@@ -36,6 +36,7 @@ class CommentIndexItem extends React.Component {
     this.cancelEdit = this.cancelEdit.bind(this);
     this.openReply = this.openReply.bind(this);
     this.toggleLike = this.toggleLike.bind(this);
+    this.incrementReplyCount = this.incrementReplyCount.bind(this);
   }
 
   componentDidMount() {
@@ -117,6 +118,10 @@ class CommentIndexItem extends React.Component {
     }
   }
 
+  incrementReplyCount() {
+    this.setState({ replyCount: this.state.replyCount + 1 })
+  }
+
   render() {
     const { 
       openReply, isReply, user, currentUser, deleteComment, comment, postId, 
@@ -151,10 +156,15 @@ class CommentIndexItem extends React.Component {
     );
 
     const replyForm = reply ? (
-      <ReplyFormContainer parentCommentId={id} postId={postId} incrComCount={incrComCount}/>
+      <ReplyFormContainer parentCommentId={id} 
+                          postId={postId} 
+                          incrComCount={incrComCount}
+                          incrRepCount={this.incrementReplyCount}/>
     ) : null;
 
-    const numReplies = replyCount ? (reply ? null : `${replyCount} replies`) : null;
+    const numReplies = replyCount ? (
+      `${replyCount} repl${replyCount > 1 ? 'ies' : 'y'}`
+    ) : null;
 
     const numLikes = likeCount ? (
       <>

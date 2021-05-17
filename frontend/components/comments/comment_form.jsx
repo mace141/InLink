@@ -55,7 +55,9 @@ class CommentForm extends React.Component {
   }
 
   postComment() {
-    const { currentUser, postId, parentCommentId, createComment, incrComCount } = this.props;
+    const { 
+      currentUser, postId, parentCommentId, createComment, incrComCount, incrRepCount 
+    } = this.props;
 
     const formData = new FormData();
     if (this.state.media) {
@@ -76,6 +78,7 @@ class CommentForm extends React.Component {
     });
     document.getElementById('cmt-media-input').value = "";
     incrComCount();
+    incrRepCount();
   }
   
   render() {
