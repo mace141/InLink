@@ -10,7 +10,7 @@ class CommentIndex extends React.Component {
 
     this.state = {
       limit: 1,
-      allRootComments: false,
+      allRootComments: true,
       rootCommentNum: null
     };
 
@@ -24,7 +24,7 @@ class CommentIndex extends React.Component {
 
     fetchRootCommentCount(postId).then(count => { 
       this.setState({ rootCommentNum: count });
-      if (count <= 2) this.setState({ allRootComments: true })
+      if (count > 2) this.setState({ allRootComments: false })
     });
   }
 

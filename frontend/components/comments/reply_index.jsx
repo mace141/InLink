@@ -10,7 +10,7 @@ class ReplyIndex extends React.Component {
 
     this.state = {
       limit: 1,
-      allRootReplies: false,
+      allRootReplies: true,
       replyCommentNum: null
     };
 
@@ -24,7 +24,7 @@ class ReplyIndex extends React.Component {
 
     fetchChildCommentCount(parentCommentId).then(count => {
       this.setState({ replyCommentNum: count});
-      if (count <= 1) this.setState({ allRootReplies: true })
+      if (count > 1) this.setState({ allRootReplies: false })
     });
   }
 
