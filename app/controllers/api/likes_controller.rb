@@ -7,6 +7,31 @@ class Api::LikesController < ApplicationController
       @likes = Post.find(params[:post_id]).likes
     end
   end
+  
+  def count 
+    case params[:type]
+    when 'comment'
+      num_likes = Comment.find(params[:comment_id]).likes.count
+    when 'post'
+      num_likes = Post.find(params[:post_id]).likes.count
+    end
+    
+    render json: num_likes
+  end
+
+  def user_liked 
+    @like = Like.find_by(
+      likeable_id: like_params[:likeable_id], 
+      likeable_type: like_params[:likeable_type],
+      user_id: like_params[:user_id]
+    )
+    
+    if @like
+      render :show
+    else
+      render json: 0
+    end
+  end
 
   def create 
     @like = Like.new(like_params)

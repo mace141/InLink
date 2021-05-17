@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get '/api/posts/:id/comment_count', to: 'api/posts#comment_count'
   get '/api/comments/root_count', to: 'api/comments#root_comment_count'
   get '/api/comments/reply_count', to: 'api/comments#reply_comment_count'
+  get '/api/likes/like_count', to: 'api/likes#count'
+  get '/api/likes/user_liked', to: 'api/likes#user_liked'
 
   namespace :api, defaults: { format: :json } do 
     resources :users, only: [:create, :show]

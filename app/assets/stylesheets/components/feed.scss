@@ -4,10 +4,6 @@
   grid-gap: 25px;
   margin-top: 25px;
 
-  .user-side-bar, .right-side-bar {
-    box-sizing: content-box;
-  }
-
   .user-side-bar, .post-item, .right-side-bar, .start-post {
     @include box
   }
@@ -143,9 +139,16 @@
         }
       }
 
+      .liked {
+        color: $LIblue;
+
+        i {
+          color: $LIblue;
+        }
+      }
+
       i {
         margin-right: 5px;
-        transform: scale(-1, 1);
       }
     }
   }

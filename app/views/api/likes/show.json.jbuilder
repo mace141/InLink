@@ -1,3 +1,1 @@
-json.set! @like.id do 
-  json.partial! '/api/likes/like', like: @like
-end
+json.partial! '/api/likes/like', like: @like

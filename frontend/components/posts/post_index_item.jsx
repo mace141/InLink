@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createLike, deleteLike } from '../../actions/like';
+import { deleteLike, receiveLike } from '../../actions/like';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
-import { fetchPostLikes } from '../../util/like_api';
+import { createLike, fetchPostNumLikes, fetchUserLiked } from '../../util/like_api';
 import { fetchCommentCount } from '../../util/post_api';
 import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexContainer from '../comments/comment_index';
@@ -18,8 +18,9 @@ class PostIndexItem extends React.Component {
       comment: false,
       timeAgo: Date.now() - Date.parse(this.props.post.createdAt),
       commentCount: null,
-      likeCount: this.props.numLikes,
-      liked: this.props.liked
+      likeCount: null,
+      liked: false,
+      like: null
     };
 
     if (this.state.timeAgo < 3600000) {
@@ -31,11 +32,25 @@ class PostIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchCommentCount, fetchPostLikes, post } = this.props;
-
+    const { 
+      fetchUser, fetchCommentCount, fetchPostNumLikes, fetchUserLiked, post, currentUser
+    } = this.props;
+    
     fetchUser(post.userId);
     fetchCommentCount(post.id).then(count => this.setState({ commentCount: count }));
-    fetchPostLikes(post.id);
+    fetchPostNumLikes(post.id).then(count => this.setState({ likeCount: count }));
+
+    fetchUserLiked({ 
+      user_id: currentUser, 
+      likeable_id: post.id,
+      likeable_type: 'Post'
+    }).then(like => {
+      if (like) {
+        this.setState({ liked: true });
+        this.setState({ like });
+        document.getElementsByClassName(`like-btn ${post.id}`)[0].classList.add('liked');
+      }
+    })
   }
 
   timeFromNow() {
@@ -67,11 +82,13 @@ class PostIndexItem extends React.Component {
   }
 
   toggleLike() {
-    const { post: { id }, currentUser, like, createLike, deleteLike } = this.props;
-    debugger
+    const { post: { id }, currentUser, createLikeAPI, deleteLike, dispatch } = this.props;
+
     if (this.state.liked) {
-      deleteLike(like.id);
+      deleteLike(this.state.like.id);
       this.setState({ liked: false });
+      this.setState({ likeCount: this.state.likeCount - 1 });
+      document.getElementsByClassName(`like-btn ${id}`)[0].classList.remove('liked');
     } else {
       const newLike = {
         user_id: currentUser,
@@ -79,8 +96,13 @@ class PostIndexItem extends React.Component {
         likeable_type: 'Post'
       };
 
-      createLike(newLike);
-      this.setState({ liked: true })
+      createLikeAPI(newLike).then(like => {
+        this.setState({ like });
+        dispatch(receiveLike(like));
+      });
+      this.setState({ liked: true });
+      this.setState({ likeCount: this.state.likeCount + 1 });
+      document.getElementsByClassName(`like-btn ${id}`)[0].classList.add('liked');
     }
   }
 
@@ -121,11 +143,11 @@ class PostIndexItem extends React.Component {
         </div>
       </div>
     ) : null;
-
+    
     const commentCount = this.state.commentCount ? `${this.state.commentCount} comments` : null;
     const likeCount = this.state.likeCount ? (
       <>
-        <i className="far fa-thumbs-up"></i>{this.state.likeCount}{commentCount ? ' | ' : null}
+        <i className="far fa-thumbs-up small"></i>{this.state.likeCount}{commentCount ? ' | ' : null}
       </>
     ) : null;
     
@@ -148,8 +170,12 @@ class PostIndexItem extends React.Component {
           {likeCount} {commentCount}
         </div>
         <div className='like-comment'>
-          <button onClick={this.toggleLike}><i className="far fa-thumbs-up"></i>Like</button>
-          <button onClick={this.openComments}><i className="far fa-comment-dots"></i>Comment</button>
+          <button onClick={this.toggleLike} className={'like-btn ' + id}>
+            <i className={"far fa-thumbs-up " + id}></i>Like
+          </button>
+          <button onClick={this.openComments}>
+            <i className="far fa-comment-dots"></i>Comment
+          </button>
         </div>
         {commentSection}
       </div>
@@ -157,17 +183,18 @@ class PostIndexItem extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, likes }, session: { currentUser }}, ownProps) => {
-  const postLikes = Object.values(likes).filter(like => like.likeableId == ownProps.post.id);
-  const like = postLikes.filter(like => like.userId == currentUser);
-  debugger
-  return ({
-  numLikes: postLikes.length,
-  liked: like.length == 1,
-  like: like[0],
-  users, 
-  currentUser
-})};
+const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
+  // const postLikes = Object.values(likes).filter(like => like.likeableId == ownProps.post.id);
+  // const like = postLikes.filter(like => like.userId == currentUser);
+  // debugger
+  // numLikes: postLikes.length,
+  // liked: like.length == 1,
+  // like: like[0],
+  return {
+    users, 
+    currentUser
+  }
+};
 
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),
@@ -175,9 +202,12 @@ const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   openModal: (modal, id) => dispatch(openModal(modal, id)),
   fetchCommentCount: postId => fetchCommentCount(postId),
-  fetchPostLikes: postId => fetchPostLikes(postId),
-  createLike: like => dispatch(createLike(like)),
-  deleteLike: likeId => dispatch(deleteLike(likeId))
+  fetchPostNumLikes: postId => fetchPostNumLikes(postId),
+  fetchUserLiked: like => fetchUserLiked(like),
+  createLikeAPI: like => createLike(like),
+  receiveLike: like => receiveLike(like),
+  deleteLike: likeId => dispatch(deleteLike(likeId)),
+  dispatch
 });
 
 const PostIndexItemContainer = connect(mapSTP, mapDTP)(PostIndexItem)

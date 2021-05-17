@@ -9,7 +9,7 @@ const receiveLikes = likes => ({
   likes
 });
 
-const receiveLike = like => ({
+export const receiveLike = like => ({
   type: RECEIVE_LIKE,
   like
 });

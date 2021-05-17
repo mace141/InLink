@@ -7,11 +7,13 @@ const Feed = ({ currentUser, openModal }) => {
   const { fname, lname, headline } = currentUser;
   return (
     <section className='feed-section'>
-      <aside className='user-side-bar'>
-        <p>[Insert PFP here]</p>
-        <p>{fname + ' ' + lname}</p>
-        <p>{headline}</p>
-      </aside>
+      <div>
+        <aside className='user-side-bar'>
+          <p>[Insert PFP here]</p>
+          <p>{fname + ' ' + lname}</p>
+          <p>{headline}</p>
+        </aside>
+      </div>
       <section className='posts-section'>
         <div className='start-post'>
           <h1>[User PFP here]</h1>
@@ -20,9 +22,11 @@ const Feed = ({ currentUser, openModal }) => {
         <div className='feed-div'></div>
         <PostIndexContainer/>
       </section>
-      <aside className='right-side-bar'>
-        Daniel's Fun Facts
-      </aside>
+      <div>
+        <aside className='right-side-bar'>
+          Daniel's Fun Facts
+        </aside>
+      </div>
     </section>
   )
 };
