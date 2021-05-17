@@ -88,12 +88,13 @@ class CommentForm extends React.Component {
     ) : null;
 
     return (
-      <>
+      <div className='cmt-form-section'>
+        <h2>[PFP here]</h2>
         <div className='cmt-form-ctnr'>
-          <h2>[PFP here]</h2>
           <div className='comment-form'>
             <div className='cmt-input-div'>
-              <input type="text" placeholder={this.props.formType} value={this.state.body} onChange={this.handleInput}/>
+              <input type="text" placeholder={this.props.formType} 
+              value={this.state.body} onChange={this.handleInput}/>
               {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
               <input type="file" id="cmt-media-input" accept='image/*' onChange={this.handleFile}/>
             </div>
@@ -104,9 +105,9 @@ class CommentForm extends React.Component {
               </div>
             </div>
           </div>
+          {this.ensureContent() ? <div><button className='post-cmt-btn' onClick={this.postComment}>Post</button></div> : null}
         </div>
-        {this.ensureContent() ? <button className='post-cmt-btn' onClick={this.postComment}>Post</button> : null}
-      </>
+      </div>
     )
   }
 };
