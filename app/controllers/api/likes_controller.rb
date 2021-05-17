@@ -2,12 +2,10 @@ class Api::LikesController < ApplicationController
   def index 
     case params[:type]
     when 'comment'
-      num_likes = Comment.find(params[:comment_id]).likes.count
+      @likes = Comment.find(params[:comment_id]).likes
     when 'post'
-      num_likes = Post.find(params[:post_id]).likes.count
+      @likes = Post.find(params[:post_id]).likes
     end
-
-    render json: num_likes
   end
 
   def create 

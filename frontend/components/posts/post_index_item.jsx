@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createLike, deleteLike } from '../../actions/like';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
@@ -17,7 +18,8 @@ class PostIndexItem extends React.Component {
       comment: false,
       timeAgo: Date.now() - Date.parse(this.props.post.createdAt),
       commentCount: null,
-      likeCount: null
+      likeCount: this.props.numLikes,
+      liked: this.props.liked
     };
 
     if (this.state.timeAgo < 3600000) {
@@ -25,6 +27,7 @@ class PostIndexItem extends React.Component {
     }
 
     this.openComments = this.openComments.bind(this);
+    this.toggleLike = this.toggleLike.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +35,7 @@ class PostIndexItem extends React.Component {
 
     fetchUser(post.userId);
     fetchCommentCount(post.id).then(count => this.setState({ commentCount: count }));
-    fetchPostLikes(post.id).then(count => this.setState({ likeCount: count }));
+    fetchPostLikes(post.id);
   }
 
   timeFromNow() {
@@ -52,15 +55,33 @@ class PostIndexItem extends React.Component {
   }
 
   clicked() {
-    this.setState({drop: true});
+    this.setState({ drop: true });
   }
 
   leave() {
-    this.setState({drop: false});
+    this.setState({ drop: false });
   }
   
   openComments() {
     this.setState({ comment: true });
+  }
+
+  toggleLike() {
+    const { post: { id }, currentUser, like, createLike, deleteLike } = this.props;
+
+    if (this.state.liked) {
+      deleteLike(like.id);
+      this.setState({ liked: false });
+    } else {
+      const like = {
+        user_id: currentUser,
+        likeable_id: id,
+        likeable_type: 'Post'
+      };
+
+      createLike(like);
+      this.setState({ liked: true })
+    }
   }
 
   // INFINITE SCROLLING: 
@@ -127,7 +148,7 @@ class PostIndexItem extends React.Component {
           {likeCount} {commentCount}
         </div>
         <div className='like-comment'>
-          <button><i className="far fa-thumbs-up"></i>Like</button>
+          <button onClick={this.toggleLike}><i className="far fa-thumbs-up"></i>Like</button>
           <button onClick={this.openComments}><i className="far fa-comment-dots"></i>Comment</button>
         </div>
         {commentSection}
@@ -136,10 +157,17 @@ class PostIndexItem extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
+const mapSTP = ({ entities: { users, likes }, session: { currentUser }}, ownProps) => {
+  const postLikes = Object.values(likes).filter(like => like.likeableId == ownProps.post.id);
+  const like = postLikes.filter(like => like.userId == currentUser);
+
+  return ({
+  numLikes: postLikes.length,
+  liked: like.length == 1,
+  like: like,
   users, 
   currentUser
-});
+})};
 
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),
@@ -147,7 +175,9 @@ const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   openModal: (modal, id) => dispatch(openModal(modal, id)),
   fetchCommentCount: postId => fetchCommentCount(postId),
-  fetchPostLikes: postId => fetchPostLikes(postId)
+  fetchPostLikes: postId => fetchPostLikes(postId),
+  createLike: like => dispatch(createLike(like)),
+  deleteLike: likeId => dispatch(deleteLike(likeId))
 });
 
 const PostIndexItemContainer = connect(mapSTP, mapDTP)(PostIndexItem)
