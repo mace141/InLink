@@ -10,6 +10,12 @@ export const fetchPost = postId => (
   })
 );
 
+export const fetchCommentCount = postId => (
+  $.ajax({
+    url: `/api/posts/${postId}/comment_count`
+  })
+);
+
 export const createPost = formData => (
   $.ajax({
     method: 'POST',

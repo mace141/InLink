@@ -11,6 +11,13 @@
 #                           PATCH  /api/posts/:id(.:format)                                                                 api/posts#update {:format=>:json}
 #                           PUT    /api/posts/:id(.:format)                                                                 api/posts#update {:format=>:json}
 #                           DELETE /api/posts/:id(.:format)                                                                 api/posts#destroy {:format=>:json}
+#              api_comments GET    /api/comments(.:format)                                                                  api/comments#index {:format=>:json}
+#                           POST   /api/comments(.:format)                                                                  api/comments#create {:format=>:json}
+#               api_comment PATCH  /api/comments/:id(.:format)                                                              api/comments#update {:format=>:json}
+#                           PUT    /api/comments/:id(.:format)                                                              api/comments#update {:format=>:json}
+#                           DELETE /api/comments/:id(.:format)                                                              api/comments#destroy {:format=>:json}
+#                 api_likes POST   /api/likes(.:format)                                                                     api/likes#create {:format=>:json}
+#                  api_like DELETE /api/likes/:id(.:format)                                                                 api/likes#destroy {:format=>:json}
 #               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>:json}
 #                           POST   /api/session(.:format)                                                                   api/sessions#create {:format=>:json}
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
@@ -23,10 +30,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'static_pages#root'
   get '/api/users/email', to: 'api/users#email'
+  get '/api/posts/:id/comment_count', to: 'api/posts#comment_count'
+  get '/api/comments/root_count', to: 'api/comments#root_comment_count'
+  get '/api/comments/reply_count', to: 'api/comments#reply_comment_count'
 
   namespace :api, defaults: { format: :json } do 
     resources :users, only: [:create, :show]
     resources :posts, except: [:edit, :new]
+    resources :comments, only: [:index, :create, :update, :destroy]
+    resources :likes, only: [:index, :create, :destroy]
 
     resource :session, only: [:create, :destroy]
   end

@@ -13,10 +13,16 @@
   transition: 0.3s;
 }
 
-@mixin icon-hover {
-  background: $lightgray;
+@mixin hover($color) {
+  background: $color;
   transition: 0.3s;
   cursor: pointer;
+}
+
+@mixin btn-disabled {
+  cursor: not-allowed;
+  color: $gray;
+  background: $lightgray;
 }
 
 @mixin box {

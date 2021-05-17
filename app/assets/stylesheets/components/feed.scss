@@ -44,9 +44,8 @@
     margin: 8px 0;
     padding: 0;
 
-    header {
+    > header {
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
       position: relative;
       padding: 0 12px;
@@ -54,9 +53,8 @@
 
       > div {
         display: flex;
-        flex-direction: row;
 
-        p {
+        .gray-shade {
           font-size: 12px;
           color: $gray;
         }
@@ -80,7 +78,7 @@
         right: 5px;
 
         &:hover {
-          @include icon-hover;
+          @include hover($lightgray);
         }
       }
 
@@ -90,7 +88,7 @@
         position: absolute;
         right: 5px;
         top: 45px;
-        // z-index: 10;
+        z-index: 10;
 
         &.hide {
           display: none;

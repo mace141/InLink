@@ -22,11 +22,11 @@
     border-radius: 20px;
 
     &:hover {
-      @include icon-hover;
+      @include hover($lightgray);
     }
   }
 
-  #media-input {
+  #post-media-input {
     display: none;
   }
 }
@@ -64,9 +64,7 @@
       margin-left: 10px;
 
       &:disabled {
-        cursor: not-allowed;
-        color: $gray;
-        background: $lightgray;
+        @include btn-disabled;
       }
 
       &:enabled:hover {
