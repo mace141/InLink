@@ -19,7 +19,7 @@ class CommentIndexItem extends React.Component {
 
     if (this.state.timeAgo < 3600000) {
       setInterval(() => this.setState({ 
-        timeAgo: Date.now() - Date.parse(this.props.post.createdAt)}), 
+        timeAgo: Date.now() - Date.parse(this.props.comment.createdAt)}), 
         60000
       );
     }
