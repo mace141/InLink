@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  has_one_attached :media
+
   def self.find_by_credentials(email, password) 
     user = User.find_by(email: email)
     return user if user && user.is_password?(password)

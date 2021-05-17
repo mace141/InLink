@@ -3,6 +3,9 @@
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
 #                      root GET    /                                                                                        static_pages#root
 #           api_users_email GET    /api/users/email(.:format)                                                               api/users#email
+#   api_comments_root_count GET    /api/comments/root_count(.:format)                                                       api/comments#root_comment_count
+#  api_comments_reply_count GET    /api/comments/reply_count(.:format)                                                      api/comments#reply_comment_count
+#      api_likes_user_liked GET    /api/likes/user_liked(.:format)                                                          api/likes#user_liked
 #                 api_users POST   /api/users(.:format)                                                                     api/users#create {:format=>:json}
 #                  api_user GET    /api/users/:id(.:format)                                                                 api/users#show {:format=>:json}
 #                 api_posts GET    /api/posts(.:format)                                                                     api/posts#index {:format=>:json}
@@ -16,7 +19,8 @@
 #               api_comment PATCH  /api/comments/:id(.:format)                                                              api/comments#update {:format=>:json}
 #                           PUT    /api/comments/:id(.:format)                                                              api/comments#update {:format=>:json}
 #                           DELETE /api/comments/:id(.:format)                                                              api/comments#destroy {:format=>:json}
-#                 api_likes POST   /api/likes(.:format)                                                                     api/likes#create {:format=>:json}
+#                 api_likes GET    /api/likes(.:format)                                                                     api/likes#index {:format=>:json}
+#                           POST   /api/likes(.:format)                                                                     api/likes#create {:format=>:json}
 #                  api_like DELETE /api/likes/:id(.:format)                                                                 api/likes#destroy {:format=>:json}
 #               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>:json}
 #                           POST   /api/session(.:format)                                                                   api/sessions#create {:format=>:json}
@@ -39,6 +43,8 @@ Rails.application.routes.draw do
     resources :posts, except: [:edit, :new]
     resources :comments, only: [:index, :create, :update, :destroy]
     resources :likes, only: [:index, :create, :destroy]
+    resources :experiences, only: [:index, :create, :destroy]
+    resources :educations, only: [:index, :create, :destroy]
 
     resource :session, only: [:create, :destroy]
   end

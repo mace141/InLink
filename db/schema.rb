@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_132132) do
+ActiveRecord::Schema.define(version: 2021_05_17_201551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,35 @@ ActiveRecord::Schema.define(version: 2021_05_17_132132) do
     t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "educations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "school", null: false
+    t.string "degree"
+    t.string "field"
+    t.integer "start_year"
+    t.integer "end_year"
+    t.string "grade"
+    t.text "activities"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.string "employment_type"
+    t.string "company", null: false
+    t.string "location"
+    t.date "start_date", null: false
+    t.date "end_date"
+    t.string "industry"
+    t.string "headline"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
