@@ -24,11 +24,11 @@ export const updateEducation = education => (
     url: `/api/educations/${education.id}`,
     data: { education }
   })
-)
+);
 
 export const deleteEducation = educationId => (
   $.ajax({
     method: 'DELETE',
     url: `/api/educations/${educationId}`
   })
-)
+);

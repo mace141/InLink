@@ -5,14 +5,25 @@ import { logoutUser } from '../../actions/session';
 
 const LoggedIn = ({ logoutUser }) => (
   <>
-    <div className='left-nav-bar'>
+    <nav className='left-nav-bar'>
       <Link to='/'><img src={window.iconLogo} alt="InLink-icon-logo" className='InLink-icon-logo'/></Link>
       <h3>Left Nav Bar</h3>
-    </div>
-    <div className='right-nav-bar'>
-      <h3>Right Nav Bar</h3>
+    </nav>
+    <nav className='right-nav-bar'>
+      <Link to='/feed'>
+        <div className='nav-icon'>
+          <i className="fas fa-home"></i>
+          <p>Home</p>
+        </div>
+      </Link>
+      <Link to='/mynetwork'>
+        <div className='nav-icon'>
+          <i className="fas fa-user-friends"></i>
+          <p>My Network</p>
+        </div>
+      </Link>
       <button onClick={logoutUser}>Log Out</button>
-    </div>
+    </nav>
   </>
 );
 

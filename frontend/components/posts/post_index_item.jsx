@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteLike, receiveLike } from '../../actions/like';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
@@ -160,9 +161,11 @@ class PostIndexItem extends React.Component {
           <div>
             <h1>[PFP here]</h1>
             <div>
-              <p className='post-username gray-shade'>{name}</p>
-              <p className='post-user-headline gray-shade'>{postUser.headline}</p>
-              <p className='gray-shade'>{this.timeFromNow()}</p>
+              <Link to={`/users/${userId}`}>
+                <p className='post-username gray-shade'>{name}</p>
+                <p className='post-user-headline gray-shade'>{postUser.headline}</p>
+                <p className='gray-shade'>{this.timeFromNow()}</p>
+              </Link>
             </div>
           </div>
           {dropdown}

@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 4fr 9fr 5fr;
   grid-gap: 25px;
-  margin-top: 25px;
 
   .user-side-bar, .post-item, .right-side-bar, .start-post {
     @include box

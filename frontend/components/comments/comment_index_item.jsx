@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteComment } from '../../actions/comment';
 import { receiveLike, deleteLike } from '../../actions/like';
 import { fetchUser } from '../../actions/session';
@@ -178,10 +179,12 @@ class CommentIndexItem extends React.Component {
         <div>
           <div className='comment-body'>
             <header>
-              <div className='cmt-user-info'>
-                <p className='cmt-user-name gray-shade'>{name}</p>
-                <p className='cmt-user-headline gray-shade'>{headline}</p>
-              </div>
+              <Link to={`/users/${user.id}`}>
+                <div className='cmt-user-info'>
+                  <p className='cmt-user-name gray-shade'>{name}</p>
+                  <p className='cmt-user-headline gray-shade'>{headline}</p>
+                </div>
+              </Link>
               <div>
                 <span>{this.timeFromNow()}</span>
                 {dropdown}

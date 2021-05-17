@@ -24,11 +24,11 @@ export const updateExperience = experience => (
     url: `/api/experiences/${experience.id}`,
     data: { experience }
   })
-)
+);
 
 export const deleteExperience = experienceId => (
   $.ajax({
     method: 'DELETE',
     url: `/api/experiences/${experienceId}`
   })
-)
+);

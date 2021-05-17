@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { ProtectedRoute } from '../../util/route_util';
 import FeedContainer from '../feed/feed';
+import Profile from '../profile/profile'
 
 class Main extends React.Component {
   constructor(props) {
@@ -10,11 +10,13 @@ class Main extends React.Component {
 
   render() {
     return (
-      <ProtectedRoute exact path='/feed' component={FeedContainer}/>
+      <>
+        <ProtectedRoute exact path='/feed' component={FeedContainer}/>
+        <ProtectedRoute exact path='/users/:id' component={Profile}/>
+      </>
     )
   }
 }
 
-const MainContainer = connect()(Main);
 
-export default MainContainer;
+export default Main;
