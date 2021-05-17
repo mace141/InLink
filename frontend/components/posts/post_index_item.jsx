@@ -34,9 +34,7 @@ class PostIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    const { 
-      fetchUser, fetchUserLiked, post, currentUser
-    } = this.props;
+    const { fetchUser, fetchUserLiked, post, currentUser } = this.props;
     
     fetchUser(post.userId);
 
@@ -48,7 +46,7 @@ class PostIndexItem extends React.Component {
       if (like) {
         this.setState({ liked: true });
         this.setState({ like });
-        document.getElementsByClassName(`like-btn ${post.id}`)[0].classList.add('liked');
+        document.getElementsByClassName(`post like-btn ${post.id}`)[0].classList.add('liked');
       }
     })
   }
@@ -88,7 +86,7 @@ class PostIndexItem extends React.Component {
       deleteLike(this.state.like.id);
       this.setState({ liked: false });
       this.setState({ likeCount: this.state.likeCount - 1 });
-      document.getElementsByClassName(`like-btn ${id}`)[0].classList.remove('liked');
+      document.getElementsByClassName(`post like-btn ${id}`)[0].classList.remove('liked');
     } else {
       const newLike = {
         user_id: currentUser,
@@ -102,7 +100,7 @@ class PostIndexItem extends React.Component {
       });
       this.setState({ liked: true });
       this.setState({ likeCount: this.state.likeCount + 1 });
-      document.getElementsByClassName(`like-btn ${id}`)[0].classList.add('liked');
+      document.getElementsByClassName(`post like-btn ${id}`)[0].classList.add('liked');
     }
   }
 
@@ -115,7 +113,9 @@ class PostIndexItem extends React.Component {
   // fetch 10 more posts starting from saved updated time, order by updated time
   
   render() {
-    const { currentUser, openModal, deletePost, users, post: { id, body, mediaUrl, userId } } = this.props;
+    const { 
+      currentUser, openModal, deletePost, users, post: { id, body, mediaUrl, userId } 
+    } = this.props;
     let dropdown; let postUser; let name;
     
     if (users[userId]) {
@@ -174,8 +174,8 @@ class PostIndexItem extends React.Component {
           {likeCount} {commentCount}
         </div>
         <div className='like-comment'>
-          <button onClick={this.toggleLike} className={'like-btn ' + id}>
-            <i className={"far fa-thumbs-up " + id}></i>Like
+          <button onClick={this.toggleLike} className={'post like-btn ' + id}>
+            <i className="far fa-thumbs-up"></i>Like
           </button>
           <button onClick={this.openComments}>
             <i className="far fa-comment-dots"></i>Comment

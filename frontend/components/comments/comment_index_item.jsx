@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteComment } from '../../actions/comment';
+import { receiveLike, deleteLike } from '../../actions/like';
 import { fetchUser } from '../../actions/session';
+import { fetchUserLiked, createLike } from '../../util/like_api';
 import EditCommentFormContainer from './edit_comment';
 import ReplyFormContainer from './reply_form_container';
 import ReplyIndexContainer from './reply_index';
@@ -14,7 +16,11 @@ class CommentIndexItem extends React.Component {
       drop: false,
       edit: false,
       reply: false,
-      timeAgo: Date.now() - Date.parse(this.props.comment.createdAt)
+      timeAgo: Date.now() - Date.parse(this.props.comment.createdAt),
+      replyCount: this.props.comment.replies,
+      likeCount: this.props.comment.likes,
+      liked: false,
+      like: null
     }
 
     if (this.state.timeAgo < 3600000) {
@@ -29,10 +35,25 @@ class CommentIndexItem extends React.Component {
     this.openEdit = this.openEdit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
     this.openReply = this.openReply.bind(this);
+    this.toggleLike = this.toggleLike.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.comment.userId);
+    const { fetchUser, fetchUserLiked, comment, currentUser } = this.props;
+
+    fetchUser(comment.userId);
+
+    fetchUserLiked({ 
+      user_id: currentUser, 
+      likeable_id: comment.id,
+      likeable_type: 'Comment'
+    }).then(like => {
+      if (like) {
+        this.setState({ liked: true });
+        this.setState({ like });
+        document.getElementsByClassName(`cmt like-btn ${comment.id}`)[0].classList.add('liked');
+      }
+    })
   }
 
   timeFromNow() {
@@ -71,11 +92,38 @@ class CommentIndexItem extends React.Component {
     this.setState({ reply: true });
   }
 
+  toggleLike() {
+    const { comment: { id }, currentUser, createLikeAPI, deleteLike, dispatch } = this.props;
+
+    if (this.state.liked) {
+      deleteLike(this.state.like.id);
+      this.setState({ liked: false });
+      this.setState({ likeCount: this.state.likeCount - 1 });
+      document.getElementsByClassName(`cmt like-btn ${id}`)[0].classList.remove('liked');
+    } else {
+      const newLike = {
+        user_id: currentUser,
+        likeable_id: id,
+        likeable_type: 'Comment'
+      };
+
+      createLikeAPI(newLike).then(like => {
+        this.setState({ like });
+        dispatch(receiveLike(like));
+      });
+      this.setState({ liked: true });
+      this.setState({ likeCount: this.state.likeCount + 1 });
+      document.getElementsByClassName(`cmt like-btn ${id}`)[0].classList.add('liked');
+    }
+  }
+
   render() {
     const { 
-      openReply, isReply, user, currentUser, deleteComment, 
-      comment: { id, body, mediaUrl } 
+      openReply, isReply, user, currentUser, deleteComment, comment, postId, 
+      comment: { id, body, mediaUrl }, incrComCount
     } = this.props;
+    const { drop, edit, reply, replyCount, likeCount } = this.state;
+
     let dropdown; let commentUser; let name; let headline;
 
     if (user) {
@@ -87,7 +135,7 @@ class CommentIndexItem extends React.Component {
         dropdown = (
           <button onFocus={this.clicked} onBlur={this.leave}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
-            <ul className={'cmt-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
+            <ul className={'cmt-dropdown ' + (drop ? 'reveal' : 'hide')}>
               <li onClick={this.openEdit}><i className="far fa-edit"></i>Edit</li>
               <li onClick={() => deleteComment(id)}><i className="far fa-trash-alt"></i>Delete</li>
             </ul>
@@ -96,14 +144,22 @@ class CommentIndexItem extends React.Component {
       }
     } 
 
-    const editForm = this.state.edit ? (
-      <EditCommentFormContainer cancelEdit={this.cancelEdit} comment={this.props.comment}/>
+    const editForm = edit ? (
+      <EditCommentFormContainer cancelEdit={this.cancelEdit} comment={comment}/>
     ) : (
       <p>{body}</p>
     );
 
-    const replyForm = this.state.reply ? (
-      <ReplyFormContainer parentCommentId={id} postId={this.props.postId} incrComCount={this.props.incrComCount}/>
+    const replyForm = reply ? (
+      <ReplyFormContainer parentCommentId={id} postId={postId} incrComCount={incrComCount}/>
+    ) : null;
+
+    const numReplies = replyCount ? (reply ? null : `${replyCount} replies`) : null;
+
+    const numLikes = likeCount ? (
+      <>
+        <i className="far fa-thumbs-up small"></i>{likeCount}
+      </>
     ) : null;
     
     return (
@@ -125,9 +181,9 @@ class CommentIndexItem extends React.Component {
             {mediaUrl ? <img src={mediaUrl} alt="comment-image"/> : null}
             {this.state.edit ? null : ( 
               <div className='like-reply'>
-                <button>Like</button>
+                <button onClick={this.toggleLike} className={'cmt like-btn ' + id}>Like</button>{numLikes}
                 <div></div>
-                <button onClick={isReply ? openReply : this.openReply}>Reply</button>
+                <button onClick={isReply ? openReply : this.openReply}>Reply</button>{numReplies}
               </div>
             )}
           </div>
@@ -146,7 +202,12 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => 
 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
-  deleteComment: commentId => dispatch(deleteComment(commentId))
+  deleteComment: commentId => dispatch(deleteComment(commentId)),
+  fetchUserLiked: userId => fetchUserLiked(userId),
+  createLikeAPI: like => createLike(like),
+  receiveLike: like => receiveLike(like),
+  deleteLike: likeId => dispatch(deleteLike(likeId)),
+  dispatch
 });
 
 const CommentIndexItemContainer = connect(mapSTP, mapDTP)(CommentIndexItem);

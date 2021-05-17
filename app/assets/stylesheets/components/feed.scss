@@ -139,16 +139,20 @@
         }
       }
 
-      .liked {
-        color: $LIblue;
-
-        i {
-          color: $LIblue;
-        }
-      }
-
       i {
         margin-right: 5px;
+      }
+    }
+
+    .liked {
+      color: $LIblue;
+
+      i {
+        color: $LIblue;
+      }
+
+      & + i {
+        color: $LIblue;
       }
     }
   }
