@@ -3,12 +3,10 @@
   display: flex;
 
   > div {
-    padding-right: 20px;
     width: 100%;
   }
 
   .comment-body {
-    width: 100%;
     background: $lightergray;
     padding: 10px;
     border-top-right-radius: 8px;
