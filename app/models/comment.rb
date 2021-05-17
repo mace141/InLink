@@ -31,6 +31,7 @@ class Comment < ApplicationRecord
                          .limit(2)
                          .includes(:user)
                          .includes(:likes)
+                         .includes(:comments)
       return comments 
     else
       return []
@@ -46,6 +47,7 @@ class Comment < ApplicationRecord
                          .limit(10)
                          .includes(:user)
                          .includes(:likes)
+                         .includes(:comments)
       return comments
     else
       return []
@@ -60,6 +62,7 @@ class Comment < ApplicationRecord
                         .limit(1)
                         .includes(:user)
                         .includes(:likes)
+                        .includes(:comments)
       return comment 
     else
       return []
@@ -75,6 +78,7 @@ class Comment < ApplicationRecord
                          .limit(10)
                          .includes(:user)
                          .includes(:likes)
+                         .includes(:comments)
       return comments 
     else
       return []

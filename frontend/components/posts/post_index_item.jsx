@@ -23,6 +23,8 @@ class PostIndexItem extends React.Component {
       like: null
     };
 
+    debugger
+
     if (this.state.timeAgo < 3600000) {
       setInterval(() => this.setState({ timeAgo: Date.now() - Date.parse(this.props.post.createdAt)}), 60000);
     }
@@ -39,7 +41,7 @@ class PostIndexItem extends React.Component {
     
     fetchUser(post.userId);
     fetchCommentCount(post.id).then(count => this.setState({ commentCount: count }));
-    fetchPostNumLikes(post.id).then(count => this.setState({ likeCount: count }));
+    // fetchPostNumLikes(post.id).then(count => this.setState({ likeCount: count }));
 
     fetchUserLiked({ 
       user_id: currentUser, 
