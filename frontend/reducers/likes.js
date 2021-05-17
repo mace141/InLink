@@ -7,8 +7,8 @@ const likesReducer = (state = {}, action) => {
     case RECEIVE_LIKES:
       return { ...state, ...action.likes };
     case RECEIVE_LIKE:
-      debugger
-      return { ...state, ...action.like };
+      const { id } = action.like;
+      return { ...state, [id]: action.like };
     case REMOVE_LIKE:
       let nextState = { ...state };
       delete nextState[action.likeId];

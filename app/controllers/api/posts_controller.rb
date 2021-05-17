@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController 
   def index 
-    @posts = Post.all
+    @posts = Post.all.includes(:likes)
 
     # INFINITE SCROLLING: 
     # fetch 10 posts by connections, order by created time. save the created time of the last post

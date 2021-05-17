@@ -30,6 +30,7 @@ class Comment < ApplicationRecord
       comments = comments.order(created_at: :desc)
                          .limit(2)
                          .includes(:user)
+                         .includes(:likes)
       return comments 
     else
       return []
@@ -44,6 +45,7 @@ class Comment < ApplicationRecord
                          .offset(offset * 10)
                          .limit(10)
                          .includes(:user)
+                         .includes(:likes)
       return comments
     else
       return []
@@ -54,7 +56,10 @@ class Comment < ApplicationRecord
     comments = Comment.where(parent_comment_id: parent_comment_id)
     
     if comments 
-      comment = comments.order(created_at: :desc).limit(1).includes(:user)
+      comment = comments.order(created_at: :desc)
+                        .limit(1)
+                        .includes(:user)
+                        .includes(:likes)
       return comment 
     else
       return []
@@ -69,6 +74,7 @@ class Comment < ApplicationRecord
                          .offset(offset * 10)
                          .limit(10)
                          .includes(:user)
+                         .includes(:likes)
       return comments 
     else
       return []
