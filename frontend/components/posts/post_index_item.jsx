@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
+import { fetchPostLikes } from '../../util/like_api';
 import { fetchCommentCount } from '../../util/post_api';
 import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexContainer from '../comments/comment_index';
@@ -15,7 +16,8 @@ class PostIndexItem extends React.Component {
       drop: false,
       comment: false,
       timeAgo: Date.now() - Date.parse(this.props.post.createdAt),
-      commentCount: null
+      commentCount: null,
+      likeCount: null
     };
 
     if (this.state.timeAgo < 3600000) {
@@ -26,9 +28,11 @@ class PostIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchCommentCount, post } = this.props
+    const { fetchUser, fetchCommentCount, fetchPostLikes, post } = this.props;
+
     fetchUser(post.userId);
-    fetchCommentCount(post.id).then(count => this.setState({ commentCount: count }))
+    fetchCommentCount(post.id).then(count => this.setState({ commentCount: count }));
+    fetchPostLikes(post.id).then(count => this.setState({ likeCount: count }));
   }
 
   timeFromNow() {
@@ -97,7 +101,12 @@ class PostIndexItem extends React.Component {
       </div>
     ) : null;
 
-    const commentCount = this.state.commentCount ? `| ${this.state.commentCount} comments` : null;
+    const commentCount = this.state.commentCount ? `${this.state.commentCount} comments` : null;
+    const likeCount = this.state.likeCount ? (
+      <>
+        <i className="far fa-thumbs-up"></i>{this.state.likeCount}{commentCount ? ' | ' : null}
+      </>
+    ) : null;
     
     return (
       <div className='post-item'>
@@ -115,7 +124,7 @@ class PostIndexItem extends React.Component {
         <p>{body}</p>
         <img src={mediaUrl} alt=""/>
         <div className='num-lc'>
-          [numLikes] {commentCount}
+          {likeCount} {commentCount}
         </div>
         <div className='like-comment'>
           <button><i className="far fa-thumbs-up"></i>Like</button>
@@ -137,7 +146,8 @@ const mapDTP = dispatch => ({
   editPost: post => dispatch(editPost(post)),
   fetchUser: userId => dispatch(fetchUser(userId)),
   openModal: (modal, id) => dispatch(openModal(modal, id)),
-  fetchCommentCount: postId => fetchCommentCount(postId)
+  fetchCommentCount: postId => fetchCommentCount(postId),
+  fetchPostLikes: postId => fetchPostLikes(postId)
 });
 
 const PostIndexItemContainer = connect(mapSTP, mapDTP)(PostIndexItem)
