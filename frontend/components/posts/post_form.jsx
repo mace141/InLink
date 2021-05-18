@@ -126,7 +126,7 @@ class PostForm extends React.Component {
                 <h2>[PFP here]</h2><h2>{this.props.name}</h2>
               </div>
               <div className='textarea'>
-                <textarea cols="30" rows="10" placeholder='What do you want to talk about?' value={this.state.body} onInput={this.handleInput}></textarea>
+                <textarea placeholder='What do you want to talk about?' value={this.state.body} onChange={this.handleInput}></textarea>
               </div>
               <div className='image-body'>
                 {closeImageBtn}

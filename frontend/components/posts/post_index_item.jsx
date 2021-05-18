@@ -6,7 +6,7 @@ import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
 import { fetchUser } from '../../actions/session';
 import { createLike, fetchUserLiked } from '../../util/like_api';
-import CommentFormContainer from '../comments/comment_form_container';
+import CreateCommentForm from '../comments/create_comment_form';
 import CommentIndexContainer from '../comments/comment_index';
 
 class PostIndexItem extends React.Component {
@@ -140,7 +140,7 @@ class PostIndexItem extends React.Component {
     const commentSection = comment ? (
       <div className='comment-section'>
         <div>
-          <CommentFormContainer postId={id} incrComCount={this.incrementCommentCount}/>
+          <CreateCommentForm postId={id} incrComCount={this.incrementCommentCount}/>
         </div>
         <div>
           <CommentIndexContainer postId={id} incrComCount={this.incrementCommentCount}/>

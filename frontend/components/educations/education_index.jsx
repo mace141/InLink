@@ -20,7 +20,7 @@ class EducationIndex extends React.Component {
         </button>
         <ul>
           {this.props.educations.map(edu => (
-            <EducationIndexItemContainer education={edu}/>
+            <EducationIndexItemContainer key={edu.id} education={edu}/>
             ))}
         </ul>
       </div>

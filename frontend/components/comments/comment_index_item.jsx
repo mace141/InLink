@@ -5,7 +5,7 @@ import { deleteComment } from '../../actions/comment';
 import { receiveLike, deleteLike } from '../../actions/like';
 import { fetchUser } from '../../actions/session';
 import { fetchUserLiked, createLike } from '../../util/like_api';
-import EditCommentFormContainer from './edit_comment';
+import EditCommentFormContainer from './edit_comment_form';
 import ReplyFormContainer from './reply_form_container';
 import ReplyIndexContainer from './reply_index';
 

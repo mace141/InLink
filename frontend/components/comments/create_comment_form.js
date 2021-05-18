@@ -11,6 +11,6 @@ const mapDTP = dispatch => ({
   createComment: comment => dispatch(createComment(comment))
 });
 
-const CommentFormContainer = connect(mapSTP, mapDTP)(CommentForm);
+const CreateCommentForm = connect(mapSTP, mapDTP)(CommentForm);
 
-export default CommentFormContainer;
+export default CreateCommentForm;

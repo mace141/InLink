@@ -10,7 +10,7 @@ const EducationIndexItem = ({ education, openModal }) => {
       <p className='edu-degree'>{education.degree}</p>
       <p className='edu-year'>{education.startYear} - {education.endYear}</p>
       <button onClick={() => openModal('editEdu', education.id)}>
-        <i class="fas fa-pencil-alt"></i>
+        <i className="fas fa-pencil-alt"></i>
       </button>
     </div>
   )

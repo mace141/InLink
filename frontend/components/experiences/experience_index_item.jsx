@@ -10,7 +10,7 @@ const ExperienceIndexItem = ({ experience, openModal }) => {
       <p className='exp-company'>{experience.company}</p>
       <p className='exp-time'>{experience.startDate} - {experience.endDate}</p>
       <button onClick={() => openModal('editExp', experience.id)}>
-        <i class="fas fa-pencil-alt"></i>
+        <i className="fas fa-pencil-alt"></i>
       </button>
     </div>
   )
