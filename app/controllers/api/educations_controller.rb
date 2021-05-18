@@ -1,6 +1,6 @@
 class Api::EducationsController < ApplicationController
   def index 
-    @educations = Education.find_by(user_id: params[:user_id])
+    @educations = Education.where(user_id: params[:user_id])
   end
 
   def create

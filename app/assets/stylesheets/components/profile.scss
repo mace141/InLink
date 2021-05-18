@@ -9,7 +9,7 @@
     border: 1px solid $lightgray;
     border-radius: 8px;
 
-    .user-bg-img, .user-details {
+    .user-bg-img {
       height: 150px;
       width: auto;
     }
@@ -47,4 +47,58 @@
       }
     }
   }
+}
+
+.exp-edu-sect {
+  margin-top: 12px;
+  padding: 20px;
+
+  .edu-index {
+    border-top: 1px solid $lightgray;
+  }
+
+  .exp-index, .edu-index {
+    position: relative;
+
+    h1 {
+      font-size: 20px;
+    }
+    
+    .exp-item, .edu-item {
+      margin: 15px 0;
+      position: relative;
+      
+      .exp-title, .edu-school {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .exp-company, .exp-time, .edu-degree, .edu-year {
+        font-size: 14px;
+      }
+
+      .exp-time, .edu-year {
+        color: $gray;
+      }
+    }
+  }
+}
+
+.fas.fa-pencil-alt, .fas.fa-plus {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 30px;
+  color: $gray;
+  
+  &:hover {
+    background: $lightergray;
+    transition: 0.3s;
+  }
+}
+
+.fas.fa-plus {
+  padding: 8px 10px;
 }
