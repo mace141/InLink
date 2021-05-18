@@ -49,8 +49,8 @@ Rails.application.routes.draw do
     resources :posts, except: [:edit, :new]
     resources :comments, only: [:index, :create, :update, :destroy]
     resources :likes, only: [:index, :create, :destroy]
-    resources :experiences, only: [:index, :create, :destroy]
-    resources :educations, only: [:index, :create, :destroy]
+    resources :experiences, only: [:index, :create, :update, :destroy]
+    resources :educations, only: [:index, :create, :update, :destroy]
 
     resource :session, only: [:create, :destroy]
   end

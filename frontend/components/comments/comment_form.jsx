@@ -78,7 +78,7 @@ class CommentForm extends React.Component {
     });
     document.getElementById('cmt-media-input').value = "";
     incrComCount();
-    incrRepCount();
+    incrRepCount ? incrRepCount() : null;
   }
   
   render() {

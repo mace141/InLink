@@ -1,9 +1,14 @@
 .header {
   background: white;
 
+  div.icon-logo {
+    width: 60px;
+  }
+
   .InLink-full-logo, .InLink-icon-logo {
-    height: 60px; 
+    height: 45px; 
     width: auto;
+    margin: 0 auto;
   }
 
   &.logged-in {
@@ -27,7 +32,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  width: 80px;
+  width: 75px;
   color: $gray;
 
   p {
@@ -38,13 +43,64 @@
     font-size: 24px;
   }
 
-  // .fa-user-friends {
-  //   font-size: 25px;
-  // }
-
   &:hover {
     color: black;
     transition: 0.3s;
     cursor: pointer;
+  }
+}
+
+.left-nav-bar i { 
+  font-size: 30px;
+}
+
+.user-sesh-btn {
+  position: relative;
+
+  .header-dropdown {
+    position: absolute;
+    top: 45px;
+    left: -180px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0px 3px 8px 3px rgba(204, 204, 204, 0.7);
+    width: 275px;
+
+    li {
+      padding: 12px;
+      border-top: 1px solid $lightgray;
+    }
+
+    li:first-child {
+      display: flex;
+      flex-direction: column;
+
+      > div {
+        display: flex;
+
+        img {
+          height: 50px;
+          width: auto;
+        }
+        
+        p:first-child {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+      .pf-btn {
+        margin: 0 auto;
+        padding: 5px;
+        color: $LIblue;
+        border: 1px solid $LIblue;
+        border-radius: 24px;
+        text-align: center;
+
+        &:hover {
+          @include btn-hover-border($LIblue, white)
+        }
+      }
+    }
   }
 }

@@ -70,7 +70,7 @@ class EducationForm extends React.Component {
           <div className='school-years-signup'>
             <div className='school-year-signup' >
               <label>Start year</label>
-              <select className={'yr-selector-signup'} onChange={this.handleInput('start_year')}>
+              <select className={'yr-selector-signup'} onChange={this.handleInput('startYear')}>
                 {years.map(yr => {
                   if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
                 })}
@@ -79,7 +79,7 @@ class EducationForm extends React.Component {
 
             <div className='school-year-signup'>
               <label>End year (or expected)</label>
-              <select className={'yr-selector-signup'} onChange={this.handleInput('end_year')}>
+              <select className={'yr-selector-signup'} onChange={this.handleInput('endYear')}>
                 {years.map(yr => (
                   <option key={yr} value={yr}>{yr}</option>
                 ))}

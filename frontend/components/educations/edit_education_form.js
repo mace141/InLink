@@ -8,7 +8,7 @@ const mapSTP = ({ entities: { educations }, ui: { filter } }) => ({
 });
 
 const mapDTP = dispatch => ({
-  updateEducation: education => dispatch(updateEducation(education))
+  processForm: education => dispatch(updateEducation(education))
 });
 
 const EditEducationForm = connect(mapSTP, mapDTP)(EducationForm);
