@@ -39,7 +39,12 @@ class EducationForm extends React.Component {
     this.setState({ yearErr: false });
 
     if (!this.handleErrors()) {
-      this.props.processForm(this.state);
+      this.props.processForm({
+        ...this.state,
+        user_id: this.state.userId,
+        start_year: this.state.startYear,
+        end_year: this.state.endYear
+      });
       this.props.closeModal();
     }
   }
@@ -67,19 +72,18 @@ class EducationForm extends React.Component {
           <input type="text" value={degree} onChange={this.handleInput('degree')}/>
           <label>Field of study</label>
           <input type="text" value={field} onChange={this.handleInput('field')}/>
-          <div className='school-years-signup'>
-            <div className='school-year-signup' >
+          <div className='school-years-form'>
+            <div className='school-year-form'>
               <label>Start year</label>
-              <select className={'yr-selector-signup'} onChange={this.handleInput('startYear')}>
+              <select className={'yr-selector-form'} onChange={this.handleInput('startYear')}>
                 {years.map(yr => {
                   if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
                 })}
               </select>
             </div>
-
-            <div className='school-year-signup'>
+            <div className='school-year-form'>
               <label>End year (or expected)</label>
-              <select className={'yr-selector-signup'} onChange={this.handleInput('endYear')}>
+              <select className={'yr-selector-form'} onChange={this.handleInput('endYear')}>
                 {years.map(yr => (
                   <option key={yr} value={yr}>{yr}</option>
                 ))}
@@ -93,7 +97,6 @@ class EducationForm extends React.Component {
           <textarea value={activities} onChange={this.handleInput('activities')}/>
           <label>Description</label>
           <textarea value={description} onChange={this.handleInput('description')}/>
-
         </form>
         <footer className='exp-edu-footer'>
           <button onClick={this.handleSubmit}>Save</button>

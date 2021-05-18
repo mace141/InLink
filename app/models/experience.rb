@@ -1,5 +1,5 @@
 class Experience < ApplicationRecord
-  validates :title, :company, :start_date, presence: true 
+  validates :title, :company, presence: true 
 
   belongs_to :user
 end
