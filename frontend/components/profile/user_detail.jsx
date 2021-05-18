@@ -3,17 +3,24 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const UserDetail = ({ user }) => (
-  <div>
-    <div className='user-bg-img'></div>
+  <div className='user-pf-ctnr'>
+    <div className='user-bg-img'>BackgroundImage</div>
     <div className='user-details'>
       <div className='pf-user-info'>
-        <h1>{`${user.fname} ${user.lname}`}</h1>
-        <h2>{user.headline}</h2>
-        <h3>{user.location}</h3>
+        <img src={user.profileUrl} alt="User Profile Pic"/>
+        <div>
+          <h1>{`${user.fname} ${user.lname}`}</h1>
+        </div>
+        <div>
+          <h2>{user.headline}</h2>
+        </div>
+        <div>
+          <h3>{user.location}</h3>
+        </div>
       </div>
       <div className='pf-user-hist'>
-        <p>most recent work</p>
-        <p>most recent education</p>
+        <p>Most recent work</p>
+        <p>Most recent education</p>
       </div>
     </div>
   </div>

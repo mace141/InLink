@@ -8,14 +8,14 @@ const Feed = ({ currentUser, openModal }) => {
   return (
     <section className='feed-section'>
       <div>
-        <aside className='user-side-bar'>
+        <aside className='user-side-bar whitebox'>
           <p>[Insert PFP here]</p>
           <p>{fname + ' ' + lname}</p>
           <p>{headline}</p>
         </aside>
       </div>
       <section className='posts-section'>
-        <div className='start-post'>
+        <div className='start-post whitebox'>
           <h1>[User PFP here]</h1>
           <button onClick={() => openModal('createPost')}>Start a post</button>
         </div>
@@ -23,7 +23,7 @@ const Feed = ({ currentUser, openModal }) => {
         <PostIndexContainer/>
       </section>
       <div>
-        <aside className='right-side-bar'>
+        <aside className='right-side-bar whitebox'>
           Daniel's Fun Facts
         </aside>
       </div>

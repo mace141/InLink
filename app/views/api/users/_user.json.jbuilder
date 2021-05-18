@@ -1,6 +1,6 @@
 json.key_format! camelize: :lower
 json.extract! user, :id, :email, :fname, :lname, :location, :headline, :industry, :summary
 
-if user.media.attached?
-  json.mediaUrl url_for(user.media)
+if user.profile_pic.attached?
+  json.profileUrl url_for(user.profile_pic)
 end

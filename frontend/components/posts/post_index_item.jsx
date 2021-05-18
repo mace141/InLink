@@ -156,7 +156,7 @@ class PostIndexItem extends React.Component {
     ) : null;
     
     return (
-      <div className='post-item'>
+      <div className='post-item whitebox'>
         <header>
           <div>
             <h1>[PFP here]</h1>

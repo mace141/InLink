@@ -19,8 +19,8 @@ const removeExperience = experienceId => ({
   experienceId
 });
 
-export const fetchExperiences = () => dispatch => (
-  ExperienceAPI.fetchExperiences().then(
+export const fetchExperiences = userId => dispatch => (
+  ExperienceAPI.fetchExperiences(userId).then(
     experiences => dispatch(receiveExperiences(experiences))
   )
 );

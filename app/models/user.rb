@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :experiences, dependent: :destroy
   has_many :educations, dependent: :destroy
 
-  has_one_attached :media, dependent: :destroy
+  has_one_attached :profile_pic, dependent: :destroy
 
   def self.find_by_credentials(email, password) 
     user = User.find_by(email: email)

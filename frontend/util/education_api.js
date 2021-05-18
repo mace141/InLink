@@ -1,6 +1,7 @@
-export const fetchEducations = () => (
+export const fetchEducations = user_id => (
   $.ajax({
-    url: '/api/educations'
+    url: '/api/educations',
+    data: { user_id }
   })
 );
 

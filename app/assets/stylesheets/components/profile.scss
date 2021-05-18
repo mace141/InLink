@@ -1,0 +1,50 @@
+.profile-page-ctnr {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  grid-gap: 25px;
+
+  .user-pf-ctnr {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $lightgray;
+    border-radius: 8px;
+
+    .user-bg-img, .user-details {
+      height: 150px;
+      width: auto;
+    }
+
+    .user-details {
+      display: flex;
+      justify-content: space-between;
+      background: white;
+      padding: 20px;
+      padding-top: 50px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+
+      .pf-user-info {
+        position: relative;
+
+        img {
+          position: absolute;
+          top: -60px;
+        }
+
+        h1 {
+          font-size: 22px;
+          font-weight: 500;
+        }
+
+        h2 {
+          margin-bottom: 3px;
+        }
+        
+        h3 {
+          font-size: 14px;
+          color: $gray;
+        }
+      }
+    }
+  }
+}
