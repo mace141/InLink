@@ -4,19 +4,19 @@ import { openModal } from '../../actions/modal';
 import PostIndexContainer from '../posts/post_index';
 
 const Feed = ({ currentUser, openModal }) => {
-  const { fname, lname, headline } = currentUser;
+  const { fname, lname, headline, profileUrl } = currentUser;
   return (
     <section className='feed-section'>
       <div>
         <aside className='user-side-bar whitebox'>
-          <p>[Insert PFP here]</p>
+          <img src={currentUser.profileUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/>
           <p>{fname + ' ' + lname}</p>
           <p>{headline}</p>
         </aside>
       </div>
       <section className='posts-section'>
         <div className='start-post whitebox'>
-          <h1>[User PFP here]</h1>
+          <img src={profileUrl || window.defaultUser} alt="Profile Pic" className='pfp'/>
           <button onClick={() => openModal('createPost')}>Start a post</button>
         </div>
         <div className='feed-div'></div>

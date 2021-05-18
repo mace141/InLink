@@ -102,3 +102,24 @@
 .fas.fa-plus {
   padding: 8px 10px;
 }
+
+.pfp {
+  height: 50px;
+  width: auto;
+  
+  &.small {
+    height: 40px;
+  }
+
+  &.smaller {
+    height: 30px;
+  }
+
+  &.big {
+    height: 65px;
+  }
+
+  &.large {
+    height: 100px;
+  }
+}

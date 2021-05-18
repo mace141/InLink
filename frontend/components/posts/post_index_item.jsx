@@ -125,7 +125,7 @@ class PostIndexItem extends React.Component {
       if (postUser.id == currentUser) {
         dropdown = (
           <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis" className='ellipsis'/>
             <ul className={'post-dropdown ' + (drop ? 'reveal' : 'hide')}>
               <li onClick={() => openModal('editPost', id)}><i className="far fa-edit"></i>Edit Post</li>
               <li onClick={() => deletePost(id)}><i className="far fa-trash-alt"></i>Delete Post</li>
@@ -136,6 +136,8 @@ class PostIndexItem extends React.Component {
     } else {
       postUser = { headline: "" };
     }
+
+    const profile = postUser.profileUrl || window.defaultUser;
 
     const commentSection = comment ? (
       <div className='comment-section'>
@@ -159,7 +161,7 @@ class PostIndexItem extends React.Component {
       <div className='post-item whitebox'>
         <header>
           <div>
-            <h1>[PFP here]</h1>
+            <img src={profile} alt="Profile Pic" className='pfp'/>
             <div>
               <Link to={`/users/${userId}`}>
                 <p className='post-username gray-shade'>{name}</p>

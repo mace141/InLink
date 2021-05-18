@@ -129,6 +129,7 @@ class CommentIndexItem extends React.Component {
       comment: { id, body, mediaUrl }, incrComCount
     } = this.props;
     const { drop, edit, reply, replyCount, likeCount } = this.state;
+    const profile = user.profileUrl || window.defaultUser;
 
     let dropdown; let commentUser; let name; let headline;
 
@@ -175,7 +176,7 @@ class CommentIndexItem extends React.Component {
     
     return (
       <div className='comment-item'>
-        <h2>[PFP here]</h2>
+        <img src={profile} alt="Profile Pic" className={'pfp small'}/>
         <div>
           <div className='comment-body'>
             <header>

@@ -25,6 +25,7 @@ class LoggedIn extends React.Component {
 
   render() {
     const { user, logoutUser } = this.props;
+    const profile = user.profileUrl || window.defaultUser;
 
     return (
       <>
@@ -59,11 +60,11 @@ class LoggedIn extends React.Component {
             </div>
           </Link>
           <button onFocus={this.clicked} onBlur={this.leave} className='user-sesh-btn'>
-            <img src={user.profileUrl} alt="Profile Pic"/>
+            <img src={profile} alt="Profile Pic" className='pfp smaller'/>
             <ul className={'header-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
               <li>
                 <div>
-                  <img src={user.profileUrl} alt="Profile Pic"/>
+                  <img src={profile} alt="Profile Pic" className='pfp'/>
                   <div>
                     <p>{`${user.fname} ${user.lname}`}</p>
                     <p>{user.headline}</p>

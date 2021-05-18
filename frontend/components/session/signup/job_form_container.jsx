@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createUser, receiveUserJob } from '../../../actions/session';
+import { createUser } from '../../../util/session_api';
+import { receiveUserJob, receiveCurrentUser } from '../../../actions/session';
+import { createExperience } from '../../../actions/experience';
 
 class JobForm extends React.Component {
   constructor(props) {
@@ -34,12 +36,19 @@ class JobForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    const { 
+      receiveUserJob, createUser, createExperience, user, dispatch, receiveCurrentUser 
+    } = this.props;
     const job = {
       headline: this.state.jobTitle + ' at ' + this.state.company,
       industry: this.state.company
     };
-    this.props.receiveUserJob(Object.assign({}, this.state, job));
-    this.props.createUser(this.props.user);
+    receiveUserJob(Object.assign({}, this.state, job));
+
+    createUser(user).then(userRes => {
+      dispatch(receiveCurrentUser(userRes));
+      createExperience({ ...user, user_id: userRes.id });
+    });
   }
 
   render() {
@@ -82,7 +91,10 @@ const mapSTP = ({ session: { signup } }) => ({
 
 const mapDTP = dispatch => ({
   receiveUserJob: job => dispatch(receiveUserJob(job)),
-  createUser: user => dispatch(createUser(user))
+  createUser: user => createUser(user),
+  receiveCurrentUser: user => receiveCurrentUser(user),
+  createExperience: experience => dispatch(createExperience(experience)),
+  dispatch
 });
 
 const JobFormContainer = connect(mapSTP, mapDTP)(JobForm);

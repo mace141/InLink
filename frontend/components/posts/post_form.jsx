@@ -41,6 +41,7 @@ class PostForm extends React.Component {
 
   handleFile(e) {
     const file = e.target.files[0];
+    
     const fileReader = new FileReader();
     // will run when file is read
     fileReader.onloadend = () => {
@@ -122,8 +123,8 @@ class PostForm extends React.Component {
           </header>
           <form onSubmit={this.handleSubmit} className='post-form'>
             <div className='post-body'>
-              <div className=''>
-                <h2>[PFP here]</h2><h2>{this.props.name}</h2>
+              <div>
+                <img src={this.props.user.profileUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/><h2>{this.props.name}</h2>
               </div>
               <div className='textarea'>
                 <textarea placeholder='What do you want to talk about?' value={this.state.body} onChange={this.handleInput}></textarea>
