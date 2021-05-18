@@ -161,7 +161,7 @@ class PostIndexItem extends React.Component {
       <div className='post-item whitebox'>
         <header>
           <div>
-            <img src={profile} alt="Profile Pic" className='pfp'/>
+            <Link to={`/users/${userId}`}><img src={profile} alt="Profile Pic" className='pfp'/></Link>
             <div>
               <Link to={`/users/${userId}`}>
                 <p className='post-username gray-shade'>{name}</p>

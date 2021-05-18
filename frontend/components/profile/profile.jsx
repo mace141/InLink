@@ -7,9 +7,13 @@ const Profile = () => (
   <div className='profile-page-ctnr'>
     <div className='user-section'>
       <UserDetailContainer/>
-      <div className='whitebox exp-edu-sect'>
-        <ExperienceIndexContainer/>
-        <EducationIndexContainer/>
+      <div className='exp-edu-sect'>
+        <div>
+          <ExperienceIndexContainer/>
+        </div>
+        <div className='edu-div'>
+          <EducationIndexContainer/>
+        </div>
       </div>
     </div>
     <div className='suggested-connections whitebox'>

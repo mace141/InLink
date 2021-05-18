@@ -7,7 +7,7 @@ const UserDetail = ({ user }) => (
     <div className='user-bg-img'>BackgroundImage</div>
     <div className='user-details'>
       <div className='pf-user-info'>
-        <img src={user.profileUrl} alt="User Profile Pic"/>
+        <img src={user.profileUrl || window.defaultUser} alt="Profile Pic" className='pfp large'/>
         <div>
           <h1>{`${user.fname} ${user.lname}`}</h1>
         </div>

@@ -5,6 +5,8 @@ import CreatePostForm from '../posts/create_post_form';
 import EditPostFormContainer from '../posts/edit_post_form';
 import CreateEducationForm from '../educations/create_education_form';
 import EditEducationForm from '../educations/edit_education_form';
+import CreateExperienceForm from '../experiences/create_experience_form';
+import EditExperienceForm from '../experiences/edit_experience_form';
 
 const Modal = ({modal, closeModal}) => {
   if (!modal) return null;
@@ -22,6 +24,12 @@ const Modal = ({modal, closeModal}) => {
       break;
     case 'editEdu':
       component = <EditEducationForm closeModal={closeModal}/>;
+      break;
+    case 'createExp':
+      component = <CreateExperienceForm closeModal={closeModal}/>;
+      break;
+    case 'editExp':
+      component = <EditExperienceForm closeModal={closeModal}/>;
       break;
     default:
       return null;

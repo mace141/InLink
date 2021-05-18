@@ -4,12 +4,12 @@ import EducationForm from './education_form';
 
 const mapSTP = ({ session: { currentUser } }) => ({
   education: {
-    user_id: currentUser,
+    userId: currentUser,
     school: "",
     degree: "",
     field: "",
-    start_year: 2021,
-    end_year: 2031,
+    startYear: 2021,
+    endYear: 2031,
     grade: "",
     activities: "",
     description: ""

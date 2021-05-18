@@ -28,7 +28,7 @@
 
         img {
           position: absolute;
-          top: -60px;
+          top: -120px;
         }
 
         h1 {
@@ -51,14 +51,13 @@
 
 .exp-edu-sect {
   margin-top: 12px;
-  padding: 20px;
-
-  .edu-index {
-    border-top: 1px solid $lightgray;
-  }
+  background: white;
+  border-radius: 8px;
+  border: 1px solid $lightgray;
 
   .exp-index, .edu-index {
     position: relative;
+    padding: 20px;
 
     h1 {
       font-size: 20px;
@@ -101,6 +100,8 @@
 
 .fas.fa-plus {
   padding: 8px 10px;
+  right: 20px;
+  top: 20px;
 }
 
 .pfp {
@@ -116,10 +117,10 @@
   }
 
   &.big {
-    height: 65px;
+    height: 70px;
   }
 
   &.large {
-    height: 100px;
+    height: 120px;
   }
 }

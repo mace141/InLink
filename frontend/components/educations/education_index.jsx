@@ -18,6 +18,8 @@ class EducationIndex extends React.Component {
       </button>
     ) : null;
 
+    // if (!educations.length) return null;
+
     return (
       <div className='edu-index'>
         <h1>Education</h1>
