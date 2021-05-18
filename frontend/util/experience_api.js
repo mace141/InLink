@@ -1,6 +1,7 @@
-export const fetchExperiences = () => (
+export const fetchExperiences = user_id => (
   $.ajax({
-    url: '/api/experiences'
+    url: '/api/experiences',
+    data: { user_id }
   })
 );
 

@@ -1,5 +1,5 @@
-@experiences.each do |experience|
-  json.set! experience.id do 
-    json.partial! '/api/experiences/experience', experience: experience
+@educations.each do |education|
+  json.set! education.id do 
+    json.partial! '/api/educations/education', education: education
   end
 end

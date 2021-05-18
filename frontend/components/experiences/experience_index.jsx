@@ -5,11 +5,11 @@ import { fetchExperiences } from '../../actions/experience';
 
 class ExperienceIndex extends React.Component {
   componentDidMount() {
-    fetchExperiences(this.props.match.params.id);
+    this.props.fetchExperiences(this.props.match.params.id);
   }
 
   render() {
-    debugger
+    
     return (
       <ul>
         {this.props.experiences.map(exp => (

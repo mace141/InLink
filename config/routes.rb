@@ -22,6 +22,12 @@
 #                 api_likes GET    /api/likes(.:format)                                                                     api/likes#index {:format=>:json}
 #                           POST   /api/likes(.:format)                                                                     api/likes#create {:format=>:json}
 #                  api_like DELETE /api/likes/:id(.:format)                                                                 api/likes#destroy {:format=>:json}
+#           api_experiences GET    /api/experiences(.:format)                                                               api/experiences#index {:format=>:json}
+#                           POST   /api/experiences(.:format)                                                               api/experiences#create {:format=>:json}
+#            api_experience DELETE /api/experiences/:id(.:format)                                                           api/experiences#destroy {:format=>:json}
+#            api_educations GET    /api/educations(.:format)                                                                api/educations#index {:format=>:json}
+#                           POST   /api/educations(.:format)                                                                api/educations#create {:format=>:json}
+#             api_education DELETE /api/educations/:id(.:format)                                                            api/educations#destroy {:format=>:json}
 #               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>:json}
 #                           POST   /api/session(.:format)                                                                   api/sessions#create {:format=>:json}
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show

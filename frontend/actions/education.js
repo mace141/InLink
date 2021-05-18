@@ -19,8 +19,8 @@ const removeEducation = educationId => ({
   educationId
 });
 
-export const fetchEducations = () => dispatch => (
-  EducationAPI.fetchEducations().then(
+export const fetchEducations = userId => dispatch => (
+  EducationAPI.fetchEducations(userId).then(
     educations => dispatch(receiveEducations(educations))
   )
 );
