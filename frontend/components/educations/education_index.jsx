@@ -11,15 +11,19 @@ class EducationIndex extends React.Component {
   }
 
   render() {
-    
+    const { currentUser, match, openModal, educations } = this.props;
+    const newEduBtn = currentUser == match.params.id ? (
+      <button onClick={() => openModal('createEdu')} className='open-edu'>
+        <i className="fas fa-plus"></i>
+      </button>
+    ) : null;
+
     return (
       <div className='edu-index'>
         <h1>Education</h1>
-        <button onClick={() => this.props.openModal('createEdu')} className='open-edu'>
-          <i className="fas fa-plus"></i>
-        </button>
+        {newEduBtn}
         <ul>
-          {this.props.educations.map(edu => (
+          {educations.map(edu => (
             <EducationIndexItemContainer key={edu.id} education={edu}/>
             ))}
         </ul>
@@ -28,13 +32,14 @@ class EducationIndex extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { educations } }, ownProps) => {
+const mapSTP = ({ entities: { educations }, session: { currentUser } }, ownProps) => {
   const mappedEdu = Object.values(educations).filter(
     edu => edu.userId == ownProps.match.params.id
   );
 
   return {
-    educations: mappedEdu
+    educations: mappedEdu,
+    currentUser
   };
 };
 
