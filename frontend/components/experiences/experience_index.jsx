@@ -6,10 +6,6 @@ import { openModal } from '../../actions/modal';
 import ExperienceIndexItemContainer from './experience_index_item';
 
 class ExperienceIndex extends React.Component {
-  componentDidMount() {
-    this.props.fetchExperiences(this.props.match.params.id);
-  }
-
   render() {
     const { currentUser, match, openModal, experiences } = this.props;
     const newExpBtn = currentUser == match.params.id ? (
@@ -37,7 +33,9 @@ class ExperienceIndex extends React.Component {
 const mapSTP = ({ entities: { experiences }, session: { currentUser } }, ownProps) => {
   const mappedExp = Object.values(experiences).filter(
     exp => exp.userId == ownProps.match.params.id
-  ).sort((a, b) => {Date.parse(a.endDate) > Date.parse(b.endDate) ? -1 : 1});
+  ).sort(
+    (a, b) => {Date.parse(a.endDate) > Date.parse(b.endDate) ? -1 : 1}
+  );
 
   return {
     experiences: mappedExp,

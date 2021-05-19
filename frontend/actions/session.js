@@ -16,9 +16,11 @@ export const receiveCurrentUser = user => ({
   user
 });
 
-const receiveUser = user => ({
+const receiveUser = payload => ({
   type: RECEIVE_USER,
-  user
+  user: payload.user,
+  experiences: payload.experiences,
+  educations: payload.educations
 });
 
 const logoutCurrentUser = () => ({
@@ -55,6 +57,12 @@ const receiveSessionErrors = errors => ({
   errors
 });
 
+export const fetchUser = user => dispatch => (
+  SessionAPI.fetchUser(user).then(
+    user => dispatch(receiveUser(user))
+  )
+);
+
 export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 })
@@ -83,11 +91,5 @@ export const logoutUser = () => dispatch => (
   SessionAPI.logoutUser().then(
     () => dispatch(logoutCurrentUser()),
     errors => dispatch(receiveSessionErrors(errors.responseJSON))
-  )
-);
-
-export const fetchUser = user => dispatch => (
-  SessionAPI.fetchUser(user).then(
-    user => dispatch(receiveUser(user))
   )
 );

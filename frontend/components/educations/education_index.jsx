@@ -6,10 +6,6 @@ import { openModal } from '../../actions/modal';
 import EducationIndexItemContainer from './education_index_item';
 
 class EducationIndex extends React.Component {
-  componentDidMount() {
-    this.props.fetchEducations(this.props.match.params.id);
-  }
-
   render() {
     const { currentUser, match, openModal, educations } = this.props;
     const newEduBtn = currentUser == match.params.id ? (

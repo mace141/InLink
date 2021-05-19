@@ -23,6 +23,7 @@ class UserDetail extends React.Component {
 
   render() {
     const { user, currentUser, match, openModal } = this.props; 
+    if (!user) return null;
     let editIntroBtn; let editSectionBtn;
     
     if (currentUser == match.params.id) {

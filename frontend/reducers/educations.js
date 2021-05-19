@@ -1,4 +1,5 @@
 import { RECEIVE_EDUCATIONS, RECEIVE_EDUCATION, REMOVE_EDUCATION } from '../actions/education';
+import { RECEIVE_USER } from '../actions/session';
 
 const educationsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -13,6 +14,8 @@ const educationsReducer = (state = {}, action) => {
       let nextState = { ...state };
       delete nextState[action.educationId];
       return nextState;
+    case RECEIVE_USER:
+      return { ...state, ...action.educations };
     default:
       return state;
   }

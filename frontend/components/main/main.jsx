@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProtectedRoute } from '../../util/route_util';
 import FeedContainer from '../feed/feed';
-import Profile from '../profile/profile'
+import ProfileContainer from '../profile/profile'
 
 class Main extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Main extends React.Component {
     return (
       <>
         <ProtectedRoute exact path='/feed' component={FeedContainer}/>
-        <ProtectedRoute exact path='/users/:id' component={Profile}/>
+        <ProtectedRoute exact path='/users/:id' component={ProfileContainer}/>
       </>
     )
   }
