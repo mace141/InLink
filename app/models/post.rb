@@ -3,14 +3,6 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  has_many :in_connected_users,
-    through: :user,
-    source: :in_connects
-
-  has_many :out_connected_users,
-    through: :user,
-    source: :out_connects
-
   has_many :comments, dependent: :destroy
 
   has_many :likes, as: :likeable, dependent: :destroy
