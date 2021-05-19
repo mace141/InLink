@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get '/api/likes/user_liked', to: 'api/likes#user_liked'
 
   namespace :api, defaults: { format: :json } do 
-    resources :users, only: [:create, :show]
+    resources :users, only: [:create, :show, :update]
     resources :posts, except: [:edit, :new]
     resources :comments, only: [:index, :create, :update, :destroy]
     resources :likes, only: [:index, :create, :destroy]

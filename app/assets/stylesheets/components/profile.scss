@@ -12,6 +12,12 @@
     .user-bg-img {
       height: 150px;
       width: auto;
+      overflow: hidden;
+
+      img {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
     }
 
     .user-details {
@@ -125,7 +131,7 @@
   }
 }
 
-.exp-form, .edu-form {
+.exp-form, .edu-form, .modal {
   
   label {
     color: $gray;
@@ -186,4 +192,33 @@
       @include modal-button(white, $LIblue);
     }
   }
+}
+
+.edit-intro form > div {
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+div.intro.name {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+div.intro.location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.intro.location input {
+  margin-bottom: 0;
+}
+
+.intro.state, .intro.city {
+  grid-row-start: 2;
 }

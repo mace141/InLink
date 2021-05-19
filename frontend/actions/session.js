@@ -66,6 +66,12 @@ export const createUser = user => dispatch => (
   )
 );
 
+export const updateUser = user => dispatch => (
+  SessionAPI.updateUser(user).then(
+    user => dispatch(receiveUser(user))
+  )
+);
+
 export const loginUser = user => dispatch => (
   SessionAPI.loginUser(user).then(
     user => dispatch(receiveCurrentUser(user)),

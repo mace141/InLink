@@ -11,7 +11,7 @@ class JobForm extends React.Component {
     const user = this.props.user;
 
     this.state = {
-      jobTitle: user.jobTitle || "",
+      title: user.title || "",
       type: user.type || "",
       company: user.company || ""
     };
@@ -24,9 +24,9 @@ class JobForm extends React.Component {
   }
 
   ensureForm() {
-    const { jobTitle, company } = this.state;
+    const { title, company } = this.state;
 
-    if (jobTitle.length && company.length) {
+    if (title.length && company.length) {
       return false;
     } else {
       return true;
@@ -40,7 +40,7 @@ class JobForm extends React.Component {
       receiveUserJob, createUser, createExperience, user, dispatch, receiveCurrentUser 
     } = this.props;
     const job = {
-      headline: this.state.jobTitle + ' at ' + this.state.company,
+      headline: this.state.title + ' at ' + this.state.company,
       industry: this.state.company
     };
     receiveUserJob(Object.assign({}, this.state, job));
@@ -68,7 +68,7 @@ class JobForm extends React.Component {
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
           <label>Most recent job title *</label>
-          <input type="text" value={this.state.jobTitle} onChange={this.handleInput('jobTitle')}/>
+          <input type="text" value={this.state.title} onChange={this.handleInput('title')}/>
           <label>Employment type</label>
           <select onChange={this.handleInput('type')}>
             {employmentTypes.map((type, i) => (

@@ -8,7 +8,7 @@ class Api::PostsController < ApplicationController
   end
 
   def comment_count 
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id]).includes(:comments)
 
     render json: @post.comments.count
   end
@@ -39,8 +39,8 @@ class Api::PostsController < ApplicationController
 
   def destroy 
     @post = Post.find(params[:id])
+    
     @post.destroy
-
     render :show
   end
 

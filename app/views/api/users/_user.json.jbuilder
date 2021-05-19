@@ -4,3 +4,7 @@ json.extract! user, :id, :email, :fname, :lname, :location, :headline, :industry
 if user.profile_pic.attached?
   json.profileUrl url_for(user.profile_pic)
 end
+
+if user.background.attached? 
+  json.background url_for(user.background)
+end
