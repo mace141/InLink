@@ -57,6 +57,14 @@
 .user-sesh-btn {
   position: relative;
 
+  .header.pfp {
+    width: 70px;
+
+    img {
+      margin: 0 auto;
+    }
+  }
+
   .header-dropdown {
     position: absolute;
     top: 50px;

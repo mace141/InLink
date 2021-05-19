@@ -19,38 +19,52 @@
         border-top-right-radius: 8px;
       }
     }
+  }
 
-    .user-details {
-      display: flex;
-      justify-content: space-between;
-      background: white;
-      padding: 20px;
-      padding-top: 50px;
-      border-bottom-right-radius: 8px;
-      border-bottom-left-radius: 8px;
+  h1 {
+    font-size: 20px;
+  }
+}
 
-      .pf-user-info {
-        position: relative;
+.user-details {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 20px;
+  padding-top: 50px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 
-        img {
-          position: absolute;
-          top: -120px;
-        }
+  .pf-user-info {
+    position: relative;
 
-        h1 {
-          font-size: 22px;
-          font-weight: 500;
-        }
+    img {
+      position: absolute;
+      top: -120px;
+    }
 
-        h2 {
-          margin-bottom: 3px;
-        }
-        
-        h3 {
-          font-size: 14px;
-          color: $gray;
-        }
-      }
+    h1 {
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    h2 {
+      margin-bottom: 3px;
+    }
+    
+    h3 {
+      font-size: 14px;
+      color: $gray;
+    }
+  }
+
+  .pf-user-hist {
+    position: relative;
+
+    .edit-intro-btn {
+      position: absolute;
+      right: 0;
+      top: -40px;
     }
   }
 }
@@ -64,10 +78,6 @@
   .exp-index, .edu-index {
     position: relative;
     padding: 20px;
-
-    h1 {
-      font-size: 20px;
-    }
     
     .exp-item, .edu-item {
       margin: 15px 0;
@@ -165,7 +175,7 @@
   .school-years-form, .exp-years-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 15px;
+    grid-gap: 34px;
   }
 
   .school-year-form, .exp-year-form {
@@ -179,8 +189,8 @@
   }
 }
 
-.edu-form-modal, .exp-form-modal {
-  width: 600px !important;
+.modal.edu-form-modal, .modal.exp-form-modal, .modal.edit-intro {
+  width: 600px;
 
   textarea {
     border: 1px solid $gray;
@@ -227,4 +237,46 @@ div.intro.location {
 
 .intro.state, .intro.city {
   grid-row-start: 2;
+}
+
+.profile.summary {
+  margin-top: 12px;
+  padding: 20px;
+
+  p {
+    margin-top: 10px;
+  }
+}
+
+.pf-section-btn {
+  margin-top: 10px;
+  position: relative;
+  padding: 5px 15px;
+  border: 1px solid $gray;
+  border-radius: 20px;
+  font-weight: 600;
+  background: $lightergray;
+
+  &:hover {
+    @include btn-hover-border($gray, $lightgray);
+  }
+
+  ul {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    border-radius: 8px;
+    border: 1px solid $lightgray;
+    background: white;
+    box-shadow: 0px 2px 8px 3px rgba(200, 200, 200, 0.7);
+    z-index: 10;
+
+    li {
+      padding: 8px 20px;
+
+      &:hover {
+        background: $lightergray;
+      }
+    }
+  }
 }

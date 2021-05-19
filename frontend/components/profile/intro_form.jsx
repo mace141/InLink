@@ -29,6 +29,8 @@ class EditIntro extends React.Component {
       ...this.state,
       location: `${city}, ${state}, ${country}`
     });
+
+    this.props.closeModal();
   }
 
   render() {
