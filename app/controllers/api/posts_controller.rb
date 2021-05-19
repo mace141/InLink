@@ -13,12 +13,6 @@ class Api::PostsController < ApplicationController
                  #  .limit(10)
   end
 
-  def comment_count 
-    @post = Post.find(params[:id]).includes(:comments)
-
-    render json: @post.comments.count
-  end
-
   def create 
     @post = Post.new(post_params)
     
@@ -30,7 +24,7 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:user).find(params[:id])
   end
 
   def update 

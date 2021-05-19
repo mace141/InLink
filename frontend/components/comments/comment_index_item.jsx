@@ -41,9 +41,7 @@ class CommentIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchUserLiked, comment, currentUser } = this.props;
-
-    fetchUser(comment.userId);
+    const { fetchUserLiked, comment, currentUser } = this.props;
 
     fetchUserLiked({ 
       user_id: currentUser, 
@@ -215,7 +213,6 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => 
 });
 
 const mapDTP = dispatch => ({
-  fetchUser: userId => dispatch(fetchUser(userId)),
   deleteComment: commentId => dispatch(deleteComment(commentId)),
   fetchUserLiked: userId => fetchUserLiked(userId),
   createLikeAPI: like => createLike(like),
