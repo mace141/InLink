@@ -30,6 +30,8 @@ class PostIndexItem extends React.Component {
     this.openComments = this.openComments.bind(this);
     this.toggleLike = this.toggleLike.bind(this);
     this.incrementCommentCount = this.incrementCommentCount.bind(this);
+    this.clicked = this.clicked.bind(this);
+    this.leave = this.leave.bind(this);
   }
 
   componentDidMount() {
@@ -124,10 +126,10 @@ class PostIndexItem extends React.Component {
 
       if (postUser.id == currentUser) {
         dropdown = (
-          <button onFocus={this.clicked.bind(this)} onBlur={this.leave.bind(this)}>
+          <button onFocus={this.clicked} onBlur={this.leave}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis" className='ellipsis'/>
             <ul className={'post-dropdown ' + (drop ? 'reveal' : 'hide')}>
-              <li onClick={() => openModal('editPost', id)}><i className="far fa-edit"></i>Edit Post</li>
+              <li onClick={() => {openModal('editPost', id); this.leave();}}><i className="far fa-edit"></i>Edit Post</li>
               <li onClick={() => deletePost(id)}><i className="far fa-trash-alt"></i>Delete Post</li>
             </ul>
           </button>

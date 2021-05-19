@@ -3,6 +3,15 @@
   .post-body {
     display: flex;
     flex-direction: column;
+
+    div:first-child {
+      display: flex;
+      align-items: center;
+
+      h2 {
+        margin: 0;
+      }
+    }
   }
 
   .textarea {
@@ -28,6 +37,11 @@
 
   #post-media-input {
     display: none;
+  }
+
+  footer {
+    padding: 0;
+    border: none;
   }
 }
 

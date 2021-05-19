@@ -113,7 +113,7 @@ class PostForm extends React.Component {
     const closeImageBtn = (
       this.state.media ? <span className='remove-img-btn' onClick={this.removeFile}>✕</span> : null
     );
-    
+    // this.props.user.profileUrl || 
     return (
       <>
         <div className='modal post-form-modal'>
@@ -134,7 +134,7 @@ class PostForm extends React.Component {
                 {preview(null)}
               </div>
             </div>
-            <footer>
+            <footer className='post-form-footer footer'>
               <i className="far fa-image" onClick={this.openFileLoader}></i>
               <input type="file" id='post-media-input' accept='image/*' onChange={this.handleFile}/>
               <button className='form-button' disabled={this.ensureContent()}>Post</button>

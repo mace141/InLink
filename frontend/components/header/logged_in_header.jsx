@@ -20,6 +20,7 @@ class LoggedIn extends React.Component {
   }
 
   leave() {
+    // if (e.target.contains(e.relatedTarget)) return null;
     this.setState({ drop: false });
   }
 
@@ -72,9 +73,10 @@ class LoggedIn extends React.Component {
                     <p>{user.headline}</p>
                   </div>
                 </div>
-                <Link to={`/users/${user.id}`}>
-                  <div className='pf-btn'>View Profile</div>
-                </Link>
+                <div className='pf-btn' onClick={() => {
+                  this.props.history.push(`/users/${user.id}`);
+                  this.leave();
+                }}>View Profile</div>
               </li>
               <li onClick={logoutUser}>Sign Out</li>
             </ul>
