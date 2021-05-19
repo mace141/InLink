@@ -8,11 +8,7 @@ import UserDetailContainer from './user_detail';
 
 class Profile extends React.Component {
   componentDidMount() {
-    const { user, fetchUser, match } = this.props;
-
-    if (!user) {
-      fetchUser(match.params.id);
-    }
+    fetchUser(this.props.match.params.id);
   }
 
   render() {
