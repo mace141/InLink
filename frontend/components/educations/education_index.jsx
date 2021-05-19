@@ -42,7 +42,6 @@ const mapSTP = ({ entities: { educations }, session: { currentUser } }, ownProps
 };
 
 const mapDTP = dispatch => ({
-  fetchEducations: userId => dispatch(fetchEducations(userId)),
   openModal: (modal, id) => dispatch(openModal(modal, id))
 });
 

@@ -44,7 +44,6 @@ const mapSTP = ({ entities: { experiences }, session: { currentUser } }, ownProp
 };
 
 const mapDTP = dispatch => ({
-  fetchExperiences: userId => dispatch(fetchExperiences(userId)),
   openModal: (modal, id) => dispatch(openModal(modal, id))
 });
 

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { deleteLike, receiveLike } from '../../actions/like';
 import { openModal } from '../../actions/modal';
 import { deletePost } from '../../actions/post';
-import { fetchUser } from '../../actions/session';
 import { createLike, fetchUserLiked } from '../../util/like_api';
 import CreateCommentForm from '../comments/create_comment_form';
 import CommentIndexContainer from '../comments/comment_index';
@@ -37,10 +36,8 @@ class PostIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchUserLiked, post, currentUser } = this.props;
+    const { fetchUserLiked, post, currentUser } = this.props;
     
-    fetchUser(post.userId);
-
     fetchUserLiked({ 
       user_id: currentUser, 
       likeable_id: post.id,
@@ -203,7 +200,6 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }) => ({
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId)),
   editPost: post => dispatch(editPost(post)),
-  fetchUser: userId => dispatch(fetchUser(userId)),
   openModal: (modal, id) => dispatch(openModal(modal, id)),
   fetchUserLiked: like => fetchUserLiked(like),
   createLikeAPI: like => createLike(like),
