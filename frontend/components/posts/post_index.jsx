@@ -8,16 +8,23 @@ class PostIndex extends React.Component {
     super(props);
 
     this.state = { offset: 0 };
+
+    this.incrementOffset = this.incrementOffset.bind(this);
   }
+
   componentDidMount() {
     this.props.fetchPosts(this.state.offset);
+  }
+
+  incrementOffset() {
+    this.setState({ offset: this.state.offset + 1 });
   }
 
   render() {
     return (
       <ul className='posts-index'>
         {this.props.posts.map(post => (
-          <PostIndexItemContainer key={post.id} post={post}/>
+          <PostIndexItemContainer key={post.id} post={post} incrOffset={this.incrementOffset}/>
         ))}
       </ul>
     )

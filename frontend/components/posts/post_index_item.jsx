@@ -20,12 +20,14 @@ class PostIndexItem extends React.Component {
       commentCount: this.props.post.comments,
       likeCount: this.props.post.likes,
       liked: false,
-      like: null
+      like: null,
     };
-
+    
     if (this.state.timeAgo < 3600000) {
       setInterval(() => this.setState({ timeAgo: Date.now() - Date.parse(this.props.post.createdAt)}), 60000);
     }
+    
+    this.postItemRef = React.createRef();
 
     this.openComments = this.openComments.bind(this);
     this.toggleLike = this.toggleLike.bind(this);
@@ -49,7 +51,18 @@ class PostIndexItem extends React.Component {
         this.setState({ like });
         document.getElementsByClassName(`post like-btn ${post.id}`)[0].classList.add('liked');
       }
-    })
+    });
+
+    const { current } = this.postItemRef;
+
+    // if (current) {
+      // console.log(current.clientHeight + current.offsetTop);
+      // console.log(current.offsetParent.clientHeight);
+      // console.log(this.postItemRef);
+      // if ((current.clientHeight + current.offsetTop + 10) < current.offsetParent.clientHeight) {
+      //   this.props.incrOffset();
+      // }
+    // }
   }
 
   timeFromNow() {
@@ -160,7 +173,7 @@ class PostIndexItem extends React.Component {
     ) : null;
     
     return (
-      <div className='post-item whitebox'>
+      <div className='post-item whitebox' ref={this.postItemRef}>
         <header>
           <div>
             <Link to={`/users/${userId}`}><img src={profile} alt="Profile Pic" className='pfp'/></Link>

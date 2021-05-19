@@ -25,7 +25,10 @@ const Feed = ({ currentUser, openModal }) => {
       </section>
       <div>
         <aside className='right-side-bar whitebox'>
-          Daniel's Fun Facts
+          <h1>Side Bar</h1>
+          <ul>
+            <li></li>
+          </ul>
         </aside>
       </div>
     </section>
