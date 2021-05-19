@@ -46,7 +46,7 @@ class UserDetail extends React.Component {
     }
 
     const userSummary = user.summary ? (
-      <div class='whitebox summary profile'>
+      <div className='whitebox summary profile'>
         <h1>Summary</h1>
         <p>{user.summary}</p>
       </div>

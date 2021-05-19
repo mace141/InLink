@@ -10,11 +10,24 @@ const ExperienceIndexItem = ({ experience, openModal, currentUser, match }) => {
     </button>
   ) : null;
 
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+  const startDateDB = new Date(experience.startDate);
+  const endDateDB = new Date(experience.endDate);
+
+  const startMon = months[startDateDB.getMonth()];
+  const startYr = startDateDB.getFullYear();
+  const endMon = months[endDateDB.getMonth()];
+  const endYr = endDateDB.getFullYear();
+
+  const strStartDate = `${startMon} ${startYr}`;
+  const strEndDate = experience.endDate ? `${endMon} ${endYr}` : 'Present';
+  
   return (
     <div className='exp-item'>
       <p className='exp-title'>{experience.title}</p>
       <p className='exp-company'>{experience.company}</p>
-      <p className='exp-time'>{experience.startDate} - {experience.endDate}</p>
+      <p className='exp-time'>{strStartDate} - {strEndDate}</p>
       {editBtn}
     </div>
   )
