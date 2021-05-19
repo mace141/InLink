@@ -136,8 +136,8 @@ class ExperienceForm extends React.Component {
       </>
     )
 
-    const deleteBtn = this.props.deleteEducation ? (
-      <button onClick={() => this.props.deleteEducation(id)}>Delete</button>
+    const deleteBtn = this.props.deleteExperience ? (
+      <button onClick={() => this.props.deleteExperience(id)}>Delete</button>
     ) : null;
 
     return (

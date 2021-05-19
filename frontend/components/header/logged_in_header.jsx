@@ -20,7 +20,6 @@ class LoggedIn extends React.Component {
   }
 
   leave() {
-    // if (e.target.contains(e.relatedTarget)) return null;
     this.setState({ drop: false });
   }
 
