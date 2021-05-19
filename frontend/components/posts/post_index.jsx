@@ -14,9 +14,21 @@ class PostIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchPosts(this.state.offset);
+
+    const incrOffset = this.incrementOffset;
+
+    document.addEventListener('scroll', () => {
+      console.log(document.documentElement.scrollTop);
+      console.log(window.innerHeight);
+      // debugger
+      if (document.documentElement.scrollTop >= window.innerHeight) {
+        incrOffset();
+      }
+    })
   }
 
   incrementOffset() {
+    // debugger
     this.setState({ offset: this.state.offset + 1 });
   }
 

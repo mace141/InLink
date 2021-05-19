@@ -52,17 +52,6 @@ class PostIndexItem extends React.Component {
         document.getElementsByClassName(`post like-btn ${post.id}`)[0].classList.add('liked');
       }
     });
-
-    const { current } = this.postItemRef;
-
-    // if (current) {
-      // console.log(current.clientHeight + current.offsetTop);
-      // console.log(current.offsetParent.clientHeight);
-      // console.log(this.postItemRef);
-      // if ((current.clientHeight + current.offsetTop + 10) < current.offsetParent.clientHeight) {
-      //   this.props.incrOffset();
-      // }
-    // }
   }
 
   timeFromNow() {
