@@ -141,7 +141,7 @@
     height: 28px;
   }
 
-  input, select, textarea {
+  input, select {
     border: 1px solid $gray;
     border-radius: 5px;
   }
@@ -182,11 +182,17 @@
 .edu-form-modal, .exp-form-modal {
   width: 600px !important;
 
-  footer {
+  textarea {
+    border: 1px solid $gray;
+    border-radius: 5px;
+  }
+
+  footer.exp-edu-footer {
     border-top: 1px solid $lightgray;
     padding: 20px;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 
     button {
       @include modal-button(white, $LIblue);

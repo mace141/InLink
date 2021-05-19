@@ -51,12 +51,16 @@ class EducationForm extends React.Component {
 
   render() {
     const {
-      school, degree, field, grade, activities, description, schoolErr, yearErr 
+      id, school, degree, field, grade, activities, description, schoolErr, yearErr 
     } = this.state;
     const years = [];
     for (let i = 1962; i <= 2031; i++) {
       years.unshift(i);
     }
+
+    const deleteBtn = this.props.deleteEducation ? (
+      <button onClick={() => this.props.deleteEducation(id)} className='delete btn'>Delete</button>
+    ) : null;
 
     return (
       <div className='modal edu-form-modal'>
@@ -100,6 +104,7 @@ class EducationForm extends React.Component {
         </form>
         <footer className='exp-edu-footer'>
           <button onClick={this.handleSubmit}>Save</button>
+          {deleteBtn}
         </footer>
       </div>
     )

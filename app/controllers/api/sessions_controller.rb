@@ -5,7 +5,6 @@ class Api::SessionsController < ApplicationController
 
     if @user 
       login!(@user)
-      @user = @user.includes(:profile_pic).includes(:background)
       render '/api/users/show'
     else 
       render json: User.login_errors(user_par), status: 401

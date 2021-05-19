@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { updateEducation } from '../../actions/education';
+import { deleteEducation, updateEducation } from '../../actions/education';
 import EducationForm from './education_form';
 
 const mapSTP = ({ entities: { educations }, ui: { filter } }) => ({
@@ -8,7 +8,8 @@ const mapSTP = ({ entities: { educations }, ui: { filter } }) => ({
 });
 
 const mapDTP = dispatch => ({
-  processForm: education => dispatch(updateEducation(education))
+  processForm: education => dispatch(updateEducation(education)),
+  deleteEducation: educationId => dispatch(deleteEducation(educationId))
 });
 
 const EditEducationForm = connect(mapSTP, mapDTP)(EducationForm);

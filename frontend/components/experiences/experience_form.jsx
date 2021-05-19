@@ -108,7 +108,7 @@ class ExperienceForm extends React.Component {
 
   render() {
     const {
-      title, company, location, description, titleErr, companyErr, yearErr, present,
+      id, title, company, location, description, titleErr, companyErr, yearErr, present,
       industry, headline
     } = this.state;
 
@@ -135,6 +135,10 @@ class ExperienceForm extends React.Component {
         </select>
       </>
     )
+
+    const deleteBtn = this.props.deleteEducation ? (
+      <button onClick={() => this.props.deleteEducation(id)}>Delete</button>
+    ) : null;
 
     return (
       <div className='modal edu-form-modal'>
@@ -193,6 +197,7 @@ class ExperienceForm extends React.Component {
         </form>
         <footer className='exp-edu-footer'>
           <button onClick={this.handleSubmit}>Save</button>
+          {deleteBtn}
         </footer>
       </div>
     )

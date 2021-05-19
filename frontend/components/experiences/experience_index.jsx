@@ -18,7 +18,7 @@ class ExperienceIndex extends React.Component {
       </button>
     ) : null;
 
-    // if (!experiences.length) return null;
+    if (!experiences.length) return null;
 
     return (
       <div className='exp-index'>

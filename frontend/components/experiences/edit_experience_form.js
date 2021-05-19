@@ -8,7 +8,8 @@ const mapSTP = ({ entities: { experiences }, ui: { filter } }) => ({
 });
 
 const mapDTP = dispatch => ({
-  processForm: experience => dispatch(updateExperience(experience))
+  processForm: experience => dispatch(updateExperience(experience)),
+  deleteExperience: experienceId => dispatch(deleteExperience(experienceId))
 });
 
 const EditExperienceForm = connect(mapSTP, mapDTP)(ExperienceForm);
