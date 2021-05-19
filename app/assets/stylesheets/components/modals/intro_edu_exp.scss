@@ -1,0 +1,97 @@
+.exp-form, .edu-form, .modal {
+  
+  label {
+    color: $gray;
+  }
+
+  input, select {
+    height: 28px;
+  }
+
+  input, select {
+    border: 1px solid $gray;
+    border-radius: 5px;
+  }
+
+  textarea {
+    height: 80px;
+    padding: 8px;
+  }
+  
+  input {
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+
+  input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+    border-radius: 8px;
+  }
+
+  .school-years-form, .exp-years-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 34px;
+  }
+
+  .school-year-form, .exp-year-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exp-date select {
+    width: 120px;
+    margin-right: 10px;
+  }
+}
+
+.modal.edu-form-modal, .modal.exp-form-modal, .modal.edit-intro {
+  width: 600px;
+
+  textarea {
+    border: 1px solid $gray;
+    border-radius: 5px;
+  }
+
+  footer.exp-edu-footer {
+    border-top: 1px solid $lightgray;
+    padding: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    button {
+      @include modal-button(white, $LIblue);
+    }
+  }
+}
+
+.edit-intro form > div {
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+div.intro.name {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+div.intro.location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.intro.location input {
+  margin-bottom: 0;
+}
+
+.intro.state, .intro.city {
+  grid-row-start: 2;
+}

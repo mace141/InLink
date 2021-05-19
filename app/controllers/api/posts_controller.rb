@@ -1,6 +1,9 @@
 class Api::PostsController < ApplicationController 
   def index 
-    @posts = Post.all.includes(:likes)
+    @posts = Post.order(created_at: :desc)
+                 .offset(params[:offset] * 10)
+                 .limit(10)
+                 .includes(:likes)
 
     # INFINITE SCROLLING: 
     # fetch 10 posts by connections, order by created time. save the created time of the last post

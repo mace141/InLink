@@ -5,7 +5,7 @@ import { openModal } from '../../actions/modal';
 
 const ExperienceIndexItem = ({ experience, openModal, currentUser, match }) => {
   const editBtn = currentUser == match.params.id ? (
-    <button onClick={() => openModal('editExp', experience.id)}>
+    <button onClick={() => openModal('editExp', experience.id)} className='edit-exp-edu-btn'>
       <i className="fas fa-pencil-alt"></i>
     </button>
   ) : null;

@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show 
-    @user = User.find(params[:id]).includes(:profile_pic).includes(:background)
+    @user = User.find(params[:id])
   end
 
   def update 
