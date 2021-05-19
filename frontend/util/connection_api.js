@@ -1,6 +1,12 @@
+export const fetchConnections = () => (
+  $.ajax({
+    url: '/api/connections'
+  })
+);
+
 export const createConnection = connection => (
   $.ajax({
-    method: '/api/connections',
+    url: '/api/connections',
     data: { connection }
   })
 );
