@@ -18,11 +18,13 @@ export const createConnection = connection => dispatch => (
     connection => dispatch(receiveConnection(connection))
   )
 );
+
 export const updateConnection = connection => dispatch => (
   ConnectionAPI.updateConnection(connection).then(
     connection => dispatch(receiveConnection(connection))
   )
 );
+
 export const deleteConnection = connectionId => dispatch => (
   ConnectionAPI.deleteConnection(connectionId).then(
     () => dispatch(removeConnection(connectionId))
