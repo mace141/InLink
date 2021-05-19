@@ -1,13 +1,15 @@
 class Api::PostsController < ApplicationController 
   def index 
-    @posts = Post.order(created_at: :desc)
-                 .offset(params[:offset] * 10)
-                 .limit(10)
-                 .includes(:likes)
+    user_id = current_user.id
+    connected_users = User.joins(:in_connects)
+                          .where("connections.accepted = true AND (connections.connector_id = #{user_id} OR connections.connected_id = #{user_id})")
+                          .pluck(:id)
 
-    # INFINITE SCROLLING: 
-    # fetch 10 posts by connections, order by created time. save the created time of the last post
-    # fetch 10 more posts starting from saved created time, order by created time
+    @posts = Post.where(user_id: connected_users)
+                 .order(created_at: :desc)
+                 .includes(:likes)
+                 #  .offset(params[:offset] * 10)
+                 #  .limit(10)
   end
 
   def comment_count 
