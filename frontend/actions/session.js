@@ -11,9 +11,11 @@ export const RECEIVE_USER_LOCATION = 'RECEIVE_USER_LOCATION';
 export const RECEIVE_USER_JOB = 'RECEIVE_USER_JOB';
 export const RECEIVE_USER_STUDENT = 'RECEIVE_USER_STUDENT';
 
-export const receiveCurrentUser = user => ({
+export const receiveCurrentUser = payload => ({
   type: RECEIVE_CURRENT_USER,
-  user
+  user: payload.user,
+  experiences: payload.experiences,
+  educations: payload.educations
 });
 
 const receiveUser = payload => ({

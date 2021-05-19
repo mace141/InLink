@@ -45,9 +45,9 @@ class JobForm extends React.Component {
     };
     receiveUserJob(Object.assign({}, this.state, job));
 
-    createUser(user).then(userRes => {
-      dispatch(receiveCurrentUser(userRes));
-      createExperience({ ...user, user_id: userRes.id });
+    createUser(user).then(payload => {
+      dispatch(receiveCurrentUser(payload));
+      createExperience({ ...user, user_id: payload.user.id });
     });
   }
 
