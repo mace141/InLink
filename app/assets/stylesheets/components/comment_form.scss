@@ -37,10 +37,10 @@
 
       .cmt-img-preview {
         background: #f9fafb;
+        border-radius: 0 0 24px 24px;
         
         > div:first-child {
           position: relative;
-          border-radius: 0 0 24px 24px;
         }
 
         .rm-cmt-img {
