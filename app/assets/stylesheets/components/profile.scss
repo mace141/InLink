@@ -61,6 +61,12 @@
   .pf-user-hist {
     position: relative;
 
+    p {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 10px 20px;
+    }
+
     .edit-intro-btn {
       position: absolute;
       right: 0;
