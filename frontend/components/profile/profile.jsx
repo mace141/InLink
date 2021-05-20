@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchUser } from '../../actions/session';
 import EducationIndexContainer from '../educations/education_index';
 import ExperienceIndexContainer from '../experiences/experience_index';
+import UploadAvatarContainer from './upload_avatar_container';
 import UserDetailContainer from './user_detail';
 
 class Profile extends React.Component {
@@ -20,6 +21,7 @@ class Profile extends React.Component {
 
     return (
       <div className='profile-page-ctnr'>
+        <UploadAvatarContainer/>
         <div className='user-section'>
           <UserDetailContainer lastExp={experiences[0]} lastEdu={educations[0]}/>
           <div className='exp-edu-sect'>

@@ -25,7 +25,7 @@ class User < ApplicationRecord
     class_name: :Connection,
     foreign_key: :connected_id
 
-  has_one_attached :profile_pic, dependent: :destroy
+  has_one_attached :avatar, dependent: :destroy
 
   has_one_attached :background, dependent: :destroy
 

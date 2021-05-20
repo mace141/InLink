@@ -113,7 +113,7 @@ class PostForm extends React.Component {
     const closeImageBtn = (
       this.state.media ? <span className='remove-img-btn' onClick={this.removeFile}>✕</span> : null
     );
-    // this.props.user.profileUrl || 
+    
     return (
       <>
         <div className='modal post-form-modal'>

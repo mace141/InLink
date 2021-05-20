@@ -29,6 +29,6 @@ body {
   display: block;
 }
 
-.hide {
+.hide, input[type='file'] {
   display: none;
 }
