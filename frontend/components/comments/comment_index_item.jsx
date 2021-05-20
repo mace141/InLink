@@ -174,7 +174,11 @@ class CommentIndexItem extends React.Component {
     
     return (
       <div className='comment-item'>
-        <Link to={`/users/${user.id}`}><img src={profile} alt="Profile Pic" className={'pfp small'}/></Link>
+        <Link to={`/users/${user.id}`}>
+          <div className='avatar small'>
+            <img src={profile} alt="Profile Pic" className={'pfp small'}/>
+          </div>
+        </Link>
         <div>
           <div className='comment-body'>
             <header>

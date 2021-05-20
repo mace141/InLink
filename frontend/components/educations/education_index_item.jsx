@@ -15,6 +15,8 @@ const EducationIndexItem = ({ education, openModal, currentUser, match }) => {
       <p className='edu-school'>{education.school}</p>
       <p className='edu-degree'>{education.degree}</p>
       <p className='edu-year'>{education.startYear} - {education.endYear}</p>
+      <p className='edu-activities'>{education.activities ? `Activities & Societies: ${education.activities}` : null}</p>
+      <p className='edu-description'>{education.description ? `Description: ${education.description}` : null}</p>
       {editBtn}
     </div>
   )

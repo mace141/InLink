@@ -125,11 +125,11 @@
         font-size: 16px;
       }
 
-      .exp-company, .exp-time, .edu-degree, .edu-year {
+      p {
         font-size: 14px;
       }
 
-      .exp-time, .edu-year {
+      .exp-time, .exp-location, .edu-year, .edu-activities, .edu-description {
         color: $gray;
       }
     }

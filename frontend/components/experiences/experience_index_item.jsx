@@ -26,8 +26,11 @@ const ExperienceIndexItem = ({ experience, openModal, currentUser, match }) => {
   return (
     <div className='exp-item'>
       <p className='exp-title'>{experience.title}</p>
+      <p className='exp-type'>{experience.type}</p>
       <p className='exp-company'>{experience.company}</p>
       <p className='exp-time'>{strStartDate} - {strEndDate}</p>
+      <p className='exp-location'>{experience.location}</p>
+      <p className='exp-description'>{experience.description}</p>
       {editBtn}
     </div>
   )
