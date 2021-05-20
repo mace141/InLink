@@ -23,9 +23,9 @@ class Network extends React.Component {
 
 const mapSTP = ({ entities: { users, connections }, session: { currentUser } }) => {
   const requests = Object.values(connections).filter(
-    con => con.accepted == false
+    con => con.accepted == false && con.connectorId != currentUser
   );
-
+  
   const connected = Object.values(connections).filter(
     con => con.accepted == true
   );
