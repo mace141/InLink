@@ -10,7 +10,9 @@ const RequestsIndex = ({ requestingUsers, requests, updateConnection, deleteConn
       {requestingUsers.map((user, i) => (
         <div key={user.id}>
           <Link to={`/users/${user.id}`}>
-            <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic"/>
+            <div className='avatar'>
+              <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic"/>
+            </div>
           </Link>
           <div className='requesting-user'>
             <div>

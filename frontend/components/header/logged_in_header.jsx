@@ -60,13 +60,15 @@ class LoggedIn extends React.Component {
             </div>
           </Link>
           <button onFocus={this.clicked} onBlur={this.leave} className='user-sesh-btn'>
-            <div className='header pfp'>
+            <div className='avatar'>
               <img src={profile} alt="Profile Pic" className='pfp small'/>
             </div>
             <ul className={'header-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
               <li>
                 <div>
-                  <img src={profile} alt="Profile Pic" className='pfp'/>
+                  <div className='avatar'>
+                    <img src={profile} alt="Profile Pic" className='pfp'/>
+                  </div>
                   <div>
                     <p>{`${user.fname} ${user.lname}`}</p>
                     <p>{user.headline}</p>

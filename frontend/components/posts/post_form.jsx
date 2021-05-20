@@ -124,7 +124,10 @@ class PostForm extends React.Component {
           <form onSubmit={this.handleSubmit} className='post-form'>
             <div className='post-body'>
               <div>
-                <img src={this.props.user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/><h2>{this.props.name}</h2>
+                <div className='avatar small'>
+                  <img src={this.props.user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
+                </div>
+                <h2>{this.props.name}</h2>
               </div>
               <div className='textarea'>
                 <textarea placeholder='What do you want to talk about?' value={this.state.body} onChange={this.handleInput}></textarea>

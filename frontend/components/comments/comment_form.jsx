@@ -89,7 +89,9 @@ class CommentForm extends React.Component {
 
     return (
       <div className='cmt-form-section'>
-        <img src={this.props.user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
+        <div className='avatar small'>
+          <img src={this.props.user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
+        </div>
         <div className='cmt-form-ctnr'>
           <div className='comment-form'>
             <div className='cmt-input-div'>

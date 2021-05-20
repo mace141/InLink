@@ -7,7 +7,9 @@ const ConnectedIndex = ({ connectedUsers }) => {
       {connectedUsers.map(user => (
         <div key={user.id}>
           <Link to={`/users/${user.id}`}>
-            <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic"/>
+            <div className='avatar'>
+              <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic"/>
+            </div>
           </Link>
           <div>
             <p className='connect-name'>{`${user.fname} ${user.lname}`}</p>

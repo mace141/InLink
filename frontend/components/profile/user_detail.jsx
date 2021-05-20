@@ -72,7 +72,9 @@ class UserDetail extends React.Component {
           <div className='user-details'>
             <div className='pf-user-info'>
               <div className='pf-avatar-ctnr'>
-                <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp large'/>
+                <div className='avatar pf large'>
+                  <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp large'/>
+                </div>
                 <button onClick={() => openModal('uploadAvatar')} className='upload-avatar-btn'>
                   <i className="fas fa-camera-retro"></i>
                 </button>

@@ -34,7 +34,7 @@
     .upload-avatar-btn {
       position: absolute;
       top: 5px;
-      right: 5px;
+      left: 120px;
     }
   }
 
@@ -47,6 +47,7 @@
   border-radius: 24px;
   padding: 3px 5px;
   background: $lightergray;
+  color: $LIblue;
 }
 
 .user-details {
@@ -56,15 +57,6 @@
   padding: 20px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-
-  .pf-avatar-ctnr {
-    height: 120px;
-    width: 120px;
-
-    img {
-      margin-top: -80px;
-    }
-  }
 
   h1 {
     font-size: 22px;
@@ -170,25 +162,46 @@
   top: 20px;
 }
 
-.pfp {
+.avatar {
   height: 50px;
-  width: auto;
-  
-  &.small {
-    height: 40px;
-  }
+  width: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
 
-  &.smaller {
-    height: 30px;
+  img {
+    border-radius: 50%;
+    height: 100%;
   }
+}
 
-  &.big {
-    height: 70px;
-  }
+.avatar.small {
+  height: 40px;
+  width: 40px;
+}
 
-  &.large {
-    height: 120px;
-  }
+.avatar.smaller {
+  height: 30px;
+  width: 30px;
+}
+
+.avatar.big {
+  height: 70px;
+  width: 70px;
+}
+
+.avatar.large {
+  height: 120px;
+  width: 120px;
+}
+
+.avatar.large {
+  height: 120px;
+  width: 120px;
+}
+
+.avatar.pf {
+  margin-top: -80px;
+  border: 2px solid white;
 }
 
 .profile.summary {

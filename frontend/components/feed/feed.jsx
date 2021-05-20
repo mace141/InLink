@@ -21,7 +21,11 @@ class Feed extends React.Component {
               <img src={currentUser.background || window.defaultBg} alt="Background"/>
             </div>
             <div className='side-bar-user-info'>
-              <Link to={`/users/${currentUser.id}`}><img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/></Link>
+              <Link to={`/users/${currentUser.id}`}>
+                <div className='avatar big'>
+                  <img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/>
+                </div>
+              </Link>
               <p className='side-bar-name'>{fname + ' ' + lname}</p>
               <p>{headline}</p>
             </div>
@@ -41,7 +45,11 @@ class Feed extends React.Component {
         </div>
         <section className='posts-section'>
           <div className='start-post whitebox'>
-            <Link to={`/users/${currentUser.id}`}><img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp'/></Link>
+            <Link to={`/users/${currentUser.id}`}>
+              <div className='avatar'>
+                <img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp'/>
+              </div>
+            </Link>
             <button onClick={() => openModal('createPost')}>Start a post</button>
           </div>
           <div className='feed-div'></div>
