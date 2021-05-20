@@ -49,12 +49,12 @@ class UploadPictureForm extends React.Component {
       [imageUrl]: null
     });
     document.getElementById('image-input').value = "";
-    // closeModal();
+    closeModal();
   }
 
   render() {
-    const { formType, imageType, imageUrl } = this.props;
-    const preview = this.state[imageType] ? ( 
+    const { formType, imageType, imageUrl, user } = this.props;
+    const preview = this.state[imageType] != user[imageType] ? ( 
       <img src={this.state[imageUrl]} alt={imageType} />
     ) : (
       <span id='image-input-btn' onClick={() => document.getElementById('image-input').click()}>Select an image</span>

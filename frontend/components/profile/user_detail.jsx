@@ -66,15 +66,15 @@ class UserDetail extends React.Component {
           <div className='user-bg-img'>
             <img src={user.background || window.defaultBg} alt="Background Pic"/>
             <button onClick={() => openModal('uploadBackground')} className='upload-bg-btn'>
-              <i className="fas fa-pencil-alt"></i>
+              <i className="fas fa-camera-retro"></i>
             </button>
           </div>
           <div className='user-details'>
             <div className='pf-user-info'>
-              <div>
+              <div className='pf-avatar-ctnr'>
                 <img src={user.profileUrl || window.defaultUser} alt="Profile Pic" className='pfp large'/>
-                <button onClick={() => openModal('uploadBackground')} className='upload-avatar-btn'>
-                  <i className="fas fa-pencil-alt"></i>
+                <button onClick={() => openModal('uploadAvatar')} className='upload-avatar-btn'>
+                  <i className="fas fa-camera-retro"></i>
                 </button>
               </div>
               <div>

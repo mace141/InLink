@@ -13,11 +13,28 @@
       height: 150px;
       width: auto;
       overflow: hidden;
+      position: relative;
 
       img {
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
       }
+
+      .upload-bg-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+
+  .pf-avatar-ctnr {
+    position: relative;
+
+    .upload-avatar-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
     }
   }
 
@@ -26,51 +43,58 @@
   }
 }
 
+.fas.fa-camera-retro {
+  border-radius: 24px;
+  padding: 3px 5px;
+  background: $lightergray;
+}
+
 .user-details {
   display: flex;
   justify-content: space-between;
   background: white;
   padding: 20px;
-  padding-top: 50px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 
-  .pf-user-info {
-    position: relative;
+  .pf-avatar-ctnr {
+    height: 120px;
+    width: 120px;
 
     img {
-      position: absolute;
-      top: -120px;
-    }
-
-    h1 {
-      font-size: 22px;
-      font-weight: 500;
-    }
-
-    h2 {
-      margin-bottom: 3px;
-    }
-    
-    h3 {
-      font-size: 14px;
-      color: $gray;
-    }
-
-    span {
-      padding-top: 5px;
-      font-size: 14px;
-      font-weight: 600;
-      color: $LIblue;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      margin-top: -80px;
     }
   }
 
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  h2 {
+    margin-bottom: 3px;
+  }
+  
+  h3 {
+    font-size: 14px;
+    color: $gray;
+  }
+
+  span {
+    padding-top: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $LIblue;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
   .pf-user-hist {
     position: relative;
+    margin-top: 30px;
 
     p {
       font-size: 14px;
