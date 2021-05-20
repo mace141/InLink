@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { createConnection } from '../../actions/connection';
 import { openModal } from '../../actions/modal';
 
 class UserDetail extends React.Component {
@@ -22,9 +23,11 @@ class UserDetail extends React.Component {
   }
 
   render() {
-    const { user, currentUser, match, openModal, lastEdu, lastExp } = this.props; 
+    const { 
+      user, currentUser, match, openModal, lastEdu, lastExp, createConnection 
+    } = this.props; 
     if (!user) return null;
-    let editIntroBtn; let editSectionBtn;
+    let editIntroBtn; let editSectionBtn; let connectBtn;
     
     if (currentUser == match.params.id) {
       editIntroBtn = (
@@ -44,6 +47,10 @@ class UserDetail extends React.Component {
           </button>
         </>
       );
+    } else {
+      connectBtn = <button className='connect-btn' onClick={() => createConnection({
+        connector_id: currentUser, connected_id: user.id
+      })}>Connect</button>
     }
 
     const userSummary = user.summary ? (
@@ -69,7 +76,8 @@ class UserDetail extends React.Component {
               <div>
                 <h3>{user.location}</h3>
               </div>
-              <div>
+              <div className='user-details-btns'>
+                {connectBtn}
                 {editSectionBtn}
               </div>
             </div>
@@ -92,7 +100,8 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => 
 });
 
 const mapDTP = dispatch => ({
-  openModal: (modal, id) => dispatch(openModal(modal, id))
+  openModal: (modal, id) => dispatch(openModal(modal, id)),
+  createConnection: connection => dispatch(createConnection(connection))
 });
 
 const UserDetailContainer = withRouter(connect(mapSTP, mapDTP)(UserDetail));
