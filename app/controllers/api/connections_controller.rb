@@ -1,9 +1,8 @@
 class Api::ConnectionsController < ApplicationController
   def index 
     user_id = current_user.id
-    @connections = Connection.includes(:user)
-                             .where(connections: { accepted: true })
-                             .where("connections.connector_id = #{user_id} OR connections.connected_id = #{user_id}")
+    @connections = Connection.includes(:connector)
+                             .where("connector_id = #{user_id} OR connected_id = #{user_id}")
   end
 
   def show 
@@ -22,8 +21,8 @@ class Api::ConnectionsController < ApplicationController
 
   def update 
     @connection = Connection.find(params[:id])
-
-    if @connection.update(connection_params)
+    
+    if @connection.update({ accepted: true })
       render :show 
     else
       render json: @connection.errors.full_messages, status: 400

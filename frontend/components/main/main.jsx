@@ -1,6 +1,7 @@
 import React from 'react';
 import { ProtectedRoute } from '../../util/route_util';
 import FeedContainer from '../feed/feed';
+import NetworkContainer from '../network/network';
 import ProfileContainer from '../profile/profile'
 
 class Main extends React.Component {
@@ -13,6 +14,7 @@ class Main extends React.Component {
       <>
         <ProtectedRoute exact path='/feed' component={FeedContainer}/>
         <ProtectedRoute exact path='/users/:id' component={ProfileContainer}/>
+        <ProtectedRoute exact patch='/mynetwork' component={NetworkContainer}/>
       </>
     )
   }
