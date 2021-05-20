@@ -11,7 +11,11 @@ class Api::UsersController < ApplicationController
   end
 
   def show 
-    @user = User.includes(:educations).includes(:experiences).find(params[:id])
+    @user = User.includes(:educations)
+                .includes(:experiences)
+                .includes(:in_connects)
+                .includes(:out_connects)
+                .find(params[:id])
   end
 
   def update 

@@ -1,6 +1,11 @@
 json.user do 
   json.set! @user.id do 
     json.partial! '/api/users/user', user: @user
+    json.connections (
+      @user.in_connects.where(connections: { accepted: true }).count
+    ) + (
+      @user.out_connects.where(connections: { accepted: true }).count
+    )
   end
 end
 

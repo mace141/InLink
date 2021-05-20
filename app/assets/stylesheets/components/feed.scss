@@ -2,6 +2,39 @@
   @include box
 }
 
+.user-side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .side-bar-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: black;
+  }
+
+  p {
+    color: $gray;
+    font-size: 14px;
+    text-align: center;
+    margin: 5px 0;
+  }
+  
+  .side-bar-connections {
+    display: flex; 
+
+    p:hover {
+      text-decoration: underline;
+      color: $LIblue;
+    }
+
+    span {
+      color: $LIblue;
+      font-weight: 600;
+    }
+  }
+}
+
 .feed-section {
   display: grid;
   grid-template-columns: 4fr 9fr 5fr;

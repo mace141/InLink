@@ -59,8 +59,8 @@ const receiveSessionErrors = errors => ({
   errors
 });
 
-export const fetchUser = user => dispatch => (
-  SessionAPI.fetchUser(user).then(
+export const fetchUser = userId => dispatch => (
+  SessionAPI.fetchUser(userId).then(
     user => dispatch(receiveUser(user))
   )
 );

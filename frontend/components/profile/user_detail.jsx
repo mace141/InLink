@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { createConnection } from '../../actions/connection';
 import { openModal } from '../../actions/modal';
 
@@ -75,6 +75,11 @@ class UserDetail extends React.Component {
               </div>
               <div>
                 <h3>{user.location}</h3>
+              </div>
+              <div>
+                <Link to='/mynetwork'>
+                  <span>{user.connections} connections</span>
+                </Link>
               </div>
               <div className='user-details-btns'>
                 {connectBtn}

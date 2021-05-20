@@ -56,6 +56,17 @@
       font-size: 14px;
       color: $gray;
     }
+
+    span {
+      padding-top: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $LIblue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .pf-user-hist {

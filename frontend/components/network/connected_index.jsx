@@ -5,7 +5,7 @@ const ConnectedIndex = ({ connectedUsers }) => {
   const connectionsList = connectedUsers.length ? (
     <ul className='connects-list'>
       {connectedUsers.map(user => (
-        <div>
+        <div key={user.id}>
           <Link to={`/users/${user.id}`}>
             <img src={user.profileUrl || window.defaultUser} alt="Profile Pic"/>
           </Link>
