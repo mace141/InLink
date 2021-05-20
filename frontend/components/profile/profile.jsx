@@ -31,8 +31,10 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-        <div className='suggested-connections whitebox'>
-          Suggested Connections
+        <div>
+          <div className='suggested-connections whitebox'>
+            Suggested Connections
+          </div>
         </div>
       </div>
     );

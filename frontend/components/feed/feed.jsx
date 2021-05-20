@@ -16,16 +16,26 @@ class Feed extends React.Component {
     return (
       <section className='feed-section'>
         <div>
-          <aside className='user-side-bar whitebox'>
-            <Link to={`/users/${currentUser.id}`}><img src={profileUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/></Link>
-            <p className='side-bar-name'>{fname + ' ' + lname}</p>
-            <p>{headline}</p>
-            <div>
-              <div className='side-bar-connections'>
-                <Link to='/mynetwork'>
-                  <p>Connections <span>{currentUser.connections}</span></p>
-                </Link>
-              </div>
+          <aside className='user-side-bar'>
+            <div className='background-side'>
+              <img src={currentUser.background || window.defaultBg} alt="Background"/>
+            </div>
+            <div className='side-bar-user-info'>
+              <Link to={`/users/${currentUser.id}`}><img src={profileUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/></Link>
+              <p className='side-bar-name'>{fname + ' ' + lname}</p>
+              <p>{headline}</p>
+            </div>
+            <div className='side-bar-connections'>
+              <Link to='/mynetwork'>
+                <div>
+                  <div>
+                    <p>Connections</p>
+                  </div>
+                  <div>
+                    <p className='conn-count'>{currentUser.connections}</p>
+                  </div>
+                </div>
+              </Link>
             </div>
           </aside>
         </div>
