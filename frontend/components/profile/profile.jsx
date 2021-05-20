@@ -21,7 +21,6 @@ class Profile extends React.Component {
 
     return (
       <div className='profile-page-ctnr'>
-        <UploadAvatarContainer/>
         <div className='user-section'>
           <UserDetailContainer lastExp={experiences[0]} lastEdu={educations[0]}/>
           <div className='exp-edu-sect'>

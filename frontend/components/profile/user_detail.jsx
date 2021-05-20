@@ -63,10 +63,20 @@ class UserDetail extends React.Component {
     return (
       <>
         <div className='user-pf-ctnr'>
-          <div className='user-bg-img'><img src={user.background || window.defaultBg} alt="Background Pic"/></div>
+          <div className='user-bg-img'>
+            <img src={user.background || window.defaultBg} alt="Background Pic"/>
+            <button onClick={() => openModal('uploadBackground')} className='upload-bg-btn'>
+              <i className="fas fa-pencil-alt"></i>
+            </button>
+          </div>
           <div className='user-details'>
             <div className='pf-user-info'>
-              <img src={user.profileUrl || window.defaultUser} alt="Profile Pic" className='pfp large'/>
+              <div>
+                <img src={user.profileUrl || window.defaultUser} alt="Profile Pic" className='pfp large'/>
+                <button onClick={() => openModal('uploadBackground')} className='upload-avatar-btn'>
+                  <i className="fas fa-pencil-alt"></i>
+                </button>
+              </div>
               <div>
                 <h1>{`${user.fname} ${user.lname}`}</h1>
               </div>

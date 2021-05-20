@@ -8,6 +8,8 @@ import EditEducationForm from '../educations/edit_education_form';
 import CreateExperienceForm from '../experiences/create_experience_form';
 import EditExperienceForm from '../experiences/edit_experience_form';
 import EditIntroContainer from '../profile/intro_form';
+import UploadAvatarContainer from '../profile/upload_background_container';
+import UploadBackgroundContainer from '../profile/upload_background_container';
 
 const Modal = ({modal, closeModal}) => {
   if (!modal) return null;
@@ -34,6 +36,12 @@ const Modal = ({modal, closeModal}) => {
       break;
     case 'editIntro':
       component = <EditIntroContainer closeModal={closeModal}/>;
+      break;
+    case 'uploadAvatar':
+      component = <UploadAvatarContainer closeModal={closeModal}/>;
+      break;
+    case 'uploadBackground':
+      component = <UploadBackgroundContainer closeModal={closeModal}/>;
       break;
     default:
       return null;
