@@ -5,8 +5,17 @@ class Api::ConnectionsController < ApplicationController
                              .where("connector_id = #{user_id} OR connected_id = #{user_id}")
   end
 
-  def show 
-    @connection = Connection.find(params[:id]).includes(:user)
+  def connected
+    @connection = Connection.find_by(
+      connected_id: params[:connected_id], 
+      connector_id: params[:connector_id]
+    )
+    # debugger
+    if @connection 
+      render :show
+    else 
+      render json: { accepted: nil }
+    end
   end
 
   def create 

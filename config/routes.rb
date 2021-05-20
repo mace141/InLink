@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/api/comments/root_count', to: 'api/comments#root_comment_count'
   get '/api/comments/reply_count', to: 'api/comments#reply_comment_count'
   get '/api/likes/user_liked', to: 'api/likes#user_liked'
+  get '/api/connections/connected', to: 'api/connections#connected'
 
   namespace :api, defaults: { format: :json } do 
     resources :users, only: [:create, :show, :update]
@@ -51,7 +52,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:index, :create, :destroy]
     resources :experiences, only: [:index, :create, :update, :destroy]
     resources :educations, only: [:index, :create, :update, :destroy]
-    resources :connections, only: [:index, :show, :create, :update, :destroy]
+    resources :connections, only: [:index, :create, :update, :destroy]
 
     resource :session, only: [:create, :destroy]
   end

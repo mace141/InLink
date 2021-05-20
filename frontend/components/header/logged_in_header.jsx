@@ -87,7 +87,7 @@ class LoggedIn extends React.Component {
     )
   }
 }
-// + (this.state.drop ? 'reveal' : 'hide')
+
 const mapSTP = ({ entities: { users }, session: { currentUser } }) => ({
   user: users[currentUser]
 });

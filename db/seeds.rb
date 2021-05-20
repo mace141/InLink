@@ -118,14 +118,14 @@ ActiveRecord::Base.transaction do
     fname: user_8_name[0],
     lname: user_8_name[1],
     location: "#{user_8_addy[1]}, #{user_8_addy[2].split[0]}, United States",
-    headline: "#{user__profession} at #{user_8_industry}",
+    headline: "#{user_8_profession} at #{user_8_industry}",
     industry: user_8_industry
   )
 
   user_9_name = Faker::FunnyName.two_word_name.split(' ')
   user_9_addy = Faker::Address.full_address.split(', ')
   user_9_industry = Faker::Company.name
-  user_2_profession = Faker::Company.profession.capitalize
+  user_9_profession = Faker::Company.profession.capitalize
   user_9 = User.create(
     email: Faker::Internet.email,
     password: 'pass9word',
@@ -574,499 +574,499 @@ ActiveRecord::Base.transaction do
     end_year: 2022,
   )
 
-  Experience.create(
-    user_id: user_5.id,
-    title: user_5_profession,
-    employment_type: ,
-    company: user_5_industry,
-    location: "#{user_5_addy[1]}, #{user_5_addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_5.id,
+  #   title: user_5_profession,
+  #   employment_type: ,
+  #   company: user_5_industry,
+  #   location: "#{user_5_addy[1]}, #{user_5_addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
-  Experience.create(
-    user_id: user_.id,
-    title: user__profession,
-    employment_type: ,
-    company: user__industry,
-    location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-    start_date: '-01', 
-    end_date: ,
-  )
+  # Experience.create(
+  #   user_id: user_.id,
+  #   title: user__profession,
+  #   employment_type: ,
+  #   company: user__industry,
+  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
+  #   start_date: '-01', 
+  #   end_date: ,
+  # )
 
-  Education.create(
-    user_id: ,
-    school: ,
-    degree: ,
-    field: ,
-    start_year: ,
-    end_year: ,
-  )
+  # Education.create(
+  #   user_id: ,
+  #   school: ,
+  #   degree: ,
+  #   field: ,
+  #   start_year: ,
+  #   end_year: ,
+  # )
 
   Connection.create(
     connector_id: guest.id,
@@ -1089,13 +1089,13 @@ ActiveRecord::Base.transaction do
   Connection.create(
     connector_id: guest.id,
     connected_id: user_5.id,
-    accepted: true
+    accepted: false
   )
 
   Connection.create(
     connector_id: guest.id,
     connected_id: user_6.id,
-    accepted: true
+    accepted: false
   )
 
   Connection.create(

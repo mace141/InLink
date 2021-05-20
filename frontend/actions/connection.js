@@ -10,7 +10,7 @@ const receiveConnections = payload => ({
   users: payload.users
 });
 
-const receiveConnection = payload => ({
+export const receiveConnection = payload => ({
   type: RECEIVE_CONNECTION,
   connection: payload.connection,
   user: payload.user
@@ -23,6 +23,12 @@ const removeConnection = connectionId => ({
 
 export const fetchConnections = () => dispatch => (
   ConnectionAPI.fetchConnections().then(
+    res => dispatch(receiveConnections(res))
+  )
+);
+
+export const fetchConnection = (connectorId, connectedId) => dispatch => (
+  ConnectionAPI.fetchConnections(connectorId, connectedId).then(
     res => dispatch(receiveConnections(res))
   )
 );

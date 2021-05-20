@@ -108,10 +108,6 @@ class PostIndexItem extends React.Component {
     this.setState({ commentCount: this.state.commentCount + 1 });
   }
 
-  // INFINITE SCROLLING: 
-  // fetch 10 posts by connections, order by updated time. save the updated time of the last post
-  // fetch 10 more posts starting from saved updated time, order by updated time
-  
   render() {
     const { 
       currentUser, openModal, deletePost, users, post: { id, body, mediaUrl, userId } 
