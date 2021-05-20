@@ -13,10 +13,10 @@ class Network extends React.Component {
     const { requestingUsers, connectedUsers, requests } = this.props;
 
     return (
-      <div>
+      <>
         <RequestsIndexContainer requestingUsers={requestingUsers} requests={requests}/>
         <ConnectedIndex connectedUsers={connectedUsers}/>
-      </div>
+      </>
     )
   }
 }

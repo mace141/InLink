@@ -14,7 +14,7 @@ class Main extends React.Component {
       <>
         <ProtectedRoute exact path='/feed' component={FeedContainer}/>
         <ProtectedRoute exact path='/users/:id' component={ProfileContainer}/>
-        <ProtectedRoute exact patch='/mynetwork' component={NetworkContainer}/>
+        <ProtectedRoute exact path='/mynetwork' component={NetworkContainer}/>
       </>
     )
   }
