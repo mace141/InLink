@@ -6,7 +6,7 @@ class UploadPictureForm extends React.Component {
     
     this.state = {
       avatar: "",
-      profileUrl: "",
+      avatarUrl: "",
       background: "",
       backgroundUrl: ""
     };
@@ -58,14 +58,12 @@ class UploadPictureForm extends React.Component {
   }
 
   render() {
-    const { formType, imageType, imageUrl, user } = this.props;
-    debugger
+    const { formType, imageType, imageUrl } = this.props;
     const preview = this.state[imageType] ? ( 
       <img src={this.state[imageUrl]} alt={imageType} />
     ) : (
       <span id='image-input-btn' onClick={() => document.getElementById('image-input').click()}>Select an image</span>
     )
-    debugger
     const deleteBtn = this.state[imageType] ? (
       <button onClick={this.removeFile}>Cancel</button>
     ) : null;

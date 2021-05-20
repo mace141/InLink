@@ -25,7 +25,7 @@ class LoggedIn extends React.Component {
 
   render() {
     const { user, logoutUser } = this.props;
-    const profile = user.profileUrl || window.defaultUser;
+    const profile = user.avatarUrl || window.defaultUser;
 
     return (
       <>

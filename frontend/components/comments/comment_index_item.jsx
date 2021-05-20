@@ -127,7 +127,7 @@ class CommentIndexItem extends React.Component {
       comment: { id, body, mediaUrl }, incrComCount
     } = this.props;
     const { drop, edit, reply, replyCount, likeCount } = this.state;
-    const profile = user.profileUrl || window.defaultUser;
+    const profile = user.avatarUrl || window.defaultUser;
 
     let dropdown; let commentUser; let name; let headline;
 

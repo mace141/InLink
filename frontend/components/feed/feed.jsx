@@ -12,7 +12,7 @@ class Feed extends React.Component {
 
   render() {
     const { openModal, currentUser } = this.props;
-    const { fname, lname, headline, profileUrl } = currentUser;
+    const { fname, lname, headline, avatarUrl } = currentUser;
     return (
       <section className='feed-section'>
         <div>
@@ -21,7 +21,7 @@ class Feed extends React.Component {
               <img src={currentUser.background || window.defaultBg} alt="Background"/>
             </div>
             <div className='side-bar-user-info'>
-              <Link to={`/users/${currentUser.id}`}><img src={profileUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/></Link>
+              <Link to={`/users/${currentUser.id}`}><img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/></Link>
               <p className='side-bar-name'>{fname + ' ' + lname}</p>
               <p>{headline}</p>
             </div>
@@ -41,7 +41,7 @@ class Feed extends React.Component {
         </div>
         <section className='posts-section'>
           <div className='start-post whitebox'>
-            <Link to={`/users/${currentUser.id}`}><img src={profileUrl || window.defaultUser} alt="Profile Pic" className='pfp'/></Link>
+            <Link to={`/users/${currentUser.id}`}><img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp'/></Link>
             <button onClick={() => openModal('createPost')}>Start a post</button>
           </div>
           <div className='feed-div'></div>

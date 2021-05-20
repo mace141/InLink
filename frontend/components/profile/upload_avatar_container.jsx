@@ -7,7 +7,7 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }) => ({
   user: users[currentUser],
   formType: 'Change profile picture',
   imageType: 'avatar',
-  imageUrl: 'profileUrl'
+  imageUrl: 'avatarUrl'
 });
 
 const mapDTP = dispatch => ({

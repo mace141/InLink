@@ -138,7 +138,7 @@ class PostIndexItem extends React.Component {
       postUser = { headline: "" };
     }
 
-    const profile = postUser.profileUrl || window.defaultUser;
+    const profile = postUser.avatarUrl || window.defaultUser;
 
     const commentSection = comment ? (
       <div className='comment-section'>
