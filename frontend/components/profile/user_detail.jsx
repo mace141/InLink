@@ -22,7 +22,7 @@ class UserDetail extends React.Component {
   }
 
   render() {
-    const { user, currentUser, match, openModal } = this.props; 
+    const { user, currentUser, match, openModal, lastEdu, lastExp } = this.props; 
     if (!user) return null;
     let editIntroBtn; let editSectionBtn;
     
@@ -75,8 +75,8 @@ class UserDetail extends React.Component {
             </div>
             <div className='pf-user-hist'>
               {editIntroBtn}
-              <p>Most recent work</p>
-              <p>Most recent education</p>
+              <p>{lastExp ? lastExp.company : null}</p>
+              <p>{lastEdu ? lastEdu.school : null}</p>
             </div>
           </div>
         </div>

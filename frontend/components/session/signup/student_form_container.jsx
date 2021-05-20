@@ -66,7 +66,7 @@ class StudentForm extends React.Component {
         dispatch(receiveCurrentUser(payload));
         createEducation({ 
           ...user, 
-          user_id: payload.user.id,
+          user_id: Object.keys(payload.user)[0],
           start_year: user.startYr,
           end_year: user.endYr 
         });

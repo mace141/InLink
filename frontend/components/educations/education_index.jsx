@@ -30,16 +30,9 @@ class EducationIndex extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { educations }, session: { currentUser } }, ownProps) => {
-  const mappedEdu = Object.values(educations).filter(
-    edu => edu.userId == ownProps.match.params.id
-  ).sort((a, b) => a.endYear > b.endYear ? -1 : 1);
-
-  return {
-    educations: mappedEdu,
-    currentUser
-  };
-};
+const mapSTP = ({ session: { currentUser } }) => ({
+  currentUser
+});
 
 const mapDTP = dispatch => ({
   openModal: (modal, id) => dispatch(openModal(modal, id))

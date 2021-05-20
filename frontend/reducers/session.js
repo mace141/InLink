@@ -21,7 +21,7 @@ const sessionReducer = (state = _nullSession, action) => {
     case RECEIVE_CURRENT_USER:
       return { currentUser: Object.keys(action.user)[0] };
     case LOGOUT_CURRENT_USER:
-      return _nullSession;
+      return { currentUser: null, signup: {} };
     case RECEIVE_USER_EMAIL:
       nextSignup = Object.assign(state.signup, action.email);
       return Object.assign({}, state, { signup: nextSignup });
