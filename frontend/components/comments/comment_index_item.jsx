@@ -148,7 +148,7 @@ class CommentIndexItem extends React.Component {
         );
       }
     } 
-    debugger
+    
     const editForm = edit ? (
       <EditCommentFormContainer cancelEdit={this.cancelEdit} comment={comment}/>
     ) : (

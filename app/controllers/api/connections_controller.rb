@@ -10,7 +10,7 @@ class Api::ConnectionsController < ApplicationController
       connected_id: params[:connected_id], 
       connector_id: params[:connector_id]
     )
-    # debugger
+    
     if @connection 
       render :show
     else 
