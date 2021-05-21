@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "down"
 
 ActiveRecord::Base.transaction do 
   User.destroy_all 
@@ -290,6 +291,67 @@ ActiveRecord::Base.transaction do
     headline: "#{user_20_profession} at #{user_20_industry}",
     industry: user_20_industry
   )
+
+  avatar_1 = Down.download('https://inlink-seeds.s3.amazonaws.com/user1.png')
+  guest.avatar.attach(io: avatar_1, filename: 'user1.png')
+
+  avatar_2 = Down.download('https://inlink-seeds.s3.amazonaws.com/user2.png')
+  user_2.avatar.attach(io: avatar_2, filename: 'user2.png')
+
+  avatar_3 = Down.download('https://inlink-seeds.s3.amazonaws.com/user3.png')
+  user_3.avatar.attach(io: avatar_3, filename: 'user3.png')
+
+  avatar_4 = Down.download('https://inlink-seeds.s3.amazonaws.com/user4.png')
+  user_4.avatar.attach(io: avatar_4, filename: 'user4.png')
+  
+  avatar_5 = Down.download('https://inlink-seeds.s3.amazonaws.com/user5.png')
+  user_5.avatar.attach(io: avatar_5, filename: 'user5.png')
+
+  avatar_6 = Down.download('https://inlink-seeds.s3.amazonaws.com/user6.png')
+  user_6.avatar.attach(io: avatar_6, filename: 'user6.png')
+
+  avatar_7 = Down.download('https://inlink-seeds.s3.amazonaws.com/user7.png')
+  user_7.avatar.attach(io: avatar_7, filename: 'user7.png')
+
+  avatar_8 = Down.download('https://inlink-seeds.s3.amazonaws.com/user8.png')
+  user_8.avatar.attach(io: avatar_8, filename: 'user8.png')
+
+  avatar_9 = Down.download('https://inlink-seeds.s3.amazonaws.com/user9.png')
+  user_9.avatar.attach(io: avatar_9, filename: 'user9.png')
+
+  avatar_10 = Down.download('https://inlink-seeds.s3.amazonaws.com/user10.png')
+  user_10.avatar.attach(io: avatar_10, filename: 'user10.png')
+
+  avatar_11 = Down.download('https://inlink-seeds.s3.amazonaws.com/user11.png')
+  user_11.avatar.attach(io: avatar_11, filename: 'user11.png')
+
+  avatar_12 = Down.download('https://inlink-seeds.s3.amazonaws.com/user12.png')
+  user_12.avatar.attach(io: avatar_12, filename: 'user12.png')
+
+  avatar_13 = Down.download('https://inlink-seeds.s3.amazonaws.com/user13.png')
+  user_13.avatar.attach(io: avatar_13, filename: 'user13.png')
+
+  avatar_14 = Down.download('https://inlink-seeds.s3.amazonaws.com/user14.png')
+  user_14.avatar.attach(io: avatar_14, filename: 'user14.png')
+
+  avatar_15 = Down.download('https://inlink-seeds.s3.amazonaws.com/user15.png')
+  user_15.avatar.attach(io: avatar_15, filename: 'user15.png')
+
+  avatar_16 = Down.download('https://inlink-seeds.s3.amazonaws.com/user16.png')
+  user_16.avatar.attach(io: avatar_16, filename: 'user16.png')
+
+  avatar_17 = Down.download('https://inlink-seeds.s3.amazonaws.com/user17.png')
+  user_17.avatar.attach(io: avatar_17, filename: 'user17.png')
+
+  avatar_18 = Down.download('https://inlink-seeds.s3.amazonaws.com/user18.png')
+  user_18.avatar.attach(io: avatar_18, filename: 'user18.png')
+
+  avatar_19 = Down.download('https://inlink-seeds.s3.amazonaws.com/user19.png')
+  user_19.avatar.attach(io: avatar_19, filename: 'user19.png')
+
+  avatar_20 = Down.download('https://inlink-seeds.s3.amazonaws.com/user20.png')
+  user_20.avatar.attach(io: avatar_20, filename: 'user20.png')
+
 
   Experience.create(
     user_id: guest.id,
