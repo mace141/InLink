@@ -1,5 +1,3 @@
-# README
-
 # InLink
 
 <img src="https://inlink-seeds.s3.amazonaws.com/InLink_full_logo.png"
