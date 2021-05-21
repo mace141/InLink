@@ -19,7 +19,24 @@ class EditCommentForm extends React.Component {
   }
 
   handleSubmit() {
-    this.props.updateComment(this.state);
+    const formData = new FormData();
+    if (this.state.media) {
+      formData.append('comment[media]', this.state.media);
+    }
+    if (this.state.parentCommentId) {
+      formData.append('comment[parent_comment_id]', this.state.parentCommentId);
+    }
+    formData.append('comment[id]', this.state.id);
+    formData.append('comment[body]', this.state.body);
+    formData.append('comment[user_id]', this.state.userId);
+    
+    this.props.updateComment(formData);
+    this.setState({ 
+      body: "",
+      media: null,
+      mediaUrl: null
+    });
+    this.props.cancelEdit();
   }
 
   ensureChange() {

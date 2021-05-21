@@ -43,7 +43,7 @@ class CommentIndex extends React.Component {
     const moreCommentsBtn = this.state.allRootComments ? null : (
       <button className='more-cmts' onClick={this.loadMoreComments}>Load more comments</button>
     );
-    
+    debugger
     return (
       <>
         <ul className='comments-index'>

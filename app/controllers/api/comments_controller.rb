@@ -37,9 +37,8 @@ class Api::CommentsController < ApplicationController
 
   def update 
     @comment = Comment.find(params[:id])
-
+    debugger
     if @comment.update(comment_params)
-      @comment = @comment.includes(:likes).includes(:comments)
       render :show 
     else
       render json: @comment.errors.full_messages
