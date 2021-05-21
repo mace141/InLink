@@ -59,7 +59,7 @@ class EducationForm extends React.Component {
     }
 
     const deleteBtn = this.props.deleteEducation ? (
-      <button onClick={() => this.props.deleteEducation(id)} className='delete btn'>Delete</button>
+      <button onClick={() => {this.props.deleteEducation(id); this.props.closeModal()}} className='delete btn'>Delete</button>
     ) : null;
 
     return (

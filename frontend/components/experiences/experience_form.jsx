@@ -137,7 +137,7 @@ class ExperienceForm extends React.Component {
     )
 
     const deleteBtn = this.props.deleteExperience ? (
-      <button onClick={() => this.props.deleteExperience(id)}>Delete</button>
+      <button onClick={() => {this.props.deleteExperience(id); this.props.closeModal()}}>Delete</button>
     ) : null;
 
     return (

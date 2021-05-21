@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { updateExperience } from '../../actions/experience';
+import { updateExperience, deleteExperience } from '../../actions/experience';
 import ExperienceForm from './experience_form';
 
 const mapSTP = ({ entities: { experiences }, ui: { filter } }) => ({

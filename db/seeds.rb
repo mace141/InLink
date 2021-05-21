@@ -13,6 +13,7 @@ ActiveRecord::Base.transaction do
   Like.destroy_all
   Experience.destroy_all 
   Education.destroy_all
+  Connection.destroy_all
   
   guest = User.create(
     email: 'guest@user.com', 
@@ -290,6 +291,517 @@ ActiveRecord::Base.transaction do
     industry: user_20_industry
   )
 
+  Experience.create(
+    user_id: guest.id,
+    title: 'Baker',
+    employment_type: 'Full-time',
+    company: 'Bread Acquisition Inc.',
+    location: 'New York, NY',
+    start_date: '2013-07-01', 
+    end_date: nil,
+    description: 'Acquire all bread for thyself'
+  )
+
+  Education.create(
+    user_id: guest.id,
+    school: 'University of Breadery',
+    degree: "Master of Science in Bread Sciences",
+    field: 'Bread Acquisition',
+    start_year: 2009,
+    end_year: 2013,
+  )
+
+  Education.create(
+    user_id: guest.id,
+    school: 'College of Bread Town',
+    degree: "Bachelor's of Science in Bread Sciences",
+    field: 'Bread Acquisition',
+    start_year: 2005,
+    end_year: 2009,
+  )
+  
+  Experience.create(
+    user_id: user_2.id,
+    title: user_2_profession,
+    employment_type: 'Full-time',
+    company: user_2_industry,
+    location: "#{user_2_addy[1]}, #{user_2_addy[2].split[0]}, United States",
+    start_date: '2014-07-01', 
+    end_date: nil,
+  )
+
+  Education.create(
+    user_id: user_2.id,
+    school: 'University of York New',
+    degree: "Bachelor's of Arts",
+    field: 'Painting',
+    start_year: 2010,
+    end_year: 2014,
+  )
+
+  Experience.create(
+    user_id: user_3.id,
+    title: user_3_profession,
+    employment_type: 'Full-time',
+    company: user_3_industry,
+    location: "#{user_3_addy[1]}, #{user_3_addy[2].split[0]}, United States",
+    start_date: '2005-08-01',
+    end_date: '2008-02-01'
+  )
+
+  Education.create(
+    user_id: user_3.id,
+    school: 'Berkshire College',
+    degree: "Bachelor's of Science",
+    field: 'Engineering',
+    start_year: 2000,
+    end_year: 2004
+  )
+
+  Experience.create(
+    user_id: user_4.id,
+    title: user_4_profession,
+    employment_type: 'Full-time',
+    company: user_4_industry,
+    location: "#{user_4_addy[1]}, #{user_4_addy[2].split[0]}, United States",
+    start_date: '2007-12-01', 
+    end_date: '2012-09-01'
+  )
+
+  Education.create(
+    user_id: user_4.id,
+    school: 'College of Betta',
+    degree: "Bachelor's of Science",
+    field: 'Horticulture',
+    start_year: 1998,
+    end_year: 2002,
+  )
+
+  Experience.create(
+    user_id: user_5.id,
+    title: user_5_profession,
+    employment_type: 'Full-time',
+    company: user_5_industry,
+    location: "#{user_5_addy[1]}, #{user_5_addy[2].split[0]}, United States",
+    start_date: '1999-01-01', 
+    end_date: '2003-06-01',
+  )
+
+  Education.create(
+    user_id: user_5.id,
+    school: 'Williams College',
+    degree: "Bachelor's of Arts",
+    field: 'Humanities',
+    start_year: 1994,
+    end_year: 1998,
+  )
+
+  Experience.create(
+    user_id: user_6.id,
+    title: user_6_profession,
+    employment_type: 'Full-time',
+    company: user_6_industry,
+    location: "#{user_6_addy[1]}, #{user_6_addy[2].split[0]}, United States",
+    start_date: '1995-06-01'
+  )
+
+  Education.create(
+    user_id: user_6.id,
+    school: 'University of Central Floria',
+    degree: "Bachelor's of Science",
+    field: 'Construction Engineering Technology',
+    start_year: 2010,
+    end_year: 2014,
+  )
+
+  Experience.create(
+    user_id: user_7.id,
+    title: user_7_profession,
+    employment_type: 'Full-time',
+    company: user_7_industry,
+    location: "#{user_7_addy[1]}, #{user_7_addy[2].split[0]}, United States",
+    start_date: '1998-08-01'
+  )
+
+  Education.create(
+    user_id: user_7.id,
+    school: 'University of Texas, Austin',
+    degree: "Bachelor's of Arts",
+    field: 'Visual Arts - Sculpture',
+    start_year: 1980,
+    end_year: 1984,
+  )
+
+  Experience.create(
+    user_id: user_8.id,
+    title: user_8_profession,
+    employment_type: 'Full-time',
+    company: user_8_industry,
+    location: "#{user_8_addy[1]}, #{user_8_addy[2].split[0]}, United States",
+    start_date: '2014-12-01'
+  )
+
+  Education.create(
+    user_id: user_8.id,
+    school: 'United States Naval Academy',
+    degree: "Bachelor's of Science",
+    field: 'Aviation',
+    start_year: 2010,
+    end_year: 2014,
+  )
+
+  Experience.create(
+    user_id: user_9.id,
+    title: user_9_profession,
+    employment_type: 'Full-time',
+    company: user_9_industry,
+    location: "#{user_9_addy[1]}, #{user_9_addy[2].split[0]}, United States",
+    start_date: '2000-10-01', 
+    end_date: '2007-08-01',
+  )
+
+  Education.create(
+    user_id: user_9.id,
+    school: 'Bryn Mawr College',
+    degree: "Bachelor's of Science",
+    field: 'Business - Information Systems',
+    start_year: 1994,
+    end_year: 1998,
+  )
+
+  Experience.create(
+    user_id: user_10.id,
+    title: user_10_profession,
+    employment_type: 'Full-time',
+    company: user_10_industry,
+    location: "#{user_10_addy[1]}, #{user_10_addy[2].split[0]}, United States",
+    start_date: '1970-03-01', 
+    end_date: '1985-03-01',
+  )
+
+  Education.create(
+    user_id: user_10.id,
+    school: 'Northwestern University',
+    degree: "Master of Science",
+    field: 'Medicine - Internal Medicine',
+    start_year: 1964,
+    end_year: 1968,
+  )
+
+  Experience.create(
+    user_id: user_11.id,
+    title: user_11_profession,
+    employment_type: 'Full-time',
+    company: user_11_industry,
+    location: "#{user_11_addy[1]}, #{user_11_addy[2].split[0]}, United States",
+    start_date: '2012-11-01', 
+    end_date: '2020-02-01',
+  )
+
+  Education.create(
+    user_id: user_11.id,
+    school: 'Rice University',
+    degree: "Bachelor's of Arts",
+    field: 'Performing Arts - Music',
+    start_year: 2009,
+    end_year: 2012,
+  )
+
+  Experience.create(
+    user_id: user_12.id,
+    title: user_12_profession,
+    employment_type: 'Full-time',
+    company: user_12_industry,
+    location: "#{user_12_addy[1]}, #{user_12_addy[2].split[0]}, United States",
+    start_date: '1996-02-01'
+  )
+
+  Education.create(
+    user_id: user_12.id,
+    school: 'Colby College',
+    degree: "Bachelor's of Science",
+    field: 'Mathematics',
+    start_year: 1990,
+    end_year: 1994,
+  )
+
+  Experience.create(
+    user_id: user_13.id,
+    title: user_13_profession,
+    employment_type: 'Full-time',
+    company: user_13_industry,
+    location: "#{user_13_addy[1]}, #{user_13_addy[2].split[0]}, United States",
+    start_date: '2017-08-01', 
+    end_date: '2020-02-01',
+  )
+
+  Education.create(
+    user_id: user_13.id,
+    school: 'Villanova University',
+    degree: "Bachelor's of Arts",
+    field: 'Asian Studies',
+    start_year: 2010,
+    end_year: 2014,
+  )
+
+  Experience.create(
+    user_id: user_14.id,
+    title: user_14_profession,
+    employment_type: 'Full-time',
+    company: user_14_industry,
+    location: "#{user_14_addy[1]}, #{user_14_addy[2].split[0]}, United States",
+    start_date: '2006-12-01'
+  )
+
+  Education.create(
+    user_id: user_14.id,
+    school: "Davidson College",
+    degree: "Bachelor's of Science",
+    field: 'Environmental Studies and Forestry',
+    start_year: 2002,
+    end_year: 2006,
+  )
+
+  Experience.create(
+    user_id: user_15.id,
+    title: user_15_profession,
+    employment_type: 'Full-time',
+    company: user_15_industry,
+    location: "#{user_15_addy[1]}, #{user_15_addy[2].split[0]}, United States",
+    start_date: '1999-03-01', 
+    end_date: '2008-05-01',
+  )
+
+  Education.create(
+    user_id: user_15.id,
+    school: 'Lehigh University',
+    degree: "Bachelor's of Arts",
+    field: 'Literature Theory',
+    start_year: 1990,
+    end_year: 1996,
+  )
+
+  Experience.create(
+    user_id: user_16.id,
+    title: user_16_profession,
+    employment_type: 'Full-time',
+    company: user_16_industry,
+    location: "#{user_16_addy[1]}, #{user_16_addy[2].split[0]}, United States",
+    start_date: '2002-09-01', 
+    end_date: '2011-03-01',
+  )
+
+  Education.create(
+    user_id: user_16.id,
+    school: "Hamilton College",
+    degree: "Bachelor's of Arts",
+    field: 'Library and Museum Studies',
+    start_year: 1995,
+    end_year: 1999,
+  )
+
+  Experience.create(
+    user_id: user_17.id,
+    title: user_17_profession,
+    employment_type: 'Full-time',
+    company: user_17_industry,
+    location: "#{user_17_addy[1]}, #{user_17_addy[2].split[0]}, United States",
+    start_date: '2016-10-01', 
+    end_date: '2019-12-01',
+  )
+
+  Education.create(
+    user_id: user_17.id,
+    school: "Lafayette College",
+    degree: "Bachelor's of Science",
+    field: 'Political Science',
+    start_year: 2012,
+    end_year: 2016,
+  )
+
+  Experience.create(
+    user_id: user_18.id,
+    title: user_18_profession,
+    employment_type: 'Full-time',
+    company: user_18_industry,
+    location: "#{user_18_addy[1]}, #{user_18_addy[2].split[0]}, United States",
+    start_date: '2004-07-01', 
+    end_date: '2010-01-01',
+  )
+
+  Education.create(
+    user_id: user_18.id,
+    school: "Amherst College",
+    degree: "Bachelor's of Science",
+    field: 'Biology - Zoology',
+    start_year: 1998,
+    end_year: 2003,
+  )
+
+  Experience.create(
+    user_id: user_19.id,
+    title: user_19_profession,
+    employment_type: 'Full-time',
+    company: user_19_industry,
+    location: "#{user_19_addy[1]}, #{user_19_addy[2].split[0]}, United States",
+    start_date: '2018-11-01', 
+    end_date: '2020-10-01',
+  )
+
+  Education.create(
+    user_id: user_19.id,
+    school: "Haverford College",
+    degree: "Bachelor's of Science",
+    field: 'Sociology - Social Economy',
+    start_year: 2014,
+    end_year: 2018,
+  )
+
+  Experience.create(
+    user_id: user_20.id,
+    title: user_20_profession,
+    employment_type: 'Full-time',
+    company: user_20_industry,
+    location: "#{user_20_addy[1]}, #{user_20_addy[2].split[0]}, United States",
+    start_date: '2006-07-01'
+  )
+
+  Education.create(
+    user_id: user_20.id,
+    school: "Stanford University",
+    degree: "Bachelor's of Science",
+    field: 'Economics - Public Finance',
+    start_year: 2002,
+    end_year: 2004,
+  )
+
+  Experience.create(
+    user_id: user_5.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_5_addy[1]}, #{user_5_addy[2].split[0]}, United States",
+    start_date: '2014-04-01'
+  )
+
+  Education.create(
+    user_id: user_5.id,
+    school: "Whitman College",
+    degree: "Master of Arts",
+    field: 'Linguistics',
+    start_year: 2009,
+    end_year: 2013,
+  )
+
+  Experience.create(
+    user_id: user_8.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_8_addy[1]}, #{user_8_addy[2].split[0]}, United States",
+    start_date: '2008-02-01', 
+    end_date: '2009-03-01',
+  )
+
+  Education.create(
+    user_id: user_11.id,
+    school: "Trinity College",
+    degree: "Master of Science",
+    field: 'Chemistry - Marine Chemistry',
+    start_year: 2021,
+    end_year: 2025,
+  )
+
+  Experience.create(
+    user_id: user_3.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_3_addy[1]}, #{user_3_addy[2].split[0]}, United States",
+    start_date: '2009-02-01'
+  )
+
+  Education.create(
+    user_id: user_18.id,
+    school: "Princeton University",
+    degree: "Master of Science",
+    field: 'Physics - Geophysics',
+    start_year: 2011,
+    end_year: 2015,
+  )
+
+  Experience.create(
+    user_id: user_10.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_10_addy[1]}, #{user_10_addy[2].split[0]}, United States",
+    start_date: '1986-07-01'
+  )
+
+  Education.create(
+    user_id: user_4.id,
+    school: "Vassar College",
+    degree: "Master of Science",
+    field: 'Political Sociology',
+    start_year: 2003,
+    end_year: 2007,
+  )
+
+  Experience.create(
+    user_id: user_13.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_13_addy[1]}, #{user_13_addy[2].split[0]}, United States",
+    start_date: '2020-07-01'
+  )
+
+  Experience.create(
+    user_id: user_15.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_15_addy[1]}, #{user_15_addy[2].split[0]}, United States",
+    start_date: '2009-01-01'
+  )
+
+  Experience.create(
+    user_id: user_17.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_17_addy[1]}, #{user_17_addy[2].split[0]}, United States",
+    start_date: '2020-01-01'
+  )
+
+  Experience.create(
+    user_id: user_9.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_9_addy[1]}, #{user_9_addy[2].split[0]}, United States",
+    start_date: '2007-12-01'
+  )
+
+  Experience.create(
+    user_id: user_19.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_19_addy[1]}, #{user_19_addy[2].split[0]}, United States",
+    start_date: '2021-02-01'
+  )
+
+  Experience.create(
+    user_id: user_16.id,
+    title: Faker::Company.profession.capitalize,
+    employment_type: 'Full-time',
+    company: Faker::Company.name,
+    location: "#{user_16_addy[1]}, #{user_16_addy[2].split[0]}, United States",
+    start_date: '2011-06-01'
+  )
+
   post_1 = Post.create(
     body: "Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it.",
     user_id: user_20.id 
@@ -490,584 +1002,6 @@ ActiveRecord::Base.transaction do
     user_id: guest.id
   )
 
-  Experience.create(
-    user_id: guest.id,
-    title: 'Baker',
-    employment_type: 'Full-time',
-    company: 'Bread Acquisition Inc.',
-    location: 'New York, NY',
-    start_date: '2013-07-01', 
-    end_date: nil,
-    description: 'Acquire all bread for thyself'
-  )
-
-  Education.create(
-    user_id: guest.id,
-    school: 'University of Breadery',
-    degree: "Master of Science in Bread Sciences",
-    field: 'Bread Acquisition',
-    start_year: 2009,
-    end_year: 2013,
-  )
-
-  Education.create(
-    user_id: guest.id,
-    school: 'College of Bread Town',
-    degree: "Bachelor's of Science in Bread Sciences",
-    field: 'Bread Acquisition',
-    start_year: 2005,
-    end_year: 2009,
-  )
-  
-  Experience.create(
-    user_id: user_2.id,
-    title: user_2_profession,
-    employment_type: 'Full-time',
-    company: user_2_industry,
-    location: "#{user_2_addy[1]}, #{user_2_addy[2].split[0]}, United States",
-    start_date: '2013-05-01', 
-    end_date: nil,
-  )
-
-  Education.create(
-    user_id: user_2.id,
-    school: 'University of York New',
-    degree: "Bachelor's of Arts",
-    field: 'Painting',
-    start_year: 2010,
-    end_year: 2014,
-  )
-
-  Experience.create(
-    user_id: user_3.id,
-    title: user_3_profession,
-    employment_type: 'Full-time',
-    company: user_3_industry,
-    location: "#{user_3_addy[1]}, #{user_3_addy[2].split[0]}, United States",
-    start_date: '2015-08-01'
-  )
-
-  Education.create(
-    user_id: user_3.id,
-    school: 'Berkshire College',
-    degree: "Bachelor's of Science",
-    field: 'Engineering',
-    start_year: 2000,
-    end_year: 2004
-  )
-
-  Experience.create(
-    user_id: user_4.id,
-    title: user_4_profession,
-    employment_type: 'Full-time',
-    company: user_4_industry,
-    location: "#{user_4_addy[1]}, #{user_4_addy[2].split[0]}, United States",
-    start_date: '2007-12-01', 
-  )
-
-  Education.create(
-    user_id: user_4.id,
-    school: 'College of Betta',
-    degree: "Bachelor's of Science",
-    field: 'Horticulture',
-    start_year: 2018,
-    end_year: 2022,
-  )
-
-  # Experience.create(
-  #   user_id: user_5.id,
-  #   title: user_5_profession,
-  #   employment_type: ,
-  #   company: user_5_industry,
-  #   location: "#{user_5_addy[1]}, #{user_5_addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
-  # Experience.create(
-  #   user_id: user_.id,
-  #   title: user__profession,
-  #   employment_type: ,
-  #   company: user__industry,
-  #   location: "#{user__addy[1]}, #{user__addy[2].split[0]}, United States",
-  #   start_date: '-01', 
-  #   end_date: ,
-  # )
-
-  # Education.create(
-  #   user_id: ,
-  #   school: ,
-  #   degree: ,
-  #   field: ,
-  #   start_year: ,
-  #   end_year: ,
-  # )
-
   Connection.create(
     connector_id: guest.id,
     connected_id: user_2.id,
@@ -1107,6 +1041,678 @@ ActiveRecord::Base.transaction do
   Connection.create(
     connector_id: guest.id,
     connected_id: user_8.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_16.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_18.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_20.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_11.id,
+    accepted: false
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_13.id,
+    accepted: false
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_15.id,
+    accepted: false
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_17.id,
+    accepted: false
+  )
+
+  Connection.create(
+    connector_id: guest.id,
+    connected_id: user_19.id,
+    accepted: false
+  )
+
+  Connection.create(
+    connector_id: user_2.id,
+    connected_id: user_3.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_2.id,
+    connected_id: user_4.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_2.id,
+    connected_id: user_5.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_2.id,
+    connected_id: user_6.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_2.id,
+    connected_id: user_7.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_3.id,
+    connected_id: user_4.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_3.id,
+    connected_id: user_5.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_3.id,
+    connected_id: user_6.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_3.id,
+    connected_id: user_7.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_3.id,
+    connected_id: user_8.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_4.id,
+    connected_id: user_5.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_4.id,
+    connected_id: user_6.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_4.id,
+    connected_id: user_7.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_4.id,
+    connected_id: user_8.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_4.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_5.id,
+    connected_id: user_6.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_5.id,
+    connected_id: user_7.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_5.id,
+    connected_id: user_8.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_5.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_5.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_6.id,
+    connected_id: user_7.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_6.id,
+    connected_id: user_8.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_6.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_6.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_6.id,
+    connected_id: user_11.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_7.id,
+    connected_id: user_8.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_7.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_7.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_7.id,
+    connected_id: user_11.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_7.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_8.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_8.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_8.id,
+    connected_id: user_11.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_8.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_8.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_9.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_9.id,
+    connected_id: user_11.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_9.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_9.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_9.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_10.id,
+    connected_id: user_11.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_10.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_10.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_10.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_10.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_11.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_11.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_11.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_11.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_11.id,
+    connected_id: user_16.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_12.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_12.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_12.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_12.id,
+    connected_id: user_16.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_12.id,
+    connected_id: user_17.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_13.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_13.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_13.id,
+    connected_id: user_16.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_13.id,
+    connected_id: user_17.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_13.id,
+    connected_id: user_18.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_14.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_14.id,
+    connected_id: user_16.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_14.id,
+    connected_id: user_17.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_14.id,
+    connected_id: user_18.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_14.id,
+    connected_id: user_19.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_15.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_15.id,
+    connected_id: user_17.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_15.id,
+    connected_id: user_18.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_15.id,
+    connected_id: user_19.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_15.id,
+    connected_id: user_20.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_16.id,
+    connected_id: user_17.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_16.id,
+    connected_id: user_18.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_16.id,
+    connected_id: user_19.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_16.id,
+    connected_id: user_20.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_16.id,
+    connected_id: user_2.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_17.id,
+    connected_id: user_18.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_17.id,
+    connected_id: user_19.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_17.id,
+    connected_id: user_20.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_17.id,
+    connected_id: user_2.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_17.id,
+    connected_id: user_3.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_18.id,
+    connected_id: user_19.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_18.id,
+    connected_id: user_20.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_18.id,
+    connected_id: user_2.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_18.id,
+    connected_id: user_3.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_18.id,
+    connected_id: user_4.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_19.id,
+    connected_id: user_20.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_19.id,
+    connected_id: user_5.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_19.id,
+    connected_id: user_6.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_19.id,
+    connected_id: user_7.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_19.id,
+    connected_id: user_8.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_20.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_20.id,
+    connected_id: user_11.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_20.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_20.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_20.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_6.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_7.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_8.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_9.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: user_10.id,
+    connected_id: user_16.id,
     accepted: true
   )
 
