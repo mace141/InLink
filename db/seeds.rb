@@ -1077,20 +1077,20 @@ ActiveRecord::Base.transaction do
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_4.id,
+    connector_id: user_4.id,
+    connected_id: guest.id,
     accepted: false
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_5.id,
+    connector_id: user_5.id,
+    connected_id: guest.id,
     accepted: false
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_6.id,
+    connector_id: user_6.id,
+    connected_id: guest.id,
     accepted: false
   )
 
@@ -1149,32 +1149,32 @@ ActiveRecord::Base.transaction do
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_11.id,
+    connector_id: user_11.id,
+    connected_id: guest.id,
     accepted: false
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_13.id,
+    connector_id: user_13.id,
+    connected_id: guest.id,
     accepted: false
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_15.id,
+    connector_id: user_15.id,
+    connected_id: guest.id,
     accepted: false
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_17.id,
+    connector_id: user_17.id,
+    connected_id: guest.id,
     accepted: false
   )
 
   Connection.create(
-    connector_id: guest.id,
-    connected_id: user_19.id,
+    connector_id: user_19.id,
+    connected_id: guest.id,
     accepted: false
   )
 
