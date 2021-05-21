@@ -16,10 +16,9 @@ Welcome to my LinkedIn clone, built upon a PostgreSQL database, Ruby on Rails ba
 * Users may: 
   * Update their profile with their avatar, background image, personal, education & experience information
   * Make and edit posts to InLink
-  ![image](/app/assets/images/README_images/new_post.gif =400xauto)
+  <img src="/app/assets/images/README_images/new_post.gif" alt="Post Demo" width="320" height="auto"/>
   * Comment and like on other user's posts
-
-  ![image](/app/assets/images/README_images/post_comments.PNG =300xauto)
+  <img src="/app/assets/images/README_images/post_comments.PNG" alt="Comment Demo" width="320" height="auto"/>
   * Connect with other users
   * View their own list of linked users
 
