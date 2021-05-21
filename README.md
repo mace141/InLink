@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# InLink
 
-Things you may want to cover:
+<img src="https://inlink-seeds.s3.amazonaws.com/InLink_full_logo.png"
+     alt="InLink Logo by Daniel Wu" width="320" height="auto">
 
-* Ruby version
+Welcome to my LinkedIn clone, built upon a PostgreSQL database, Ruby on Rails backend, and React/Redux frontend. 
 
-* System dependencies
+# Dependencies
 
-* Configuration
+* Ruby version: 2.5.1
+* Rails version: 5.2.5
+* jQuery rails gem
 
-* Database creation
+# Features
 
-* Database initialization
+* Users may: 
+  * Update their profile with their avatar, background image, personal, education & experience information
+  * Make and edit posts to InLink
+  ![image](/app/assets/images/README_images/new_post.gif)
+  * Comment and like on other user's posts
+  ![image](/app/assets/images/README_images/post_comments.PNG)
+  * Connect with other users
+  * View their own list of linked users
 
-* How to run the test suite
+# Future Direction
 
-* Services (job queues, cache servers, search engines, etc.)
+* Users may: 
+  * Receive notifications from linked user's activity
+  * Search for other users based on name, education, experience
 
-* Deployment instructions
-
-* ...
+* Bugs to be fixed:
+  * When replying to another comment with an image, the comment ends up as a root comment
