@@ -6,7 +6,11 @@
   z-index: 10;
 
   & + section {
-    margin-top: 80px;
+    margin-top: 60px;
+
+    .main-section {
+      margin-top: 20px;
+    }
   }
 
   div.icon-logo {
