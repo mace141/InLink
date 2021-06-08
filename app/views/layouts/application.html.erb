@@ -5,6 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta property="og:title" content="InLink" />
+    <meta property='og:image' content="<%= image_url('inlink_feature.PNG')%>"/>
+    <meta property="og:description" content="A LinkedIn clone built on Ruby on Rails, React/Redux and PostgreSQL."/>
+    <meta property="og:url" content="http://inlink.herokuapp.com/"/>
+
     <% if current_user %>
       <script>
         window.currentUser = <%= render(
