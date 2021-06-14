@@ -7,7 +7,27 @@ class User < ApplicationRecord
 
   attr_reader :password 
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
+
+  has_many :comments, dependent: :destroy
+
+  has_many :likes, dependent: :destroy
+
+  has_many :experiences, dependent: :destroy
+
+  has_many :educations, dependent: :destroy
+
+  has_many :out_connects,
+    class_name: :Connection,
+    foreign_key: :connector_id
+
+  has_many :in_connects,
+    class_name: :Connection,
+    foreign_key: :connected_id
+
+  has_one_attached :avatar, dependent: :destroy
+
+  has_one_attached :background, dependent: :destroy
 
   def self.find_by_credentials(email, password) 
     user = User.find_by(email: email)

@@ -1,0 +1,74 @@
+.connections {
+  margin-bottom: 15px;
+  border: 1px solid $lightgray;
+  border-radius: 8px;
+  background: white;
+  
+  header {
+    padding: 20px;
+    font-weight: 600;
+    color: $gray;
+  }
+
+  .connects-list {
+    border-top: 1px solid $lightgray;
+
+    &.requests > div {
+      background: rgb(197, 225, 255);
+    }
+  }
+
+  ul > div {
+    display: flex;
+    padding: 20px;
+    position: relative;
+    
+    img {
+      height: 45px;
+      width: auto;
+      margin-right: 15px;
+    }
+    
+    .connect-name {
+      font-weight: 600;
+    }
+    
+    .connect-headline {
+      color: $gray;
+    }
+  }
+}
+
+.requesting-user {
+  display: flex;
+
+  .connection-btns {
+    display: flex;
+    position: absolute;
+    right: 20px;
+
+    button {
+      padding: 8px 15px;
+      border-radius: 24px;
+      font-weight: 600;
+    }
+  }
+}
+
+.accept {
+  color: $LIblue;
+  border: 1px solid $LIblue;
+
+  &:hover {
+    @include btn-hover-border($LIblue, transparent)
+  }
+}
+
+.reject {
+  color: $gray;
+  margin-right: 10px;
+
+  &:hover {
+    @include btn-hover-border($gray, transparent)
+  }
+}

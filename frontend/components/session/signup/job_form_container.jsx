@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createUser, receiveUserJob } from '../../../actions/session';
+import { createUser } from '../../../util/session_api';
+import { receiveUserJob, receiveCurrentUser } from '../../../actions/session';
+import { createExperience } from '../../../actions/experience';
 
 class JobForm extends React.Component {
   constructor(props) {
@@ -9,7 +11,7 @@ class JobForm extends React.Component {
     const user = this.props.user;
 
     this.state = {
-      jobTitle: user.jobTitle || "",
+      title: user.title || "",
       type: user.type || "",
       company: user.company || ""
     };
@@ -22,9 +24,9 @@ class JobForm extends React.Component {
   }
 
   ensureForm() {
-    const { jobTitle, company } = this.state;
+    const { title, company } = this.state;
 
-    if (jobTitle.length && company.length) {
+    if (title.length && company.length) {
       return false;
     } else {
       return true;
@@ -34,12 +36,19 @@ class JobForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    const { 
+      receiveUserJob, createUser, createExperience, user, dispatch, receiveCurrentUser 
+    } = this.props;
     const job = {
-      headline: this.state.jobTitle + ' at ' + this.state.company,
+      headline: this.state.title + ' at ' + this.state.company,
       industry: this.state.company
     };
-    this.props.receiveUserJob(Object.assign({}, this.state, job));
-    this.props.createUser(this.props.user);
+    receiveUserJob(Object.assign({}, this.state, job));
+
+    createUser(user).then(payload => {
+      dispatch(receiveCurrentUser(payload));
+      createExperience({ ...user, user_id: Object.keys(payload.user)[0] });
+    });
   }
 
   render() {
@@ -59,7 +68,7 @@ class JobForm extends React.Component {
         <h2>Your profile helps you discover new people and opportunities</h2>
         <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
           <label>Most recent job title *</label>
-          <input type="text" value={this.state.jobTitle} onChange={this.handleInput('jobTitle')}/>
+          <input type="text" value={this.state.title} onChange={this.handleInput('title')}/>
           <label>Employment type</label>
           <select onChange={this.handleInput('type')}>
             {employmentTypes.map((type, i) => (
@@ -82,7 +91,10 @@ const mapSTP = ({ session: { signup } }) => ({
 
 const mapDTP = dispatch => ({
   receiveUserJob: job => dispatch(receiveUserJob(job)),
-  createUser: user => dispatch(createUser(user))
+  createUser: user => createUser(user),
+  receiveCurrentUser: user => receiveCurrentUser(user),
+  createExperience: experience => dispatch(createExperience(experience)),
+  dispatch
 });
 
 const JobFormContainer = connect(mapSTP, mapDTP)(JobForm);

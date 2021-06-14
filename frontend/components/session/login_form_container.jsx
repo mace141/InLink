@@ -22,7 +22,10 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.loginUser(this.state);
+    this.props.loginUser({
+      email: this.state.email.trim(),
+      password: this.state.password
+    });
   }
 
   handleDemo(e) {

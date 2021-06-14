@@ -11,14 +11,18 @@ export const RECEIVE_USER_LOCATION = 'RECEIVE_USER_LOCATION';
 export const RECEIVE_USER_JOB = 'RECEIVE_USER_JOB';
 export const RECEIVE_USER_STUDENT = 'RECEIVE_USER_STUDENT';
 
-const receiveCurrentUser = user => ({
+export const receiveCurrentUser = payload => ({
   type: RECEIVE_CURRENT_USER,
-  user
+  user: payload.user,
+  experiences: payload.experiences,
+  educations: payload.educations
 });
 
-const receiveUser = user => ({
+const receiveUser = payload => ({
   type: RECEIVE_USER,
-  user
+  user: payload.user,
+  experiences: payload.experiences,
+  educations: payload.educations
 });
 
 const logoutCurrentUser = () => ({
@@ -55,6 +59,12 @@ const receiveSessionErrors = errors => ({
   errors
 });
 
+export const fetchUser = userId => dispatch => (
+  SessionAPI.fetchUser(userId).then(
+    user => dispatch(receiveUser(user))
+  )
+);
+
 export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 })
@@ -65,6 +75,18 @@ export const createUser = user => dispatch => (
     errors => dispatch(receiveSessionErrors(errors.responseJSON))
   )
 );
+
+export const updateUser = user => dispatch => (
+  SessionAPI.updateUser(user).then(
+    user => dispatch(receiveUser(user))
+  )
+);
+
+export const updateUserImg = (formData, id) => dispatch => (
+  SessionAPI.updateUserImg(formData, id).then(
+    user => dispatch(receiveUser(user))
+  )
+)
 
 export const loginUser = user => dispatch => (
   SessionAPI.loginUser(user).then(
@@ -77,11 +99,5 @@ export const logoutUser = () => dispatch => (
   SessionAPI.logoutUser().then(
     () => dispatch(logoutCurrentUser()),
     errors => dispatch(receiveSessionErrors(errors.responseJSON))
-  )
-);
-
-export const fetchUser = user => dispatch => (
-  SessionAPI.fetchUser(user).then(
-    user => dispatch(receiveUser(user))
   )
 );

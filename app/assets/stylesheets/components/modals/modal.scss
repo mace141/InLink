@@ -19,7 +19,7 @@
       padding: 5px 10px;
 
       &:hover {
-        @include icon-hover;
+        @include hover($lightgray);
       }
     }
 
@@ -52,6 +52,17 @@
 
     button {
       padding: 5px 15px;
+    }
+  }
+
+  footer {
+    border-top: 1px solid $lightgray;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      @include modal-button(white, $LIblue);
     }
   }
 }

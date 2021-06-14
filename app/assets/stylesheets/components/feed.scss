@@ -1,17 +1,69 @@
+.whitebox {
+  @include box
+}
+
+.user-side-bar {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid $lightgray;
+  border-radius: 8px;
+
+  .background-side {
+    height: 70px;
+    overflow: hidden;
+  }
+
+  .background-side img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+    height: auto;
+  }
+
+  .side-bar-user-info {
+    border-bottom: 1px solid $lightgray;
+    padding: 15px;
+    
+    .avatar {
+      margin: -50px auto 0;
+    }
+  }
+
+  .side-bar-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: black;
+  }
+
+  p {
+    color: $gray;
+    font-size: 14px;
+    text-align: center;
+    margin: 5px 0;
+  }
+  
+  .side-bar-connections > a > div {
+    display: flex; 
+    justify-content: space-between;
+    padding: 10px 15px;
+
+    &:hover {
+      background: $lightergray;
+    }
+  }
+
+  .conn-count {
+    color: $LIblue;
+    font-weight: 600;
+  }
+}
+
 .feed-section {
   display: grid;
   grid-template-columns: 4fr 9fr 5fr;
   grid-gap: 25px;
-  margin-top: 25px;
-
-  .user-side-bar, .right-side-bar {
-    box-sizing: content-box;
-  }
-
-  .user-side-bar, .post-item, .right-side-bar, .start-post {
-    @include box
-  }
-
+  
   .start-post {
     display: flex;
 
@@ -44,9 +96,8 @@
     margin: 8px 0;
     padding: 0;
 
-    header {
+    > header {
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
       position: relative;
       padding: 0 12px;
@@ -54,9 +105,8 @@
 
       > div {
         display: flex;
-        flex-direction: row;
 
-        p {
+        .gray-shade {
           font-size: 12px;
           color: $gray;
         }
@@ -68,7 +118,7 @@
         }
       }
 
-      img {
+      .ellipsis {
         border-radius: 20px;
         height: 25px;
         width: auto;
@@ -80,7 +130,7 @@
         right: 5px;
 
         &:hover {
-          @include icon-hover;
+          @include hover($lightgray);
         }
       }
 
@@ -90,15 +140,7 @@
         position: absolute;
         right: 5px;
         top: 45px;
-        // z-index: 10;
-
-        &.hide {
-          display: none;
-        }
-
-        &.reveal {
-          display: block;
-        }
+        z-index: 10;
 
         li {
           padding: 10px;
@@ -147,7 +189,18 @@
 
       i {
         margin-right: 5px;
-        transform: scale(-1, 1);
+      }
+    }
+
+    .liked {
+      color: $LIblue;
+
+      i {
+        color: $LIblue;
+      }
+
+      & + i {
+        color: $LIblue;
       }
     }
   }

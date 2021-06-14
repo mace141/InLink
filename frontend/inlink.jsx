@@ -22,6 +22,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(<Root store={store}/>, root);
 });
-
-// $.ajax({method:'POST', url: '/api/session', data: { user: { email: 'guest@user.com', password: 'password'}}})
-// $.ajax({method: 'DELETE', url: '/api/session'})

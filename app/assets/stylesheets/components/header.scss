@@ -1,9 +1,26 @@
 .header {
   background: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+
+  & + section {
+    margin-top: 60px;
+  }
+
+  div.icon-logo {
+    width: 60px;
+  }
 
   .InLink-full-logo, .InLink-icon-logo {
-    height: 60px; 
+    height: 45px; 
     width: auto;
+    margin: 0 auto;
+  }
+
+  &.logged-in {
+    margin-bottom: 25px;
   }
 }
 
@@ -14,4 +31,88 @@
 
 .left-nav-bar, .right-nav-bar {
   display: flex;
+  align-items: center;
+}
+
+.nav-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 75px;
+  color: $gray;
+
+  p {
+    font-size: 12px;
+  }
+
+  i {
+    font-size: 24px;
+  }
+
+  &:hover {
+    color: black;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+}
+
+.left-nav-bar i { 
+  font-size: 30px;
+}
+
+.user-sesh-btn {
+  position: relative;
+  
+  .header-dropdown {
+    position: absolute;
+    top: 60px;
+    left: -225px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0px 3px 8px 3px rgba(204, 204, 204, 0.7);
+    width: 275px;
+    z-index: 10;
+    
+    li {
+      padding: 12px;
+    }
+
+    li ~ li {
+      border-top: 1px solid $lightgray;
+    }
+
+    li:first-child {
+      display: flex;
+      flex-direction: column;
+
+      > div:first-child {
+        display: flex;
+        margin-bottom: 10px;
+
+        img {
+          height: 50px;
+          width: auto;
+        }
+        
+        p:first-child {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+      .pf-btn {
+        padding: 5px;
+        color: $LIblue;
+        border: 1px solid $LIblue;
+        border-radius: 24px;
+        text-align: center;
+
+        &:hover {
+          @include btn-hover-border($LIblue, white)
+        }
+      }
+    }
+  }
 }

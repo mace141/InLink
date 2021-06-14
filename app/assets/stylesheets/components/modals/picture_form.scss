@@ -1,0 +1,20 @@
+.modal.upload-image {
+
+  .upload-img-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    
+    span {
+      color: $LIblue;
+      font-weight: 600;
+    }
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}

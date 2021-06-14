@@ -5,17 +5,15 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import HeaderContainer from './header/header';
 import LoginFormContainer from '../components/session/login_form_container';
 import SignUpFormsContainer from '../components/session/signup/signup_form_container';
-import MainContainer from './main/main_container';
+import Main from './main/main';
 import Splash from './splash/splash';
 import ModalContainer from './modal/modal';
 
 const App = ({ sessionPath, rootPath }) => {
   const header = sessionPath ? null : (
-    <header className='header'>
-      <nav className='nav-bar'>
-        <Route path='/' component={HeaderContainer}/>
-      </nav>
-    </header>
+    <>
+      <Route path='/' component={HeaderContainer}/>
+    </>
   );
 
   return (
@@ -26,7 +24,7 @@ const App = ({ sessionPath, rootPath }) => {
         <section className='main-section'>
           <AuthRoute exact path='/login' component={LoginFormContainer}/>
           <AuthRoute path='/signup' component={SignUpFormsContainer}/>
-          <ProtectedRoute path='/' component={MainContainer}/>
+          <ProtectedRoute path='/' component={Main}/>
           <AuthRoute exact path='/' component={Splash}/>
         </section>
       </section>

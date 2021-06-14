@@ -6,13 +6,17 @@ import LoggedInHeader from './logged_in_header';
 
 const Header = ({ loggedIn }) => {
   return loggedIn ? (
-    <>
-      <LoggedInHeader/> 
-    </>
+    <header className='header logged-in'>
+      <nav className='nav-bar'>
+        <LoggedInHeader/> 
+      </nav>
+    </header>
   ) : (
-    <>
-      <LoginHeader/>
-    </>
+    <header className='header'>
+      <nav className='nav-bar'>
+        <LoginHeader/>
+      </nav>
+    </header>
   )
 };
 

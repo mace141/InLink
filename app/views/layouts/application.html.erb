@@ -5,6 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta property="og:title" content="InLink" />
+    <meta property='og:image' content="<%= image_url('inlink_feature.PNG')%>"/>
+    <meta property="og:description" content="A LinkedIn clone built on Ruby on Rails, React/Redux and PostgreSQL."/>
+    <meta property="og:url" content="http://inlink.herokuapp.com/"/>
+
     <% if current_user %>
       <script>
         window.currentUser = <%= render(
@@ -17,6 +22,8 @@
       window.splashImg = '<%= image_url('splashImg.png')%>';
       window.fullLogo = '<%= image_url('InLink_full_logo.png')%>'
       window.iconLogo = '<%= image_url('InLink_icon_logo.png')%>'
+      window.defaultUser = '<%= image_url('default_user.png')%>'
+      window.defaultBg = '<%= image_url('default_background.jpg')%>'
     </script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all' %>

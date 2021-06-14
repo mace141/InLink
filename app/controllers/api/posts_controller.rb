@@ -1,10 +1,16 @@
 class Api::PostsController < ApplicationController 
   def index 
-    @posts = Post.all
+    user_id = current_user.id
+    connected_users = User.joins(:in_connects)
+                          .where("connections.accepted = true AND (connections.connector_id = #{user_id} OR connections.connected_id = #{user_id})")
+                          .pluck(:id)
 
-    # INFINITE SCROLLING: 
-    # fetch 10 posts by connections, order by updated time. save the updated time of the last post
-    # fetch 10 more posts starting from saved updated time, order by updated time
+    @posts = Post.includes(:user)
+                 .where(user_id: connected_users)
+                 .order(created_at: :desc)
+                 .includes(:likes)
+                 #  .offset(params[:offset] * 10)
+                 #  .limit(10)
   end
 
   def create 
@@ -18,7 +24,7 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:user).find(params[:id])
   end
 
   def update 
@@ -33,8 +39,8 @@ class Api::PostsController < ApplicationController
 
   def destroy 
     @post = Post.find(params[:id])
+    
     @post.destroy
-
     render :show
   end
 

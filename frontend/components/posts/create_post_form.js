@@ -13,7 +13,8 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }) => {
       userId: currentUser
     },
     formType: 'Create a post',
-    name: user.fname + ' ' + user.lname
+    name: `${user.fname} ${user.lname}`,
+    user
   }
 };
 

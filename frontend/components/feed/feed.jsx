@@ -1,30 +1,71 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { openModal } from '../../actions/modal';
+import { fetchUser } from '../../actions/session';
 import PostIndexContainer from '../posts/post_index';
 
-const Feed = ({ currentUser, openModal }) => {
-  const { fname, lname, headline } = currentUser;
-  return (
-    <section className='feed-section'>
-      <aside className='user-side-bar'>
-        <p>[Insert PFP here]</p>
-        <p>{fname + ' ' + lname}</p>
-        <p>{headline}</p>
-      </aside>
-      <section className='posts-section'>
-        <div className='start-post'>
-          <h1>[User PFP here]</h1>
-          <button onClick={() => openModal('createPost')}>Start a post</button>
+class Feed extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser(this.props.currentUser.id);
+  }
+
+  render() {
+    const { openModal, currentUser } = this.props;
+    const { fname, lname, headline, avatarUrl } = currentUser;
+    return (
+      <section className='feed-section'>
+        <div>
+          <aside className='user-side-bar'>
+            <div className='background-side'>
+              <img src={currentUser.background || window.defaultBg} alt="Background"/>
+            </div>
+            <div className='side-bar-user-info'>
+              <Link to={`/users/${currentUser.id}`}>
+                <div className='avatar big'>
+                  <img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp big'/>
+                </div>
+              </Link>
+              <p className='side-bar-name'>{fname + ' ' + lname}</p>
+              <p>{headline}</p>
+            </div>
+            <div className='side-bar-connections'>
+              <Link to='/mynetwork'>
+                <div>
+                  <div>
+                    <p>Connections</p>
+                  </div>
+                  <div>
+                    <p className='conn-count'>{currentUser.connections}</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </aside>
         </div>
-        <div className='feed-div'></div>
-        <PostIndexContainer/>
+        <section className='posts-section'>
+          <div className='start-post whitebox'>
+            <Link to={`/users/${currentUser.id}`}>
+              <div className='avatar'>
+                <img src={avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp'/>
+              </div>
+            </Link>
+            <button onClick={() => openModal('createPost')}>Start a post</button>
+          </div>
+          <div className='feed-div'></div>
+          <PostIndexContainer/>
+        </section>
+        <div>
+          <aside className='right-side-bar whitebox'>
+            <h1>Side Bar</h1>
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </div>
       </section>
-      <aside className='right-side-bar'>
-        Daniel's Fun Facts
-      </aside>
-    </section>
-  )
+    )
+  }
 };
 
 const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
@@ -32,7 +73,8 @@ const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
 });
 
 const mapDTP = dispatch => ({
-  openModal: modal => dispatch(openModal(modal))
+  openModal: modal => dispatch(openModal(modal)),
+  fetchUser: userId => dispatch(fetchUser(userId))
 });
 
 const FeedContainer = connect(mapSTP, mapDTP)(Feed);

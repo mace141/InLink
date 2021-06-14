@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createUser, receiveUserStudent } from '../../../actions/session';
+import { createUser } from '../../../util/session_api';
+import { receiveCurrentUser, receiveUserStudent } from '../../../actions/session';
+import { createEducation } from '../../../actions/education';
 
 class StudentForm extends React.Component {
   constructor(props) {
@@ -55,8 +57,20 @@ class StudentForm extends React.Component {
         headline: 'Student at ' + this.state.school,
         industry: this.state.school,
       };
-      this.props.receiveUserStudent(Object.assign({}, this.state, student));
-      this.props.createUser(this.props.user);
+      const { 
+        receiveUserStudent, createUser, createEducation, user, dispatch, receiveCurrentUser 
+      } = this.props;
+      
+      receiveUserStudent(Object.assign({}, this.state, student));
+      createUser(user).then(payload => {
+        dispatch(receiveCurrentUser(payload));
+        createEducation({ 
+          ...user, 
+          user_id: Object.keys(payload.user)[0],
+          start_year: user.startYr,
+          end_year: user.endYr 
+        });
+      });
     }
   }
 
@@ -115,7 +129,10 @@ const mapSTP = ({ session: { signup } }) => ({
 
 const mapDTP = dispatch => ({
   receiveUserStudent: student => dispatch(receiveUserStudent(student)),
-  createUser: user => dispatch(createUser(user))
+  createUser: user => createUser(user),
+  receiveCurrentUser: user => receiveCurrentUser(user),
+  createEducation: education => dispatch(createEducation(education)),
+  dispatch
 });
 
 const StudentFormContainer = connect(mapSTP, mapDTP)(StudentForm);

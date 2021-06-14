@@ -4,15 +4,27 @@ import { fetchPosts } from '../../actions/post';
 import PostIndexItemContainer from './post_index_item';
 
 class PostIndex extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { offset: 0 };
+
+    this.incrementOffset = this.incrementOffset.bind(this);
+  }
+
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPosts(this.state.offset);
+  }
+
+  incrementOffset() {
+    this.setState({ offset: this.state.offset + 1 });
   }
 
   render() {
     return (
       <ul className='posts-index'>
         {this.props.posts.map(post => (
-          <PostIndexItemContainer key={post.id} post={post}/>
+          <PostIndexItemContainer key={post.id} post={post} incrOffset={this.incrementOffset}/>
         ))}
       </ul>
     )
@@ -24,7 +36,7 @@ const mapSTP = ({ entities: { posts }}) => ({
 });
 
 const mapDTP = dispatch => ({
-  fetchPosts: () => dispatch(fetchPosts())
+  fetchPosts: offset => dispatch(fetchPosts(offset))
 });
 
 const PostIndexContainer = connect(mapSTP, mapDTP)(PostIndex);
