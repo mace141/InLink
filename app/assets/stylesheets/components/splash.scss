@@ -35,7 +35,7 @@
   max-height: 550px;
   width: auto;
   position: absolute;
-  top: 50px;
+  top: 30px;
   left: -150px
 }
 
@@ -64,11 +64,12 @@
 
 .splash-section {
   background: white;
+  margin-top: -20px;
 }
 
 .splash-creds {
   position: absolute;
-  bottom: -115px;
+  bottom: -95px;
   left: -150px;
   color: rgb(201, 201, 201);
 
