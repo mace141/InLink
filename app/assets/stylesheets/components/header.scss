@@ -5,10 +5,6 @@
   top: 0;
   z-index: 10;
 
-  & + section {
-    margin-top: 60px;
-  }
-
   div.icon-logo {
     width: 60px;
   }
@@ -64,6 +60,33 @@
 
 .user-sesh-btn {
   position: relative;
+
+  .header-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    font-size: 12px;
+    height: 50px;
+    width: 75px;
+
+    .avatar {
+      height: 20px;
+      width: 20px;
+      margin: 0;
+    }
+
+    &:hover {
+      color: black;
+      transition: 0.3s;
+      cursor: pointer;
+
+      span {
+        border-top-color: black;
+      }
+    }
+  }
   
   .header-dropdown {
     position: absolute;
@@ -115,4 +138,13 @@
       }
     }
   }
+}
+
+.arrow-down {
+  height: 0;
+  width: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid gray;
+  display: inline-block;
 }

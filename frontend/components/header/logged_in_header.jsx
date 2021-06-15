@@ -35,12 +35,12 @@ class LoggedIn extends React.Component {
               <img src={window.iconLogo} alt="InLink-icon-logo" className='InLink-icon-logo'/>
             </div>
           </Link>
-          <a href='https://github.com/mace141'>
+          <a href='https://github.com/mace141' target="_blank">
             <div className='nav-icon'>
               <i className="fab fa-github"></i>
             </div>
           </a>
-          <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/'>
+          <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/' target="_blank">
             <div className='nav-icon'>
               <i className="fab fa-linkedin"></i>
             </div>
@@ -65,8 +65,11 @@ class LoggedIn extends React.Component {
             </div>
           </Link>
           <button onFocus={this.clicked} onBlur={this.leave} className='user-sesh-btn'>
-            <div className='avatar'>
-              <img src={profile} alt="Profile Pic" className='pfp small'/>
+            <div className='header-avatar'>
+              <div className='avatar'>
+                <img src={profile} alt="Profile Pic" className='pfp small'/>
+              </div>
+              <p>Me <span className='arrow-down'></span></p>
             </div>
             <ul className={'header-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
               <li>
