@@ -59,8 +59,8 @@ class PostIndex extends React.Component {
                 <PostIndexItemContainer key={post.id} post={post}/>
                 <div ref={this.lastPostRef}></div>
                 {this.state.loading ? (
-                  <div class='loading'>
-                    <div class="lds-spinner">
+                  <div className='loading'>
+                    <div className="lds-spinner">
                       <div></div>
                       <div></div>
                       <div></div>

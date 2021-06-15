@@ -28,6 +28,9 @@ const App = ({ sessionPath, rootPath }) => {
           <AuthRoute exact path='/' component={Splash}/>
         </section>
       </section>
+      <footer>
+        
+      </footer>
     </>
 )};
 
