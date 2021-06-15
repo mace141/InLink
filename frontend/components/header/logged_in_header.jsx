@@ -45,6 +45,11 @@ class LoggedIn extends React.Component {
               <i className="fab fa-linkedin"></i>
             </div>
           </a>
+          <a href='https://angel.co/u/daniel-wu-42' target="_blank">
+            <div className='nav-icon'>
+              <i className="fab fa-angellist"></i>
+            </div>
+          </a>
         </nav>
         <nav className='right-nav-bar'>
           <Link to='/feed'>

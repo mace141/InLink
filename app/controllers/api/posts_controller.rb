@@ -5,12 +5,14 @@ class Api::PostsController < ApplicationController
                           .where("connections.accepted = true AND (connections.connector_id = #{user_id} OR connections.connected_id = #{user_id})")
                           .pluck(:id)
 
+    connected_users.push(user_id);
+
     @posts = Post.includes(:user)
                  .where(user_id: connected_users)
                  .order(created_at: :desc)
                  .includes(:likes)
-                 #  .offset(params[:offset] * 10)
-                 #  .limit(10)
+                 .offset(params[:offset] * 10)
+                 .limit(10)
   end
 
   def create 
