@@ -29,6 +29,29 @@ const Splash = () => (
           <span>Image Uploading</span>
         </div>
       </div>
+      <div className='plug'>
+        <div>
+          <div className='avatar large'>
+            <img src={window.daniel} alt="Daniel Wu"/>
+          </div>
+          <p>Daniel Wu</p>
+        </div>
+        <a href='https://github.com/mace141' target="_blank">
+          <div className='nav-icon'>
+            <i className="fab fa-github"></i>
+          </div>
+        </a>
+        <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/' target="_blank">
+          <div className='nav-icon'>
+            <i className="fab fa-linkedin"></i>
+          </div>
+        </a>
+        <a href='https://angel.co/u/daniel-wu-42' target="_blank">
+          <div className='nav-icon'>
+            <i className="fab fa-angellist"></i>
+          </div>
+        </a>
+      </div>
     </footer>
   </>
 );
