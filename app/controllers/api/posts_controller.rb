@@ -6,12 +6,12 @@ class Api::PostsController < ApplicationController
                           .pluck(:id)
 
     connected_users.push(user_id);
-
+    
     @posts = Post.includes(:user)
                  .where(user_id: connected_users)
                  .order(created_at: :desc)
                  .includes(:likes)
-                 .offset(params[:offset] * 10)
+                 .offset(params[:offset].to_i * 10)
                  .limit(10)
   end
 
