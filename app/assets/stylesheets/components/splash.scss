@@ -77,3 +77,33 @@
     text-decoration: underline;
   }
 }
+
+.splash-footer {
+  position: absolute;
+  top: 700px;
+
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    > p {
+      font-size: 32px;
+    }
+
+    > div {
+      max-width: 750px;
+    }
+
+    span {
+      color: $gray;
+      background: $lightgray;
+      padding: 5px 15px;
+      border-radius: 32px;
+      font-size: 20px;
+      font-weight: 600;
+      white-space: nowrap;
+      float: left;
+      margin: 0px 10px 10px 0px;
+    }
+  }
+}
