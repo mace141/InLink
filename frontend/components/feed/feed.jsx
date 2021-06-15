@@ -57,10 +57,30 @@ class Feed extends React.Component {
         </section>
         <div>
           <aside className='right-side-bar whitebox'>
-            <h1>Side Bar</h1>
-            <ul>
-              <li></li>
-            </ul>
+            <div className='avatar bigger'>
+              <img src={window.daniel} alt="Daniel Wu"/>
+            </div>
+            <h1>Daniel Wu</h1>
+            <div className='links'>
+              <a href='https://github.com/mace141' target="_blank">
+                <div className='nav-icon'>
+                  <i className="fab fa-github"></i>
+                  <p>Github</p>
+                </div>
+              </a>
+              <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/' target="_blank">
+                <div className='nav-icon'>
+                  <i className="fab fa-linkedin"></i>
+                  <p>LinkedIn</p>
+                </div>
+              </a>
+              <a href='https://angel.co/u/daniel-wu-42' target="_blank">
+                <div className='nav-icon'>
+                  <i className="fab fa-angellist"></i>
+                  <p>AngelList</p>
+                </div>
+              </a>
+            </div>
           </aside>
         </div>
       </section>

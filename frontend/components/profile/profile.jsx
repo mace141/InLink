@@ -33,7 +33,30 @@ class Profile extends React.Component {
         </div>
         <div>
           <div className='suggested-connections whitebox'>
-            Suggested Connections
+            <div className='avatar bigger'>
+              <img src={window.daniel} alt="Daniel Wu"/>
+            </div>
+            <h1>Daniel Wu</h1>
+            <div className='links'>
+              <a href='https://github.com/mace141' target="_blank">
+                <div className='nav-icon'>
+                  <i className="fab fa-github"></i>
+                  <p>Github</p>
+                </div>
+              </a>
+              <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/' target="_blank">
+                <div className='nav-icon'>
+                  <i className="fab fa-linkedin"></i>
+                  <p>LinkedIn</p>
+                </div>
+              </a>
+              <a href='https://angel.co/u/daniel-wu-42' target="_blank">
+                <div className='nav-icon'>
+                  <i className="fab fa-angellist"></i>
+                  <p>AngelList</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
