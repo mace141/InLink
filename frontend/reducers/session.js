@@ -23,7 +23,7 @@ const sessionReducer = (state = _nullSession, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       payloadUser = Object.values(action.user)[0];
-      return { currentUser: user.id, userConnections: payloadUser.connections };
+      return { currentUser: payloadUser.id, userConnections: payloadUser.connections };
     case RECEIVE_USER: 
       payloadUser = Object.values(action.user)[0];
       return { ...state, userConnections: payloadUser.connections };
