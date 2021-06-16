@@ -116,7 +116,7 @@ class UserDetail extends React.Component {
                 <h3>{user.location}</h3>
               </div>
               <div>
-                <span>{user.connections} connection{user.connections > 1 ? 's' : user.connections == 0 ? 's' : ''}</span>
+                <span>{user.connections} connection{user.connections > 1 || user.connections == 0 ? 's' : ''}</span>
               </div>
               <div className='user-details-btns'>
                 {connectBtn}
