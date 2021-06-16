@@ -12,8 +12,8 @@ const ExperienceIndexItem = ({ experience, openModal, currentUser, match }) => {
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-  const startDateDB = new Date(experience.startDate);
-  const endDateDB = new Date(experience.endDate);
+  const startDateDB = new Date(`${experience.startDate}T12:00:00`);
+  const endDateDB = new Date(`${experience.endDate}T12:00:00`);
 
   const startMon = months[startDateDB.getMonth()];
   const startYr = startDateDB.getFullYear();

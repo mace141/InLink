@@ -1,10 +1,30 @@
 import React from 'react';
 
 const months = [
-  'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+  'January', 
+  'February', 
+  'March', 
+  'April', 
+  'May', 
+  'June', 
+  'July', 
+  'August', 
+  'September', 
+  'October', 
+  'November', 
+  'December'
 ];
+
 const empTypes = [
-  '-', 'Full-time', 'Part-time', 'Self-employed', 'Freelance', 'Contract', 'Internship', 'Apprenticeship', 'Seasonal'
+  '-', 
+  'Full-time', 
+  'Part-time', 
+  'Self-employed', 
+  'Freelance', 
+  'Contract', 
+  'Internship', 
+  'Apprenticeship', 
+  'Seasonal'
 ];
 
 class ExperienceForm extends React.Component {
@@ -87,7 +107,7 @@ class ExperienceForm extends React.Component {
       if (!present) {
         end_date = `${endYear}-${months.indexOf(endMon) + 1}-01`
       }
-
+      
       this.props.processForm({
         ...this.state,
         user_id: userId,
