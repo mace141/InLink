@@ -69,6 +69,11 @@ class User < ApplicationRecord
     errors.values
   end
 
+  def self.search(query)
+    User.where("concat_ws(' ', fname, lname) ~* ?", query)
+        .limit(10)
+  end
+
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)
     @password = password 

@@ -2,7 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { logoutUser } from '../../actions/session';
-import { debounce } from 'lodash';
+import { searchUsers } from '../../util/session_api';
+
+let delay;
+const debounce = (callback, wait = 250) => {
+  return (...args) => {
+    clearTimeout(delay);
+    delay = setTimeout(() => { callback.apply(null, args); }, wait);
+  };
+}
 
 class LoggedIn extends React.Component {
   constructor(props) {
@@ -10,7 +18,6 @@ class LoggedIn extends React.Component {
 
     this.state = { 
       drop: false,
-      search: ''
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -18,14 +25,10 @@ class LoggedIn extends React.Component {
     this.leave = this.leave.bind(this);
   }
 
-  componentDidMount() {
-    const searchField = document.getElementById('search-field');
-
-    // searchField.addEventListener('change', debounce())
-  }
-
   handleInput(e) {
-    this.setState({ search: e.target.value });
+    debounce(() => {
+      searchUsers(e.target.value).then(users => { console.log(users); });
+    }, 300)();
   }
 
   clicked() {
@@ -48,7 +51,7 @@ class LoggedIn extends React.Component {
               <img src={window.iconLogo} alt="InLink-icon-logo" className='InLink-icon-logo'/>
             </div>
           </Link>
-          <input type="text" placeholder='Search' id='search-field' value={this.state.search} onChange={this.handleInput}/>
+          <input type="text" placeholder='Search' id='search-field' onChange={this.handleInput}/> 
         </nav>
         <nav className='right-nav-bar'>
           <Link to='/feed'>
