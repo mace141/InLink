@@ -11,8 +11,9 @@ class Feed extends React.Component {
   }
 
   render() {
-    const { openModal, currentUser } = this.props;
+    const { openModal, currentUser, userConnections } = this.props;
     const { fname, lname, headline, avatarUrl } = currentUser;
+    
     return (
       <section className='feed-section'>
         <div>
@@ -36,7 +37,7 @@ class Feed extends React.Component {
                     <p>Connections</p>
                   </div>
                   <div>
-                    <p className='conn-count'>{currentUser.connections}</p>
+                    <p className='conn-count'>{userConnections}</p>
                   </div>
                 </div>
               </Link>
@@ -88,8 +89,9 @@ class Feed extends React.Component {
   }
 };
 
-const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
-  currentUser: users[currentUser]
+const mapSTP = ({ entities: { users }, session: { currentUser, userConnections }}) => ({
+  currentUser: users[currentUser],
+  userConnections
 });
 
 const mapDTP = dispatch => ({

@@ -8,6 +8,7 @@
   background: white;
   border: 1px solid $lightgray;
   border-radius: 8px;
+  overflow: hidden;
 
   .background-side {
     height: 70px;
@@ -42,7 +43,7 @@
     text-align: center;
     margin: 5px 0;
   }
-  
+
   .side-bar-connections > a > div {
     display: flex; 
     justify-content: space-between;

@@ -68,8 +68,8 @@ class NameForm extends React.Component {
   }
 }
 
-const mapSTP = ({ session: { signup } }) => ({
-  user: signup
+const mapSTP = ({ session: { signUp } }) => ({
+  user: signUp
 });
 
 

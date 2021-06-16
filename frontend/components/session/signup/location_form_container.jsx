@@ -57,9 +57,9 @@ class LocationForm extends React.Component {
   }
 }
 
-const mapSTP = ({ session: { signup }}) => ({
-  fname: signup.fname,
-  user: signup
+const mapSTP = ({ session: { signUp }}) => ({
+  fname: signUp.fname,
+  user: signUp
 });
 
 const mapDTP = dispatch => ({
