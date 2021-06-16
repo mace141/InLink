@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get '/api/connections/connected', to: 'api/connections#connected'
 
   namespace :api, defaults: { format: :json } do 
-    resources :users, only: [:create, :show, :update]
+    resources :users, only: [:index, :create, :show, :update]
     resources :posts, except: [:edit, :new]
     resources :comments, only: [:index, :create, :update, :destroy]
     resources :likes, only: [:index, :create, :destroy]

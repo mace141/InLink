@@ -2,17 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { logoutUser } from '../../actions/session';
+import { debounce } from 'lodash';
 
 class LoggedIn extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = { 
-      drop: false 
+      drop: false,
+      search: ''
     };
 
+    this.handleInput = this.handleInput.bind(this);
     this.clicked = this.clicked.bind(this);
     this.leave = this.leave.bind(this);
+  }
+
+  componentDidMount() {
+    const searchField = document.getElementById('search-field');
+
+    // searchField.addEventListener('change', debounce())
+  }
+
+  handleInput(e) {
+    this.setState({ search: e.target.value });
   }
 
   clicked() {
@@ -35,21 +48,7 @@ class LoggedIn extends React.Component {
               <img src={window.iconLogo} alt="InLink-icon-logo" className='InLink-icon-logo'/>
             </div>
           </Link>
-          <a href='https://github.com/mace141' target="_blank">
-            <div className='nav-icon'>
-              <i className="fab fa-github"></i>
-            </div>
-          </a>
-          <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/' target="_blank">
-            <div className='nav-icon'>
-              <i className="fab fa-linkedin"></i>
-            </div>
-          </a>
-          <a href='https://angel.co/u/daniel-wu-42' target="_blank">
-            <div className='nav-icon'>
-              <i className="fab fa-angellist"></i>
-            </div>
-          </a>
+          <input type="text" placeholder='Search' id='search-field' value={this.state.search} onChange={this.handleInput}/>
         </nav>
         <nav className='right-nav-bar'>
           <Link to='/feed'>

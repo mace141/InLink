@@ -1,4 +1,8 @@
 class Api::UsersController < ApplicationController
+  def index 
+    search = params[:search]
+  end
+
   def create
     @user = User.new(user_params)
 
