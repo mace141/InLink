@@ -5,7 +5,8 @@ import CommentForm from './comment_form';
 const mapSTP = ({ entities: { users }, session: { currentUser }}) => ({
   user: users[currentUser],
   currentUser,
-  formType: 'Add a reply...'
+  formMsg: 'Add a reply...',
+  formType: 'rpy'
 });
 
 const mapDTP = dispatch => ({

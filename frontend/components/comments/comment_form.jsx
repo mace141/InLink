@@ -14,6 +14,7 @@ class CommentForm extends React.Component {
     this.handleFile = this.handleFile.bind(this);
     this.removeFile = this.removeFile.bind(this);
     this.postComment = this.postComment.bind(this);
+    this.openFileLoader = this.openFileLoader.bind(this);
   }
 
   handleInput(e) {
@@ -33,7 +34,7 @@ class CommentForm extends React.Component {
   }
 
   openFileLoader() {
-    document.getElementById('cmt-media-input').click();
+    document.getElementById(`${this.props.formType}-media-input`).click();
   }
 
   removeFile() {
@@ -41,7 +42,8 @@ class CommentForm extends React.Component {
       media: null,
       mediaUrl: null
     });
-    document.getElementById('cmt-media-input').value = null;
+    document.getElementById(`${this.props.formType}-media-input`).value = null;
+    document.getElementById('cmt-img').style.display = 'none';
   }
 
   ensureContent() {
@@ -56,7 +58,8 @@ class CommentForm extends React.Component {
 
   postComment() {
     const { 
-      currentUser, postId, parentCommentId, createComment, incrComCount, incrRepCount 
+      currentUser, postId, parentCommentId, createComment, incrComCount, 
+      incrRepCount, formType
     } = this.props;
 
     const formData = new FormData();
@@ -76,13 +79,15 @@ class CommentForm extends React.Component {
       media: null,
       mediaUrl: null
     });
-    document.getElementById('cmt-media-input').value = "";
+    document.getElementById(`${formType}-media-input`).value = "";
     document.getElementById('cmt-img').style.display = 'none';
     incrComCount();
     incrRepCount ? incrRepCount() : null;
   }
   
   render() {
+    const { user, formType, formMsg } = this.props;
+
     const preview = this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : null;
     const closeImageBtn = this.state.media ? (
       <span className='rm-cmt-img' onClick={this.removeFile}>✕</span>
@@ -91,15 +96,15 @@ class CommentForm extends React.Component {
     return (
       <div className='cmt-form-section'>
         <div className='avatar small'>
-          <img src={this.props.user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
+          <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
         </div>
         <div className='cmt-form-ctnr'>
           <div className='comment-form'>
             <div className='cmt-input-div'>
-              <input type="text" placeholder={this.props.formType} 
+              <input type="text" placeholder={formMsg} 
               value={this.state.body} onChange={this.handleInput}/>
               {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
-              <input type="file" id="cmt-media-input" accept='image/*' onChange={this.handleFile}/>
+              <input type="file" id={`${formType}-media-input`} accept='image/*' onChange={this.handleFile}/>
             </div>
             <div className='cmt-img-preview'>
               <div id='cmt-img'>
