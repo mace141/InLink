@@ -39,10 +39,6 @@ class PostIndex extends React.Component {
     this.props.fetchPostsAPI(this.state.offset).then(posts => dispatch(receivePosts(posts)));
   }
 
-  componentWillUnmount() {
-    this.observer.current.disconnect();
-  }
-
   incrementOffset() {
     this.setState({ offset: this.state.offset + 1 });
   }
