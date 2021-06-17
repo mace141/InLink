@@ -12,8 +12,7 @@ const receiveConnections = payload => ({
 
 export const receiveConnection = payload => ({
   type: RECEIVE_CONNECTION,
-  connection: payload.connection,
-  user: payload.user
+  connection: payload.connection
 });
 
 const removeConnection = connectionId => ({

@@ -11,7 +11,8 @@ class UserDetail extends React.Component {
 
     this.state = { 
       drop: false,
-      requesting: false,
+      requested: false,
+      accepted: false,
       connectionId: null
     };
 
@@ -26,8 +27,9 @@ class UserDetail extends React.Component {
       payload => {
         if (payload.connection) {
           dispatch(receiveConnection(payload));
-          this.setState({ requesting: Object.values(payload.connection)[0].accepted });
+          this.setState({ accepted: Object.values(payload.connection)[0].accepted });
           this.setState({ connectionId: Object.keys(payload.connection)[0] });
+          this.setState({ requested: true });
         }
       }
     );
@@ -79,17 +81,30 @@ class UserDetail extends React.Component {
         </button>
       );
     } else {
-      connectBtn = this.state.requesting ? ( 
-        <button className='connect-btn' onClick={() => {
-          deleteConnection(this.state.connectionId);
-          this.setState({ requesting: false })
-        }}>Unlink</button>
-      ) : ( 
-        <button className='connect-btn' onClick={() => {
-          createConnection({ connector_id: currentUser, connected_id: user.id });
-          this.setState({ requesting: true });
-        }}>Link</button> 
-      )
+      if (this.state.requested && this.state.accepted) {
+        connectBtn = ( 
+          <button className='connect-btn' onClick={() => {
+            deleteConnection(this.state.connectionId);
+            this.setState({ requested: false })
+          }}>Unlink</button>
+        ) 
+      }
+      if (!this.state.requested && !this.state.accepted) {
+        connectBtn = ( 
+          <button className='connect-btn' onClick={() => {
+            createConnection({ connector_id: currentUser, connected_id: user.id });
+            this.setState({ requested: true });
+          }}>Link</button> 
+        )
+      }
+      if (this.state.requested && !this.state.accepted) {
+        connectBtn = ( 
+          <button className='connect-btn' onClick={() => {
+            deleteConnection(this.state.connectionId);
+            this.setState({ requested: false });
+          }}>Cancel</button> 
+        )
+      }
     }
 
     const userSummary = user.summary ? (
