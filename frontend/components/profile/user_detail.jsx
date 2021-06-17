@@ -25,7 +25,7 @@ class UserDetail extends React.Component {
     fetchConnectionAPI(currentUser, user.id).then(
       payload => {
         if (payload.connection) {
-          dispatch(receiveConnection(payload.connection));
+          dispatch(receiveConnection(payload));
           this.setState({ requesting: Object.values(payload.connection)[0].accepted });
           this.setState({ connectionId: Object.keys(payload.connection)[0] });
         }
@@ -46,7 +46,7 @@ class UserDetail extends React.Component {
       user, currentUser, match, openModal, lastEdu, lastExp, createConnection, deleteConnection
     } = this.props; 
     if (!user) return null;
-    let editIntroBtn; let editSectionBtn; let connectBtn;
+    let editIntroBtn; let editSectionBtn; let connectBtn; let avatarBtn; let bgBtn;
     
     if (currentUser == match.params.id) {
       editIntroBtn = (
@@ -65,6 +65,18 @@ class UserDetail extends React.Component {
             </ul>
           </button>
         </>
+      );
+
+      avatarBtn = (
+        <button onClick={() => openModal('uploadAvatar')} className='upload-avatar-btn'>
+          <i className="fas fa-camera-retro"></i>
+        </button>
+      );
+
+      bgBtn = (
+        <button onClick={() => openModal('uploadBackground')} className='upload-bg-btn'>
+          <i className="fas fa-camera-retro"></i>
+        </button>
       );
     } else {
       connectBtn = this.state.requesting ? ( 
@@ -92,9 +104,7 @@ class UserDetail extends React.Component {
         <div className='user-pf-ctnr'>
           <div className='user-bg-img'>
             <img src={user.background || window.defaultBg} alt="Background Pic"/>
-            <button onClick={() => openModal('uploadBackground')} className='upload-bg-btn'>
-              <i className="fas fa-camera-retro"></i>
-            </button>
+            {bgBtn}
           </div>
           <div className='user-details'>
             <div className='pf-user-info'>
@@ -102,9 +112,7 @@ class UserDetail extends React.Component {
                 <div className='avatar pf large'>
                   <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp large'/>
                 </div>
-                <button onClick={() => openModal('uploadAvatar')} className='upload-avatar-btn'>
-                  <i className="fas fa-camera-retro"></i>
-                </button>
+                {avatarBtn}
               </div>
               <div>
                 <h1>{`${user.fname} ${user.lname}`}</h1>

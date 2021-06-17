@@ -2,15 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { logoutUser } from '../../actions/session';
-import { searchUsers } from '../../util/session_api';
-
-let delay;
-const debounce = (callback, wait = 250) => {
-  return (...args) => {
-    clearTimeout(delay);
-    delay = setTimeout(() => { callback.apply(null, args); }, wait);
-  };
-}
+import SearchBar from './search_bar';
 
 class LoggedIn extends React.Component {
   constructor(props) {
@@ -20,15 +12,8 @@ class LoggedIn extends React.Component {
       drop: false,
     };
 
-    this.handleInput = this.handleInput.bind(this);
     this.clicked = this.clicked.bind(this);
     this.leave = this.leave.bind(this);
-  }
-
-  handleInput(e) {
-    debounce(() => {
-      searchUsers(e.target.value).then(users => { console.log(users); });
-    }, 300)();
   }
 
   clicked() {
@@ -51,7 +36,7 @@ class LoggedIn extends React.Component {
               <img src={window.iconLogo} alt="InLink-icon-logo" className='InLink-icon-logo'/>
             </div>
           </Link>
-          <input type="text" placeholder='Search' id='search-field' onChange={this.handleInput}/> 
+          <SearchBar/>
         </nav>
         <nav className='right-nav-bar'>
           <Link to='/feed'>

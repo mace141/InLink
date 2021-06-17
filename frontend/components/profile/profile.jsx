@@ -9,7 +9,7 @@ import UserDetailContainer from './user_detail';
 class Profile extends React.Component {
   componentDidMount() {
     const { fetchUser, match } = this.props;
-
+    
     fetchUser(match.params.id);
   }
 
