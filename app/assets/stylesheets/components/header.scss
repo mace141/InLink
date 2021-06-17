@@ -164,11 +164,25 @@
     font-size: 16px;
     padding: 5px 5px 5px 50px;
     transition: 0.3s;
+
+    + .fas.fa-search {
+      left: 15px;
+      font-size: 20px;
+      transition: 0.3s;
+    }
   }
 }
 
 .search-container {
   position: relative;
+
+  .fas.fa-search {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: gray;
+  }
 
   .search-results {
     position: absolute;

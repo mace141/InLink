@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { searchUsers } from '../../util/session_api';
 
 let delay;
@@ -41,6 +41,7 @@ class SearchBar extends React.Component {
     return (
       <div className='search-container'>
           <input type="text" placeholder='Search' id='search-field' onChange={this.handleInput}/> 
+          <i className="fas fa-search"></i>
           <ul className='search-results'>
             {this.state.results.map(user => (
               <li key={user.id} onClick={() => { this.redirectUser(user.id) }}>
