@@ -223,7 +223,7 @@
   display: block;
 }
 
-#search-field:focus + .search-results {
+#search-field:focus + i + .search-results {
   display: block;
 
   > :first-child {
