@@ -70,9 +70,7 @@ class User < ApplicationRecord
   end
 
   def self.search(query)
-    by_name = "concat_ws(' ', fname, lname) ~* '#{query}'"
-
-    User.where(by_name)
+    User.where("concat_ws(' ', fname, lname) ~* '#{query}'")
         .limit(10)
   end
 
