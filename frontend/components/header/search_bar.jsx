@@ -8,7 +8,7 @@ const debounce = (callback, wait = 250) => {
     clearTimeout(delay);
     delay = setTimeout(() => { callback.apply(null, args); }, wait);
   };
-}
+};
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -24,11 +24,16 @@ class SearchBar extends React.Component {
 
   handleInput(e) {
     const that = this;
-    debounce(() => {
-      searchUsers(e.target.value).then(results => { 
-        that.setState({ results }); 
-      });
-    }, 300)();
+
+    if (e.target.value.length) {
+      debounce(() => {
+        searchUsers(e.target.value).then(results => { 
+          that.setState({ results }); 
+        });
+      }, 300)();
+    } else {
+      this.setState({ results: [] });
+    }
   }
 
   redirectUser(userId) {
@@ -40,7 +45,9 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className='search-container'>
-          <input type="text" placeholder='Search' id='search-field' onChange={this.handleInput}/> 
+          <input type="text" placeholder='Search' id='search-field' 
+                 onChange={this.handleInput}
+          /> 
           <i className="fas fa-search"></i>
           <ul className='search-results'>
             {this.state.results.map(user => (
