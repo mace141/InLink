@@ -35,8 +35,8 @@ Welcome to my LinkedIn clone, built upon a PostgreSQL database, AWS S3 media sto
 
 ### View their own list of linked users
 
-<img src="/app/assets/images/README_images/invitations.PNG" alt="Invitations Demo" width="500" height="auto"/>
-<img src="/app/assets/images/README_images/connections.PNG" alt="Connections Demo" width="500" height="auto"/>
+<img src="/app/assets/images/README_images/invitations.PNG" alt="Invitations Demo" width="auto" height="300"/>
+<img src="/app/assets/images/README_images/connections.PNG" alt="Connections Demo" width="auto" height="300"/>
 
 # Future Direction
 
