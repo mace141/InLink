@@ -70,17 +70,8 @@ class User < ApplicationRecord
   end
 
   def self.search(query)
-    by_name = "concat_ws(' ', users.fname, users.lname) ~* '#{query}'"
-    # by_education = "educations.school ~* '#{query}'"
-    # by_experience = "experiences.title ~* '#{query}' OR experiences.company ~* '#{query}'"
-
-    # User.joins(:educations)
-    #     .joins(:experiences)
-    #     .where([by_name, by_education, by_experience].join(' OR '))
-    #     .limit(10)
-    #     .distinct
-
-    User.where(by_name).limit(10)
+    User.where("concat_ws(' ', fname, lname) ~* '#{query}'")
+        .limit(10)
   end
 
   def password=(password)
