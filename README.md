@@ -13,33 +13,33 @@ Welcome to my LinkedIn clone, built upon a PostgreSQL database, AWS S3 media sto
 
 # Features
 
-## Update profile with an avatar, background image, and personal information
+### Update profile with an avatar, background image, and personal information
 
-<img src="/app/assets/images/README_images/user_details.PNG" alt="User Details" width="400" height="auto"/>
+<img src="/app/assets/images/README_images/user_details.PNG" alt="User Details" width="500" height="auto"/>
 
-## Update education & experience information
+### Update education & experience information
 
-<img src="/app/assets/images/README_images/user_exp_edu.PNG" alt="Experience & Education Info" width="400" height="auto"/>
+<img src="/app/assets/images/README_images/user_exp_edu.PNG" alt="Experience & Education Info" width="500" height="auto"/>
 
-## Make and edit posts to InLink
+### Make and edit posts to InLink
 
-<img src="/app/assets/images/README_images/new_post.gif" alt="Post Demo" width="400" height="auto"/>
+<img src="/app/assets/images/README_images/new_post.gif" alt="Post Demo" width="500" height="auto"/>
 
-## Comment and like on other user's posts
+### Comment and like on other user's posts
 
-<img src="/app/assets/images/README_images/post_comments.PNG" alt="Comment Demo" width="320" height="auto"/>
+<img src="/app/assets/images/README_images/post_comments.PNG" alt="Comment Demo" width="500" height="auto"/>
 
-## Connect with other users
+### Search and connect with other users
 
-## View their own list of linked users
+<img src="/app/assets/images/README_images/search_connect.gif" alt="Search & Connect Demo" width="500" height="auto"/>
 
+### View their own list of linked users
 
+<img src="/app/assets/images/README_images/invitations.PNG" alt="Invitations Demo" width="350" height="auto"/>
+<img src="/app/assets/images/README_images/connections.PNG" alt="Connections Demo" width="350" height="auto"/>
 
 # Future Direction
 
 * Users may: 
   * Receive notifications from linked user's activity
-  * Search for other users based on name, education, experience
-
-* Bugs to be fixed:
-  * When replying to another comment with an image, the comment ends up as a root comment
+  * Search for other users based on name, education, or experience
