@@ -1,12 +1,20 @@
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
-export const openModal = (modal, id = null) => ({
-  type: OPEN_MODAL,
-  modal,
-  id
-});
+export const openModal = (modal, id = null) => {
+  document.getElementsByClassName('header')[0].style.zIndex = 0;
 
-export const closeModal = () => ({
-  type: CLOSE_MODAL
-});
+  return {
+    type: OPEN_MODAL,
+    modal,
+    id
+  }
+};
+
+export const closeModal = () => {
+  document.getElementsByClassName('header')[0].style.zIndex = 10;
+
+  return {
+    type: CLOSE_MODAL
+  }
+};
