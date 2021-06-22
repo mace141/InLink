@@ -15,6 +15,16 @@ ActiveRecord::Base.transaction do
   Experience.destroy_all 
   Education.destroy_all
   Connection.destroy_all
+
+  inlink = User.create(
+    email: 'inlink@gmail.com', 
+    password: 'pass0word',
+    fname: 'InLink',
+    lname: '',
+    location: 'New York, New York, United States',
+    headline: 'Created by Daniel Wu',
+    industry: 'InLink'
+  )
   
   guest = User.create(
     email: 'guest@user.com', 
@@ -291,6 +301,9 @@ ActiveRecord::Base.transaction do
     headline: "#{user_20_profession} at #{user_20_industry}",
     industry: user_20_industry
   )
+
+  avatar_0 = Down.download('https://inlink-seeds.s3.amazonaws.com/InLink_icon_logo.png')
+  inlink.avatar.attach(io: avatar_0, filename: 'InLink_icon_logo.png')
 
   avatar_1 = Down.download('https://inlink-seeds.s3.amazonaws.com/user1.png')
   guest.avatar.attach(io: avatar_1, filename: 'user1.png')
@@ -864,6 +877,11 @@ ActiveRecord::Base.transaction do
     start_date: '2011-06-01'
   )
 
+  post_0 = Post.create(
+    body: "Welcome to InLink. Your place to find your professional links.",
+    user_id: inlink.id
+  )
+
   post_1 = Post.create(
     body: "Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it.",
     user_id: user_20.id 
@@ -1137,6 +1155,126 @@ ActiveRecord::Base.transaction do
     parent_comment_id: cmt_11.id
   )
   
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: guest.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_2.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_3.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_4.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_5.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_6.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_7.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_8.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_10.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_11.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_12.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_13.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_14.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_15.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_16.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_17.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_18.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_19.id,
+    accepted: true
+  )
+  
+  Connection.create(
+    connector_id: inlink.id,
+    connected_id: user_20.id,
+    accepted: true
+  )
+
   Connection.create(
     connector_id: guest.id,
     connected_id: user_2.id,

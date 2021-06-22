@@ -7,7 +7,15 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save 
+      inlink = User.find_by(email: 'inlink@gmail.com')
+      Connection.create(
+        connector_id: inlink.id,
+        connected_id: @user.id,
+        accepted: true
+      )
+
       login!(@user)
+  
       render :show
     else
       render json: @user.errors.full_messages, status: 401
