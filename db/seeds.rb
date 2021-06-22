@@ -31,7 +31,7 @@ ActiveRecord::Base.transaction do
   user_2_industry = Faker::Company.name
   user_2_profession = Faker::Company.profession.capitalize
   user_2 = User.create(
-    email: Faker::Internet.email,
+    email: 'user2@gmail.com',
     password: 'pass2word',
     fname: user_2_name[0],
     lname: user_2_name[1],
@@ -45,7 +45,7 @@ ActiveRecord::Base.transaction do
   user_3_industry = Faker::Company.name
   user_3_profession = Faker::Company.profession.capitalize
   user_3 = User.create(
-    email: Faker::Internet.email,
+    email: 'user3@gmail.com',
     password: 'pass3word',
     fname: user_3_name[0],
     lname: user_3_name[1],
@@ -59,7 +59,7 @@ ActiveRecord::Base.transaction do
   user_4_industry = Faker::Company.name
   user_4_profession = Faker::Company.profession.capitalize
   user_4 = User.create(
-    email: Faker::Internet.email,
+    email: 'user4@gmail.com',
     password: 'pass4word',
     fname: user_4_name[0],
     lname: user_4_name[1],
@@ -73,7 +73,7 @@ ActiveRecord::Base.transaction do
   user_5_industry = Faker::Company.name
   user_5_profession = Faker::Company.profession.capitalize
   user_5 = User.create(
-    email: Faker::Internet.email,
+    email: 'user5@gmail.com',
     password: 'pass5word',
     fname: user_5_name[0],
     lname: user_5_name[1],
@@ -87,7 +87,7 @@ ActiveRecord::Base.transaction do
   user_6_industry = Faker::Company.name
   user_6_profession = Faker::Company.profession.capitalize
   user_6 = User.create(
-    email: Faker::Internet.email,
+    email: 'user6@gmail.com',
     password: 'pass6word',
     fname: user_6_name[0],
     lname: user_6_name[1],
@@ -101,7 +101,7 @@ ActiveRecord::Base.transaction do
   user_7_industry = Faker::Company.name
   user_7_profession = Faker::Company.profession.capitalize
   user_7 = User.create(
-    email: Faker::Internet.email,
+    email: 'user7@gmail.com',
     password: 'pass7word',
     fname: user_7_name[0],
     lname: user_7_name[1],
@@ -115,7 +115,7 @@ ActiveRecord::Base.transaction do
   user_8_industry = Faker::Company.name
   user_8_profession = Faker::Company.profession.capitalize
   user_8 = User.create(
-    email: Faker::Internet.email,
+    email: 'user8@gmail.com',
     password: 'pass8word',
     fname: user_8_name[0],
     lname: user_8_name[1],
@@ -129,7 +129,7 @@ ActiveRecord::Base.transaction do
   user_9_industry = Faker::Company.name
   user_9_profession = Faker::Company.profession.capitalize
   user_9 = User.create(
-    email: Faker::Internet.email,
+    email: 'user9@gmail.com',
     password: 'pass9word',
     fname: user_9_name[0],
     lname: user_9_name[1],
@@ -143,7 +143,7 @@ ActiveRecord::Base.transaction do
   user_10_industry = Faker::Company.name
   user_10_profession = Faker::Company.profession.capitalize
   user_10 = User.create(
-    email: Faker::Internet.email,
+    email: 'user10@gmail.com',
     password: 'pass10word',
     fname: user_10_name[0],
     lname: user_10_name[1],
@@ -157,7 +157,7 @@ ActiveRecord::Base.transaction do
   user_11_industry = Faker::Company.name
   user_11_profession = Faker::Company.profession.capitalize
   user_11 = User.create(
-    email: Faker::Internet.email,
+    email: 'user11@gmail.com',
     password: 'pass11word',
     fname: user_11_name[0],
     lname: user_11_name[1],
@@ -171,7 +171,7 @@ ActiveRecord::Base.transaction do
   user_12_industry = Faker::Company.name
   user_12_profession = Faker::Company.profession.capitalize
   user_12 = User.create(
-    email: Faker::Internet.email,
+    email: 'user12@gmail.com',
     password: 'pass12word',
     fname: user_12_name[0],
     lname: user_12_name[1],
@@ -185,7 +185,7 @@ ActiveRecord::Base.transaction do
   user_13_industry = Faker::Company.name
   user_13_profession = Faker::Company.profession.capitalize
   user_13 = User.create(
-    email: Faker::Internet.email,
+    email: 'user13@gmail.com',
     password: 'pass13word',
     fname: user_13_name[0],
     lname: user_13_name[1],
@@ -199,7 +199,7 @@ ActiveRecord::Base.transaction do
   user_14_industry = Faker::Company.name
   user_14_profession = Faker::Company.profession.capitalize
   user_14 = User.create(
-    email: Faker::Internet.email,
+    email: 'user14@gmail.com',
     password: 'pass14word',
     fname: user_14_name[0],
     lname: user_14_name[1],
@@ -213,7 +213,7 @@ ActiveRecord::Base.transaction do
   user_15_industry = Faker::Company.name
   user_15_profession = Faker::Company.profession.capitalize
   user_15 = User.create(
-    email: Faker::Internet.email,
+    email: 'user15@gmail.com',
     password: 'pass15word',
     fname: user_15_name[0],
     lname: user_15_name[1],
@@ -227,7 +227,7 @@ ActiveRecord::Base.transaction do
   user_16_industry = Faker::Company.name
   user_16_profession = Faker::Company.profession.capitalize
   user_16 = User.create(
-    email: Faker::Internet.email,
+    email: 'user16@gmail.com',
     password: 'pass16word',
     fname: user_16_name[0],
     lname: user_16_name[1],
@@ -241,7 +241,7 @@ ActiveRecord::Base.transaction do
   user_17_industry = Faker::Company.name
   user_17_profession = Faker::Company.profession.capitalize
   user_17 = User.create(
-    email: Faker::Internet.email,
+    email: 'user17@gmail.com',
     password: 'pass17word',
     fname: user_17_name[0],
     lname: user_17_name[1],
@@ -255,7 +255,7 @@ ActiveRecord::Base.transaction do
   user_18_industry = Faker::Company.name
   user_18_profession = Faker::Company.profession.capitalize
   user_18 = User.create(
-    email: Faker::Internet.email,
+    email: 'user18@gmail.com',
     password: 'pass18word',
     fname: user_18_name[0],
     lname: user_18_name[1],
@@ -269,7 +269,7 @@ ActiveRecord::Base.transaction do
   user_19_industry = Faker::Company.name
   user_19_profession = Faker::Company.profession.capitalize
   user_19 = User.create(
-    email: Faker::Internet.email,
+    email: 'user19@gmail.com',
     password: 'pass19word',
     fname: user_19_name[0],
     lname: user_19_name[1],
@@ -283,7 +283,7 @@ ActiveRecord::Base.transaction do
   user_20_industry = Faker::Company.name
   user_20_profession = Faker::Company.profession.capitalize
   user_20 = User.create(
-    email: Faker::Internet.email,
+    email: 'user20@gmail.com',
     password: 'pass20word',
     fname: user_20_name[0],
     lname: user_20_name[1],
@@ -1064,6 +1064,79 @@ ActiveRecord::Base.transaction do
     user_id: guest.id
   )
 
+  cmt_1 = Comment.create(
+    body: 'Congrats!',
+    user_id: user_7.id,
+    post_id: post_40.id
+  )
+
+  cmt_2 = Comment.create(
+    body: 'Congratulations!',
+    user_id: user_3.id,
+    post_id: post_40.id
+  )
+  
+  cmt_3 = Comment.create(
+    body: 'Congrats!',
+    user_id: user_2.id,
+    post_id: post_40.id
+  )
+  
+  cmt_4 = Comment.create(
+    body: 'Congratulations!',
+    user_id: user_8.id,
+    post_id: post_40.id
+  )
+
+  cmt_5 = Comment.create(
+    body: 'Congratulations Guest!!',
+    user_id: user_9.id,
+    post_id: post_40.id
+  )
+  
+  cmt_6 = Comment.create(
+    body: 'Congrats!',
+    user_id: user_10.id,
+    post_id: post_40.id
+  )
+    
+  cmt_7 = Comment.create(
+    body: 'Congrats!',
+    user_id: user_14.id,
+    post_id: post_40.id
+  )
+
+  cmt_8 = Comment.create(
+    body: 'Congratulations!',
+    user_id: user_16.id,
+    post_id: post_40.id
+  )
+  
+  cmt_9 = Comment.create(
+    body: 'Congrats Guest!!',
+    user_id: user_18.id,
+    post_id: post_40.id
+  )
+
+  cmt_10 = Comment.create(
+    body: 'Congratulations!',
+    user_id: user_20.id,
+    post_id: post_40.id
+  )
+
+  cmt_11 = Comment.create(
+    body: 'Congratulations Guest! Go get that bread!!',
+    user_id: user_12.id,
+    post_id: post_40.id
+  )
+
+  cmt_12 = Comment.create(
+    body: 'You bet I will! Thanks!',
+    user_id: guest.id,
+    post_id: post_40.id,
+    parent_comment_id: cmt_11.id
+  )
+  
   Connection.create(
     connector_id: guest.id,
     connected_id: user_2.id,
@@ -1108,6 +1181,12 @@ ActiveRecord::Base.transaction do
 
   Connection.create(
     connector_id: guest.id,
+    connected_id: user_9.id,
+    accepted: true
+  )
+
+  Connection.create(
+    connector_id: guest.id,
     connected_id: user_10.id,
     accepted: true
   )
@@ -1139,12 +1218,6 @@ ActiveRecord::Base.transaction do
   Connection.create(
     connector_id: guest.id,
     connected_id: user_20.id,
-    accepted: true
-  )
-
-  Connection.create(
-    connector_id: guest.id,
-    connected_id: user_9.id,
     accepted: true
   )
 
@@ -1777,5 +1850,4 @@ ActiveRecord::Base.transaction do
     connected_id: user_16.id,
     accepted: true
   )
-
 end
