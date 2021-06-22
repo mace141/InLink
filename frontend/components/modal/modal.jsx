@@ -11,7 +11,7 @@ import EditIntroContainer from '../profile/intro_form';
 import UploadAvatarContainer from '../profile/upload_avatar_container';
 import UploadBackgroundContainer from '../profile/upload_background_container';
 
-const Modal = ({modal, closeModal}) => {
+const Modal = ({ modal, closeModal }) => {
   if (!modal) return null;
   let component;
 
