@@ -187,7 +187,7 @@ class CommentIndexItem extends React.Component {
                   <p className='cmt-user-headline gray-shade'>{headline}</p>
                 </div>
               </Link>
-              <div>
+              <div id='cmt-time-edit'>
                 <span>{this.timeFromNow()}</span>
                 {dropdown}
               </div>

@@ -27,23 +27,27 @@ class CommentForm extends React.Component {
 
     fileReader.onloadend = () => {
       this.setState({ media: file, mediaUrl: fileReader.result });
-      document.getElementById('cmt-img').style.display = 'inline-block';
+      document.getElementById(`cmt-img-${this.props.postId}`).style.display = 'inline-block';
     }
 
     if (file) fileReader.readAsDataURL(file); 
   }
 
   openFileLoader() {
-    document.getElementById(`${this.props.formType}-media-input`).click();
+    const { formType, postId } = this.props;
+
+    document.getElementById(`${formType}-media-input-${postId}`).click();
   }
 
   removeFile() {
+    const { formType, postId } = this.props;
+
     this.setState({
       media: null,
       mediaUrl: null
     });
-    document.getElementById(`${this.props.formType}-media-input`).value = null;
-    document.getElementById('cmt-img').style.display = 'none';
+    document.getElementById(`${formType}-media-input-${postId}`).value = null;
+    document.getElementById(`cmt-img-${postId}`).style.display = 'none';
   }
 
   ensureContent() {
@@ -79,14 +83,14 @@ class CommentForm extends React.Component {
       media: null,
       mediaUrl: null
     });
-    document.getElementById(`${formType}-media-input`).value = "";
-    document.getElementById('cmt-img').style.display = 'none';
+    document.getElementById(`${formType}-media-input-${postId}`).value = "";
+    document.getElementById(`cmt-img-${postId}`).style.display = 'none';
     incrComCount();
     incrRepCount ? incrRepCount() : null;
   }
   
   render() {
-    const { user, formType, formMsg } = this.props;
+    const { user, formMsg, postId, formType } = this.props;
 
     const preview = this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : null;
     const closeImageBtn = this.state.media ? (
@@ -104,10 +108,10 @@ class CommentForm extends React.Component {
               <input type="text" placeholder={formMsg} 
               value={this.state.body} onChange={this.handleInput}/>
               {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
-              <input type="file" id={`${formType}-media-input`} accept='image/*' onChange={this.handleFile}/>
+              <input type="file" id={`${formType}-media-input-${postId}`} accept='image/*' onChange={this.handleFile}/>
             </div>
             <div className='cmt-img-preview'>
-              <div id='cmt-img'>
+              <div id={`cmt-img-${postId}`}>
                 {closeImageBtn}
                 {preview}
               </div>

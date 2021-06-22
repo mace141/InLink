@@ -37,8 +37,6 @@
     color: $gray;
 
     span {
-      position: absolute;
-      right: 20px;
       font-size: 12px;
     }
 
@@ -49,9 +47,6 @@
       filter: opacity(75%);
       padding: 5px;
       padding-bottom: 10px;
-      position: absolute;
-      top: -6px;
-      right: -5px;
     }
 
     .cmt-dropdown {
@@ -115,6 +110,12 @@
       }
     }
   }
+}
+
+#cmt-time-edit {
+  display: flex;
+  align-items: center;
+  height: 20px;
 }
 
 .edit-cmt-btns {
