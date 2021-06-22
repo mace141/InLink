@@ -22,32 +22,34 @@ class CommentForm extends React.Component {
   }
 
   handleFile(e) {
+    const { formType, postId, parentCommentId } = this.props;
+
     const file = e.target.files[0];
     const fileReader = new FileReader();
 
     fileReader.onloadend = () => {
       this.setState({ media: file, mediaUrl: fileReader.result });
-      document.getElementById(`cmt-img-${this.props.postId}`).style.display = 'inline-block';
+      document.getElementById(`${formType}-cmt-img-${postId}-${parentCommentId}`).style.display = 'inline-block';
     }
 
     if (file) fileReader.readAsDataURL(file); 
   }
 
   openFileLoader() {
-    const { formType, postId } = this.props;
+    const { formType, postId, parentCommentId } = this.props;
 
-    document.getElementById(`${formType}-media-input-${postId}`).click();
+    document.getElementById(`${formType}-media-input-${postId}-${parentCommentId}`).click();
   }
 
   removeFile() {
-    const { formType, postId } = this.props;
+    const { formType, postId, parentCommentId } = this.props;
 
     this.setState({
       media: null,
       mediaUrl: null
     });
-    document.getElementById(`${formType}-media-input-${postId}`).value = null;
-    document.getElementById(`cmt-img-${postId}`).style.display = 'none';
+    document.getElementById(`${formType}-media-input-${postId}-${parentCommentId}`).value = null;
+    document.getElementById(`${formType}-cmt-img-${postId}-${parentCommentId}`).style.display = 'none';
   }
 
   ensureContent() {
@@ -83,14 +85,14 @@ class CommentForm extends React.Component {
       media: null,
       mediaUrl: null
     });
-    document.getElementById(`${formType}-media-input-${postId}`).value = "";
-    document.getElementById(`cmt-img-${postId}`).style.display = 'none';
+    document.getElementById(`${formType}-media-input-${postId}-${parentCommentId}`).value = "";
+    document.getElementById(`${formType}-cmt-img-${postId}-${parentCommentId}`).style.display = 'none';
     incrComCount();
     incrRepCount ? incrRepCount() : null;
   }
   
   render() {
-    const { user, formMsg, postId, formType } = this.props;
+    const { user, formMsg, postId, formType, parentCommentId } = this.props;
 
     const preview = this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : null;
     const closeImageBtn = this.state.media ? (
@@ -108,10 +110,10 @@ class CommentForm extends React.Component {
               <input type="text" placeholder={formMsg} 
               value={this.state.body} onChange={this.handleInput}/>
               {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
-              <input type="file" id={`${formType}-media-input-${postId}`} accept='image/*' onChange={this.handleFile}/>
+              <input type="file" id={`${formType}-media-input-${postId}-${parentCommentId}`} accept='image/*' onChange={this.handleFile}/>
             </div>
             <div className='cmt-img-preview'>
-              <div id={`cmt-img-${postId}`}>
+              <div id={`${formType}-cmt-img-${postId}-${parentCommentId}`}>
                 {closeImageBtn}
                 {preview}
               </div>
