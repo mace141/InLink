@@ -123,20 +123,19 @@ class CommentIndexItem extends React.Component {
 
   render() {
     const { 
-      openReply, isReply, user, currentUser, deleteComment, comment, postId, 
+      openReply, isReply, commenter, currentUser, deleteComment, comment, postId, 
       comment: { id, body, mediaUrl }, incrComCount
     } = this.props;
     const { drop, edit, reply, replyCount, likeCount } = this.state;
-    const profile = user.avatarUrl || window.defaultUser;
+    const avatar = commenter.avatarUrl || window.defaultUser;
 
-    let dropdown; let commentUser; let name; let headline;
+    let dropdown; let name; let headline;
 
-    if (user) {
-      commentUser = user;
-      name = `${commentUser.fname} ${commentUser.lname}`;
-      headline = commentUser.headline;
+    if (commenter) {
+      name = `${commenter.fname} ${commenter.lname}`;
+      headline = commenter.headline;
 
-      if (commentUser.id = currentUser) {
+      if (commenter.id == currentUser) {
         dropdown = (
           <button onFocus={this.clicked} onBlur={this.leave}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
@@ -174,15 +173,15 @@ class CommentIndexItem extends React.Component {
     
     return (
       <div className='comment-item'>
-        <Link to={`/users/${user.id}`}>
+        <Link to={`/users/${commenter.id}`}>
           <div className='avatar small'>
-            <img src={profile} alt="Profile Pic" className={'pfp small'}/>
+            <img src={avatar} alt="Profile Pic" className={'pfp small'}/>
           </div>
         </Link>
         <div>
           <div className='comment-body'>
             <header>
-              <Link to={`/users/${user.id}`}>
+              <Link to={`/users/${commenter.id}`}>
                 <div className='cmt-user-info'>
                   <p className='cmt-user-name gray-shade'>{name}</p>
                   <p className='cmt-user-headline gray-shade'>{headline}</p>
@@ -212,7 +211,7 @@ class CommentIndexItem extends React.Component {
 }
 
 const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => ({
-  user: users[ownProps.comment.userId],
+  commenter: users[ownProps.comment.userId],
   currentUser
 });
 
