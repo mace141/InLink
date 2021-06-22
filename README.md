@@ -7,9 +7,8 @@ Welcome to my LinkedIn clone, built upon a PostgreSQL database, AWS S3 media sto
 
 # Dependencies
 
-* Ruby version: 2.5.1
-* Rails version: 5.2.5
-* jQuery rails gem
+* Ruby, Rails, Webpack, Babel
+* Gems: jquery-rails, aws-sdk-s3, faker, down
 
 # Features
 
@@ -43,3 +42,4 @@ Welcome to my LinkedIn clone, built upon a PostgreSQL database, AWS S3 media sto
 * Users may: 
   * Receive notifications from linked user's activity
   * Search for other users based on name, education, or experience
+  * Message other users
