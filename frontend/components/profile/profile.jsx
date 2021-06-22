@@ -68,9 +68,17 @@ const mapSTP = ({ entities: { users, educations, experiences } }, ownProps) => {
   const sortedExp = Object.values(experiences).filter(
     exp => exp.userId == ownProps.match.params.id
   ).sort(
-    (a, b) => Date.parse(a.endDate) > Date.parse(b.endDate) ? -1 : (
-      Date.parse(a.startDate) > Date.parse(b.startDate) ? -1 : 1
-    )
+    (a, b) => {
+      if ((a.endDate == null || a.endDate == '') && (b.endDate != null && b.endDate != '')) {
+        return -1;
+      } else if ((a.endDate == null || a.endDate == '') && (b.endDate == null || b.endDate == '')) {
+        if (Date.parse(a.startDate) > Date.parse(b.startDate)) {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+    }
   );
 
   const sortedEdu = Object.values(educations).filter(
