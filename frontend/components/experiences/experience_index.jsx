@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchExperiences } from '../../actions/experience';
 import { openModal } from '../../actions/modal';
 import ExperienceIndexItemContainer from './experience_index_item';
 

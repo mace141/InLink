@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchEducations } from '../../actions/education';
 import { openModal } from '../../actions/modal';
 import EducationIndexItemContainer from './education_index_item';
 
