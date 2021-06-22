@@ -5,6 +5,13 @@ import { openModal } from '../../actions/modal';
 import EducationIndexItemContainer from './education_index_item';
 
 class EducationIndex extends React.Component {
+  componentDidUpdate() {
+    if (this.props.educations.length) {
+      const eduSectDiv = document.getElementsByClassName('edu-div')[0];
+      eduSectDiv.style.borderTop = '1px solid #d8d8d8'
+    }
+  }
+
   render() {
     const { currentUser, match, openModal, educations } = this.props;
     const newEduBtn = currentUser == match.params.id ? (
