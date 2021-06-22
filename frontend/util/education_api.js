@@ -1,16 +1,3 @@
-export const fetchEducations = user_id => (
-  $.ajax({
-    url: '/api/educations',
-    data: { user_id }
-  })
-);
-
-export const fetchEducation = educationId => (
-  $.ajax({
-    url: `/api/educations/${educationId}`
-  })
-);
-
 export const createEducation = education => (
   $.ajax({
     method: 'POST',

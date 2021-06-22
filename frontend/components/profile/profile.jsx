@@ -65,19 +65,29 @@ class Profile extends React.Component {
 }
 
 const mapSTP = ({ entities: { users, educations, experiences } }, ownProps) => {
-  const mappedExp = Object.values(experiences).filter(
+  const sortedExp = Object.values(experiences).filter(
     exp => exp.userId == ownProps.match.params.id
   ).sort(
-    (a, b) => {Date.parse(a.endDate) > Date.parse(b.endDate) ? -1 : 1}
+    (a, b) => {
+      if ((a.endDate == null || a.endDate == '') && (b.endDate != null && b.endDate != '')) {
+        return -1;
+      } else if ((a.endDate == null || a.endDate == '') && (b.endDate == null || b.endDate == '')) {
+        if (Date.parse(a.startDate) > Date.parse(b.startDate)) {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+    }
   );
 
-  const mappedEdu = Object.values(educations).filter(
+  const sortedEdu = Object.values(educations).filter(
     edu => edu.userId == ownProps.match.params.id
-  ).sort((a, b) => a.endYear > b.endYear ? -1 : 1);
+  ).sort((a, b) => a.endYear > b.endYear ? -1 : a.startYear > b.startYear ? -1 : 1);
 
   return {
-    educations: mappedEdu,
-    experiences: mappedExp,
+    educations: sortedEdu,
+    experiences: sortedExp,
     user: users[ownProps.match.params.id]
   };
 };
