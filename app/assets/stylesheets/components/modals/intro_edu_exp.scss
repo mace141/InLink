@@ -1,6 +1,7 @@
 .exp-form, .edu-form, .modal {
   
   label {
+    margin-top: 10px;
     color: $gray;
   }
 
@@ -20,7 +21,6 @@
   
   input {
     padding: 0 10px;
-    margin-bottom: 10px;
   }
 
   input[type='checkbox'] {
@@ -32,7 +32,7 @@
   .school-years-form, .exp-years-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 34px;
+    grid-column-gap: 34px;
   }
 
   .school-year-form, .exp-year-form {
@@ -85,7 +85,7 @@ div.intro.location {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 15px;
+  grid-column-gap: 15px;
 }
 
 .intro.location input {
