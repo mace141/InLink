@@ -12,7 +12,7 @@ class JobForm extends React.Component {
 
     this.state = {
       title: user.title || "",
-      type: user.type || "",
+      employment_type: user.employment_type || "",
       company: user.company || ""
     };
 
@@ -41,13 +41,17 @@ class JobForm extends React.Component {
     } = this.props;
     const job = {
       headline: this.state.title + ' at ' + this.state.company,
-      industry: this.state.company
+      industry: this.state.company,
+      ...this.state
     };
-    receiveUserJob(Object.assign({}, this.state, job));
+    receiveUserJob({ ...job });
 
-    createUser(user).then(payload => {
+    createUser({ ...user, ...job }).then(payload => {
       dispatch(receiveCurrentUser(payload));
-      createExperience({ ...user, user_id: Object.keys(payload.user)[0] });
+      createExperience({ 
+        ...job, 
+        user_id: Object.keys(payload.user)[0] 
+      });
     });
   }
 
@@ -70,7 +74,7 @@ class JobForm extends React.Component {
           <label>Most recent job title *</label>
           <input type="text" value={this.state.title} onChange={this.handleInput('title')}/>
           <label>Employment type</label>
-          <select onChange={this.handleInput('type')}>
+          <select onChange={this.handleInput('employment_type')}>
             {employmentTypes.map((type, i) => (
               <option key={i}>{type}</option>
             ))}

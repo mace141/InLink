@@ -19,9 +19,9 @@ ActiveRecord::Base.transaction do
   inlink = User.create(
     email: 'inlink@gmail.com', 
     password: 'pass0word',
-    fname: 'InLink',
-    lname: '',
-    location: 'New York, New York, United States',
+    fname: 'InLink by',
+    lname: 'Daniel Wu',
+    location: 'New York, NY, United States',
     headline: 'Created by Daniel Wu',
     industry: 'InLink'
   )
@@ -31,7 +31,7 @@ ActiveRecord::Base.transaction do
     password: 'password',
     fname: 'Guest',
     lname: 'User',
-    location: 'New York, New York, United States',
+    location: 'New York, NY, United States',
     headline: 'Baker at Bread Acquisition Inc.',
     industry: 'Bread Acquisition Inc.'
   )
@@ -1156,122 +1156,122 @@ ActiveRecord::Base.transaction do
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: guest.id,
+    connected_id: inlink.id,
+    connector_id: guest.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_2.id,
+    connected_id: inlink.id,
+    connector_id: user_2.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_3.id,
+    connected_id: inlink.id,
+    connector_id: user_3.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_4.id,
+    connected_id: inlink.id,
+    connector_id: user_4.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_5.id,
+    connected_id: inlink.id,
+    connector_id: user_5.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_6.id,
+    connected_id: inlink.id,
+    connector_id: user_6.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_7.id,
+    connected_id: inlink.id,
+    connector_id: user_7.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_8.id,
+    connected_id: inlink.id,
+    connector_id: user_8.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_9.id,
+    connected_id: inlink.id,
+    connector_id: user_9.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_10.id,
+    connected_id: inlink.id,
+    connector_id: user_10.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_11.id,
+    connected_id: inlink.id,
+    connector_id: user_11.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_12.id,
+    connected_id: inlink.id,
+    connector_id: user_12.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_13.id,
+    connected_id: inlink.id,
+    connector_id: user_13.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_14.id,
+    connected_id: inlink.id,
+    connector_id: user_14.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_15.id,
+    connected_id: inlink.id,
+    connector_id: user_15.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_16.id,
+    connected_id: inlink.id,
+    connector_id: user_16.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_17.id,
+    connected_id: inlink.id,
+    connector_id: user_17.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_18.id,
+    connected_id: inlink.id,
+    connector_id: user_18.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_19.id,
+    connected_id: inlink.id,
+    connector_id: user_19.id,
     accepted: true
   )
   
   Connection.create(
-    connector_id: inlink.id,
-    connected_id: user_20.id,
+    connected_id: inlink.id,
+    connector_id: user_20.id,
     accepted: true
   )
 

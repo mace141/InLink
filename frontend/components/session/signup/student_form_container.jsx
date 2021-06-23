@@ -56,19 +56,20 @@ class StudentForm extends React.Component {
       const student = {
         headline: 'Student at ' + this.state.school,
         industry: this.state.school,
+        ...this.state,
+        start_year: this.state.startYr,
+        end_year: this.state.endYr
       };
       const { 
         receiveUserStudent, createUser, createEducation, user, dispatch, receiveCurrentUser 
       } = this.props;
       
-      receiveUserStudent(Object.assign({}, this.state, student));
-      createUser(user).then(payload => {
+      receiveUserStudent({ ...student });
+      createUser({ ...user, ...student }).then(payload => {
         dispatch(receiveCurrentUser(payload));
         createEducation({ 
-          ...user, 
+          ...student,
           user_id: Object.keys(payload.user)[0],
-          start_year: user.startYr,
-          end_year: user.endYr 
         });
       });
     }
