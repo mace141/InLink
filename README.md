@@ -7,7 +7,7 @@ Welcome to my LinkedIn clone, built upon a PostgreSQL database, AWS S3 media sto
 
 # Dependencies
 
-* Ruby, Rails, Webpack, Babel
+* Ruby, Rails, React, Redux, Webpack, Babel
 * Gems: jquery-rails, aws-sdk-s3, faker, down
 
 # Features
