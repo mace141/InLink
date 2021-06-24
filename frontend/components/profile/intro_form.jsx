@@ -39,16 +39,26 @@ class EditIntro extends React.Component {
     }
   }
 
+  handleErrors() {
+    if (Object.values(this.state).some(el => el == true)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const { country, state, city } = this.state;
     
-    this.props.updateUser({
-      ...this.state,
-      location: `${city}, ${state}, ${country}`
-    });
-
-    this.props.closeModal();
+    if (!this.handleErrors()) {
+      this.props.updateUser({
+        ...this.state,
+        location: `${city}, ${state}, ${country}`
+      });
+      
+      this.props.closeModal();
+    }
   }
 
   render() {
