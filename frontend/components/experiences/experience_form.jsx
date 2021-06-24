@@ -141,7 +141,7 @@ class ExperienceForm extends React.Component {
     for (let i = 1962; i <= 2031; i++) {
       years.unshift(i);
     }
-
+    
     const endDateSelectors = present ? <p>Present</p> : (
       <>
         <select className='exp-selector-form' onChange={this.handleInput('endMon')}>
@@ -169,7 +169,7 @@ class ExperienceForm extends React.Component {
         </header>
         <form className='exp-form'>
           <label>Title *</label>
-          <input type="text" value={title} onChange={this.handleInput('title')}/>
+          <input type="text" className={titleErr ? 'input-error': ''} value={title} onChange={this.handleInput('title')}/>
           {titleErr ? <p className='error-msg'>Please enter your title</p> : null}
           <label>Employment type</label>
           <select onChange={this.handleInput('employmentType')}>
@@ -178,7 +178,7 @@ class ExperienceForm extends React.Component {
             ))}
           </select>
           <label>Company *</label>
-          <input type="text" value={company} onChange={this.handleInput('company')}/>
+          <input type="text" className={companyErr ? 'input-error': ''} value={company} onChange={this.handleInput('company')}/>
           {companyErr ? <p className='error-msg'>Please enter a company name</p> : null}
           <label>Location</label>
           <input type="text" value={location} onChange={this.handleInput('location')}/>
@@ -189,11 +189,11 @@ class ExperienceForm extends React.Component {
             <div className='exp-year-form' >
               <label>Start Date *</label>
               <div className='exp-date'>
-                <select className='exp-selector-form' onChange={this.handleInput('startMon')}>
+                <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} onChange={this.handleInput('startMon')}>
                   <option value="Month">Month</option>
                   {monthOptions}
                 </select>
-                <select className='exp-selector-form' onChange={this.handleInput('startYear')}>
+                <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} onChange={this.handleInput('startYear')}>
                   <option value="Year">Year</option>
                   {years.map(yr => {
                     if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
