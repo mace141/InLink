@@ -99,7 +99,7 @@ class ExperienceForm extends React.Component {
 
     
     if (!this.handleErrors()) {
-      const { startYear, startMon, endYear, endMon, present, userId } = this.state;
+      const { startYear, startMon, endYear, endMon, present, userId, employmentType } = this.state;
   
       const start_date = `${startYear}-${months.indexOf(startMon) + 1}-01`
       let end_date;
@@ -112,7 +112,8 @@ class ExperienceForm extends React.Component {
         ...this.state,
         user_id: userId,
         start_date,
-        end_date
+        end_date,
+        employment_type: employmentType
       });
       this.props.closeModal();
     }
@@ -171,7 +172,7 @@ class ExperienceForm extends React.Component {
           <input type="text" value={title} onChange={this.handleInput('title')}/>
           {titleErr ? <p className='error-msg'>Please enter your title</p> : null}
           <label>Employment type</label>
-          <select>
+          <select onChange={this.handleInput('employmentType')}>
             {empTypes.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}
