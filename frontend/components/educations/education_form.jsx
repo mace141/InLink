@@ -29,7 +29,7 @@ class EducationForm extends React.Component {
   
   checkYearError() {
     const { startYear, endYear } = this.state;
-
+    
     if (parseInt(startYear) > parseInt(endYear)) {
       this.setState({ yearErr: true });
     } else {
@@ -38,9 +38,22 @@ class EducationForm extends React.Component {
   }
 
   handleErrors() {
-    return Object.values(this.state).some(el => el == true);
+    const { startYear, endYear } = this.state;
+    let errorBool = false;
+
+    if (parseInt(startYear) > parseInt(endYear)) {
+      this.setState({ yearErr: true });
+      errorBool = true;
+    }
+
+    if (!this.state.school.length) {
+      this.setState({ schoolErr: true });
+      errorBool = true;
+    }
+
+    return errorBool;
   }
-  
+
   handleSubmit(e) {
     e.preventDefault();
 

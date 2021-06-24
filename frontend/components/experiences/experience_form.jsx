@@ -47,36 +47,61 @@ class ExperienceForm extends React.Component {
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.togglePresent = this.togglePresent.bind(this);
+    this.checkError = this.checkError.bind(this);
+    this.checkYearError = this.checkYearError.bind(this);
   }
 
   handleInput(field) {
-    return e => this.setState({ [field]: e.target.value })
+    return e => {
+      if (field == 'employmentType' && e.target.value == '-') {
+        this.setState({ [field]: '' });
+      } else {
+        this.setState({ [field]: e.target.value });
+      }
+    }
   }
 
-  handleErrors() {
-    const { startYear, endYear, startMon, endMon, title, company, present } = this.state;
-    let errorBool = false;
+  checkError(field) {
+    return e => {
+      if (e.target.value == '') {
+        this.setState({ [field]: true });
+      } else {
+        this.setState({ [field]: false });
+      }
+    }
+  }
+
+  checkYearError() {
+    const { startYear, endYear, startMon, endMon, present } = this.state;
+    const startYr = parseInt(startYear);
+    const endYr = parseInt(endYear);
 
     if (!startYear.length && !startMon.length) {
       this.setState({ yearErr: true });
-      errorBool = true;
       this.yearErrMsg = 'Please enter your start date';
+      return true;
 
     } else if (!present && !endYear.length && !endMon.length) {
       this.setState({ yearErr: true });
-      errorBool = true;
       this.yearErrMsg = 'Please enter your end date';
+      return true;
+
+    } else if (startYr > endYr || (startYr == endYr && months.indexOf(startMon) > months.indexOf(endMon))) {
+      this.setState({ yearErr: true });
+      this.yearErrMsg = "Your start date can't be after your end date";
+      return true;
 
     } else {
-      const startYr = parseInt(startYear);
-      const endYr = parseInt(endYear);
-      
-      if (startYr > endYr || (startYr == endYr && months.indexOf(startMon) > months.indexOf(endMon))) {
-        this.setState({ yearErr: true });
-        errorBool = true;
-        this.yearErrMsg = "Your start date can't be after your end date";
-      } 
+      this.setState({ yearErr: false });
+      return false;
     }
+  }
+
+  handleErrors() {
+    const { title, company } = this.state;
+    let errorBool = false;
+
+    errorBool = this.checkYearError();
 
     if (!title.length) {
       this.setState({ titleErr: true });
@@ -93,10 +118,6 @@ class ExperienceForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ yearErr: false });
-    this.setState({ titleErr: false });
-    this.setState({ companyErr: false });
-
     
     if (!this.handleErrors()) {
       const { startYear, startMon, endYear, endMon, present, userId, employmentType } = this.state;
@@ -144,11 +165,15 @@ class ExperienceForm extends React.Component {
     
     const endDateSelectors = present ? <p>Present</p> : (
       <>
-        <select className='exp-selector-form' onChange={this.handleInput('endMon')}>
+        <select className='exp-selector-form' onChange={this.handleInput('endMon')}
+          onBlur={this.checkYearError}
+        >
           <option value="Month">Month</option>
           {monthOptions}
         </select>
-        <select className='exp-selector-form' onChange={this.handleInput('endYear')}>
+        <select className='exp-selector-form' onChange={this.handleInput('endYear')}
+          onBlur={this.checkYearError}
+        >
           <option value="Year">Year</option>
           {years.map(yr => (
             <option key={yr} value={yr}>{yr}</option>
@@ -158,7 +183,8 @@ class ExperienceForm extends React.Component {
     )
 
     const deleteBtn = this.props.deleteExperience ? (
-      <button onClick={() => {this.props.deleteExperience(id); this.props.closeModal()}}>Delete</button>
+      <button onClick={() => {this.props.deleteExperience(id); this.props.closeModal()}}
+      >Delete</button>
     ) : null;
 
     return (
@@ -169,7 +195,10 @@ class ExperienceForm extends React.Component {
         </header>
         <form className='exp-form'>
           <label>Title *</label>
-          <input type="text" className={titleErr ? 'input-error': ''} value={title} onChange={this.handleInput('title')}/>
+          <input type="text" className={titleErr ? 'input-error': ''} value={title} 
+                 onChange={this.handleInput('title')}
+                 onBlur={this.checkError('titleErr')}
+          />
           {titleErr ? <p className='error-msg'>Please enter your title</p> : null}
           <label>Employment type</label>
           <select onChange={this.handleInput('employmentType')}>
@@ -178,22 +207,33 @@ class ExperienceForm extends React.Component {
             ))}
           </select>
           <label>Company *</label>
-          <input type="text" className={companyErr ? 'input-error': ''} value={company} onChange={this.handleInput('company')}/>
+          <input type="text" className={companyErr ? 'input-error' : ''} value={company}
+                 onChange={this.handleInput('company')}
+                 onBlur={this.checkError('companyErr')}
+          />
           {companyErr ? <p className='error-msg'>Please enter a company name</p> : null}
           <label>Location</label>
           <input type="text" value={location} onChange={this.handleInput('location')}/>
           <label className='checkbox'>
-            <input type="checkbox" checked={present ? true : false} onChange={this.togglePresent}/> I am currently working this role
+            <input type="checkbox" checked={present ? true : false} 
+                   onChange={this.togglePresent}
+            /> I am currently working this role
           </label>
           <div className='exp-years-form'>
             <div className='exp-year-form' >
               <label>Start Date *</label>
               <div className='exp-date'>
-                <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} onChange={this.handleInput('startMon')}>
+                <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} 
+                        onChange={this.handleInput('startMon')}
+                        onBlur={this.checkYearError}
+                >
                   <option value="Month">Month</option>
                   {monthOptions}
                 </select>
-                <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} onChange={this.handleInput('startYear')}>
+                <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} 
+                        onChange={this.handleInput('startYear')}
+                        onBlur={this.checkYearError}
+                >
                   <option value="Year">Year</option>
                   {years.map(yr => {
                     if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
