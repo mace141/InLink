@@ -11,14 +11,32 @@ class EditIntro extends React.Component {
       ...this.props.user,
       country: country,
       state: state,
-      city: city
+      city: city,
+      fnameErr: false,
+      lnameErr: false,
+      headlineErr: false,
+      countryErr: false,
+      stateErr: false,
+      cityErr: false,
+      industryErr: false
     };
     
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkError = this.checkError.bind(this);
   }
 
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
+  }
+
+  checkError(field) {
+    return e => {
+      if (e.target.value == '') {
+        this.setState({ [field]: true });
+      } else {
+        this.setState({ [field]: false });
+      }
+    }
   }
 
   handleSubmit(e) {
@@ -35,7 +53,8 @@ class EditIntro extends React.Component {
 
   render() {
     const {
-      fname, lname, headline, industry, summary, country, state, city
+      fname, lname, headline, industry, summary, country, state, city, fnameErr, 
+      lnameErr, headlineErr, countryErr, stateErr, cityErr, industryErr
     } = this.state;
     
 
@@ -49,32 +68,60 @@ class EditIntro extends React.Component {
           <div className='intro name'>
             <div>
               <label>First Name *</label>
-              <input type="text" value={fname} onChange={this.handleInput('fname')}/>
+              <input type="text" value={fname} className={fnameErr ? 'input-error' : ''}
+                     onChange={this.handleInput('fname')} 
+                     onBlur={this.checkError('fnameErr')}
+              />
+              {fnameErr ? <p className='error-msg'>Please enter your first name</p> : null}
             </div>
             <div>
               <label>Last Name *</label>
-              <input type="text" value={lname} onChange={this.handleInput('lname')}/>
+              <input type="text" value={lname} className={lnameErr ? 'input-error' : ''}
+                     onChange={this.handleInput('lname')} 
+                     onBlur={this.checkError('lnameErr')}
+              />
+              {lnameErr ? <p className='error-msg'>Please enter your last name</p> : null}
             </div>
           </div>
           <label>Headline *</label>
-          <input type="text" value={headline} onChange={this.handleInput('headline')}/>
+          <input type="text" value={headline} className={headlineErr ? 'input-error' : ''}
+                 onChange={this.handleInput('headline')} 
+                 onBlur={this.checkError('headlineErr')}
+          />
+          {headlineErr ? <p className='error-msg'>Please enter a headline</p> : null}
           <div className='intro location'>
             <div className='intro country'>
               <label>Country *</label>
-              <input type="text" value={country} onChange={this.handleInput('country')}/>
+              <input type="text" value={country} className={countryErr ? 'input-error' : ''}
+                     onChange={this.handleInput('country')} 
+                     onBlur={this.checkError('countryErr')}
+              />
+              {countryErr ? <p className='error-msg'>Please enter your country</p> : null}
             </div>
             <div className='intro state'>
               <label>State *</label>
-              <input type="text" value={state} onChange={this.handleInput('state')}/>
+              <input type="text" value={state} className={stateErr ? 'input-error' : ''}
+                     onChange={this.handleInput('state')} 
+                     onBlur={this.checkError('stateErr')}
+              />
+              {stateErr ? <p className='error-msg'>Please enter your state</p> : null}
             </div>
             <div className='intro city'>
               <label>City *</label>
-              <input type="text" value={city} onChange={this.handleInput('city')}/>
+              <input type="text" value={city} className={cityErr ? 'input-error' : ''}
+                     onChange={this.handleInput('city')} 
+                     onBlur={this.checkError('cityErr')}
+              />
+              {cityErr ? <p className='error-msg'>Please enter your city</p> : null}
             </div>
           </div>
           <label>Industry *</label>
-          <input type="text" value={industry} onChange={this.handleInput('industry')}/>
-          <label>Summary *</label>
+          <input type="text" value={industry} className={industryErr ? 'input-error' : ''}
+                 onChange={this.handleInput('industry')} 
+                 onBlur={this.checkError('industryErr')}
+          />
+          {industryErr ? <p className='error-msg'>Please enter your industry</p> : null}
+          <label>Summary</label>
           <textarea value={summary} onChange={this.handleInput('summary')}/>
         </form>
         <footer>
