@@ -133,8 +133,12 @@
         font-size: 14px;
       }
 
-      .exp-time, .exp-location, .edu-year, .edu-activities, .edu-description {
+      .exp-time, .exp-location, .edu-year, .edu-activities {
         color: $gray;
+      }
+
+      .exp-description, .edu-description {
+        margin-top: 10px;
       }
     }
   }
