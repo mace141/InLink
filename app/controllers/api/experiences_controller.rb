@@ -5,7 +5,7 @@ class Api::ExperiencesController < ApplicationController
 
   def create
     @experience = Experience.new(experience_params)
-
+    
     if @experience.save
       render :show 
     else 

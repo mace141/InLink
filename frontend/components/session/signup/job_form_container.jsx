@@ -12,7 +12,7 @@ class JobForm extends React.Component {
 
     this.state = {
       title: user.title || "",
-      employment_type: user.employment_type || "",
+      employment_type: user.employment_type || "Full-time",
       company: user.company || ""
     };
 

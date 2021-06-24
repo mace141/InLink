@@ -119,6 +119,10 @@
     .exp-item, .edu-item {
       margin: 15px 0;
       position: relative;
+
+      .gray-shade {
+        color: $gray;
+      }
       
       .exp-title, .edu-school {
         font-weight: 600;

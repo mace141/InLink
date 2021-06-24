@@ -9,26 +9,31 @@ const ExperienceIndexItem = ({ experience, openModal, currentUser, match }) => {
       <i className="fas fa-pencil-alt"></i>
     </button>
   ) : null;
+  let expTime; let strStartDate; let strEndDate;
+  
+  if (experience.startDate) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const startDateDB = new Date(`${experience.startDate}T12:00:00`);
+    const endDateDB = new Date(`${experience.endDate}T12:00:00`);
 
-  const startDateDB = new Date(`${experience.startDate}T12:00:00`);
-  const endDateDB = new Date(`${experience.endDate}T12:00:00`);
+    const startMon = months[startDateDB.getMonth()];
+    const startYr = startDateDB.getFullYear();
+    const endMon = months[endDateDB.getMonth()];
+    const endYr = endDateDB.getFullYear();
 
-  const startMon = months[startDateDB.getMonth()];
-  const startYr = startDateDB.getFullYear();
-  const endMon = months[endDateDB.getMonth()];
-  const endYr = endDateDB.getFullYear();
+    strStartDate = `${startMon} ${startYr}`;
+    strEndDate = experience.endDate ? `${endMon} ${endYr}` : 'Present';
 
-  const strStartDate = `${startMon} ${startYr}`;
-  const strEndDate = experience.endDate ? `${endMon} ${endYr}` : 'Present';
+    expTime = <p className='exp-time'>{strStartDate} - {strEndDate}</p>;
+  }
   
   return (
     <div className='exp-item'>
       <p className='exp-title'>{experience.title}</p>
       <p className='exp-type'>{experience.type}</p>
-      <p className='exp-company'>{experience.company}</p>
-      <p className='exp-time'>{strStartDate} - {strEndDate}</p>
+      <p className='exp-company'>{experience.company} <span className='gray-shade'>{experience.employmentType}</span></p>
+      {expTime}
       <p className='exp-location'>{experience.location}</p>
       <p className='exp-description'>{experience.description}</p>
       {editBtn}
