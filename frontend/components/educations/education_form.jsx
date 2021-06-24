@@ -70,7 +70,7 @@ class EducationForm extends React.Component {
         </header>
         <form className='edu-form'>
           <label>School *</label>
-          <input type="text" value={school} onChange={this.handleInput('school')}/>
+          <input type="text" className={schoolErr ? 'input-error' : ''} value={school} onChange={this.handleInput('school')}/>
           {schoolErr ? <p className='error-msg'>Please enter a school name</p> : null}
           <label>Degree</label>
           <input type="text" value={degree} onChange={this.handleInput('degree')}/>
@@ -79,7 +79,7 @@ class EducationForm extends React.Component {
           <div className='school-years-form'>
             <div className='school-year-form'>
               <label>Start year</label>
-              <select className={'yr-selector-form'} onChange={this.handleInput('startYear')}>
+              <select className={'yr-selector-form ' + (yearErr ? 'input-error' : '')} onChange={this.handleInput('startYear')}>
                 {years.map(yr => {
                   if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
                 })}
