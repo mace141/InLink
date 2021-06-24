@@ -40,11 +40,7 @@ class EditIntro extends React.Component {
   }
 
   handleErrors() {
-    if (Object.values(this.state).some(el => el == true)) {
-      return true;
-    } else {
-      return false;
-    }
+    return Object.values(this.state).some(el => el == true);
   }
 
   handleSubmit(e) {

@@ -11,32 +11,38 @@ class EducationForm extends React.Component {
     };
     
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkSchoolError = this.checkSchoolError.bind(this);
+    this.checkYearError = this.checkYearError.bind(this);
   }
 
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value })
   }
-
-  handleErrors() {
+  
+  checkSchoolError(e) {
+    if (e.target.value == '') {
+      this.setState({ schoolErr: true });
+    } else {
+      this.setState({ schoolErr: false });
+    }
+  }
+  
+  checkYearError() {
     const { startYear, endYear } = this.state;
-    let errorBool = false;
 
     if (parseInt(startYear) > parseInt(endYear)) {
       this.setState({ yearErr: true });
-      errorBool = true;
+    } else {
+      this.setState({ yearErr: false });
     }
-
-    if (!this.state.school.length) {
-      this.setState({ schoolErr: true });
-      errorBool = true;
-    }
-
-    return errorBool;
   }
 
+  handleErrors() {
+    return Object.values(this.state).some(el => el == true);
+  }
+  
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ yearErr: false });
 
     if (!this.handleErrors()) {
       this.props.processForm({
@@ -59,7 +65,10 @@ class EducationForm extends React.Component {
     }
 
     const deleteBtn = this.props.deleteEducation ? (
-      <button onClick={() => {this.props.deleteEducation(id); this.props.closeModal()}} className='delete btn'>Delete</button>
+      <button onClick={() => {
+        this.props.deleteEducation(id); this.props.closeModal()
+      }} className='delete btn'
+      >Delete</button>
     ) : null;
 
     return (
@@ -70,7 +79,10 @@ class EducationForm extends React.Component {
         </header>
         <form className='edu-form'>
           <label>School *</label>
-          <input type="text" className={schoolErr ? 'input-error' : ''} value={school} onChange={this.handleInput('school')}/>
+          <input type="text" className={schoolErr ? 'input-error' : ''} value={school} 
+                 onChange={this.handleInput('school')}
+                 onBlur={this.checkSchoolError}
+          />
           {schoolErr ? <p className='error-msg'>Please enter a school name</p> : null}
           <label>Degree</label>
           <input type="text" value={degree} onChange={this.handleInput('degree')}/>
@@ -79,7 +91,10 @@ class EducationForm extends React.Component {
           <div className='school-years-form'>
             <div className='school-year-form'>
               <label>Start year</label>
-              <select className={'yr-selector-form ' + (yearErr ? 'input-error' : '')} onChange={this.handleInput('startYear')}>
+              <select className={'yr-selector-form ' + (yearErr ? 'input-error' : '')} 
+                      onChange={this.handleInput('startYear')}
+                      onBlur={this.checkYearError}
+              >
                 {years.map(yr => {
                   if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
                 })}
@@ -87,7 +102,9 @@ class EducationForm extends React.Component {
             </div>
             <div className='school-year-form'>
               <label>End year (or expected)</label>
-              <select className={'yr-selector-form'} onChange={this.handleInput('endYear')}>
+              <select className={'yr-selector-form'} onChange={this.handleInput('endYear')}
+                      onBlur={this.checkYearError}
+              >
                 {years.map(yr => (
                   <option key={yr} value={yr}>{yr}</option>
                 ))}
