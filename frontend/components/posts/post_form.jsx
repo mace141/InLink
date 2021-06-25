@@ -50,8 +50,7 @@ class PostForm extends React.Component {
       const postBodies = document.getElementsByClassName('post-body');
 
       for (let i = 0; i < postBodies.length; i++) {
-        postBodies[i].style.overflowY = 'scroll';
-        postBodies[i].style.height = '400px';
+        postBodies[i].classList.add('overflow');
       }
     };
 
@@ -77,9 +76,10 @@ class PostForm extends React.Component {
   }
 
   closePostForm() {
+    const { body, mediaUrl } = this.state;
     const { post, closeModal } = this.props; 
 
-    if (this.state.body != post.body) {
+    if (body != post.body || mediaUrl != post.mediaUrl) {
       this.discardModalSwitch();
     } else {
       closeModal();
@@ -140,7 +140,7 @@ class PostForm extends React.Component {
             >✕</span>
           </header>
           <form onSubmit={this.handleSubmit} className='post-form'>
-            <div className='post-body'>
+            <div className='post-body og'>
               <div>
                 <div className='avatar small'>
                   <img src={this.props.user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
@@ -186,7 +186,7 @@ class PostForm extends React.Component {
             <h2>Discard {this.props.formType == 'Edit post' ? 'changes': 'draft'}</h2>
             <span className='close-modal-button' onClick={this.discardModalSwitch}>✕</span>
           </header>
-          <div className='post-body'>
+          <div className='post-body discard'>
             <span>
               Are you sure you want to discard your {this.props.formType == 'Edit post' ? 'changes': 'draft'}?
             </span>

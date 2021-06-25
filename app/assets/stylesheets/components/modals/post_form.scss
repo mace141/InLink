@@ -106,12 +106,23 @@
   }
 }
 
-.post-discard-modal .post-body {
-  color: black;
-  font-weight: 400;
+.overflow {
+  overflow-y: scroll;
+  height: 400px;
+}
 
-  span {
-    cursor: default;
+.post-discard-modal {
+  max-height: 300px;
+  
+  .post-body.discard {
+    color: black;
+    font-weight: 400;
+    height: 30px;
+    overflow-y: initial;
+
+    span {
+      cursor: default;
+    }
   }
 }
 
