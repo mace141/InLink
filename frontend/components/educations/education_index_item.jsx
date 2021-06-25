@@ -12,12 +12,15 @@ const EducationIndexItem = ({ education, openModal, currentUser, match }) => {
 
   return (
     <div className='edu-item'>
-      <p className='edu-school'>{education.school}</p>
-      <p className='edu-degree'>{education.degree}{education.grade ? `, ${education.grade}` : ''}</p>
-      <p className='edu-year'>{education.startYear} - {education.endYear}</p>
-      <p className='edu-activities'>{education.activities ? `Activities & Societies: ${education.activities}` : null}</p>
-      <p className='edu-description'>{education.description}</p>
-      {editBtn}
+      <img src={window.eduImg} alt="Education"/>
+      <div className='edu-info'>
+        <p className='edu-school'>{education.school}</p>
+        <p className='edu-degree'>{education.degree}{education.grade ? `, ${education.grade}` : ''}</p>
+        <p className='edu-year'>{education.startYear} - {education.endYear}</p>
+        <p className='edu-activities'>{education.activities ? `Activities & Societies: ${education.activities}` : null}</p>
+        <p className='edu-description'>{education.description}</p>
+        {editBtn}
+      </div>
     </div>
   )
 };

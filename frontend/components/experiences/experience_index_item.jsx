@@ -10,7 +10,7 @@ const ExperienceIndexItem = ({ experience, openModal, currentUser, match }) => {
     </button>
   ) : null;
   let expTime; let strStartDate; let strEndDate;
-  
+
   if (experience.startDate) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -27,16 +27,21 @@ const ExperienceIndexItem = ({ experience, openModal, currentUser, match }) => {
 
     expTime = <p className='exp-time'>{strStartDate} - {strEndDate}</p>;
   }
-  
+
   return (
     <div className='exp-item'>
-      <p className='exp-title'>{experience.title}</p>
-      <p className='exp-type'>{experience.type}</p>
-      <p className='exp-company'>{experience.company} <span className='gray-shade'>{experience.employmentType}</span></p>
-      {expTime}
-      <p className='exp-location'>{experience.location}</p>
-      <p className='exp-description'>{experience.description}</p>
-      {editBtn}
+      <img src={window.expImg} alt="Experience"/>
+      <div className='exp-info'>
+        <p className='exp-title'>{experience.title}</p>
+        <p className='exp-type'>{experience.type}</p>
+        <p className='exp-company'>
+          {experience.company} <span className='gray-shade'>{experience.employmentType}</span>
+        </p>
+        {expTime}
+        <p className='exp-location'>{experience.location}</p>
+        <p className='exp-description'>{experience.description}</p>
+        {editBtn}
+      </div>
     </div>
   )
 };
