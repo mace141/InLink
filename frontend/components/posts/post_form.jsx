@@ -16,6 +16,16 @@ class PostForm extends React.Component {
     this.closePostForm = this.closePostForm.bind(this);
   }
 
+  componentDidMount() {
+    if (this.state.mediaUrl) {
+      const postBodies = document.getElementsByClassName('post-body')
+
+      for (let postBody of postBodies) {
+        postBody.classList.add('overflow');
+      }
+    }
+  }
+
   ensureContent() {
     const { body, media } = this.state;
 
@@ -49,8 +59,8 @@ class PostForm extends React.Component {
       this.setState({ media: file, mediaUrl: fileReader.result });
       const postBodies = document.getElementsByClassName('post-body');
 
-      for (let i = 0; i < postBodies.length; i++) {
-        postBodies[i].classList.add('overflow');
+      for (let postBody of postBodies) {
+        postBody.classList.add('overflow');
       }
     };
 
@@ -69,9 +79,8 @@ class PostForm extends React.Component {
 
     const postBodies = document.getElementsByClassName('post-body');
 
-    for (let i = 0; i < postBodies.length; i++) {
-      postBodies[i].style.overflowY = null;
-      postBodies[i].style.height = null;
+    for (let postBody of postBodies) {
+      postBody.classList.remove('overflow');
     }
   }
 
