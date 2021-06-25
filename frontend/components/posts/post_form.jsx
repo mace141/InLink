@@ -13,6 +13,7 @@ class PostForm extends React.Component {
     this.ensureMedia = this.ensureMedia.bind(this);
     this.openFileLoader = this.openFileLoader.bind(this);
     this.removeFile = this.removeFile.bind(this);
+    this.closePostForm = this.closePostForm.bind(this);
   }
 
   ensureContent() {
@@ -36,7 +37,7 @@ class PostForm extends React.Component {
 
   openFileLoader() {
     document.getElementById('post-media-input').click();
-    this.modalSwitch();
+    this.mediaModalSwitch();
   }
 
   handleFile(e) {
@@ -75,7 +76,22 @@ class PostForm extends React.Component {
     }
   }
 
-  modalSwitch() {
+  closePostForm() {
+    const { post, closeModal } = this.props; 
+
+    if (this.state.body != post.body) {
+      this.discardModalSwitch();
+    } else {
+      closeModal();
+    }
+  }
+
+  discardModalSwitch() {
+    document.getElementsByClassName('post-form-modal')[0].classList.toggle('hidden');
+    document.getElementsByClassName('post-discard-modal')[0].classList.toggle('hidden');
+  }
+
+  mediaModalSwitch() {
     document.getElementsByClassName('post-form-modal')[0].classList.toggle('hidden');
     document.getElementsByClassName('post-media-modal')[0].classList.toggle('hidden');
   }
@@ -119,7 +135,9 @@ class PostForm extends React.Component {
         <div className='modal post-form-modal'>
           <header>
             <h2>{this.props.formType}</h2>
-            <span className='close-modal-button' onClick={() => this.props.closeModal()}>✕</span>
+            <span className='close-modal-button' 
+                  onClick={this.closePostForm}
+            >✕</span>
           </header>
           <form onSubmit={this.handleSubmit} className='post-form'>
             <div className='post-body'>
@@ -147,15 +165,40 @@ class PostForm extends React.Component {
         <div className='modal post-media-modal hidden'>
           <header>
             <h2>Edit your photo</h2>
-            <span className='close-modal-button' onClick={this.modalSwitch}>✕</span>
+            <span className='close-modal-button' onClick={this.mediaModalSwitch}>✕</span>
           </header>
           <div className='post-body image-body'>
             {preview(selectMedia)}
           </div>
           <footer>
             <div>
-              <button className='back-btn' onClick={() => {this.removeFile(); this.modalSwitch()}}>Back</button>
-              <button className='done-btn' disabled={this.ensureMedia()} onClick={this.modalSwitch}>Done</button>
+              <button className='back-btn'
+                      onClick={() => { this.removeFile(); this.mediaModalSwitch() }}
+              >Back</button>
+              <button className='done-btn' disabled={this.ensureMedia()} 
+                      onClick={this.mediaModalSwitch}
+              >Done</button>
+            </div>
+          </footer>
+        </div>
+        <div className='modal post-discard-modal hidden'>
+          <header>
+            <h2>Discard {this.props.formType == 'Edit post' ? 'changes': 'draft'}</h2>
+            <span className='close-modal-button' onClick={this.discardModalSwitch}>✕</span>
+          </header>
+          <div className='post-body'>
+            <span>
+              Are you sure you want to discard your {this.props.formType == 'Edit post' ? 'changes': 'draft'}?
+            </span>
+          </div>
+          <footer>
+            <div>
+              <button className='back-btn' onClick={this.discardModalSwitch}>
+                Back
+              </button>
+              <button className='done-btn' onClick={() => this.props.closeModal()}>
+                Discard
+              </button>
             </div>
           </footer>
         </div>

@@ -42,7 +42,7 @@
   }
 }
 
-.post-media-modal {
+.post-media-modal, .post-discard-modal {
 
   .post-body {
     text-align: center;
@@ -106,6 +106,15 @@
   }
 }
 
-.post-media-modal.hidden, .post-form-modal.hidden {
+.post-discard-modal .post-body {
+  color: black;
+  font-weight: 400;
+
+  span {
+    cursor: default;
+  }
+}
+
+.hidden {
   display: none;
 }
