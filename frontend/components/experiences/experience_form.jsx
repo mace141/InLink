@@ -40,6 +40,7 @@ class ExperienceForm extends React.Component {
       titleErr: false,
       companyErr: false,
       yearErr: false,
+      futureErr: false,
       present: true
     };
 
@@ -75,26 +76,35 @@ class ExperienceForm extends React.Component {
     const { startYear, endYear, startMon, endMon, present } = this.state;
     const startYr = parseInt(startYear);
     const endYr = parseInt(endYear);
+    let res = false;
 
     if (!startYear.length && !startMon.length) {
       this.setState({ yearErr: true });
       this.yearErrMsg = 'Please enter your start date';
-      return true;
+      res = true;
 
     } else if (!present && !endYear.length && !endMon.length) {
       this.setState({ yearErr: true });
       this.yearErrMsg = 'Please enter your end date';
-      return true;
+      res = true;
 
     } else if (startYr > endYr || (startYr == endYr && months.indexOf(startMon) > months.indexOf(endMon))) {
       this.setState({ yearErr: true });
       this.yearErrMsg = "Your start date can't be after your end date";
-      return true;
+      res = true;
 
     } else {
       this.setState({ yearErr: false });
-      return false;
     }
+
+    if (Date.parse(`${months.indexOf(endMon) + 1}-01-${endYear}`) > Date.now()) {
+      this.setState({ futureErr: true });
+      res = true;
+    } else {
+      this.setState({ futureErr: false });
+    }
+
+    return res;
   }
 
   handleErrors() {
@@ -120,7 +130,9 @@ class ExperienceForm extends React.Component {
     e.preventDefault();
     
     if (!this.handleErrors()) {
-      const { startYear, startMon, endYear, endMon, present, userId, employmentType } = this.state;
+      const { 
+        startYear, startMon, endYear, endMon, present, userId, employmentType 
+      } = this.state;
   
       const start_date = `${startYear}-${months.indexOf(startMon) + 1}-01`
       let end_date;
@@ -150,8 +162,8 @@ class ExperienceForm extends React.Component {
 
   render() {
     const {
-      id, title, company, location, description, titleErr, companyErr, yearErr, present,
-      industry, headline
+      id, title, company, location, description, titleErr, companyErr, yearErr, 
+      futureErr, present, industry, headline
     } = this.state;
 
     const monthOptions = months.map(mon => (
@@ -159,19 +171,21 @@ class ExperienceForm extends React.Component {
     ));
 
     const years = [];
-    for (let i = 1962; i <= 2031; i++) {
+    for (let i = 1962; i <= 2021; i++) {
       years.unshift(i);
     }
     
     const endDateSelectors = present ? <p>Present</p> : (
       <>
-        <select className='exp-selector-form' onChange={this.handleInput('endMon')}
+        <select className={'exp-selector-form ' + (futureErr ? 'input-error' : '')}
+          onChange={this.handleInput('endMon')}
           onBlur={this.checkYearError}
         >
           <option value="Month">Month</option>
           {monthOptions}
         </select>
-        <select className='exp-selector-form' onChange={this.handleInput('endYear')}
+        <select className={'exp-selector-form ' + (futureErr ? 'input-error' : '')}
+          onChange={this.handleInput('endYear')}
           onBlur={this.checkYearError}
         >
           <option value="Year">Year</option>
@@ -247,7 +261,8 @@ class ExperienceForm extends React.Component {
                 {endDateSelectors}
               </div>
             </div>
-            {yearErr ? <p className='error-msg'>{this.yearErrMsg}</p> : null}
+            {yearErr ? <p className='error-msg'>{this.yearErrMsg}</p> : <div></div>}
+            {futureErr ? <p className='error-msg'>Your end date cannot be in the future</p> : <div></div>}
           </div>
           <label>Industry</label>
           <input type='text' value={industry} onChange={this.handleInput('industry')}/>
