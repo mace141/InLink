@@ -14,12 +14,14 @@ class Profile extends React.Component {
   }
 
   componentDidUpdate() {
-    const { experiences, educations } = this.props;
+    const { experiences, educations, fetchUser, match } = this.props;
 
     if (experiences.length && educations.length) {
       const eduSectDiv = document.getElementsByClassName('edu-div')[0];
       eduSectDiv.style.borderTop = '1px solid #d8d8d8'
     }
+
+    // fetchUser(match.params.id);
   }
 
   render() {

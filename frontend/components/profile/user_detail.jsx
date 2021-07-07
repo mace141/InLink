@@ -22,7 +22,7 @@ class UserDetail extends React.Component {
 
   componentDidMount() {
     const { currentUser, user, fetchConnectionAPI, receiveConnection, dispatch } = this.props;
-
+    
     fetchConnectionAPI(currentUser, user.id).then(
       payload => {
         if (payload.connection) {
@@ -85,7 +85,10 @@ class UserDetail extends React.Component {
         connectBtn = ( 
           <button className='connect-btn' onClick={() => {
             deleteConnection(this.state.connectionId);
-            this.setState({ requested: false })
+            this.setState({ 
+              requested: false,
+              accepted: false 
+            });
           }}>Unlink</button>
         ) 
       }
@@ -113,7 +116,7 @@ class UserDetail extends React.Component {
         <p>{user.summary}</p>
       </div>
     ) : null;
-
+    
     return (
       <>
         <div className='user-pf-ctnr'>
