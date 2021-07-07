@@ -5,7 +5,7 @@ class EducationForm extends React.Component {
     super(props);
 
     this.state = {
-      ...this.props.education,
+      ...props.education,
       yearErr: false,
       schoolErr: false
     };
@@ -13,6 +13,17 @@ class EducationForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkSchoolError = this.checkSchoolError.bind(this);
     this.checkYearError = this.checkYearError.bind(this);
+  }
+
+  componentDidMount() {
+    const { education } = this.props;
+
+    if (education) {
+      this.setState({ 
+        startYear: education.startYear, 
+        endYear: education.endYear
+      });
+    }
   }
 
   handleInput(field) {
@@ -70,7 +81,8 @@ class EducationForm extends React.Component {
 
   render() {
     const {
-      id, school, degree, field, grade, activities, description, schoolErr, yearErr 
+      id, school, degree, field, grade, activities, description, startYear, endYear,
+      schoolErr, yearErr 
     } = this.state;
     const years = [];
     for (let i = 1962; i <= 2031; i++) {
@@ -107,6 +119,7 @@ class EducationForm extends React.Component {
               <select className={'yr-selector-form ' + (yearErr ? 'input-error' : '')} 
                       onChange={this.handleInput('startYear')}
                       onBlur={this.checkYearError}
+                      value={startYear}
               >
                 {years.map(yr => {
                   if (yr < 2022) return (<option key={yr} value={yr}>{yr}</option>)
@@ -115,8 +128,10 @@ class EducationForm extends React.Component {
             </div>
             <div className='school-year-form'>
               <label>End year (or expected)</label>
-              <select className={'yr-selector-form'} onChange={this.handleInput('endYear')}
+              <select className={'yr-selector-form'} 
+                      onChange={this.handleInput('endYear')}
                       onBlur={this.checkYearError}
+                      value={endYear}
               >
                 {years.map(yr => (
                   <option key={yr} value={yr}>{yr}</option>
