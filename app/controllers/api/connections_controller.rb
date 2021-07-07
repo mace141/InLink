@@ -6,12 +6,18 @@ class Api::ConnectionsController < ApplicationController
   end
 
   def connected
-    @connection = Connection.find_by(
+    @out_connection = Connection.find_by(
+      connector_id: params[:connector_id],
+      connected_id: params[:connected_id] 
+    )
+
+    @in_connection = Connection.find_by(
       connected_id: params[:connected_id], 
       connector_id: params[:connector_id]
     )
     
-    if @connection 
+    if @out_connection || @in_connection
+      @connection = @out_connection || @in_connection
       render :show
     else 
       render json: { accepted: nil }
