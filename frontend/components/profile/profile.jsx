@@ -13,15 +13,18 @@ class Profile extends React.Component {
     fetchUser(match.params.id);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const { experiences, educations, fetchUser, match } = this.props;
+
+    if (prevProps.match.params.id !== match.params.id) {
+      fetchUser(match.params.id);
+    }
 
     if (experiences.length && educations.length) {
       const eduSectDiv = document.getElementsByClassName('edu-div')[0];
       eduSectDiv.style.borderTop = '1px solid #d8d8d8'
     }
 
-    // fetchUser(match.params.id);
   }
 
   render() {
