@@ -30,9 +30,9 @@ const empTypes = [
 class ExperienceForm extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
-      ...this.props.experience,
+      ...props.experience,
       startMon: "",
       endMon: "",
       startYear: "",
@@ -50,6 +50,31 @@ class ExperienceForm extends React.Component {
     this.togglePresent = this.togglePresent.bind(this);
     this.checkError = this.checkError.bind(this);
     this.checkYearError = this.checkYearError.bind(this);
+  }
+
+  componentDidMount() {
+    const { experience } = this.props;
+
+    if (experience) {
+      const startDateStr = `${experience.startDate.slice(5, 10)}-${experience.startDate.slice(0, 4)}`;
+      const startDate = new Date(startDateStr);
+      
+      this.setState({ 
+        startMon: months[startDate.getMonth()],
+        startYear: startDate.getFullYear()
+      });
+      
+      if (experience.endDate) {
+        const endDateStr = `${experience.endDate.slice(5, 10)}-${experience.endDate.slice(0, 4)}`;
+        const endDate = new Date(endDateStr);
+        
+        this.setState({ 
+          endMon: months[endDate.getMonth()],
+          endYear: endDate.getFullYear(),
+          present: false 
+        });
+      }
+    }
   }
 
   handleInput(field) {
@@ -135,7 +160,7 @@ class ExperienceForm extends React.Component {
       } = this.state;
   
       const start_date = `${startYear}-${months.indexOf(startMon) + 1}-01`
-      let end_date;
+      let end_date = null;
   
       if (!present) {
         end_date = `${endYear}-${months.indexOf(endMon) + 1}-01`
@@ -163,7 +188,7 @@ class ExperienceForm extends React.Component {
   render() {
     const {
       id, title, company, location, description, titleErr, companyErr, yearErr, 
-      futureErr, present, industry, headline
+      futureErr, present, industry, headline, startMon, startYear, endMon, endYear
     } = this.state;
 
     const monthOptions = months.map(mon => (
@@ -180,6 +205,7 @@ class ExperienceForm extends React.Component {
         <select className={'exp-selector-form ' + (futureErr ? 'input-error' : '')}
           onChange={this.handleInput('endMon')}
           onBlur={this.checkYearError}
+          value={endMon}
         >
           <option value="Month">Month</option>
           {monthOptions}
@@ -187,6 +213,7 @@ class ExperienceForm extends React.Component {
         <select className={'exp-selector-form ' + (futureErr ? 'input-error' : '')}
           onChange={this.handleInput('endYear')}
           onBlur={this.checkYearError}
+          value={endYear}
         >
           <option value="Year">Year</option>
           {years.map(yr => (
@@ -240,6 +267,7 @@ class ExperienceForm extends React.Component {
                 <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} 
                         onChange={this.handleInput('startMon')}
                         onBlur={this.checkYearError}
+                        value={startMon}
                 >
                   <option value="Month">Month</option>
                   {monthOptions}
@@ -247,6 +275,7 @@ class ExperienceForm extends React.Component {
                 <select className={'exp-selector-form ' + (yearErr ? 'input-error' : '')} 
                         onChange={this.handleInput('startYear')}
                         onBlur={this.checkYearError}
+                        value={startYear}
                 >
                   <option value="Year">Year</option>
                   {years.map(yr => {
