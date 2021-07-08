@@ -1,11 +1,14 @@
 class Api::PostsController < ApplicationController 
   def index 
     user_id = current_user.id
-    connected_users = User.joins(:in_connects)
-                          .where("connections.accepted = true AND (connections.connector_id = #{user_id} OR connections.connected_id = #{user_id})")
-                          .pluck(:id)
+    in_connects = Connection.where(connected_id: user_id, accepted: true)
+                            .pluck(:connector_id)
 
-    connected_users.push(user_id);
+    out_connects = Connection.where(connector_id: user_id, accepted: true)
+                             .pluck(:connected_id)
+
+    connected_users = in_connects | out_connects
+    connected_users.push(user_id)
     
     @posts = Post.includes(:user)
                  .where(user_id: connected_users)
