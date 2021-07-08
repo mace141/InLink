@@ -87,6 +87,7 @@
         left: 10px;
         font-size: 18px;
         transition: 0.3s;
+        pointer-events: none;
       }
 
       .focused + label {
