@@ -20,9 +20,11 @@ class PostIndex extends React.Component {
         if (entries[0].isIntersecting && this.state.morePosts) {
           this.setState({ loading: true }, () => {
             this.incrementOffset();
-            props.fetchPostsAPI(this.state.offset + 1).then(posts => {
-              props.dispatch(receivePosts(posts));
-              if (Object.values(posts).length < 10) this.setState({ morePosts: false });
+            props.fetchPostsAPI(this.state.offset + 1).then(payload => {
+              props.dispatch(receivePosts(payload));
+              if (Object.values(payload.posts).length < 10) {
+                this.setState({ morePosts: false });
+              }
               this.setState({ loading: false });
             });
           });
@@ -36,7 +38,8 @@ class PostIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPostsAPI(this.state.offset).then(posts => dispatch(receivePosts(posts)));
+    this.props.fetchPostsAPI(this.state.offset)
+              .then(posts => dispatch(receivePosts(posts)));
   }
 
   incrementOffset() {
@@ -84,7 +87,8 @@ class PostIndex extends React.Component {
 }
 
 const mapSTP = ({ entities: { posts }}) => ({
-  posts: Object.values(posts).sort((a, b) => Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1 )
+  posts: Object.values(posts)
+               .sort((a, b) => Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1 )
 });
 
 const mapDTP = dispatch => ({
