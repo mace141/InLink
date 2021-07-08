@@ -22,7 +22,7 @@ class PostIndex extends React.Component {
             this.incrementOffset();
             props.fetchPostsAPI(this.state.offset + 1).then(payload => {
               props.dispatch(receivePosts(payload));
-              if (Object.values(payload.posts).length < 10) {
+              if (payload.posts && Object.values(payload.posts).length < 10) {
                 this.setState({ morePosts: false });
               }
               this.setState({ loading: false });
@@ -39,7 +39,7 @@ class PostIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchPostsAPI(this.state.offset)
-              .then(posts => dispatch(receivePosts(posts)));
+              .then(payload => dispatch(receivePosts(payload)));
   }
 
   incrementOffset() {
