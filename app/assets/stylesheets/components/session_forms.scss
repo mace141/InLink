@@ -46,9 +46,9 @@
 
     input {
       border: 1px solid $gray;
-      height: 35px;
+      height: 45px;
       border-radius: 5px;
-      padding: 0 10px;
+      padding: 20px 10px 0 10px;
     }
 
     .input-error {
@@ -64,8 +64,34 @@
       margin-top: 0;
     }
 
-    .signin-input {
+    .input-ctnr {
       margin-top: 25px;
+      position: relative;
+
+      input {
+        box-sizing: border-box;
+        width: 350px;
+
+        &:focus + label {
+          top: 0;
+          font-size: 14px;
+          transition: 0.3s;
+        }
+      }
+
+      label {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        font-size: 18px;
+
+      }
+
+      .focused + label {
+        top: 0;
+        font-size: 14px;
+        transition: 0.3s;
+      }
     }
 
     .job-student {

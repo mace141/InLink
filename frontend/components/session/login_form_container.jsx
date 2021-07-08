@@ -17,7 +17,14 @@ class LoginForm extends React.Component {
   }
 
   handleInput(field) {
-    return e => this.setState({ [field]: e.target.value });
+    return e => {
+      if (e.target.value.length) {
+        e.target.classList.add('focused');
+      } else {
+        e.target.classList.remove('focused');
+      }
+      this.setState({ [field]: e.target.value });
+    }
   }
 
   handleSubmit(e) {
@@ -53,13 +60,29 @@ class LoginForm extends React.Component {
         <div className='login-form'>
           <form id={ splash ? 'splash-form': '' } onSubmit={this.handleSubmit.bind(this)}>
             {splash ? null : signinPageMsg }
-            <input type="text" className={'signin-input' + (errorOne ? ' input-error' : '')} placeholder="Email" value={this.state.email} onChange={this.handleInput('email')}/>
+            <div className='input-ctnr'>
+              <input type="text" 
+                    className={'signin-input' + (errorOne ? ' input-error' : '')} 
+                    value={this.state.email} 
+                    onChange={this.handleInput('email')}
+              />
+              <label>Email</label>
+            </div>
             {errorOne ? <p className='error-msg'>{errorOne}</p> : null}
-            <input type="password" className={'signin-input' + (errorTwo ? ' input-error' : '')} placeholder="Password" value={this.state.password} onChange={this.handleInput('password')}/>
+            <div className='input-ctnr'>
+              <input type="password" 
+                    className={'signin-input' + (errorTwo ? ' input-error' : '')} 
+                    value={this.state.password} 
+                    onChange={this.handleInput('password')}
+              />
+              <label>Password</label>
+            </div>
             {errorTwo ? <p className='error-msg'>{errorTwo}</p> : null}
             <button type='submit' className='form-button'>Sign In</button>
             <button onClick={this.handleDemo.bind(this)} className='form-button'>Demo User</button>
-            <p className='session-redirect-msg'>New to InLink? <Link to='/signup' className='session-redirect-link'>Sign Up</Link></p>
+            <p className='session-redirect-msg'>
+              New to InLink? <Link to='/signup' className='session-redirect-link'>Sign Up</Link>
+            </p>
           </form>
         </div>
       </div>
