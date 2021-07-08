@@ -46,9 +46,9 @@
 
     input {
       border: 1px solid $gray;
-      height: 45px;
+      height: 35px;
       border-radius: 5px;
-      padding: 20px 10px 0 10px;
+      padding: 0 10px;
     }
 
     .input-error {
@@ -71,6 +71,8 @@
       input {
         box-sizing: border-box;
         width: 350px;
+        height: 45px;
+        padding: 20px 10px 0 10px;
 
         &:focus + label {
           top: 0;
