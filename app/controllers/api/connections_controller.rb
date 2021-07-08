@@ -12,8 +12,8 @@ class Api::ConnectionsController < ApplicationController
     )
 
     @in_connection = Connection.find_by(
-      connected_id: params[:connected_id], 
-      connector_id: params[:connector_id]
+      connected_id: params[:connector_id],
+      connector_id: params[:connected_id] 
     )
     
     if @out_connection || @in_connection

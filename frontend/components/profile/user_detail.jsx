@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createConnection, deleteConnection, receiveConnection } from '../../actions/connection';
+import { createConnection, deleteConnection, receiveConnection, updateConnection } from '../../actions/connection';
 import { fetchConnection } from '../../util/connection_api';
 import { openModal } from '../../actions/modal';
 
 class UserDetail extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = { 
       drop: false,
       requested: false,
       accepted: false,
-      connectionId: null
+      connectionId: null,
+      connection: null
     };
 
     this.clicked = this.clicked.bind(this);
@@ -27,9 +28,12 @@ class UserDetail extends React.Component {
       payload => {
         if (payload.connection) {
           dispatch(receiveConnection(payload));
-          this.setState({ accepted: Object.values(payload.connection)[0].accepted });
-          this.setState({ connectionId: Object.keys(payload.connection)[0] });
-          this.setState({ requested: true });
+          this.setState({ 
+            connection: Object.values(payload.connection)[0], 
+            connectionId: Object.keys(payload.connection)[0], 
+            accepted: Object.values(payload.connection)[0].accepted,
+            requested: true 
+          });
         }
       }
     );
@@ -45,8 +49,13 @@ class UserDetail extends React.Component {
 
   render() {
     const { 
-      user, currentUser, match, openModal, lastEdu, lastExp, createConnection, deleteConnection
+      user, currentUser, match, openModal, lastEdu, lastExp, createConnection, 
+      deleteConnection, updateConnection
     } = this.props; 
+    const { 
+      drop, accepted, requested, connectionId, connection
+    } = this.state;
+
     if (!user) return null;
     let editIntroBtn; let editSectionBtn; let connectBtn; let avatarBtn; let bgBtn;
     
@@ -60,7 +69,7 @@ class UserDetail extends React.Component {
       editSectionBtn = (
         <>
           <button onFocus={this.clicked} onBlur={this.leave} className='pf-section-btn'>Edit section
-            <ul className={'pf-section-dropdown ' + (this.state.drop ? 'reveal' : 'hide')}>
+            <ul className={'pf-section-dropdown ' + (drop ? 'reveal' : 'hide')}>
               <li onClick={() => { openModal('editIntro'); this.leave(); }}>Intro</li>
               <li onClick={() => { openModal('createExp'); this.leave(); }}>Experiences</li>
               <li onClick={() => { openModal('createEdu'); this.leave(); }}>Education</li>
@@ -81,10 +90,10 @@ class UserDetail extends React.Component {
         </button>
       );
     } else {
-      if (this.state.requested && this.state.accepted) {
+      if (requested && accepted) {
         connectBtn = ( 
           <button className='connect-btn' onClick={() => {
-            deleteConnection(this.state.connectionId);
+            deleteConnection(connectionId);
             this.setState({ 
               requested: false,
               accepted: false 
@@ -92,7 +101,7 @@ class UserDetail extends React.Component {
           }}>Unlink</button>
         ) 
       }
-      if (!this.state.requested && !this.state.accepted) {
+      if (!requested && !accepted) {
         connectBtn = ( 
           <button className='connect-btn' onClick={() => {
             createConnection({ connector_id: currentUser, connected_id: user.id });
@@ -100,13 +109,22 @@ class UserDetail extends React.Component {
           }}>Link</button> 
         )
       }
-      if (this.state.requested && !this.state.accepted) {
-        connectBtn = ( 
-          <button className='connect-btn' onClick={() => {
-            deleteConnection(this.state.connectionId);
-            this.setState({ requested: false });
-          }}>Cancel</button> 
-        )
+      if (requested && !accepted) {
+        if (connection.connectorId == currentUser) {
+          connectBtn = ( 
+            <button className='connect-btn' onClick={() => {
+              deleteConnection(connectionId);
+              this.setState({ requested: false });
+            }}>Cancel</button> 
+          )
+        } else {
+          connectBtn = ( 
+            <button className='connect-btn' onClick={() => {
+              updateConnection(connection);
+              this.setState({ accepted: true });
+            }}>Accept</button> 
+          )
+        }
       }
     }
 
@@ -162,21 +180,19 @@ class UserDetail extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, connections }, session: { currentUser } }, ownProps) => {
+const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => {
   const user = users[ownProps.match.params.id]
   
   return {
     currentUser,
-    user,
-    connection: Object.values(connections).filter(
-      con => con.connectedId == user.id && con.connectorId == currentUser || con.connectorId == user.id && con.connectedId == currentUser
-    )[0]
+    user
   }
 };
 
 const mapDTP = dispatch => ({
   openModal: (modal, id) => dispatch(openModal(modal, id)),
   createConnection: connection => dispatch(createConnection(connection)),
+  updateConnection: connection => dispatch(updateConnection(connection)),
   deleteConnection: connectionId => dispatch(deleteConnection(connectionId)),
   fetchConnectionAPI: (connectorId, connectedId) => fetchConnection(connectorId, connectedId),
   receiveConnection: connection => receiveConnection(connection),
