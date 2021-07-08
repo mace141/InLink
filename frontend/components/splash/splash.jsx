@@ -36,6 +36,11 @@ const Splash = () => (
           </div>
           <p>Daniel Wu</p>
         </div>
+        <a href='https://daniel-wu.me' target="_blank">
+          <div className='nav-icon'>
+            <i className="fab fa-product-hunt"></i>
+          </div>
+        </a>
         <a href='https://github.com/mace141' target="_blank">
           <div className='nav-icon'>
             <i className="fab fa-github"></i>

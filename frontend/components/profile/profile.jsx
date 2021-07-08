@@ -52,6 +52,12 @@ class Profile extends React.Component {
             </div>
             <h1>Daniel Wu</h1>
             <div className='links'>
+              <a href='http://daniel-wu.me' target="_blank">
+                <div className='nav-icon'>
+                  <i className="fab fa-product-hunt"></i>
+                  <p>Portfolio</p>
+                </div>
+              </a>
               <a href='https://github.com/mace141' target="_blank">
                 <div className='nav-icon'>
                   <i className="fab fa-github"></i>
