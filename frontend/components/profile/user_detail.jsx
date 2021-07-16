@@ -109,7 +109,8 @@ class UserDetail extends React.Component {
             }).then(res => {
               this.setState({ 
                 requested: true, 
-                connectionId: Object.keys(res.connection)[0]
+                connectionId: Object.keys(res.connection)[0],
+                connection: Object.values(res.connection)[0]
               });
             });
           }}>Link</button> 
