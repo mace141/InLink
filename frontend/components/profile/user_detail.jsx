@@ -186,7 +186,7 @@ class UserDetail extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => {
+const mapSTP = ({ entities: { users, connections }, session: { currentUser } }, ownProps) => {
   const user = users[ownProps.match.params.id]
   
   return {
