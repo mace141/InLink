@@ -5,6 +5,8 @@
 
 Welcome to my LinkedIn clone, built upon a PostgreSQL database, AWS S3 media storage, and Ruby on Rails backend, with a React/Redux frontend. 
 
+Here's the [live site!](https://inlink.herokuapp.com)
+
 # Dependencies
 
 * Ruby, Rails, React, Redux, Webpack, Babel
