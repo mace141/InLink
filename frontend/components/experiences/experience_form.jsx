@@ -56,13 +56,15 @@ class ExperienceForm extends React.Component {
     const { experience } = this.props;
 
     if (experience) {
-      const startDateStr = `${experience.startDate.slice(5, 10)}-${experience.startDate.slice(0, 4)}`;
-      const startDate = new Date(startDateStr);
-      
-      this.setState({ 
-        startMon: months[startDate.getMonth()],
-        startYear: startDate.getFullYear()
-      });
+      if (experience.startDate) {
+        const startDateStr = `${experience.startDate.slice(5, 10)}-${experience.startDate.slice(0, 4)}`;
+        const startDate = new Date(startDateStr);
+        
+        this.setState({ 
+          startMon: months[startDate.getMonth()],
+          startYear: startDate.getFullYear()
+        });
+      }
       
       if (experience.endDate) {
         const endDateStr = `${experience.endDate.slice(5, 10)}-${experience.endDate.slice(0, 4)}`;
@@ -188,7 +190,8 @@ class ExperienceForm extends React.Component {
   render() {
     const {
       id, title, company, location, description, titleErr, companyErr, yearErr, 
-      futureErr, present, industry, headline, startMon, startYear, endMon, endYear
+      futureErr, present, industry, headline, employmentType, startMon, startYear,
+      endMon, endYear
     } = this.state;
 
     const monthOptions = months.map(mon => (
@@ -242,7 +245,9 @@ class ExperienceForm extends React.Component {
           />
           {titleErr ? <p className='error-msg'>Please enter your title</p> : null}
           <label>Employment type</label>
-          <select onChange={this.handleInput('employmentType')}>
+          <select onChange={this.handleInput('employmentType')}
+                  value={employmentType}
+          >
             {empTypes.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}

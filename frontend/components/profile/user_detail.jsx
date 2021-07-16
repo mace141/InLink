@@ -104,8 +104,14 @@ class UserDetail extends React.Component {
       if (!requested && !accepted) {
         connectBtn = ( 
           <button className='connect-btn' onClick={() => {
-            createConnection({ connector_id: currentUser, connected_id: user.id });
-            this.setState({ requested: true });
+            createConnection({ 
+              connector_id: currentUser, connected_id: user.id 
+            }).then(res => {
+              this.setState({ 
+                requested: true, 
+                connectionId: Object.keys(res.connection)[0]
+              });
+            });
           }}>Link</button> 
         )
       }
@@ -185,7 +191,11 @@ const mapSTP = ({ entities: { users }, session: { currentUser } }, ownProps) => 
   
   return {
     currentUser,
-    user
+    user,
+    connection: Object.values(connections)
+                      .filter(con =>
+        con.connectedId == user.id && con.connectorId == currentUser || con.connectorId == user.id && con.connectedId == currentUser
+      )[0]
   }
 };
 
