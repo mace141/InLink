@@ -97,6 +97,7 @@
     box-shadow: 0px 3px 8px 3px rgba(204, 204, 204, 0.7);
     width: 275px;
     z-index: 10;
+    cursor: default;
     
     li {
       padding: 12px;
@@ -131,11 +132,16 @@
         border: 1px solid $LIblue;
         border-radius: 24px;
         text-align: center;
+        cursor: pointer;
 
         &:hover {
           @include btn-hover-border($LIblue, white)
         }
       }
+    }
+
+    li:last-child {
+      cursor: pointer;
     }
   }
 }
