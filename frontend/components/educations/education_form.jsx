@@ -31,7 +31,7 @@ class EducationForm extends React.Component {
   }
   
   checkSchoolError(e) {
-    if (e.target.value == '') {
+    if (e.target.value === '') {
       this.setState({ schoolErr: true });
     } else {
       this.setState({ schoolErr: false });

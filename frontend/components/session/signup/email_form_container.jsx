@@ -41,7 +41,7 @@ class EmailForm extends React.Component {
       errorBool = true;
     } else {
       let emailArr = email.split('@');
-      if (!(emailArr.length == 2 && emailArr[1] && emailArr[1].split('.').length == 2)) {
+      if (!(emailArr.length === 2 && emailArr[1] && emailArr[1].split('.').length === 2)) {
         this.setState({ emailErr: true });
         errorBool = true;
       } else {

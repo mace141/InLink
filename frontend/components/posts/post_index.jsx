@@ -52,7 +52,7 @@ class PostIndex extends React.Component {
     return (
       <ul className='posts-index'>
         {posts.map((post, idx) => {
-          if (idx + 1 == posts.length) {
+          if (idx + 1 === posts.length) {
             return (
               <>
                 <PostIndexItemContainer key={post.id} post={post}/>

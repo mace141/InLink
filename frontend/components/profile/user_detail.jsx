@@ -59,7 +59,7 @@ class UserDetail extends React.Component {
     if (!user) return null;
     let editIntroBtn; let editSectionBtn; let connectBtn; let avatarBtn; let bgBtn;
     
-    if (currentUser == match.params.id) {
+    if (String(currentUser) === match.params.id) {
       editIntroBtn = (
         <button onClick={() => openModal('editIntro')} className='edit-intro-btn'>
           <i className="fas fa-pencil-alt"></i>
@@ -117,7 +117,7 @@ class UserDetail extends React.Component {
         )
       }
       if (requested && !accepted) {
-        if (connection.connectorId == currentUser) {
+        if (connection.connectorId === currentUser) {
           connectBtn = ( 
             <button className='connect-btn' onClick={() => {
               deleteConnection(connectionId);
@@ -167,7 +167,7 @@ class UserDetail extends React.Component {
                 <h3>{user.location}</h3>
               </div>
               <div>
-                <span>{user.connections} connection{user.connections > 1 || user.connections == 0 ? 's' : ''}</span>
+                <span>{user.connections} connection{user.connections > 1 || user.connections === 0 ? 's' : ''}</span>
               </div>
               <div className='user-details-btns'>
                 {connectBtn}
@@ -195,7 +195,7 @@ const mapSTP = ({ entities: { users, connections }, session: { currentUser } }, 
     user,
     connection: Object.values(connections)
                       .filter(con =>
-        con.connectedId == user.id && con.connectorId == currentUser || con.connectorId == user.id && con.connectedId == currentUser
+        con.connectedId === user.id && con.connectorId === currentUser || con.connectorId === user.id && con.connectedId === currentUser
       )[0]
   }
 };

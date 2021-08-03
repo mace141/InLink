@@ -81,7 +81,7 @@ class ExperienceForm extends React.Component {
 
   handleInput(field) {
     return e => {
-      if (field == 'employmentType' && e.target.value == '-') {
+      if (field === 'employmentType' && e.target.value === '-') {
         this.setState({ [field]: '' });
       } else {
         this.setState({ [field]: e.target.value });
@@ -91,7 +91,7 @@ class ExperienceForm extends React.Component {
 
   checkError(field) {
     return e => {
-      if (e.target.value == '') {
+      if (e.target.value === '') {
         this.setState({ [field]: true });
       } else {
         this.setState({ [field]: false });
@@ -115,7 +115,7 @@ class ExperienceForm extends React.Component {
       this.yearErrMsg = 'Please enter your end date';
       res = true;
 
-    } else if (startYr > endYr || (startYr == endYr && months.indexOf(startMon) > months.indexOf(endMon))) {
+    } else if (startYr > endYr || (startYr === endYr && months.indexOf(startMon) > months.indexOf(endMon))) {
       this.setState({ yearErr: true });
       this.yearErrMsg = "Your start date can't be after your end date";
       res = true;

@@ -7,7 +7,7 @@ import EducationIndexItemContainer from './education_index_item';
 class EducationIndex extends React.Component {
   render() {
     const { currentUser, match, openModal, educations } = this.props;
-    const newEduBtn = currentUser == match.params.id ? (
+    const newEduBtn = String(currentUser) === match.params.id ? (
       <button onClick={() => openModal('createEdu')} className='open-edu'>
         <i className="fas fa-plus"></i>
       </button>

@@ -92,7 +92,7 @@ class LoginForm extends React.Component {
 
 const mapSTP = ({ errors: { session }}, ownProps) => ({
   errors: session,
-  splash: ownProps.location.pathname == '/'
+  splash: ownProps.location.pathname === '/'
 });
 
 const mapDTP = dispatch => ({

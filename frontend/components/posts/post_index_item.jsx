@@ -119,7 +119,7 @@ class PostIndexItem extends React.Component {
       postUser = users[userId];
       name = postUser.fname + ' ' + postUser.lname;
 
-      if (userId == currentUser) {
+      if (userId === currentUser) {
         dropdown = (
           <button onFocus={this.clicked} onBlur={this.leave}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis" className='ellipsis'/>

@@ -31,7 +31,7 @@ class EditIntro extends React.Component {
 
   checkError(field) {
     return e => {
-      if (e.target.value == '') {
+      if (e.target.value === '') {
         this.setState({ [field]: true });
       } else {
         this.setState({ [field]: false });
@@ -40,7 +40,7 @@ class EditIntro extends React.Component {
   }
 
   handleErrors() {
-    return Object.values(this.state).some(el => el == true);
+    return Object.values(this.state).some(el => el === true);
   }
 
   handleSubmit(e) {

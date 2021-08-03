@@ -86,12 +86,12 @@ class Profile extends React.Component {
 
 const mapSTP = ({ entities: { users, educations, experiences } }, ownProps) => {
   const sortedExp = Object.values(experiences).filter(
-    exp => exp.userId == ownProps.match.params.id
+    exp => String(exp.userId) === ownProps.match.params.id
   ).sort(
     (a, b) => {
-      if ((a.endDate == null || a.endDate == '') && (b.endDate != null && b.endDate != '')) {
+      if ((a.endDate === null || a.endDate === '') && (b.endDate != null && b.endDate != '')) {
         return -1;
-      } else if ((a.endDate == null || a.endDate == '') && (b.endDate == null || b.endDate == '')) {
+      } else if ((a.endDate === null || a.endDate === '') && (b.endDate === null || b.endDate === '')) {
         if (Date.parse(a.startDate) > Date.parse(b.startDate)) {
           return -1;
         } else {
@@ -102,7 +102,7 @@ const mapSTP = ({ entities: { users, educations, experiences } }, ownProps) => {
   );
 
   const sortedEdu = Object.values(educations).filter(
-    edu => edu.userId == ownProps.match.params.id
+    edu => String(edu.userId) === ownProps.match.params.id
   ).sort((a, b) => a.endYear > b.endYear ? -1 : a.startYear > b.startYear ? -1 : 1);
 
   return {

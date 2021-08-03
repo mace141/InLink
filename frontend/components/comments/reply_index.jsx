@@ -61,7 +61,7 @@ class ReplyIndex extends React.Component {
 const mapSTP = ({ entities: { comments } }, ownProps) => {
   const parentId = ownProps.parentCommentId;
   const repliesArr = Object.values(comments)
-                           .filter(comment => comment.parentCommentId == parentId)
+                           .filter(comment => comment.parentCommentId === parentId)
                            .sort((a, b) => a.createdAt > b.createdAt ? 1 : -1);
   
   return { replies: repliesArr }

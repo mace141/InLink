@@ -192,12 +192,12 @@ class PostForm extends React.Component {
         </div>
         <div className='modal post-discard-modal hidden'>
           <header>
-            <h2>Discard {this.props.formType == 'Edit post' ? 'changes': 'draft'}</h2>
+            <h2>Discard {this.props.formType === 'Edit post' ? 'changes': 'draft'}</h2>
             <span className='close-modal-button' onClick={this.discardModalSwitch}>✕</span>
           </header>
           <div className='post-body discard'>
             <span>
-              Are you sure you want to discard your {this.props.formType == 'Edit post' ? 'changes': 'draft'}?
+              Are you sure you want to discard your {this.props.formType === 'Edit post' ? 'changes': 'draft'}?
             </span>
           </div>
           <footer>
