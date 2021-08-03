@@ -34,8 +34,8 @@ const App = ({ sessionPath, rootPath }) => {
 const mapSTP = (state, ownProps) => {
   const path = ownProps.location.pathname;
   return ({
-  sessionPath: path.includes('/signup') || path == '/login',
-  rootPath: path == '/'
+  sessionPath: path.includes('/signup') || path === '/login',
+  rootPath: path === '/'
 })};
 
 const AppContainer = withRouter(connect(mapSTP)(App));

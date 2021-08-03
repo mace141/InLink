@@ -135,7 +135,7 @@ class CommentIndexItem extends React.Component {
       name = `${commenter.fname} ${commenter.lname}`;
       headline = commenter.headline;
 
-      if (commenter.id == currentUser) {
+      if (commenter.id === currentUser) {
         dropdown = (
           <button onFocus={this.clicked} onBlur={this.leave}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>

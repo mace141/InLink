@@ -7,7 +7,7 @@ class EditCommentForm extends React.Component {
     super(props);
 
     this.state = this.props.comment;
-    this.originalComment = this.props.comment;
+    this.originalComment = this.props.comment.body;
     
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,7 +40,7 @@ class EditCommentForm extends React.Component {
   }
 
   ensureChange() {
-    if (this.state == this.originalComment) {
+    if (this.state.body === this.originalComment) {
       return true;
     } else {
       return false;
