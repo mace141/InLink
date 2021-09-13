@@ -10,7 +10,12 @@ import StudentFormContainer from './student_form_container';
 
 const SignUpForms = ({ whiteBGR }) => (
   <div className={'signup-section' + (whiteBGR ? ' whitebg' : '')}>
-    <Link to='/' className='signup-logo'><img src={window.fullLogo} alt="InLink-full-logo" className='InLink-full-logo'/></Link>
+    <Link to='/' className='signup-logo'>
+      <img src={window.fullLogo} 
+           alt="InLink-full-logo" 
+           className='InLink-full-logo'
+      />
+    </Link>
     <AuthRoute exact path='/signup/student' component={StudentFormContainer}/>
     <AuthRoute exact path='/signup/job' component={JobFormContainer}/>
     <AuthRoute exact path='/signup/location' component={LocationFormContainer}/>

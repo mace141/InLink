@@ -52,7 +52,10 @@ const LocationForm = ({ fname, user, history, receiveUserLocation }) => {
         <input type="text" value={state} onChange={handleInput('state')}/>
         <label>City *</label>
         <input type="text" value={city} onChange={handleInput('city')}/>
-        <button type='submit' className='form-button' disabled={ensureForm()}>Next</button>
+        <button type='submit' 
+                className='form-button' 
+                disabled={ensureForm()}
+        >Next</button>
       </form>
     </div>
   )

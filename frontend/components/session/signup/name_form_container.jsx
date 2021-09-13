@@ -1,71 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { receiveUserName } from '../../../actions/session';
 
-class NameForm extends React.Component {
-  constructor(props) {
-    super(props);
-    const user = this.props.user;
+const NameForm = ({ user, history, receiveUserName }) => {
+  const [fname, setFname] = useState(user.fname || '');
+  const [lname, setLname] = useState(user.lname || '');
+  const [fnameError, setFnameError] = useState(false);
+  const [lnameError, setLnameError] = useState(false);
 
-    this.state = {
-      fname: user.fname || "",
-      lname: user.lname || "",
-      fnameErr: false,
-      lnameErr: false
+  const handleInput = (field) => {
+    return e => {
+      const value = e.target.value;
+      if (field === 'fname') {
+        setFname(value);
+      } else {
+        setLname(value);
+      }
     };
   }
 
-  handleInput(field) {
-    return e => this.setState({ [field]: e.target.value });
-  }
-
-  handleErrors() {
-    const { fname, lname } = this.state;
+  const handleErrors = () => {
     let errorBool = false;
 
     if (!fname.length) {
-      this.setState({ fnameErr: true });
+      setFnameError(true);
       errorBool = true;
     }
     if (!lname.length) {
-      this.setState({ lnameErr: true });
+      setLnameError(true);
       errorBool = true;
     }
 
     return errorBool;
   }
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ 
-      fnameErr: false, 
-      lnameErr: false
-    });
+    setFnameError(false);
+    setLnameError(false);
 
-    if (!this.handleErrors()) {
-      this.props.receiveUserName(this.state);
-      this.props.history.push('/signup/location');
+    if (!handleErrors()) {
+      receiveUserName({fname, lname});
+      history.push('/signup/location');
     }
   }
 
-  render() {
-    const { fnameErr, lnameErr } = this.state;
-
-    return (
-      <div className='signup-form'>
-        <h2>Make the most of your professional life</h2>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>First name</label>
-          <input type="text" value={this.state.fname} className={fnameErr ? 'input-error' : ''} onChange={this.handleInput('fname')}/>
-          {fnameErr ? <p className='error-msg'>Please enter your first name</p> : null }
-          <label>Last name</label>
-          <input type="text" value={this.state.lname} className={lnameErr ? 'input-error' : ''} onChange={this.handleInput('lname')}/>
-          {lnameErr ? <p className='error-msg'>Please enter your last name</p> : null }
-          <button type='submit' className='form-button'>Continue</button>
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div className='signup-form'>
+      <h2>Make the most of your professional life</h2>
+      <form onSubmit={handleSubmit.bind(this)}>
+        <label>First name</label>
+        <input type="text" 
+               value={fname} 
+               className={fnameError ? 'input-error' : ''} 
+               onChange={handleInput('fname')}
+        />
+        {fnameError 
+          ? <p className='error-msg'>Please enter your first name</p> 
+          : null
+        }
+        <label>Last name</label>
+        <input type="text" 
+               value={lname} 
+               className={lnameError ? 'input-error' : ''} 
+               onChange={handleInput('lname')}
+        />
+        {lnameError 
+          ? <p className='error-msg'>Please enter your last name</p> 
+          : null
+        }
+        <button type='submit' className='form-button'>Continue</button>
+      </form>
+    </div>
+  )
+  
 }
 
 const mapSTP = ({ session: { signUp } }) => ({
