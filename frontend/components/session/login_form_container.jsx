@@ -6,11 +6,11 @@ import { loginUser, clearSessionErrors } from '../../actions/session';
 const LoginForm = ({ 
   clearSessionErrors, 
   loginUser, 
-  errors: [ errorOne, errorTwo ],
+  errors: [errorOne, errorTwo],
   splash 
 }) => {
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     clearSessionErrors();
@@ -25,7 +25,7 @@ const LoginForm = ({
       }
 
       const value = e.target.value;
-      if (field == 'email') {
+      if (field === 'email') {
         setEmail(value);
       } else {
         setPassword(value);

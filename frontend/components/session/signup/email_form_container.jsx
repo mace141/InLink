@@ -1,111 +1,127 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { receiveUserEmail, loginUser } from '../../../actions/session';
 import { checkUserEmail } from '../../../util/session_api';
 
-class EmailForm extends React.Component {
-  constructor(props) {
-    super(props);
-    const user = this.props.user;
+const errors = {
+  emailMsg: 'Please enter a valid email address',
+  passwordMsg: 'Password must be 6 characters or more'
+};
 
-    this.state = {
-      email: user.email || "",
-      password: user.password || "",
-      emailErr: false,
-      pwErr: false
-    };
+const EmailForm = ({ 
+  user,
+  history,
+  checkUserEmail,
+  receiveUserEmail,
+  loginUser
+}) => {
+  const [email, setEmail] = useState(user.email || '');
+  const [password, setPassword] = useState(user.password || '');
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
-    this.errors = {
-      emailMsg: 'Please enter a valid email address',
-      passwordMsg: 'Password must be 6 characters or more'
-    };
-  }
+  const handleInput = (field) => {
+    return e => {
+      const value = e.target.value;
+      if (field === 'email') {
+        setEmail(value);
+      } else {
+        setPassword(value);
+      }
+    }
+  };
 
-  handleInput(field) {
-    return e => this.setState({ [field]: e.target.value });
-  }
-
-  handleErrors() {
-    const { email, password } = this.state;
+  const handleErrors = () => {
     let errorBool = false;
 
     if (password.length < 6) {
-      this.setState({ pwErr: true });
+      setPasswordError(true);
       errorBool = true;
     }
     
     if (!email.length) {
-      this.errors.emailMsg = 'Please enter your email address';
-      this.setState({ emailErr: true });
+      errors.emailMsg = 'Please enter your email address';
+      setEmailError(true);
       errorBool = true;
     } else {
-      let emailArr = email.split('@');
+      const emailArr = email.split('@');
       if (!(emailArr.length === 2 && emailArr[1] && emailArr[1].split('.').length === 2)) {
-        this.setState({ emailErr: true });
+        setEmailError(true);
         errorBool = true;
       } else {
-        this.props.checkUserEmail(this.state).then(user => {
+        checkUserEmail({ email, password }).then(user => {
           if (user) {
             errorBool = true;
-            this.errors.emailMsg = 'Email is already taken';
-
-            this.setState({ emailErr: true });
+            errors.emailMsg = 'Email is already taken';
+            setEmailError(true);
           }
 
           if (!errorBool) {
-            this.props.receiveUserEmail(this.state);
-            this.props.history.push('/signup/name');
+            receiveUserEmail({ email, password });
+            history.push('/signup/name');
           }
         });
       }
     }
 
     return errorBool;
-  }
+  };
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ 
-      pwErr: false,
-      emailErr: false
-    });
-    this.errors.emailMsg = 'Please enter a valid email';
+    setPasswordError(false);
+    setEmailError(false);
+    errors.emailMsg = 'Please enter a valid email';
     
-    this.handleErrors();
-  }
+    handleErrors();
+  };
 
-  handleDemo(e) {
+  const handleDemo = (e) => {
     e.preventDefault();
-    this.props.loginUser({
+    loginUser({
       email: 'guest@user.com',
       password: 'password'
     });
-  }
+  };
 
-  render() {
-    const { emailErr, pwErr } = this.state;
-    
-    return (
-      <div className='signup-form'>
-        <h2>Make the most of your professional life</h2>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>Email</label>
-          <input type="text" value={this.state.email} className={emailErr ? 'input-error' : ''} onChange={this.handleInput('email')}/>
-          {emailErr ? <p className='error-msg'>{this.errors.emailMsg}</p> : null }
+  return (
+    <div className='signup-form'>
+      <h2>Make the most of your professional life</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Email</label>
+        <input type="text" 
+               value={email} 
+               className={emailError ? 'input-error' : ''} 
+               onChange={handleInput('email')}
+        />
+        {emailError 
+          ? <p className='error-msg'>{errors.emailMsg}</p> 
+          : null
+        }
 
-          <label>Password (6 or more characters)</label>
-          <input type="password" value={this.state.password} className={pwErr ? 'input-error' : ''} onChange={this.handleInput('password')}/>
-          {pwErr ? <p className='error-msg'>{this.errors.passwordMsg}</p> : null }
+        <label>Password (6 or more characters)</label>
+        <input type="password" 
+               value={password} 
+               className={passwordError ? 'input-error' : ''} 
+               onChange={handleInput('password')}
+        />
+        {passwordError 
+          ? <p className='error-msg'>{errors.passwordMsg}</p> 
+          : null
+        }
 
-          <button type='submit' className='form-button'>Join InLink</button>
-          <button  className='form-button' onClick={this.handleDemo.bind(this)}>Demo User</button>
-          <p className='session-redirect-msg'>Already on InLink? <Link to='/login' className='session-redirect-link'>Sign In</Link></p>
-        </form>
-      </div>
-    )
-  }
-}
+        <button type='submit' className='form-button'>Join InLink</button>
+        <button  className='form-button' onClick={handleDemo}>Demo User</button>
+        <p className='session-redirect-msg'>
+          Already on InLink? <Link to='/login' 
+                                   className='session-redirect-link'
+                             >Sign In</Link>
+        </p>
+      </form>
+    </div>
+  )
+};
 
 const mapSTP = ({ session: { signUp } }) => ({
   user: signUp
