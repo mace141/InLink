@@ -1,61 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { receiveUserLocation } from '../../../actions/session';
 
-class LocationForm extends React.Component {
-  constructor(props) {
-    super(props);
-    const user = this.props.user;
+const LocationForm = ({ fname, user, history, receiveUserLocation }) => {
+  const [country, setCountry] = useState(user.country || '');
+  const [state, setState] = useState(user.state || '');
+  const [city, setCity] = useState(user.city || '');
 
-    this.state = {
-      country: user.country || "",
-      state: user.state || "",
-      city: user.city || ""
+  const handleInput = (field) => {
+    return e => {
+      const value = e.target.value;
+      switch (field) {
+        case 'country':
+          setCountry(value);
+          break;
+        case 'state':
+          setState(value);
+          break;
+        case 'city':
+          setCity(value);
+          break;
+        default:
+          break;
+      }
     };
-  }
+  };
 
-  handleInput(field) {
-    return e => this.setState({ [field]: e.target.value });
-  }
-
-  ensureForm() {
-    const { country, state, city } = this.state;
-
+  const ensureForm = () => {
     if (country.length && state.length && city.length) {
       return false;
     } else {
       return true;
     }
-  }
+  };
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const { country, state, city } = this.state;
     const location = city + ', ' + state + ', ' + country;
-    this.props.receiveUserLocation(Object.assign({}, this.state, { location }));
-    this.props.history.push('/signup/job');
-  }
 
-  render() {
-    const { countryErr, stateErr, cityErr } = this.state;
+    receiveUserLocation({country, state, city, location});
+    history.push('/signup/job');
+  };
 
-    return (
-      <div className='signup-form'>
-        <h2>Welcome, {this.props.fname}!</h2>
-        <form onSubmit={this.handleSubmit.bind(this)} className='signup-form-white'>
-          <label>Country *</label>
-          <input type="text" value={this.state.country} onChange={this.handleInput('country')}/>
-          <label>State *</label>
-          <input type="text" value={this.state.state} onChange={this.handleInput('state')}/>
-          <label>City *</label>
-          <input type="text" value={this.state.city} onChange={this.handleInput('city')}/>
-          <button type='submit' className='form-button' disabled={this.ensureForm()}>Next</button>
-        </form>
-      </div>
-    )
-  }
-}
+  return (
+    <div className='signup-form'>
+      <h2>Welcome, {fname}!</h2>
+      <form onSubmit={handleSubmit} className='signup-form-white'>
+        <label>Country *</label>
+        <input type="text" value={country} onChange={handleInput('country')}/>
+        <label>State *</label>
+        <input type="text" value={state} onChange={handleInput('state')}/>
+        <label>City *</label>
+        <input type="text" value={city} onChange={handleInput('city')}/>
+        <button type='submit' className='form-button' disabled={ensureForm()}>Next</button>
+      </form>
+    </div>
+  )
+};
 
 const mapSTP = ({ session: { signUp }}) => ({
   fname: signUp.fname,
