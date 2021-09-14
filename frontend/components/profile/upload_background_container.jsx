@@ -6,8 +6,7 @@ import UploadPictureForm from './upload_picture_form';
 const mapSTP = ({ entities: { users }, session: { currentUser } }) => ({
   user: users[currentUser],
   formType: 'Change background picture',
-  imageType: 'background',
-  imageUrl: 'backgroundUrl'
+  imageType: 'background'
 });
 
 const mapDTP = dispatch => ({
