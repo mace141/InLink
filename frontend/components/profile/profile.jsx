@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchUser } from '../../actions/session';
@@ -6,82 +6,83 @@ import EducationIndexContainer from '../educations/education_index';
 import ExperienceIndexContainer from '../experiences/experience_index';
 import UserDetailContainer from './user_detail';
 
-class Profile extends React.Component {
-  componentDidMount() {
-    const { fetchUser, match } = this.props;
-    
+const Profile = ({ 
+  user, 
+  experiences, 
+  educations, 
+  match, 
+  fetchUser 
+}) => {
+  useEffect(() => {
     fetchUser(match.params.id);
-  }
+  }, [match.params.id]);
 
-  componentDidUpdate(prevProps) {
-    const { experiences, educations, fetchUser, match } = this.props;
-
-    if (prevProps.match.params.id !== match.params.id) {
-      fetchUser(match.params.id);
-    }
-
+  useEffect(() => {
     if (experiences.length && educations.length) {
       const eduSectDiv = document.getElementsByClassName('edu-div')[0];
       eduSectDiv.style.borderTop = '1px solid #d8d8d8'
     }
+  });
 
-  }
+  if (!user) return null;
 
-  render() {
-    const { experiences, educations, user } = this.props;
-    
-    if (!user) return null;
-
-    return (
-      <div className='profile-page-ctnr'>
-        <div className='user-section'>
-          <UserDetailContainer lastExp={experiences[0]} lastEdu={educations[0]}/>
-          <div className='exp-edu-sect'>
-            <div>
-              <ExperienceIndexContainer experiences={experiences}/>
-            </div>
-            <div className='edu-div'>
-              <EducationIndexContainer educations={educations}/>
-            </div>
+  return (
+    <div className='profile-page-ctnr'>
+      <div className='user-section'>
+        <UserDetailContainer lastExp={experiences[0]} lastEdu={educations[0]}/>
+        <div className='exp-edu-sect'>
+          <div>
+            <ExperienceIndexContainer experiences={experiences}/>
           </div>
-        </div>
-        <div>
-          <div className='suggested-connections whitebox'>
-            <div className='avatar bigger'>
-              <img src={window.daniel} alt="Daniel Wu"/>
-            </div>
-            <h1>Daniel Wu</h1>
-            <div className='links'>
-              <a href='http://daniel-wu.me' target="_blank">
-                <div className='nav-icon'>
-                  <i className="fab fa-product-hunt"></i>
-                  <p>Portfolio</p>
-                </div>
-              </a>
-              <a href='https://github.com/mace141' target="_blank">
-                <div className='nav-icon'>
-                  <i className="fab fa-github"></i>
-                  <p>Github</p>
-                </div>
-              </a>
-              <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/' target="_blank">
-                <div className='nav-icon'>
-                  <i className="fab fa-linkedin"></i>
-                  <p>LinkedIn</p>
-                </div>
-              </a>
-              <a href='https://angel.co/u/daniel-wu-42' target="_blank">
-                <div className='nav-icon'>
-                  <i className="fab fa-angellist"></i>
-                  <p>AngelList</p>
-                </div>
-              </a>
-            </div>
+          <div className='edu-div'>
+            <EducationIndexContainer educations={educations}/>
           </div>
         </div>
       </div>
-    );
-  }
+      <div>
+        <div className='suggested-connections whitebox'>
+          <div className='avatar bigger'>
+            <img src={window.daniel} alt="Daniel Wu"/>
+          </div>
+          <h1>Daniel Wu</h1>
+          <div className='links'>
+            <a href='http://daniel-wu.me' 
+               target="_blank"
+            >
+              <div className='nav-icon'>
+                <i className="fab fa-product-hunt"></i>
+                <p>Portfolio</p>
+              </div>
+            </a>
+            <a href='https://github.com/mace141' 
+               target="_blank"
+            >
+              <div className='nav-icon'>
+                <i className="fab fa-github"></i>
+                <p>Github</p>
+              </div>
+            </a>
+            <a href='https://www.linkedin.com/in/daniel-wu-2995a6140/' 
+               target="_blank"
+            >
+              <div className='nav-icon'>
+                <i className="fab fa-linkedin"></i>
+                <p>LinkedIn</p>
+              </div>
+            </a>
+            <a href='https://angel.co/u/daniel-wu-42' 
+               target="_blank"
+            >
+              <div className='nav-icon'>
+                <i className="fab fa-angellist"></i>
+                <p>AngelList</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const mapSTP = ({ entities: { users, educations, experiences } }, ownProps) => {
