@@ -1,62 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchChildCommentCount } from '../../util/comment_api';
 import { fetchLastReply, fetchChildComments } from '../../actions/comment';
 import CommentIndexItemContainer from './comment_index_item';
 
-class ReplyIndex extends React.Component {
-  constructor(props) {
-    super(props);
+const ReplyIndex = ({
+  replies,
+  parentCommentId,
+  openReply,
+  fetchLastReply,
+  fetchChildCommentCount,
+  fetchChildComments,
+}) => {
+  const [offset, setOffset] = useState(0);
+  const [allRootReplies, setAllRootReplies] = useState(true);
+  const [replyCommentNum, setReplyCommentNum] = useState(0);
 
-    this.state = {
-      offset: 0,
-      allRootReplies: true,
-      replyCommentNum: null
-    };
-
-    this.loadMoreReplies = this.loadMoreReplies.bind(this);
-  }
-
-  componentDidMount() {
-    const { fetchLastReply, fetchChildCommentCount, parentCommentId } = this.props;
-
+  useEffect(() => {
     fetchLastReply(parentCommentId);
 
     fetchChildCommentCount(parentCommentId).then(count => {
-      this.setState({ replyCommentNum: count});
-      if (count > 1) this.setState({ allRootReplies: false })
+      setReplyCommentNum(count);
+      if (count > 1) setAllRootReplies(false);
     });
-  }
+  }, []);
 
-  loadMoreReplies() {
-    const { fetchChildComments, parentCommentId, replies } = this.props;
+  const loadMoreReplies = () => {
+    fetchChildComments(parentCommentId, offset);
+    setOffset(offset + 1);
 
-    fetchChildComments(parentCommentId, this.state.offset);
-    this.setState({ offset: this.state.offset + 1 });
-
-    if (this.state.replyCommentNum <= replies.length + 10) {
-      this.setState({ allRootReplies: true });
+    if (replyCommentNum <= replies.length + 10) {
+      setAllRootReplies(true);
     }
-  }
+  };
 
-  render() {
-    const moreRepliesBtn = this.state.allRootReplies ? null : (
-      <button className='more-cmts replies' onClick={this.loadMoreReplies}>Load previous replies</button>
-    );
-    const { openReply } = this.props;
+  const moreRepliesBtn = allRootReplies 
+    ? null 
+    : (<button className='more-cmts replies' 
+                onClick={loadMoreReplies}
+        >Load previous replies</button>);
 
-    return (
-      <>
-        {moreRepliesBtn}
-        <ul className='replies-index'>
-          {this.props.replies.map(reply => (
-            <CommentIndexItemContainer key={reply.id} comment={reply} isReply={true} openReply={openReply}/>
-          ))}
-        </ul>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {moreRepliesBtn}
+      <ul className='replies-index'>
+        {replies.map(reply => (
+          <CommentIndexItemContainer key={reply.id} comment={reply} isReply={true} openReply={openReply}/>
+        ))}
+      </ul>
+    </>
+  );
+};
 
 const mapSTP = ({ entities: { comments } }, ownProps) => {
   const parentId = ownProps.parentCommentId;
