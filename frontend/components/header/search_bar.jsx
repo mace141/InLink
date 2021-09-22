@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { searchUsers } from '../../util/session_api';
 
@@ -10,58 +10,45 @@ const debounce = (callback, wait = 250) => {
   };
 };
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
+const SearchBar = ({ history }) => {
+  const [results, setResults] = useState([]);
 
-    this.state = {
-      results: []
-    };
-
-    this.handleInput = this.handleInput.bind(this);
-    this.redirectUser = this.redirectUser.bind(this);
-  }
-
-  handleInput(e) {
-    const that = this;
-
+  const handleInput = (e) => {
     if (e.target.value.length) {
       debounce(() => {
         searchUsers(e.target.value).then(results => { 
-          that.setState({ results }); 
+          setResults(results);
         });
       }, 300)();
     } else {
-      this.setState({ results: [] });
+      setResults([]);
     }
-  }
+  };
 
-  redirectUser(userId) {
-    this.setState({ results: [] });
+  const redirectUser = (userId) => {
+    setResults([]);
     document.getElementById('search-field').value = '';
-    this.props.history.push(`/users/${userId}`);
+    history.push(`/users/${userId}`);
   }
 
-  render() {
-    return (
-      <div className='search-container'>
-          <input type="text" placeholder='Search' id='search-field' 
-                 onChange={this.handleInput}
-          /> 
-          <i className="fas fa-search"></i>
-          <ul className='search-results'>
-            {this.state.results.map(user => (
-              <li key={user.id} onClick={() => { this.redirectUser(user.id) }}>
-                <div className='avatar smaller'>
-                  <img src={user.avatarUrl || window.defaultUser} alt="Avatar"/>
-                </div>
-                <p>{`${user.fname} ${user.lname}`} <span>{user.headline}</span></p>
-              </li>
-            ))}
-          </ul>
-      </div>
-    )
-  }
-}
+  return (
+    <div className='search-container'>
+        <input type="text" placeholder='Search' id='search-field' 
+                onChange={handleInput}
+        /> 
+        <i className="fas fa-search"></i>
+        <ul className='search-results'>
+          {results.map(user => (
+            <li key={user.id} onClick={() => { redirectUser(user.id) }}>
+              <div className='avatar smaller'>
+                <img src={user.avatarUrl || window.defaultUser} alt="Avatar"/>
+              </div>
+              <p>{`${user.fname} ${user.lname}`} <span>{user.headline}</span></p>
+            </li>
+          ))}
+        </ul>
+    </div>
+  );
+};
 
 export default withRouter(SearchBar);
