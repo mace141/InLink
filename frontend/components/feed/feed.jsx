@@ -11,7 +11,8 @@ const Feed = ({
     fname,
     lname,
     headline,
-    avatarUrl
+    avatarUrl,
+    background
   }, 
   fetchUser,
   openModal,
