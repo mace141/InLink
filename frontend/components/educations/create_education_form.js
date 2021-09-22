@@ -3,7 +3,7 @@ import { createEducation } from '../../actions/education';
 import EducationForm from './education_form';
 
 const mapSTP = ({ session: { currentUser } }) => ({
-  education: {
+  educationProp: {
     userId: currentUser,
     school: "",
     degree: "",
