@@ -3,7 +3,7 @@ import { createExperience } from '../../actions/experience';
 import ExperienceForm from './experience_form';
 
 const mapSTP = ({ session: { currentUser } }) => ({
-  experience: {
+  experienceProp: {
     userId: currentUser,
     title: "",
     employmentType: "",

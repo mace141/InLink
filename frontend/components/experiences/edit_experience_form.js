@@ -3,7 +3,7 @@ import { updateExperience, deleteExperience } from '../../actions/experience';
 import ExperienceForm from './experience_form';
 
 const mapSTP = ({ entities: { experiences }, ui: { filter } }) => ({
-  experience: experiences[filter],
+  experienceProp: experiences[filter],
   formType: 'Edit experience'
 });
 
