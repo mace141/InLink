@@ -1,94 +1,92 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { receivePosts } from '../../actions/post';
 import { fetchPosts } from '../../util/post_api';
 import PostIndexItemContainer from './post_index_item';
 
-class PostIndex extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = { 
-      offset: 0, 
-      morePosts: true,
-      loading: false
-    };
+const PostIndex = ({ 
+  posts,
+  dispatch,
+  fetchPostsAPI,
+  receivePosts
+}) => {
+  const [offset, setOffset] = useState(0);
+  const [morePosts, setMorePosts] = useState(true);
+  const [loading, setLoading] = useState(false);
+  
+  const observer = React.createRef();
+  const lastPostRef = (node) => {
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && morePosts) {
+        setLoading(true);
+      }; 
+    });
 
-    this.observer = React.createRef();
-    this.lastPostRef = node => {
-      this.observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && this.state.morePosts) {
-          this.setState({ loading: true }, () => {
-            this.incrementOffset();
-            props.fetchPostsAPI(this.state.offset + 1).then(payload => {
-              props.dispatch(receivePosts(payload));
-              if (payload.posts && Object.values(payload.posts).length < 10) {
-                this.setState({ morePosts: false });
-              }
-              this.setState({ loading: false });
-            });
-          });
-        }; 
+    if (node) observer.current.observe(node);
+  };
+
+  useEffect(() => {
+    if (loading) {
+      incrementOffset();
+      fetchPostsAPI(offset + 1).then(payload => {
+        dispatch(receivePosts(payload));
+        if (payload.posts && Object.values(payload.posts).length < 10) {
+          setMorePosts(false);
+        }
+        setLoading(false);
       });
-
-      if (node) this.observer.current.observe(node);
     }
-    
-    this.incrementOffset = this.incrementOffset.bind(this);
-  }
+  }, [loading]);
 
-  componentDidMount() {
-    this.props.fetchPostsAPI(this.state.offset)
-              .then(payload => dispatch(receivePosts(payload)));
-  }
+  useEffect(() => {
+    fetchPostsAPI(offset).then((payload) => {
+      dispatch(receivePosts(payload));
+    });
+  }, []);
 
-  incrementOffset() {
-    this.setState({ offset: this.state.offset + 1 });
-  }
+  const incrementOffset = () => {
+    setOffset(offset + 1);
+  };
 
-  render() {
-    const { posts } = this.props;
-    
-    return (
-      <ul className='posts-index'>
-        {posts.map((post, idx) => {
-          if (idx + 1 === posts.length) {
-            return (
-              <>
-                <PostIndexItemContainer key={post.id} post={post}/>
-                <div ref={this.lastPostRef}></div>
-                {this.state.loading ? (
-                  <div className='loading'>
-                    <div className="lds-spinner">
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </div>
+  return (
+    <ul className='posts-index'>
+      {posts.map((post, idx) => {
+        if (idx + 1 === posts.length) {
+          return (
+            <>
+              <PostIndexItemContainer key={post.id} post={post}/>
+              <div ref={lastPostRef}></div>
+              {loading ? (
+                <div className='loading'>
+                  <div className="lds-spinner">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                   </div>
-                ) : null}
-              </>
-            )
-          } else {
-            return <PostIndexItemContainer key={post.id} post={post}/>
-          }
-        })}
-      </ul>
-    )
-  }
-}
+                </div>
+              ) : null}
+            </>
+          )
+        } else {
+          return <PostIndexItemContainer key={post.id} post={post}/>
+        }
+      })}
+    </ul>
+  );
+};
 
 const mapSTP = ({ entities: { posts }}) => ({
   posts: Object.values(posts)
-               .sort((a, b) => Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1 )
+                .sort((a, b) => Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1 )
 });
 
 const mapDTP = dispatch => ({
