@@ -1,78 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class CommentForm extends React.Component {
-  constructor(props) {
-    super(props);
+const CommentForm = ({
+  currentUser,
+  user,
+  postId,
+  parentCommentId,
+  formMsg,
+  formType,
+  incrComCount,
+  incrRepCount,
+  createComment
+}) => {
+  const [formState, setFormState] = useState({
+    body: '',
+    media: null,
+    mediaUrl: null
+  });
 
-    this.state = {
-      body: "",
-      media: null,
-      mediaUrl: null
-    };
+  const handleInput = (e) => {
+    setFormState({ ...formState, body: e.target.value });
+  };
 
-    this.handleInput = this.handleInput.bind(this);
-    this.handleFile = this.handleFile.bind(this);
-    this.removeFile = this.removeFile.bind(this);
-    this.postComment = this.postComment.bind(this);
-    this.openFileLoader = this.openFileLoader.bind(this);
-  }
-
-  handleInput(e) {
-    this.setState({ body: e.target.value });
-  }
-
-  handleFile(e) {
-    const { formType, postId, parentCommentId } = this.props;
-
+  const handleFile = (e) => {
     const file = e.target.files[0];
     const fileReader = new FileReader();
 
     fileReader.onloadend = () => {
-      this.setState({ media: file, mediaUrl: fileReader.result });
+      setFormState({ ...formState, media: file, mediaUrl: fileReader.result });
       document.getElementById(`${formType}-cmt-img-${postId}-${parentCommentId}`).style.display = 'inline-block';
     }
 
     if (file) fileReader.readAsDataURL(file); 
-  }
+  };
 
-  openFileLoader() {
-    const { formType, postId, parentCommentId } = this.props;
-
+  const openFileLoader = () => {
     document.getElementById(`${formType}-media-input-${postId}-${parentCommentId}`).click();
-  }
+  };
 
-  removeFile() {
-    const { formType, postId, parentCommentId } = this.props;
-
-    this.setState({
+  const removeFile = () => {
+    setFormState({
+      ...formState,       
       media: null,
       mediaUrl: null
     });
     document.getElementById(`${formType}-media-input-${postId}-${parentCommentId}`).value = null;
     document.getElementById(`${formType}-cmt-img-${postId}-${parentCommentId}`).style.display = 'none';
-  }
+  };
 
-  ensureContent() {
-    const { media, body } = this.state;
+  const ensureContent = () => {
+    const { media, body } = formState;
 
     if (media || body.length) {
       return true;
     } else {
       return false
     }
-  }
+  };
 
-  postComment() {
-    const { 
-      currentUser, postId, parentCommentId, createComment, incrComCount, 
-      incrRepCount, formType
-    } = this.props;
-
+  const postComment = () => {
     const formData = new FormData();
-    if (this.state.media) {
-      formData.append('comment[media]', this.state.media);
+    if (formState.media) {
+      formData.append('comment[media]', formState.media);
     }
-    formData.append('comment[body]', this.state.body);
+    formData.append('comment[body]', formState.body);
     formData.append('comment[user_id]', currentUser);
     formData.append('comment[post_id]', postId);
     if (parentCommentId) {
@@ -80,7 +70,7 @@ class CommentForm extends React.Component {
     }
     
     createComment(formData);
-    this.setState({
+    setFormState({
       body: "",
       media: null,
       mediaUrl: null
@@ -89,41 +79,53 @@ class CommentForm extends React.Component {
     document.getElementById(`${formType}-cmt-img-${postId}-${parentCommentId}`).style.display = 'none';
     incrComCount();
     incrRepCount ? incrRepCount() : null;
-  }
+  };
   
-  render() {
-    const { user, formMsg, postId, formType, parentCommentId } = this.props;
+  const preview = formState.mediaUrl 
+    ? <img src={formState.mediaUrl}/> 
+    : null;
+  const closeImageBtn = formState.media 
+    ? (<span className='rm-cmt-img' onClick={removeFile}>✕</span>) 
+    : null;
 
-    const preview = this.state.mediaUrl ? <img src={this.state.mediaUrl}/> : null;
-    const closeImageBtn = this.state.media ? (
-      <span className='rm-cmt-img' onClick={this.removeFile}>✕</span>
-    ) : null;
-
-    return (
-      <div className='cmt-form-section'>
-        <div className='avatar small'>
-          <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
-        </div>
-        <div className='cmt-form-ctnr'>
-          <div className='comment-form'>
-            <div className='cmt-input-div'>
-              <input type="text" placeholder={formMsg} 
-              value={this.state.body} onChange={this.handleInput}/>
-              {this.state.media ? null : <i className="far fa-image cmt" onClick={this.openFileLoader}></i>}
-              <input type="file" id={`${formType}-media-input-${postId}-${parentCommentId}`} accept='image/*' onChange={this.handleFile}/>
-            </div>
-            <div className='cmt-img-preview'>
-              <div id={`${formType}-cmt-img-${postId}-${parentCommentId}`}>
-                {closeImageBtn}
-                {preview}
-              </div>
+  return (
+    <div className='cmt-form-section'>
+      <div className='avatar small'>
+        <img src={user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
+      </div>
+      <div className='cmt-form-ctnr'>
+        <div className='comment-form'>
+          <div className='cmt-input-div'>
+            <input type="text" placeholder={formMsg} 
+            value={formState.body} onChange={handleInput}/>
+            {formState.media 
+              ? null 
+              : <i className="far fa-image cmt" onClick={openFileLoader}></i>
+            }
+            <input type="file" 
+                   id={`${formType}-media-input-${postId}-${parentCommentId}`} 
+                   accept='image/*' 
+                   onChange={handleFile}
+            />
+          </div>
+          <div className='cmt-img-preview'>
+            <div id={`${formType}-cmt-img-${postId}-${parentCommentId}`}>
+              {closeImageBtn}
+              {preview}
             </div>
           </div>
-          {this.ensureContent() ? <div><button className='post-cmt-btn' onClick={this.postComment}>Post</button></div> : null}
         </div>
+        {ensureContent() 
+          ? (<div>
+               <button className='post-cmt-btn' onClick={postComment}>
+                 Post
+               </button>
+             </div>)
+          : null
+        }
       </div>
-    )
-  }
+    </div>
+  );
 };
 
 export default CommentForm;
