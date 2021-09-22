@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import RequestsIndexContainer from './requests_index';
 import ConnectedIndex from './connected_index';
 import { fetchConnections } from '../../actions/connection';
 
-class Network extends React.Component {
-  componentDidMount() {
-    this.props.fetchConnections();
-  }
+const Network = ({ 
+  requestingUsers, 
+  connectedUsers,
+  requests,
+  fetchConnections
+}) => {
+  useEffect(() => {
+    fetchConnections();
+  }, []);
 
-  render() {
-    const { requestingUsers, connectedUsers, requests } = this.props;
-
-    return (
-      <>
-        <RequestsIndexContainer requestingUsers={requestingUsers} requests={requests}/>
-        <ConnectedIndex connectedUsers={connectedUsers}/>
-      </>
-    )
-  }
-}
+  return (
+    <>
+      <RequestsIndexContainer requestingUsers={requestingUsers} requests={requests}/>
+      <ConnectedIndex connectedUsers={connectedUsers}/>
+    </>
+  );
+};
 
 const mapSTP = ({ entities: { users, connections }, session: { currentUser } }) => {
   const requests = Object.values(connections).filter(
