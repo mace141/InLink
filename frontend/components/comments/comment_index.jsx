@@ -1,65 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchRootCommentCount } from '../../util/comment_api';
 import { fetchTwoComments, fetchMoreComments } from '../../actions/comment';
 import CommentIndexItemContainer from './comment_index_item';
 
-class CommentIndex extends React.Component {
-  constructor(props) {
-    super(props);
+const CommentIndex = ({
+  postId,
+  comments,
+  incrComCount,
+  fetchTwoComments,
+  fetchRootCommentCount,
+  fetchMoreComments
+}) => {
+  const [offset, setOffset] = useState(0);
+  const [allRootComments, setAllRootComments] = useState(true);
+  const [rootCommentNum, setRootCommentNum] = useState(0);
 
-    this.state = {
-      offset: 0,
-      allRootComments: true,
-      rootCommentNum: null
-    };
-
-    this.loadMoreComments = this.loadMoreComments.bind(this);
-  }
-
-  componentDidMount() {
-    const { fetchTwoComments, fetchRootCommentCount, postId } = this.props;
-
+  useEffect(() => {
     fetchTwoComments(postId);
-
     fetchRootCommentCount(postId).then(count => { 
-      this.setState({ rootCommentNum: count });
-      if (count > 2) this.setState({ allRootComments: false })
+      setRootCommentNum(count);
+      if (count > 2) setAllRootComments(false);
     });
-  }
+  }, []);
 
-  loadMoreComments() {
-    const { fetchMoreComments, postId, comments } = this.props;
+  const loadMoreComments = () => {
+    fetchMoreComments(postId, offset);
+    setOffset(offset + 1);
 
-    fetchMoreComments(postId, this.state.offset);
-    this.setState({ offset: this.state.offset + 1 });
-
-    if (this.state.rootCommentNum <= comments.length + 10) {
-      this.setState({ allRootComments: true });
+    if (rootCommentNum <= comments.length + 10) {
+      setAllRootComments(true);
     }
-  }
+  };
 
-  render() {
-    const moreCommentsBtn = this.state.allRootComments ? null : (
-      <button className='more-cmts' onClick={this.loadMoreComments}>Load more comments</button>
-    );
-    
-    return (
-      <>
-        <ul className='comments-index'>
-          {this.props.comments.map(comment => (
-            <CommentIndexItemContainer key={comment.id} 
-                                       comment={comment} 
-                                       postId={this.props.postId} 
-                                       isReply={false}
-                                       incrComCount={this.props.incrComCount}/>
-          ))}
-        </ul>
-        {moreCommentsBtn}
-      </>
-    )
-  }
-}
+  const moreCommentsBtn = allRootComments 
+    ? null 
+    : (<button className='more-cmts' onClick={loadMoreComments}>
+         Load more comments
+       </button>);
+  
+  return (
+    <>
+      <ul className='comments-index'>
+        {comments.map(comment => (
+          <CommentIndexItemContainer key={comment.id} 
+                                      comment={comment} 
+                                      postId={postId} 
+                                      isReply={false}
+                                      incrComCount={incrComCount}/>
+        ))}
+      </ul>
+      {moreCommentsBtn}
+    </>
+  );
+};
 
 const mapSTP = ({ entities: { comments } }, ownProps) => {
   const commentsArr = Object.values(comments)
