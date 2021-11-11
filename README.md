@@ -3,15 +3,21 @@
 <img src="https://inlink-seeds.s3.amazonaws.com/InLink_full_logo.png"
      alt="InLink Logo by Daniel Wu" width="320" height="auto">
 
-Welcome to my LinkedIn clone! I used Ruby on Rails to build a RESTful API server for data transfer between a normalized 
-PostgreSQL database and the frontend. It is a single-page application built with React for DOM manipulation and uses 
-Redux for application state management. Images are stored in an AWS S3 bucket and retrieved with ActiveStorage. 
+Welcome to my LinkedIn clone! I used Ruby on Rails to build a RESTful API server 
+for data transfer between a normalized PostgreSQL database and the frontend. It 
+is a single-page application built with React for DOM manipulation and uses Redux
+for application state management. Images are stored in an AWS S3 bucket and 
+retrieved with ActiveStorage. 
 Here's the [live site!](https://inlink.herokuapp.com)
 
 # Dependencies
 
 * Ruby, Rails, React, Redux, Webpack, Babel
-* Gems: jquery-rails, aws-sdk-s3, faker, down
+* Gems: bcrypt, jquery-rails, aws-sdk-s3, faker, down
+
+## Dev-Dependencies
+
+* Gems: better_errors, binding_of_caller, pry-rails, annotate
 
 # Features
 
